@@ -5,18 +5,18 @@ from pathlib import Path
 
 def compute_nuisance_basis(feature_differences, num_components=16):
 
-    if not feature_differences:
+    if feature_differences is None or len(feature_differences) == 0:
         raise ValueError("No feature differences provided.")
 
     channel_sum = None
     total_columns = 0
     channels = None
 
-    # Pass 1: calculate global channel mean
+    # All PCA calculations use CPU float64 for consistency.
     for difference in feature_differences:
 
-        difference = torch.as_tensor(
-            difference, dtype=torch.float64
+        difference = torch.as_tensor(difference).detach().to(
+            device="cpu", dtype=torch.float64
         )
 
         if difference.ndim == 3:
@@ -42,17 +42,19 @@ def compute_nuisance_basis(feature_differences, num_components=16):
     if total_columns < 2:
         raise ValueError("At least two observations are required.")
 
+    if num_components < 1 or num_components > channels:
+        raise ValueError("Invalid number of PCA components.")
+
     mean = channel_sum / total_columns
 
-    # Pass 2: calculate centered covariance
     covariance = torch.zeros(
         channels, channels, dtype=torch.float64
     )
 
     for difference in feature_differences:
 
-        difference = torch.as_tensor(
-            difference, dtype=torch.float64
+        difference = torch.as_tensor(difference).detach().to(
+            device="cpu", dtype=torch.float64
         )
 
         if difference.ndim == 3:
@@ -68,15 +70,11 @@ def compute_nuisance_basis(feature_differences, num_components=16):
 
     covariance /= (total_columns - 1)
 
-    # Eigen decomposition
     eigenvalues, eigenvectors = torch.linalg.eigh(covariance)
 
     indices = torch.argsort(eigenvalues, descending=True)
     eigenvalues = eigenvalues[indices].clamp(min=0)
     eigenvectors = eigenvectors[:, indices]
-
-    if num_components < 1 or num_components > channels:
-        raise ValueError("Invalid number of PCA components.")
 
     basis = eigenvectors[:, :num_components].contiguous()
 
