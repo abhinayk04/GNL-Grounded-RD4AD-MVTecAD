@@ -4,30 +4,15 @@ from pathlib import Path
 
 
 def compute_nuisance_basis(feature_differences, num_components=16):
-    """
-    Compute a channel-wise nuisance PCA basis.
-
-    Args:
-        feature_differences:
-            List of tensors shaped [B,C,H,W] or [C,H,W].
-            Each tensor contains teacher feature differences:
-            teacher(x) - teacher(T(x)).
-
-        num_components:
-            Number of principal directions to retain.
-
-    Returns:
-        basis: [C,K] orthonormal nuisance basis.
-        eigenvalues: [K] selected eigenvalues.
-        explained_variance_ratio: [K] variance ratios.
-    """
 
     if not feature_differences:
         raise ValueError("No feature differences provided.")
 
-    covariance = None
+    channel_sum = None
     total_columns = 0
+    channels = None
 
+    # Pass 1: calculate global channel mean
     for difference in feature_differences:
 
         difference = torch.as_tensor(
@@ -38,49 +23,75 @@ def compute_nuisance_basis(feature_differences, num_components=16):
             difference = difference.unsqueeze(0)
 
         if difference.ndim != 4:
-            raise ValueError(
-                "Expected feature differences shaped [B,C,H,W] "
-                "or [C,H,W]."
-            )
+            raise ValueError("Expected [B,C,H,W] or [C,H,W].")
 
-        batch, channels, height, width = difference.shape
+        batch, current_channels, height, width = difference.shape
 
-        # Flatten spatial positions, preserving channels.
+        if channels is None:
+            channels = current_channels
+            channel_sum = torch.zeros(channels, dtype=torch.float64)
+        elif current_channels != channels:
+            raise ValueError("Inconsistent channel dimensions.")
+
         flattened = difference.reshape(batch, channels, -1)
-
-        # Combine batch and spatial positions.
         flattened = flattened.permute(1, 0, 2).reshape(channels, -1)
 
-        if covariance is None:
-            covariance = torch.zeros(
-                channels, channels, dtype=torch.float64
-            )
-
-        covariance += flattened @ flattened.T
+        channel_sum += flattened.sum(dim=1)
         total_columns += flattened.shape[1]
 
-    covariance /= total_columns
+    if total_columns < 2:
+        raise ValueError("At least two observations are required.")
 
-    # Symmetric eigendecomposition.
+    mean = channel_sum / total_columns
+
+    # Pass 2: calculate centered covariance
+    covariance = torch.zeros(
+        channels, channels, dtype=torch.float64
+    )
+
+    for difference in feature_differences:
+
+        difference = torch.as_tensor(
+            difference, dtype=torch.float64
+        )
+
+        if difference.ndim == 3:
+            difference = difference.unsqueeze(0)
+
+        batch = difference.shape[0]
+
+        flattened = difference.reshape(batch, channels, -1)
+        flattened = flattened.permute(1, 0, 2).reshape(channels, -1)
+
+        centered = flattened - mean.unsqueeze(1)
+        covariance += centered @ centered.T
+
+    covariance /= (total_columns - 1)
+
+    # Eigen decomposition
     eigenvalues, eigenvectors = torch.linalg.eigh(covariance)
 
-    # Sort eigenvalues in descending order.
     indices = torch.argsort(eigenvalues, descending=True)
-    eigenvalues = eigenvalues[indices]
+    eigenvalues = eigenvalues[indices].clamp(min=0)
     eigenvectors = eigenvectors[:, indices]
 
-    if num_components < 1 or num_components > eigenvectors.shape[1]:
+    if num_components < 1 or num_components > channels:
         raise ValueError("Invalid number of PCA components.")
 
     basis = eigenvectors[:, :num_components].contiguous()
 
-    total_variance = eigenvalues.clamp(min=0).sum()
+    total_variance = eigenvalues.sum()
+
     explained_variance_ratio = (
-        eigenvalues[:num_components].clamp(min=0)
+        eigenvalues[:num_components]
         / total_variance.clamp(min=1e-12)
     )
 
-    return basis.float(), eigenvalues[:num_components].float(), explained_variance_ratio.float()
+    return (
+        basis.float(),
+        eigenvalues[:num_components].float(),
+        explained_variance_ratio.float()
+    )
 
 
 def save_nuisance_basis(
@@ -90,7 +101,6 @@ def save_nuisance_basis(
     category,
     save_dir="pca_method/saved_bases"
 ):
-    """Save the PCA basis and its metadata."""
 
     save_dir = Path(save_dir)
     save_dir.mkdir(parents=True, exist_ok=True)
@@ -109,9 +119,6 @@ def save_nuisance_basis(
 
     print(f"Saved PCA basis: {output_path}")
     print(f"Basis shape: {tuple(basis.shape)}")
-    print(
-        "Explained variance:",
-        explained_variance_ratio.sum().item()
-    )
+    print("Explained variance:", explained_variance_ratio.sum().item())
 
     return output_path
