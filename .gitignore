@@ -1,0 +1,22 @@
+﻿__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.log
+
+# Dataset files
+datasets/mvtec_anomaly_detection/*
+
+# Model checkpoints
+checkpoints/**/*.pth
+checkpoints/**/*.pt
+checkpoints/**/*.ckpt
+
+# Temporary experiment outputs
+experiments/*/outputs/
+experiments/*/runs/
+
+# IDE files
+.vscode/
+.idea/
