@@ -1,12 +1,19 @@
-﻿__pycache__/
+﻿
+# Python cache
+__pycache__/
 *.py[cod]
+
+# Virtual environments
 .venv/
 venv/
 env/
+
+# Logs
 *.log
 
-# Dataset files
-datasets/mvtec_anomaly_detection/*
+# MVTec AD dataset - never upload dataset files
+datasets/*
+!datasets/.gitkeep
 
 # Model checkpoints
 checkpoints/**/*.pth
