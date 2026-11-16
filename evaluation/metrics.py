@@ -37,18 +37,31 @@ def _prepare_maps(masks, anomaly_maps):
 
 
 def compute_image_auroc(image_labels, image_scores):
-    """Calculate image-level AUROC."""
+    """Calculate image-level AUROC with input validation."""
+
     image_labels = _to_numpy(image_labels).reshape(-1)
     image_scores = _to_numpy(image_scores).reshape(-1)
+
+    if len(image_labels) == 0:
+        raise ValueError("Image labels cannot be empty")
 
     if len(image_labels) != len(image_scores):
         raise ValueError("Image labels and scores must have equal lengths")
 
+    if not np.all(np.isfinite(image_scores)):
+        raise ValueError("Image scores contain NaN or infinite values")
+
+    if not np.all(np.isin(image_labels, [0, 1])):
+        raise ValueError("Image labels must contain only 0 and 1")
+
     if len(np.unique(image_labels)) != 2:
-        raise ValueError("Image AUROC requires normal and defective samples")
+        raise ValueError(
+            "Image AUROC requires normal and defective samples"
+        )
 
-    return float(roc_auc_score(image_labels, image_scores))
-
+    return float(
+        roc_auc_score(image_labels, image_scores)
+    )
 
 def compute_pixel_auroc(masks, anomaly_maps):
     """Calculate pixel-level AUROC."""
@@ -64,123 +77,130 @@ def compute_pixel_auroc(masks, anomaly_maps):
 
 
 
-def compute_aupro(masks, anomaly_maps, num_thresholds=200, max_fpr=0.30):
-    """
-    Calculate normalized area under the per-region overlap curve.
 
-    Each connected defect region is evaluated only against
-    predictions from its own image.
+def compute_aupro(masks, anomaly_maps, max_fpr=0.30):
     """
+    Calculate AUPRO using the official MVTec AD curve-construction
+    and integration procedure.
+
+    Uses all distinct anomaly-score thresholds, 8-connected
+    components, and equal weighting of defect regions.
+    """
+    from bisect import bisect
+
     masks, anomaly_maps = _prepare_maps(masks, anomaly_maps)
 
-    if num_thresholds < 2:
-        raise ValueError("num_thresholds must be at least 2")
+    if masks.shape[0] == 0:
+        raise ValueError("AUPRO requires at least one image")
 
     if not 0.0 < max_fpr <= 1.0:
         raise ValueError("max_fpr must be between 0 and 1")
 
     structure = np.ones((3, 3), dtype=np.uint8)
 
-    # Store each region together with its image index.
-    components = []
+    num_gt_regions = 0
+    labeled_masks = []
 
-    total_background = int((~masks).sum())
-
-    for image_index, mask in enumerate(masks):
+    for mask in masks:
         labeled, count = connected_components(
             mask.astype(np.uint8),
             structure=structure
         )
+        labeled_masks.append(labeled)
+        num_gt_regions += count
 
-        for component_id in range(1, count + 1):
-            region = labeled == component_id
-            components.append((image_index, region))
-
-    if not components:
+    if num_gt_regions == 0:
         raise ValueError("AUPRO requires at least one defect region")
 
-    if total_background == 0:
+    num_ok_pixels = int((~masks).sum())
+
+    if num_ok_pixels == 0:
         raise ValueError("AUPRO requires normal background pixels")
 
-    min_score = float(anomaly_maps.min())
-    max_score = float(anomaly_maps.max())
+    # Flatten scores and prepare official PRO/FPR contributions.
+    anomaly_scores = anomaly_maps.ravel().copy()
 
-    thresholds = np.linspace(
-        max_score + 1e-8,
-        min_score - 1e-8,
-        num_thresholds
+    fp_changes = (~masks).astype(np.uint8).ravel()
+    pro_changes = np.zeros(masks.shape, dtype=np.float64)
+
+    for image_index, labeled in enumerate(labeled_masks):
+        for region_id in range(1, int(labeled.max()) + 1):
+            region = labeled == region_id
+            region_size = int(region.sum())
+
+            pro_changes[image_index][region] = 1.0 / region_size
+
+    pro_changes = pro_changes.ravel()
+
+    # Sort all anomaly scores in descending order.
+    sort_indices = np.argsort(anomaly_scores)[::-1]
+
+    anomaly_scores = anomaly_scores[sort_indices]
+    fp_changes = fp_changes[sort_indices]
+    pro_changes = pro_changes[sort_indices]
+
+    # Calculate cumulative FPR and PRO.
+    fprs = np.cumsum(fp_changes, dtype=np.uint64).astype(np.float64)
+    fprs /= num_ok_pixels
+
+    pros = np.cumsum(pro_changes)
+    pros /= num_gt_regions
+
+    # Keep only the final point for each equal anomaly score.
+    keep_mask = np.append(
+        np.diff(anomaly_scores) != 0,
+        True
     )
 
-    fpr_values = []
-    pro_values = []
+    fprs = fprs[keep_mask]
+    pros = pros[keep_mask]
 
-    for threshold in thresholds:
-        predictions = anomaly_maps >= threshold
+    # Match the official numerical clipping.
+    fprs = np.clip(fprs, 0.0, 1.0)
+    pros = np.clip(pros, 0.0, 1.0)
 
-        false_positives = np.logical_and(
-            predictions, ~masks
-        ).sum()
+    # Add the curve's starting and ending points.
+    fprs = np.concatenate(([0.0], fprs, [1.0]))
+    pros = np.concatenate(([0.0], pros, [1.0]))
 
-        fpr = float(false_positives) / total_background
+    # Official MVTec trapezoidal integration with interpolation
+    # at max_fpr when it is not already a curve point.
+    correction = 0.0
 
-        region_overlaps = []
+    if max_fpr not in fprs:
+        insertion_index = bisect(fprs, max_fpr)
 
-        for image_index, region in components:
-            image_prediction = predictions[image_index]
+        if not 0 < insertion_index < len(fprs):
+            raise ValueError("Integration limit is outside the curve")
 
-            overlap = np.logical_and(
-                image_prediction, region
-            ).sum()
+        interpolated_pro = (
+            pros[insertion_index - 1]
+            + (pros[insertion_index] - pros[insertion_index - 1])
+            * (max_fpr - fprs[insertion_index - 1])
+            / (fprs[insertion_index] - fprs[insertion_index - 1])
+        )
 
-            region_overlaps.append(
-                float(overlap) / float(region.sum())
-            )
+        correction = (
+            0.5
+            * (interpolated_pro + pros[insertion_index - 1])
+            * (max_fpr - fprs[insertion_index - 1])
+        )
 
-        pro = float(np.mean(region_overlaps))
+    inside = fprs <= max_fpr
 
-        fpr_values.append(fpr)
-        pro_values.append(pro)
+    x = fprs[inside]
+    y = pros[inside]
 
-    fpr_values = np.asarray(fpr_values)
-    pro_values = np.asarray(pro_values)
-
-    # Sort by false-positive rate.
-    order = np.argsort(fpr_values)
-    fpr_values = fpr_values[order]
-    pro_values = pro_values[order]
-
-    # Keep the maximum PRO at each duplicate FPR.
-    unique_fpr = np.unique(fpr_values)
-
-    unique_pro = np.array([
-        np.max(pro_values[fpr_values == value])
-        for value in unique_fpr
-    ])
-
-    # Include the origin if it is missing.
-    if unique_fpr[0] > 0:
-        unique_fpr = np.insert(unique_fpr, 0, 0.0)
-        unique_pro = np.insert(unique_pro, 0, 0.0)
-
-    # Clip the curve to the requested FPR limit.
-    inside = unique_fpr < max_fpr
-
-    clipped_fpr = unique_fpr[inside]
-    clipped_pro = unique_pro[inside]
-
-    endpoint_pro = np.interp(
-        max_fpr, unique_fpr, unique_pro
+    area = (
+        np.sum(
+            0.5 * (y[1:] + y[:-1]) * (x[1:] - x[:-1])
+        )
+        + correction
     )
-
-    clipped_fpr = np.append(clipped_fpr, max_fpr)
-    clipped_pro = np.append(clipped_pro, endpoint_pro)
-
-    area = np.trapz(clipped_pro, clipped_fpr)
 
     result = float(area / max_fpr)
 
-    # Numerical safety check, not a replacement for the calculation.
-    if not np.isfinite(result) or result < -1e-8 or result > 1.0 + 1e-8:
+    if not np.isfinite(result) or not 0.0 <= result <= 1.0 + 1e-8:
         raise RuntimeError("Invalid AUPRO value: {}".format(result))
 
     return float(np.clip(result, 0.0, 1.0))
