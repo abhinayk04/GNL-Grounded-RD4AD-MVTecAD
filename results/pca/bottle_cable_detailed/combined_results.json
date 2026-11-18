@@ -1,0 +1,80 @@
+{
+    "experiment": "PCA_GNL_REPRODUCTION_V1",
+    "created_at": "2026-11-18T20:52:46.280276",
+    "categories": {
+        "bottle": {
+            "category": "bottle",
+            "checkpoint_epoch": 4,
+            "test_images": 83,
+            "normal_images": 20,
+            "anomalous_images": 63,
+            "num_components": 16,
+            "baseline": {
+                "image_auroc": 0.9952380952380953,
+                "pixel_auroc": 0.9833257650943652
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9952380952380953,
+                "pixel_auroc": 0.9834125963475467
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.0,
+                "pixel_auroc": 8.683125318154072e-05
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.995238,
+                "pixel_auroc": 0.983326,
+                "checkpoint_epoch": 4
+            },
+            "reproduced_baseline_delta": {
+                "image_auroc": 9.523809529898841e-08,
+                "pixel_auroc": -2.349056348327494e-07
+            },
+            "baseline_matches_original_summary": true
+        },
+        "cable": {
+            "category": "cable",
+            "checkpoint_epoch": 20,
+            "test_images": 150,
+            "normal_images": 58,
+            "anomalous_images": 92,
+            "num_components": 16,
+            "baseline": {
+                "image_auroc": 0.9578335832083957,
+                "pixel_auroc": 0.9792223683827284
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9617691154422788,
+                "pixel_auroc": 0.9744108622809378
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.003935532233883099,
+                "pixel_auroc": -0.004811506101790597
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.957834,
+                "pixel_auroc": 0.979222,
+                "checkpoint_epoch": 20
+            },
+            "reproduced_baseline_delta": {
+                "image_auroc": -4.1679160422969375e-07,
+                "pixel_auroc": 3.683827283218477e-07
+            },
+            "baseline_matches_original_summary": true
+        }
+    },
+    "protocol": {
+        "image_score": "maximum_anomaly_map_value",
+        "pixel_mask_threshold": 0.5,
+        "feature_distance": "one_minus_cosine_similarity",
+        "feature_levels": [
+            256,
+            512,
+            1024
+        ],
+        "upsampling": "bilinear_align_corners_true",
+        "gaussian_sigma": 4,
+        "pca_projection": "orthogonal_complement",
+        "components": 16
+    }
+}

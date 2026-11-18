@@ -1,0 +1,30 @@
+{
+    "category": "cable",
+    "checkpoint_epoch": 20,
+    "test_images": 150,
+    "normal_images": 58,
+    "anomalous_images": 92,
+    "num_components": 16,
+    "baseline": {
+        "image_auroc": 0.9578335832083957,
+        "pixel_auroc": 0.9792223683827284
+    },
+    "pca_gnl": {
+        "image_auroc": 0.9617691154422788,
+        "pixel_auroc": 0.9744108622809378
+    },
+    "delta_pca_minus_baseline": {
+        "image_auroc": 0.003935532233883099,
+        "pixel_auroc": -0.004811506101790597
+    },
+    "original_stored_baseline": {
+        "image_auroc": 0.957834,
+        "pixel_auroc": 0.979222,
+        "checkpoint_epoch": 20
+    },
+    "reproduced_baseline_delta": {
+        "image_auroc": -4.1679160422969375e-07,
+        "pixel_auroc": 3.683827283218477e-07
+    },
+    "baseline_matches_original_summary": true
+}

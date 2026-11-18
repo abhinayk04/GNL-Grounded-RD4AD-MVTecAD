@@ -1,0 +1,379 @@
+{
+    "experiment": "MEMBER3_PCA_GNL_ALL_15_CATEGORIES",
+    "created_at": "2026-11-18T21:07:14.103957",
+    "components": 16,
+    "categories": {
+        "bottle": {
+            "category": "bottle",
+            "checkpoint_epoch": 4,
+            "test_images": 83,
+            "normal_images": 20,
+            "anomalous_images": 63,
+            "num_components": 16,
+            "baseline": {
+                "image_auroc": 0.9952380952380953,
+                "pixel_auroc": 0.9833257650943652
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9952380952380953,
+                "pixel_auroc": 0.9834125963475467
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.0,
+                "pixel_auroc": 8.683125318154072e-05
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.995238,
+                "pixel_auroc": 0.983326,
+                "checkpoint_epoch": 4
+            },
+            "reproduced_baseline_delta": {
+                "image_auroc": 9.523809529898841e-08,
+                "pixel_auroc": -2.349056348327494e-07
+            },
+            "baseline_matches_original_summary": true
+        },
+        "cable": {
+            "category": "cable",
+            "checkpoint_epoch": 20,
+            "test_images": 150,
+            "normal_images": 58,
+            "anomalous_images": 92,
+            "num_components": 16,
+            "baseline": {
+                "image_auroc": 0.9578335832083957,
+                "pixel_auroc": 0.9792223683827284
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9617691154422788,
+                "pixel_auroc": 0.9744108622809378
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.003935532233883099,
+                "pixel_auroc": -0.004811506101790597
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.957834,
+                "pixel_auroc": 0.979222,
+                "checkpoint_epoch": 20
+            },
+            "reproduced_baseline_delta": {
+                "image_auroc": -4.1679160422969375e-07,
+                "pixel_auroc": 3.683827283218477e-07
+            },
+            "baseline_matches_original_summary": true
+        },
+        "capsule": {
+            "category": "capsule",
+            "checkpoint_epoch": 20,
+            "test_images": 132,
+            "baseline": {
+                "image_auroc": 0.9377742321499801,
+                "pixel_auroc": 0.9850560146674116
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9345831671320304,
+                "pixel_auroc": 0.9852750750200187
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": -0.0031910650179497457,
+                "pixel_auroc": 0.00021906035260710333
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.937774,
+                "pixel_auroc": 0.985056,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "carpet": {
+            "category": "carpet",
+            "checkpoint_epoch": 20,
+            "test_images": 117,
+            "baseline": {
+                "image_auroc": 0.9919743178170145,
+                "pixel_auroc": 0.991041519489222
+            },
+            "pca_gnl": {
+                "image_auroc": 0.997191011235955,
+                "pixel_auroc": 0.9909966735373666
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.005216693418940488,
+                "pixel_auroc": -4.484595185538787e-05
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.991974,
+                "pixel_auroc": 0.991042,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "grid": {
+            "category": "grid",
+            "checkpoint_epoch": 20,
+            "test_images": 78,
+            "baseline": {
+                "image_auroc": 0.7777777777777777,
+                "pixel_auroc": 0.852004750937389
+            },
+            "pca_gnl": {
+                "image_auroc": 0.7777777777777777,
+                "pixel_auroc": 0.8457407652927337
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.0,
+                "pixel_auroc": -0.0062639856446553566
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.777778,
+                "pixel_auroc": 0.852005,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "hazelnut": {
+            "category": "hazelnut",
+            "checkpoint_epoch": 20,
+            "test_images": 110,
+            "baseline": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.9902272549441914
+            },
+            "pca_gnl": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.9903992877560372
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.0,
+                "pixel_auroc": 0.00017203281184585695
+            },
+            "original_stored_baseline": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.990227,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "leather": {
+            "category": "leather",
+            "checkpoint_epoch": 20,
+            "test_images": 124,
+            "baseline": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.9942519292406561
+            },
+            "pca_gnl": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.9926666911406191
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.0,
+                "pixel_auroc": -0.0015852381000369675
+            },
+            "original_stored_baseline": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.994252,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "metal_nut": {
+            "category": "metal_nut",
+            "checkpoint_epoch": 20,
+            "test_images": 115,
+            "baseline": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.9748991080842475
+            },
+            "pca_gnl": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.9697830050908773
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.0,
+                "pixel_auroc": -0.005116102993370175
+            },
+            "original_stored_baseline": {
+                "image_auroc": 1.0,
+                "pixel_auroc": 0.974899,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "pill": {
+            "category": "pill",
+            "checkpoint_epoch": 20,
+            "test_images": 167,
+            "baseline": {
+                "image_auroc": 0.9719039825422804,
+                "pixel_auroc": 0.975906178578228
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9680851063829787,
+                "pixel_auroc": 0.9713514051335205
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": -0.003818876159301654,
+                "pixel_auroc": -0.0045547734447075605
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.971904,
+                "pixel_auroc": 0.975906,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "screw": {
+            "category": "screw",
+            "checkpoint_epoch": 20,
+            "test_images": 160,
+            "baseline": {
+                "image_auroc": 0.9249846279975406,
+                "pixel_auroc": 0.9925477406480371
+            },
+            "pca_gnl": {
+                "image_auroc": 0.920065587210494,
+                "pixel_auroc": 0.9928877133459497
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": -0.004919040787046525,
+                "pixel_auroc": 0.0003399726979126383
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.924985,
+                "pixel_auroc": 0.992548,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "tile": {
+            "category": "tile",
+            "checkpoint_epoch": 20,
+            "test_images": 117,
+            "baseline": {
+                "image_auroc": 0.9927849927849929,
+                "pixel_auroc": 0.9561589825293908
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9953102453102454,
+                "pixel_auroc": 0.9447276337147212
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.002525252525252486,
+                "pixel_auroc": -0.011431348814669562
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.992785,
+                "pixel_auroc": 0.956159,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "toothbrush": {
+            "category": "toothbrush",
+            "checkpoint_epoch": 20,
+            "test_images": 42,
+            "baseline": {
+                "image_auroc": 0.9861111111111112,
+                "pixel_auroc": 0.9890655803307934
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9833333333333334,
+                "pixel_auroc": 0.9894714447770535
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": -0.002777777777777768,
+                "pixel_auroc": 0.00040586444626011797
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.986111,
+                "pixel_auroc": 0.989066,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "transistor": {
+            "category": "transistor",
+            "checkpoint_epoch": 20,
+            "test_images": 100,
+            "baseline": {
+                "image_auroc": 0.9741666666666666,
+                "pixel_auroc": 0.9018283071649233
+            },
+            "pca_gnl": {
+                "image_auroc": 0.975,
+                "pixel_auroc": 0.9140509656054844
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.0008333333333333526,
+                "pixel_auroc": 0.01222265844056103
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.974167,
+                "pixel_auroc": 0.901828,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "wood": {
+            "category": "wood",
+            "checkpoint_epoch": 20,
+            "test_images": 79,
+            "baseline": {
+                "image_auroc": 0.9903508771929824,
+                "pixel_auroc": 0.9553638235830083
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9894736842105263,
+                "pixel_auroc": 0.948219869337461
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": -0.0008771929824561431,
+                "pixel_auroc": -0.007143954245547257
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.990351,
+                "pixel_auroc": 0.955364,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        },
+        "zipper": {
+            "category": "zipper",
+            "checkpoint_epoch": 20,
+            "test_images": 151,
+            "baseline": {
+                "image_auroc": 0.88734243697479,
+                "pixel_auroc": 0.9761401537408492
+            },
+            "pca_gnl": {
+                "image_auroc": 0.9248949579831933,
+                "pixel_auroc": 0.9752537660274004
+            },
+            "delta_pca_minus_baseline": {
+                "image_auroc": 0.03755252100840334,
+                "pixel_auroc": -0.000886387713448733
+            },
+            "original_stored_baseline": {
+                "image_auroc": 0.887342,
+                "pixel_auroc": 0.97614,
+                "checkpoint_epoch": 20
+            },
+            "baseline_matches_original_summary": true
+        }
+    },
+    "protocol": {
+        "feature_difference": "teacher_original_minus_teacher_augmix",
+        "projection": "orthogonal_complement",
+        "feature_levels": [
+            256,
+            512,
+            1024
+        ],
+        "score": "one_minus_cosine_similarity",
+        "image_score": "maximum_anomaly_map_value",
+        "mask_threshold": 0.5,
+        "gaussian_sigma": 4
+    }
+}

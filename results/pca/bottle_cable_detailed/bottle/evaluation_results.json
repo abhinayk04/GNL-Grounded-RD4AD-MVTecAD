@@ -1,0 +1,30 @@
+{
+    "category": "bottle",
+    "checkpoint_epoch": 4,
+    "test_images": 83,
+    "normal_images": 20,
+    "anomalous_images": 63,
+    "num_components": 16,
+    "baseline": {
+        "image_auroc": 0.9952380952380953,
+        "pixel_auroc": 0.9833257650943652
+    },
+    "pca_gnl": {
+        "image_auroc": 0.9952380952380953,
+        "pixel_auroc": 0.9834125963475467
+    },
+    "delta_pca_minus_baseline": {
+        "image_auroc": 0.0,
+        "pixel_auroc": 8.683125318154072e-05
+    },
+    "original_stored_baseline": {
+        "image_auroc": 0.995238,
+        "pixel_auroc": 0.983326,
+        "checkpoint_epoch": 4
+    },
+    "reproduced_baseline_delta": {
+        "image_auroc": 9.523809529898841e-08,
+        "pixel_auroc": -2.349056348327494e-07
+    },
+    "baseline_matches_original_summary": true
+}
