@@ -1,0 +1,1796 @@
+{
+  "task": "Task 1P",
+  "efdm_code_matches": [
+    {
+      "file": "/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb",
+      "hits": [
+        {
+          "line": 217,
+          "context": "print(\"Extraction completed.\")\nprint(\"Extracted top-level contents:\")\n\nfor item in os.listdir(extract_path):\n    print(item)\nimport os\n\nroot = \"/content/mvtec_dataset\""
+        },
+        {
+          "line": 249,
+          "context": "    print(f\"\\n{folder}: {'PRESENT' if os.path.isdir(path) else 'MISSING'}\")\n\n    if os.path.isdir(path):\n        files = os.listdir(path)\n        print(\"  Items:\", len(files))\n        print(\"  Sample:\", files[:5])\nimport os\n"
+        },
+        {
+          "line": 261,
+          "context": "\n    if os.path.isdir(path):\n        files = [\n            f for f in os.listdir(path)\n            if os.path.isfile(os.path.join(path, f))\n        ]\n        print(f\"{folder}: {len(files)} files\")\nimport os"
+        },
+        {
+          "line": 274,
+          "context": "\n    parent_path = os.path.join(root, parent)\n\n    for folder in sorted(os.listdir(parent_path)):\n        folder_path = os.path.join(parent_path, folder)\n\n        if os.path.isdir(folder_path):\n            files = ["
+        },
+        {
+          "line": 279,
+          "context": "\n        if os.path.isdir(folder_path):\n            files = [\n                f for f in os.listdir(folder_path)\n                if f.lower().endswith(\".png\")\n            ]\n\n            print(f\"{folder}: {len(files)} images\")"
+        },
+        {
+          "line": 293,
+          "context": "    test_path = os.path.join(root, \"test\", defect)\n    mask_path = os.path.join(root, \"ground_truth\", defect)\n\n    test_files = set(os.listdir(test_path))\n    mask_files = set(os.listdir(mask_path))\n\n    print(f\"\\n{defect}\")\n    print(\"Test images:\", len(test_files))"
+        },
+        {
+          "line": 294,
+          "context": "    mask_path = os.path.join(root, \"ground_truth\", defect)\n\n    test_files = set(os.listdir(test_path))\n    mask_files = set(os.listdir(mask_path))\n\n    print(f\"\\n{defect}\")\n    print(\"Test images:\", len(test_files))\n    print(\"Ground-truth masks:\", len(mask_files))"
+        },
+        {
+          "line": 299,
+          "context": "    print(f\"\\n{defect}\")\n    print(\"Test images:\", len(test_files))\n    print(\"Ground-truth masks:\", len(mask_files))\n    print(\"Missing masks:\", sorted(test_files - {\n        f.replace(\"_mask.png\", \".png\") for f in mask_files\n    })[:5])\n%cd /content/ADShift-official\n"
+        },
+        {
+          "line": 350,
+          "context": "\nimport torch\nfrom torchvision import transforms\nfrom torch.utils.data import DataLoader\nfrom dataset import MVTecDataset, AugMixDatasetMVTec\nfrom dataset import mean_train, std_train\n\nroot = \"/content/mvtec_dataset/bottle\""
+        },
+        {
+          "line": 439,
+          "context": "\n        good_path = os.path.join(root, \"train\", \"good\")\n\n        for filename in sorted(os.listdir(good_path)):\n            if filename.lower().endswith(\".png\"):\n                self.image_paths.append(\n                    os.path.join(good_path, filename)\n                )"
+        },
+        {
+          "line": 673,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 762,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 765,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        drop_last=False\n    )"
+        },
+        {
+          "line": 1163,
+          "context": "!grep -n -A 65 -B 10 \"def wide_resnet50_2\" resnet_TTA.py\n\nprint(\"\\n===== EFDM IMPLEMENTATION =====\")\n!grep -n -A 65 -B 10 \"def EFDM_test\" resnet_TTA.py\n\nprint(\"\\n===== ENCODER FORWARD METHODS =====\")\n!grep -n -A 65 -B 10 \"def forward\" resnet_TTA.py\n%cd /content/ADShift-GNL-working"
+        },
+        {
+          "line": 1207,
+          "context": "decoder = decoder.to(device).eval()\n\n# Load one normal bottle image and one test image\ntrain_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/train/good/*\")\n)\ntest_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/test/good/*\")"
+        },
+        {
+          "line": 1208,
+          "context": "\n# Load one normal bottle image and one test image\ntrain_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/train/good/*\")\n)\ntest_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/test/good/*\")\n)"
+        },
+        {
+          "line": 1210,
+          "context": "train_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/train/good/*\")\n)\ntest_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/test/good/*\")\n)\n\ndata_transform, _ = get_data_transforms(256, 256)"
+        },
+        {
+          "line": 1211,
+          "context": "    glob(\"/content/mvtec_dataset/bottle/train/good/*\")\n)\ntest_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/test/good/*\")\n)\n\ndata_transform, _ = get_data_transforms(256, 256)\n"
+        },
+        {
+          "line": 1316,
+          "context": "\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)\n    print(\"Dataset:\", args.dataset_root)"
+        },
+        {
+          "line": 1333,
+          "context": "        phase=\"test\"\n    )\n\n    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2"
+        },
+        {
+          "line": 1336,
+          "context": "    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2\n    )\n\n    print(\"Test images:\", len(test_dataset))"
+        },
+        {
+          "line": 1405,
+          "context": "                \"{:03d}_{}_{}\".format(index, defect_type, filename)\n            )\n\n            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n"
+        },
+        {
+          "line": 1512,
+          "context": "import numpy as np\n\noutput_dir = \"results/bottle_id\"\nmap_dir = os.path.join(output_dir, \"anomaly_maps\")\n\nscores = pd.read_csv(\n    os.path.join(output_dir, \"image_scores.csv\")\n)"
+        },
+        {
+          "line": 1523,
+          "context": ").read()\n\nnpy_files = [\n    f for f in os.listdir(map_dir)\n    if f.endswith(\".npy\")\n]\n\nheatmap_files = ["
+        },
+        {
+          "line": 1528,
+          "context": "]\n\nheatmap_files = [\n    f for f in os.listdir(map_dir)\n    if f.endswith(\"_heatmap.png\")\n]\n\nprint(\"===== OUTPUT VERIFICATION =====\")"
+        },
+        {
+          "line": 1565,
+          "context": "\nfor sample in [normal, defect]:\n    matching = [\n        f for f in os.listdir(\"results/bottle_id/anomaly_maps\")\n        if f.endswith(\"_heatmap.png\")\n        and f.split(\"_\", 2)[-1] == sample.filename\n    ]\n"
+        },
+        {
+          "line": 1577,
+          "context": "    if matching:\n        from PIL import Image\n        display(Image.open(\n            os.path.join(\"results/bottle_id/anomaly_maps\", matching[0])\n        ))\n%cd /content/ADShift-GNL-working\n\nimport os"
+        },
+        {
+          "line": 1589,
+          "context": "from dataset import MVTecDataset, get_data_transforms\n\nroot = \"/content/mvtec_dataset/bottle\"\nmap_dir = \"results/bottle_id/anomaly_maps\"\n\nimage_transform, mask_transform = get_data_transforms(256, 256)\n\ndataset = MVTecDataset("
+        },
+        {
+          "line": 1709,
+          "context": "\nroot = \"/content/mvtec_dataset/cable\"\n\ntrain_images = glob(os.path.join(root, \"train\", \"good\", \"*.png\"))\n\ntest_good = glob(os.path.join(root, \"test\", \"good\", \"*.png\"))\n\ndefect_types = ["
+        },
+        {
+          "line": 1711,
+          "context": "\ntrain_images = glob(os.path.join(root, \"train\", \"good\", \"*.png\"))\n\ntest_good = glob(os.path.join(root, \"test\", \"good\", \"*.png\"))\n\ndefect_types = [\n    d for d in os.listdir(os.path.join(root, \"test\"))\n    if d != \"good\""
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/GNL_Project_Backup/recovered_scripts/infer_gnl_category_id.py",
+      "hits": [
+        {
+          "line": 49,
+          "context": "    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)\n    print(\"Category:\", args.category)"
+        },
+        {
+          "line": 66,
+          "context": "        phase=\"test\"\n    )\n\n    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2"
+        },
+        {
+          "line": 69,
+          "context": "    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2\n    )\n\n    print(\"Test images:\", len(test_dataset))"
+        },
+        {
+          "line": 134,
+          "context": "                index, defect_type, filename\n            )\n\n            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/GNL_Project_Backup/recovered_scripts/train_gnl_category.py",
+      "hits": [
+        {
+          "line": 8,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 97,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 100,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        drop_last=False\n    )"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/GNL_Project_Backup/recovered_scripts/infer_gnl_bottle_id.py",
+      "hits": [
+        {
+          "line": 63,
+          "context": "\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)\n    print(\"Dataset:\", args.dataset_root)"
+        },
+        {
+          "line": 80,
+          "context": "        phase=\"test\"\n    )\n\n    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2"
+        },
+        {
+          "line": 83,
+          "context": "    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2\n    )\n\n    print(\"Test images:\", len(test_dataset))"
+        },
+        {
+          "line": 152,
+          "context": "                \"{:03d}_{}_{}\".format(index, defect_type, filename)\n            )\n\n            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/GNL_Project_Backup/recovered_scripts/train_gnl_bottle.py",
+      "hits": [
+        {
+          "line": 8,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 97,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 100,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        drop_last=False\n    )"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/implementation_candidates/GNL_Baseline_recovery.ipynb",
+      "hits": [
+        {
+          "line": 217,
+          "context": "print(\"Extraction completed.\")\nprint(\"Extracted top-level contents:\")\n\nfor item in os.listdir(extract_path):\n    print(item)\nimport os\n\nroot = \"/content/mvtec_dataset\""
+        },
+        {
+          "line": 249,
+          "context": "    print(f\"\\n{folder}: {'PRESENT' if os.path.isdir(path) else 'MISSING'}\")\n\n    if os.path.isdir(path):\n        files = os.listdir(path)\n        print(\"  Items:\", len(files))\n        print(\"  Sample:\", files[:5])\nimport os\n"
+        },
+        {
+          "line": 261,
+          "context": "\n    if os.path.isdir(path):\n        files = [\n            f for f in os.listdir(path)\n            if os.path.isfile(os.path.join(path, f))\n        ]\n        print(f\"{folder}: {len(files)} files\")\nimport os"
+        },
+        {
+          "line": 274,
+          "context": "\n    parent_path = os.path.join(root, parent)\n\n    for folder in sorted(os.listdir(parent_path)):\n        folder_path = os.path.join(parent_path, folder)\n\n        if os.path.isdir(folder_path):\n            files = ["
+        },
+        {
+          "line": 279,
+          "context": "\n        if os.path.isdir(folder_path):\n            files = [\n                f for f in os.listdir(folder_path)\n                if f.lower().endswith(\".png\")\n            ]\n\n            print(f\"{folder}: {len(files)} images\")"
+        },
+        {
+          "line": 293,
+          "context": "    test_path = os.path.join(root, \"test\", defect)\n    mask_path = os.path.join(root, \"ground_truth\", defect)\n\n    test_files = set(os.listdir(test_path))\n    mask_files = set(os.listdir(mask_path))\n\n    print(f\"\\n{defect}\")\n    print(\"Test images:\", len(test_files))"
+        },
+        {
+          "line": 294,
+          "context": "    mask_path = os.path.join(root, \"ground_truth\", defect)\n\n    test_files = set(os.listdir(test_path))\n    mask_files = set(os.listdir(mask_path))\n\n    print(f\"\\n{defect}\")\n    print(\"Test images:\", len(test_files))\n    print(\"Ground-truth masks:\", len(mask_files))"
+        },
+        {
+          "line": 299,
+          "context": "    print(f\"\\n{defect}\")\n    print(\"Test images:\", len(test_files))\n    print(\"Ground-truth masks:\", len(mask_files))\n    print(\"Missing masks:\", sorted(test_files - {\n        f.replace(\"_mask.png\", \".png\") for f in mask_files\n    })[:5])\n%cd /content/ADShift-official\n"
+        },
+        {
+          "line": 350,
+          "context": "\nimport torch\nfrom torchvision import transforms\nfrom torch.utils.data import DataLoader\nfrom dataset import MVTecDataset, AugMixDatasetMVTec\nfrom dataset import mean_train, std_train\n\nroot = \"/content/mvtec_dataset/bottle\""
+        },
+        {
+          "line": 439,
+          "context": "\n        good_path = os.path.join(root, \"train\", \"good\")\n\n        for filename in sorted(os.listdir(good_path)):\n            if filename.lower().endswith(\".png\"):\n                self.image_paths.append(\n                    os.path.join(good_path, filename)\n                )"
+        },
+        {
+          "line": 673,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 762,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 765,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        drop_last=False\n    )"
+        },
+        {
+          "line": 1163,
+          "context": "!grep -n -A 65 -B 10 \"def wide_resnet50_2\" resnet_TTA.py\n\nprint(\"\\n===== EFDM IMPLEMENTATION =====\")\n!grep -n -A 65 -B 10 \"def EFDM_test\" resnet_TTA.py\n\nprint(\"\\n===== ENCODER FORWARD METHODS =====\")\n!grep -n -A 65 -B 10 \"def forward\" resnet_TTA.py\n%cd /content/ADShift-GNL-working"
+        },
+        {
+          "line": 1207,
+          "context": "decoder = decoder.to(device).eval()\n\n# Load one normal bottle image and one test image\ntrain_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/train/good/*\")\n)\ntest_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/test/good/*\")"
+        },
+        {
+          "line": 1208,
+          "context": "\n# Load one normal bottle image and one test image\ntrain_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/train/good/*\")\n)\ntest_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/test/good/*\")\n)"
+        },
+        {
+          "line": 1210,
+          "context": "train_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/train/good/*\")\n)\ntest_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/test/good/*\")\n)\n\ndata_transform, _ = get_data_transforms(256, 256)"
+        },
+        {
+          "line": 1211,
+          "context": "    glob(\"/content/mvtec_dataset/bottle/train/good/*\")\n)\ntest_images = sorted(\n    glob(\"/content/mvtec_dataset/bottle/test/good/*\")\n)\n\ndata_transform, _ = get_data_transforms(256, 256)\n"
+        },
+        {
+          "line": 1316,
+          "context": "\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)\n    print(\"Dataset:\", args.dataset_root)"
+        },
+        {
+          "line": 1333,
+          "context": "        phase=\"test\"\n    )\n\n    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2"
+        },
+        {
+          "line": 1336,
+          "context": "    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2\n    )\n\n    print(\"Test images:\", len(test_dataset))"
+        },
+        {
+          "line": 1405,
+          "context": "                \"{:03d}_{}_{}\".format(index, defect_type, filename)\n            )\n\n            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n"
+        },
+        {
+          "line": 1512,
+          "context": "import numpy as np\n\noutput_dir = \"results/bottle_id\"\nmap_dir = os.path.join(output_dir, \"anomaly_maps\")\n\nscores = pd.read_csv(\n    os.path.join(output_dir, \"image_scores.csv\")\n)"
+        },
+        {
+          "line": 1523,
+          "context": ").read()\n\nnpy_files = [\n    f for f in os.listdir(map_dir)\n    if f.endswith(\".npy\")\n]\n\nheatmap_files = ["
+        },
+        {
+          "line": 1528,
+          "context": "]\n\nheatmap_files = [\n    f for f in os.listdir(map_dir)\n    if f.endswith(\"_heatmap.png\")\n]\n\nprint(\"===== OUTPUT VERIFICATION =====\")"
+        },
+        {
+          "line": 1565,
+          "context": "\nfor sample in [normal, defect]:\n    matching = [\n        f for f in os.listdir(\"results/bottle_id/anomaly_maps\")\n        if f.endswith(\"_heatmap.png\")\n        and f.split(\"_\", 2)[-1] == sample.filename\n    ]\n"
+        },
+        {
+          "line": 1577,
+          "context": "    if matching:\n        from PIL import Image\n        display(Image.open(\n            os.path.join(\"results/bottle_id/anomaly_maps\", matching[0])\n        ))\n%cd /content/ADShift-GNL-working\n\nimport os"
+        },
+        {
+          "line": 1589,
+          "context": "from dataset import MVTecDataset, get_data_transforms\n\nroot = \"/content/mvtec_dataset/bottle\"\nmap_dir = \"results/bottle_id/anomaly_maps\"\n\nimage_transform, mask_transform = get_data_transforms(256, 256)\n\ndataset = MVTecDataset("
+        },
+        {
+          "line": 1709,
+          "context": "\nroot = \"/content/mvtec_dataset/cable\"\n\ntrain_images = glob(os.path.join(root, \"train\", \"good\", \"*.png\"))\n\ntest_good = glob(os.path.join(root, \"test\", \"good\", \"*.png\"))\n\ndefect_types = ["
+        },
+        {
+          "line": 1711,
+          "context": "\ntrain_images = glob(os.path.join(root, \"train\", \"good\", \"*.png\"))\n\ntest_good = glob(os.path.join(root, \"test\", \"good\", \"*.png\"))\n\ndefect_types = [\n    d for d in os.listdir(os.path.join(root, \"test\"))\n    if d != \"good\""
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_RECOVERY_MANIFEST.json",
+      "hits": [
+        {
+          "line": 37,
+          "context": "      \"size_bytes\": 228\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\",\n      \"name\": \"transistor_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 26214528\n    },"
+        },
+        {
+          "line": 38,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\",\n      \"name\": \"transistor_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 26214528\n    },\n    {"
+        },
+        {
+          "line": 49,
+          "context": "      \"size_bytes\": 210\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\",\n      \"name\": \"leather_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 32505984\n    },"
+        },
+        {
+          "line": 50,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\",\n      \"name\": \"leather_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 32505984\n    },\n    {"
+        },
+        {
+          "line": 55,
+          "context": "      \"size_bytes\": 32505984\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\",\n      \"name\": \"grid_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 20447360\n    },"
+        },
+        {
+          "line": 56,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\",\n      \"name\": \"grid_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 20447360\n    },\n    {"
+        },
+        {
+          "line": 61,
+          "context": "      \"size_bytes\": 20447360\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\",\n      \"name\": \"grid_efdm_evaluation.json\",\n      \"extension\": \".json\",\n      \"size_bytes\": 221\n    },"
+        },
+        {
+          "line": 62,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\",\n      \"name\": \"grid_efdm_evaluation.json\",\n      \"extension\": \".json\",\n      \"size_bytes\": 221\n    },\n    {"
+        },
+        {
+          "line": 73,
+          "context": "      \"size_bytes\": 225\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\",\n      \"name\": \"capsule_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 34603136\n    },"
+        },
+        {
+          "line": 74,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\",\n      \"name\": \"capsule_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 34603136\n    },\n    {"
+        },
+        {
+          "line": 85,
+          "context": "      \"size_bytes\": 222\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\",\n      \"name\": \"tile_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 30670976\n    },"
+        },
+        {
+          "line": 86,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\",\n      \"name\": \"tile_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 30670976\n    },\n    {"
+        },
+        {
+          "line": 97,
+          "context": "      \"size_bytes\": 212\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\",\n      \"name\": \"metal_nut_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 30146688\n    },"
+        },
+        {
+          "line": 98,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\",\n      \"name\": \"metal_nut_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 30146688\n    },\n    {"
+        },
+        {
+          "line": 109,
+          "context": "      \"size_bytes\": 211\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\",\n      \"name\": \"hazelnut_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 28835968\n    },"
+        },
+        {
+          "line": 110,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\",\n      \"name\": \"hazelnut_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 28835968\n    },\n    {"
+        },
+        {
+          "line": 115,
+          "context": "      \"size_bytes\": 28835968\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\",\n      \"name\": \"cable_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 39321728\n    },"
+        },
+        {
+          "line": 116,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\",\n      \"name\": \"cable_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 39321728\n    },\n    {"
+        },
+        {
+          "line": 127,
+          "context": "      \"size_bytes\": 1115\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\",\n      \"name\": \"bottle_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 21758080\n    },"
+        },
+        {
+          "line": 128,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\",\n      \"name\": \"bottle_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 21758080\n    },\n    {"
+        },
+        {
+          "line": 145,
+          "context": "      \"size_bytes\": 223\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\",\n      \"name\": \"screw_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 41943168\n    },"
+        },
+        {
+          "line": 146,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\",\n      \"name\": \"screw_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 41943168\n    },\n    {"
+        },
+        {
+          "line": 151,
+          "context": "      \"size_bytes\": 41943168\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\",\n      \"name\": \"zipper_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 39583872\n    },"
+        },
+        {
+          "line": 152,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\",\n      \"name\": \"zipper_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 39583872\n    },\n    {"
+        },
+        {
+          "line": 163,
+          "context": "      \"size_bytes\": 224\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\",\n      \"name\": \"wood_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 20709504\n    },"
+        },
+        {
+          "line": 164,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\",\n      \"name\": \"wood_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 20709504\n    },\n    {"
+        },
+        {
+          "line": 181,
+          "context": "      \"size_bytes\": 222\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy\",\n      \"name\": \"pill_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 43778176\n    },"
+        },
+        {
+          "line": 182,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy\",\n      \"name\": \"pill_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 43778176\n    },\n    {"
+        },
+        {
+          "line": 193,
+          "context": "      \"size_bytes\": 227\n    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy\",\n      \"name\": \"toothbrush_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 11010176\n    },"
+        },
+        {
+          "line": 194,
+          "context": "    },\n    {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy\",\n      \"name\": \"toothbrush_efdm_anomaly_maps.npy\",\n      \"extension\": \".npy\",\n      \"size_bytes\": 11010176\n    },\n    {"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_METHODOLOGY_RECOVERY.txt",
+      "hits": [
+        {
+          "line": 11,
+          "context": "/kaggle/working/GNL_Project_Backup/FINAL_RESEARCH_PACKAGE/standard_vs_efdm_final_comparison.csv\n/kaggle/working/GNL_Project_Backup/efdm_results/efdm_automation_summary.json\n/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json"
+        },
+        {
+          "line": 13,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 14,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json"
+        },
+        {
+          "line": 15,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 17,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 19,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 21,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json"
+        },
+        {
+          "line": 23,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json"
+        },
+        {
+          "line": 24,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json"
+        },
+        {
+          "line": 26,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 29,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json"
+        },
+        {
+          "line": 30,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json"
+        },
+        {
+          "line": 32,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json"
+        },
+        {
+          "line": 35,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 37,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/final_protocol_aligned_comparison/standard_vs_efdm_aligned_summary.json\n/kaggle/working/GNL_Project_Backup/final_protocol_aligned_comparison/standard_vs_efdm_aligned.csv"
+        },
+        {
+          "line": 39,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/final_protocol_aligned_comparison/standard_vs_efdm_aligned_summary.json\n/kaggle/working/GNL_Project_Backup/final_protocol_aligned_comparison/standard_vs_efdm_aligned.csv\n/kaggle/working/GNL_Project_Backup/final_research_deliverables/standard_vs_efdm_research_report.md\n"
+        },
+        {
+          "line": 50,
+          "context": "\nCATEGORY FILES\n/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json"
+        },
+        {
+          "line": 52,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 53,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json"
+        },
+        {
+          "line": 54,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 56,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 58,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 60,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json"
+        },
+        {
+          "line": 62,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json"
+        },
+        {
+          "line": 63,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json"
+        },
+        {
+          "line": 65,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy"
+        },
+        {
+          "line": 68,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json"
+        },
+        {
+          "line": 69,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json"
+        },
+        {
+          "line": 71,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json"
+        },
+        {
+          "line": 74,
+          "context": "/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy\n/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_evaluation.json\n/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_anomaly_maps.npy"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/infer_gnl_category_id.py",
+      "hits": [
+        {
+          "line": 49,
+          "context": "    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)\n    print(\"Category:\", args.category)"
+        },
+        {
+          "line": 66,
+          "context": "        phase=\"test\"\n    )\n\n    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2"
+        },
+        {
+          "line": 69,
+          "context": "    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2\n    )\n\n    print(\"Test images:\", len(test_dataset))"
+        },
+        {
+          "line": 134,
+          "context": "                index, defect_type, filename\n            )\n\n            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/test.py",
+      "hits": [
+        {
+          "line": 52,
+          "context": "    return heatmap\n\n\ndef evaluation_ATTA(encoder, bn, decoder, dataloader,device, type_of_test, img_size, lamda=0.5, dataset_name='mnist', _class_=None):\n    bn.eval()\n    decoder.eval()\n    gt_list_sp = []\n    pr_list_sp = []"
+        },
+        {
+          "line": 107,
+          "context": "\n\n    with torch.no_grad():\n        for sample in dataloader:\n            img, label = sample[0], sample[1]\n\n            if dataset_name != 'mvtec' and dataset_name != 'mvtec_ood':\n                if int(label) != _class_:"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/train_gnl_category.py",
+      "hits": [
+        {
+          "line": 8,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 102,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 105,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        persistent_workers=(args.num_workers > 0),\n        prefetch_factor=2 if args.num_workers > 0 else None,"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/resnet_TTA.py",
+      "hits": [
+        {
+          "line": 171,
+          "context": "\n    return new_input_x\n\ndef EFDM_test(input_image, normal_image, lamda = 0.5):\n\n    lamda = 1-lamda\n    input_x = input_image\n"
+        },
+        {
+          "line": 301,
+          "context": "        feature_a = self.layer1(x)\n        feature_a_original = self.layer1(original)\n\n        if type_of_test == \"EFDM_test\":\n            feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)\n            feature_a = feature_a.to('cuda')\n        elif type_of_test == \"mixstyle\":\n            feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)"
+        },
+        {
+          "line": 302,
+          "context": "        feature_a_original = self.layer1(original)\n\n        if type_of_test == \"EFDM_test\":\n            feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)\n            feature_a = feature_a.to('cuda')\n        elif type_of_test == \"mixstyle\":\n            feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)\n        if type_of_test == \"both\":"
+        },
+        {
+          "line": 307,
+          "context": "        elif type_of_test == \"mixstyle\":\n            feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)\n        if type_of_test == \"both\":\n            feature_a_EFDM = EFDM_test(feature_a, feature_a_original)\n            feature_a_EFDM = feature_a_EFDM.to('cuda')\n            feature_a_mixstyle = mixstyle_test(feature_a, feature_a_original)\n            feature_a = (feature_a_EFDM + feature_a_mixstyle)/2\n"
+        },
+        {
+          "line": 315,
+          "context": "\n        feature_b = self.layer2(feature_a)\n        feature_b_original = self.layer2(feature_a_original)\n        if type_of_test == \"EFDM_test\":\n            feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\n            feature_b = feature_b.to('cuda')\n        elif type_of_test == \"mixstyle\":\n            feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)"
+        },
+        {
+          "line": 316,
+          "context": "        feature_b = self.layer2(feature_a)\n        feature_b_original = self.layer2(feature_a_original)\n        if type_of_test == \"EFDM_test\":\n            feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\n            feature_b = feature_b.to('cuda')\n        elif type_of_test == \"mixstyle\":\n            feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\n        elif type_of_test == \"both\":"
+        },
+        {
+          "line": 321,
+          "context": "        elif type_of_test == \"mixstyle\":\n            feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\n        elif type_of_test == \"both\":\n            feature_b_EFDM = EFDM_test(feature_b, feature_b_original)\n            feature_b_EFDM = feature_b_EFDM.to('cuda')\n            feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)\n            feature_b = (feature_b_EFDM + feature_b_mixstyle)/2\n"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/infer_gnl_bottle_id.py",
+      "hits": [
+        {
+          "line": 63,
+          "context": "\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)\n    print(\"Dataset:\", args.dataset_root)"
+        },
+        {
+          "line": 80,
+          "context": "        phase=\"test\"\n    )\n\n    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2"
+        },
+        {
+          "line": 83,
+          "context": "    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2\n    )\n\n    print(\"Test images:\", len(test_dataset))"
+        },
+        {
+          "line": 152,
+          "context": "                \"{:03d}_{}_{}\".format(index, defect_type, filename)\n            )\n\n            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/train_gnl_bottle.py",
+      "hits": [
+        {
+          "line": 8,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 97,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 100,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        drop_last=False\n    )"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/train_PACS_DINL.py",
+      "hits": [
+        {
+          "line": 94,
+          "context": "    train_path = './PACS/train/photo/' +_class_ \n    train_data = PACSDataset(root=train_path, transform=resize_transform)\n    train_data = AugMixDatasetPACS(train_data, preprocess)\n    train_dataloader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True)\n\n    encoder, bn = wide_resnet50_2(pretrained=True)\n    encoder = encoder.to(device)\n    bn = bn.to(device)"
+        },
+        {
+          "line": 114,
+          "context": "        bn.train()\n        decoder.train()\n        loss_list = []\n        for normal, augmix_img, gray_img in train_dataloader:\n            normal = normal.to(device)\n            inputs_normal = encoder(normal)\n            bn_normal = bn(inputs_normal)\n            outputs_normal = decoder(bn_normal)  "
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/inference_mvtec_ATTA.py",
+      "hits": [
+        {
+          "line": 33,
+          "context": "    test_data_gaussian_noise = MVTecDatasetOOD(root=test_path_gaussian_noise, transform=data_transform, gt_transform=gt_transform,\n                             phase=\"test\", _class_=_class_)\n\n    test_dataloader_id = torch.utils.data.DataLoader(test_data_id, batch_size=1, shuffle=False)\n    test_dataloader_brightness = torch.utils.data.DataLoader(test_data_brightness, batch_size=1, shuffle=False)\n    test_dataloader_constrast = torch.utils.data.DataLoader(test_data_constrast, batch_size=1, shuffle=False)\n    test_dataloader_defocus_blur = torch.utils.data.DataLoader(test_data_defocus_blur, batch_size=1, shuffle=False)\n    test_dataloader_gaussian_noise = torch.utils.data.DataLoader(test_data_gaussian_noise, batch_size=1, shuffle=False)"
+        },
+        {
+          "line": 34,
+          "context": "                             phase=\"test\", _class_=_class_)\n\n    test_dataloader_id = torch.utils.data.DataLoader(test_data_id, batch_size=1, shuffle=False)\n    test_dataloader_brightness = torch.utils.data.DataLoader(test_data_brightness, batch_size=1, shuffle=False)\n    test_dataloader_constrast = torch.utils.data.DataLoader(test_data_constrast, batch_size=1, shuffle=False)\n    test_dataloader_defocus_blur = torch.utils.data.DataLoader(test_data_defocus_blur, batch_size=1, shuffle=False)\n    test_dataloader_gaussian_noise = torch.utils.data.DataLoader(test_data_gaussian_noise, batch_size=1, shuffle=False)\n"
+        },
+        {
+          "line": 35,
+          "context": "\n    test_dataloader_id = torch.utils.data.DataLoader(test_data_id, batch_size=1, shuffle=False)\n    test_dataloader_brightness = torch.utils.data.DataLoader(test_data_brightness, batch_size=1, shuffle=False)\n    test_dataloader_constrast = torch.utils.data.DataLoader(test_data_constrast, batch_size=1, shuffle=False)\n    test_dataloader_defocus_blur = torch.utils.data.DataLoader(test_data_defocus_blur, batch_size=1, shuffle=False)\n    test_dataloader_gaussian_noise = torch.utils.data.DataLoader(test_data_gaussian_noise, batch_size=1, shuffle=False)\n\n    #load model"
+        },
+        {
+          "line": 36,
+          "context": "    test_dataloader_id = torch.utils.data.DataLoader(test_data_id, batch_size=1, shuffle=False)\n    test_dataloader_brightness = torch.utils.data.DataLoader(test_data_brightness, batch_size=1, shuffle=False)\n    test_dataloader_constrast = torch.utils.data.DataLoader(test_data_constrast, batch_size=1, shuffle=False)\n    test_dataloader_defocus_blur = torch.utils.data.DataLoader(test_data_defocus_blur, batch_size=1, shuffle=False)\n    test_dataloader_gaussian_noise = torch.utils.data.DataLoader(test_data_gaussian_noise, batch_size=1, shuffle=False)\n\n    #load model\n    encoder, bn = wide_resnet50_2(pretrained=True)"
+        },
+        {
+          "line": 37,
+          "context": "    test_dataloader_brightness = torch.utils.data.DataLoader(test_data_brightness, batch_size=1, shuffle=False)\n    test_dataloader_constrast = torch.utils.data.DataLoader(test_data_constrast, batch_size=1, shuffle=False)\n    test_dataloader_defocus_blur = torch.utils.data.DataLoader(test_data_defocus_blur, batch_size=1, shuffle=False)\n    test_dataloader_gaussian_noise = torch.utils.data.DataLoader(test_data_gaussian_noise, batch_size=1, shuffle=False)\n\n    #load model\n    encoder, bn = wide_resnet50_2(pretrained=True)\n    encoder = encoder.to(device)"
+        },
+        {
+          "line": 58,
+          "context": "    lamda = 0.5\n\n    list_results = []\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_id, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of ID data{:.4f}'.format(auroc_sp))"
+        },
+        {
+          "line": 59,
+          "context": "\n    list_results = []\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_id, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of ID data{:.4f}'.format(auroc_sp))\n"
+        },
+        {
+          "line": 64,
+          "context": "    list_results.append(round(auroc_sp, 4))\n    print('Auroc of ID data{:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_brightness, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of brightness data{:.4f}'.format(auroc_sp))"
+        },
+        {
+          "line": 65,
+          "context": "    print('Auroc of ID data{:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_brightness, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of brightness data{:.4f}'.format(auroc_sp))\n"
+        },
+        {
+          "line": 70,
+          "context": "    list_results.append(round(auroc_sp, 4))\n    print('Auroc of brightness data{:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_constrast, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of contrast data{:.4f}'.format(auroc_sp))"
+        },
+        {
+          "line": 71,
+          "context": "    print('Auroc of brightness data{:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_constrast, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of contrast data{:.4f}'.format(auroc_sp))\n"
+        },
+        {
+          "line": 76,
+          "context": "    list_results.append(round(auroc_sp, 4))\n    print('Auroc of contrast data{:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_defocus_blur, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of defocus blur data{:.4f}'.format(auroc_sp))"
+        },
+        {
+          "line": 77,
+          "context": "    print('Auroc of contrast data{:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_defocus_blur, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of defocus blur data{:.4f}'.format(auroc_sp))\n"
+        },
+        {
+          "line": 82,
+          "context": "    list_results.append(round(auroc_sp, 4))\n    print('Auroc of defocus blur data{:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_gaussian_noise, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of Gaussian noise data{:.4f}'.format(auroc_sp))"
+        },
+        {
+          "line": 83,
+          "context": "    print('Auroc of defocus blur data{:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_gaussian_noise, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\n    list_results.append(round(auroc_sp, 4))\n    print('Auroc of Gaussian noise data{:.4f}'.format(auroc_sp))\n"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/train_gnl_category_before_amp.py",
+      "hits": [
+        {
+          "line": 8,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 102,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 105,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        persistent_workers=(args.num_workers > 0),\n        prefetch_factor=2 if args.num_workers > 0 else None,"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/inference_PACS_ATTA.py",
+      "hits": [
+        {
+          "line": 45,
+          "context": "    test_data_OOD_cartoon = ImageFolder(root=test_path_OOD_cartoon, transform=img_transforms)\n    test_data_OOD_sketch = ImageFolder(root=test_path_OOD_sketch, transform=img_transforms)\n\n    data_ID_loader = torch.utils.data.DataLoader(test_data_ID, batch_size=1, shuffle=False)\n    data_OOD_art_painting_loader = torch.utils.data.DataLoader(test_data_OOD_art_painting, batch_size=1, shuffle=False)\n    data_OOD_cartoon_loader = torch.utils.data.DataLoader(test_data_OOD_cartoon, batch_size=1, shuffle=False)\n    data_OOD_sketch_loader = torch.utils.data.DataLoader(test_data_OOD_sketch, batch_size=1, shuffle=False)\n"
+        },
+        {
+          "line": 46,
+          "context": "    test_data_OOD_sketch = ImageFolder(root=test_path_OOD_sketch, transform=img_transforms)\n\n    data_ID_loader = torch.utils.data.DataLoader(test_data_ID, batch_size=1, shuffle=False)\n    data_OOD_art_painting_loader = torch.utils.data.DataLoader(test_data_OOD_art_painting, batch_size=1, shuffle=False)\n    data_OOD_cartoon_loader = torch.utils.data.DataLoader(test_data_OOD_cartoon, batch_size=1, shuffle=False)\n    data_OOD_sketch_loader = torch.utils.data.DataLoader(test_data_OOD_sketch, batch_size=1, shuffle=False)\n\n    ckp_path_decoder = './checkpoints/' + 'PACS_DINL_' + str(_class_) + '_19.pth'"
+        },
+        {
+          "line": 47,
+          "context": "\n    data_ID_loader = torch.utils.data.DataLoader(test_data_ID, batch_size=1, shuffle=False)\n    data_OOD_art_painting_loader = torch.utils.data.DataLoader(test_data_OOD_art_painting, batch_size=1, shuffle=False)\n    data_OOD_cartoon_loader = torch.utils.data.DataLoader(test_data_OOD_cartoon, batch_size=1, shuffle=False)\n    data_OOD_sketch_loader = torch.utils.data.DataLoader(test_data_OOD_sketch, batch_size=1, shuffle=False)\n\n    ckp_path_decoder = './checkpoints/' + 'PACS_DINL_' + str(_class_) + '_19.pth'\n"
+        },
+        {
+          "line": 48,
+          "context": "    data_ID_loader = torch.utils.data.DataLoader(test_data_ID, batch_size=1, shuffle=False)\n    data_OOD_art_painting_loader = torch.utils.data.DataLoader(test_data_OOD_art_painting, batch_size=1, shuffle=False)\n    data_OOD_cartoon_loader = torch.utils.data.DataLoader(test_data_OOD_cartoon, batch_size=1, shuffle=False)\n    data_OOD_sketch_loader = torch.utils.data.DataLoader(test_data_OOD_sketch, batch_size=1, shuffle=False)\n\n    ckp_path_decoder = './checkpoints/' + 'PACS_DINL_' + str(_class_) + '_19.pth'\n\n    #load model"
+        },
+        {
+          "line": 74,
+          "context": "\n    list_results = []\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, data_ID_loader, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)\n    print('Sample Auroc_ID {:.4f}'.format(auroc_sp))\n    list_results.append(auroc_sp)\n"
+        },
+        {
+          "line": 80,
+          "context": "    list_results.append(auroc_sp)\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, data_OOD_art_painting_loader, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)\n    print('Sample Auroc_art {:.4f}'.format(auroc_sp))\n    list_results.append(auroc_sp)\n"
+        },
+        {
+          "line": 86,
+          "context": "    list_results.append(auroc_sp)\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, data_OOD_cartoon_loader, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)\n    list_results.append(auroc_sp)\n    print('Sample Auroc_cartoon {:.4f}'.format(auroc_sp))\n"
+        },
+        {
+          "line": 92,
+          "context": "    print('Sample Auroc_cartoon {:.4f}'.format(auroc_sp))\n\n    auroc_sp = evaluation_ATTA(encoder, bn, decoder, data_OOD_sketch_loader, device,\n                                               type_of_test='EFDM_test',\n                                               img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)\n    list_results.append(auroc_sp)\n    print('Sample Auroc_sketch {:.4f}'.format(auroc_sp))\n    print(list_results)"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/dataset.py",
+      "hits": [
+        {
+          "line": 69,
+          "context": "        tot_labels = []\n        tot_types = []\n\n        defect_types = os.listdir(self.img_path)\n\n        for defect_type in defect_types:\n            if defect_type == 'good':\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")"
+        },
+        {
+          "line": 73,
+          "context": "\n        for defect_type in defect_types:\n            if defect_type == 'good':\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                img_tot_paths.extend(img_paths)\n                gt_tot_paths.extend([0] * len(img_paths))\n                tot_labels.extend([0] * len(img_paths))\n                tot_types.extend(['good'] * len(img_paths))"
+        },
+        {
+          "line": 79,
+          "context": "                tot_labels.extend([0] * len(img_paths))\n                tot_types.extend(['good'] * len(img_paths))\n            else:\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")\n                img_paths.sort()\n                gt_paths.sort()\n                img_tot_paths.extend(img_paths)"
+        },
+        {
+          "line": 80,
+          "context": "                tot_types.extend(['good'] * len(img_paths))\n            else:\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")\n                img_paths.sort()\n                gt_paths.sort()\n                img_tot_paths.extend(img_paths)\n                gt_tot_paths.extend(gt_paths)"
+        },
+        {
+          "line": 129,
+          "context": "        tot_labels = []\n        tot_types = []\n\n        defect_types = os.listdir(self.img_path)\n\n        for defect_type in defect_types:\n            if defect_type == 'good':\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")"
+        },
+        {
+          "line": 133,
+          "context": "\n        for defect_type in defect_types:\n            if defect_type == 'good':\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                img_tot_paths.extend(img_paths)\n                gt_tot_paths.extend([0] * len(img_paths))\n                tot_labels.extend([0] * len(img_paths))\n                tot_types.extend(['good'] * len(img_paths))"
+        },
+        {
+          "line": 139,
+          "context": "                tot_labels.extend([0] * len(img_paths))\n                tot_types.extend(['good'] * len(img_paths))\n            else:\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")\n                img_paths.sort()\n                gt_paths.sort()\n                img_tot_paths.extend(img_paths)"
+        },
+        {
+          "line": 140,
+          "context": "                tot_types.extend(['good'] * len(img_paths))\n            else:\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")\n                img_paths.sort()\n                gt_paths.sort()\n                img_tot_paths.extend(img_paths)\n                gt_tot_paths.extend(gt_paths)"
+        },
+        {
+          "line": 192,
+          "context": "\n        self.transform = transform\n        # load dataset\n        self.img_paths = glob.glob(self.img_path+'/*.png')\n\n    def __len__(self):\n        return len(self.img_paths)\n"
+        },
+        {
+          "line": 217,
+          "context": "\n        os.makedirs(\"./Dataset/CIFAR10/train\", exist_ok=True)\n        dataset = CIFAR10('./Dataset/CIFAR10/train', train=True, download=True, transform=img_transform)\n        print(\"Cifar10 DataLoader Called...\")\n        print(\"All Train Data: \", dataset.data.shape)\n        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]\n        dataset.targets = [normal_class] * dataset.data.shape[0]\n        print(\"Normal Train Data: \", dataset.data.shape)"
+        },
+        {
+          "line": 235,
+          "context": "\n        os.makedirs(\"./Dataset/MNIST/train\", exist_ok=True)\n        dataset = MNIST('./Dataset/MNIST/train', train=True, download=True, transform=img_transform)\n        print(\"MNIST DataLoader Called...\")\n        print(\"All Train Data: \", dataset.data.shape)\n        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]\n        dataset.targets = [normal_class] * dataset.data.shape[0]\n        print(\"Normal Train Data: \", dataset.data.shape)"
+        },
+        {
+          "line": 253,
+          "context": "\n        os.makedirs(\"./Dataset/FashionMNIST/train\", exist_ok=True)\n        dataset = FashionMNIST('./Dataset/FashionMNIST/train', train=True, download=True, transform=img_transform)\n        print(\"FashionMNIST DataLoader Called...\")\n        print(\"All Train Data: \", dataset.data.shape)\n        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]\n        dataset.targets = [normal_class] * dataset.data.shape[0]\n        print(\"Normal Train Data: \", dataset.data.shape)"
+        },
+        {
+          "line": 281,
+          "context": "        raise Exception(\n            \"You enter {} as dataset, which is not a valid dataset for this repository!\".format(dataset_name))\n\n    train_dataloader = torch.utils.data.DataLoader(\n        dataset,\n        batch_size=batch_size,\n        shuffle=True,\n    )"
+        },
+        {
+          "line": 284,
+          "context": "    train_dataloader = torch.utils.data.DataLoader(\n        dataset,\n        batch_size=batch_size,\n        shuffle=True,\n    )\n    test_dataloader = torch.utils.data.DataLoader(\n        test_set,\n        batch_size=1,"
+        },
+        {
+          "line": 286,
+          "context": "        batch_size=batch_size,\n        shuffle=True,\n    )\n    test_dataloader = torch.utils.data.DataLoader(\n        test_set,\n        batch_size=1,\n        shuffle=False,\n    )"
+        },
+        {
+          "line": 289,
+          "context": "    test_dataloader = torch.utils.data.DataLoader(\n        test_set,\n        batch_size=1,\n        shuffle=False,\n    )\n\n    return train_dataloader, test_dataloader\n"
+        },
+        {
+          "line": 292,
+          "context": "        shuffle=False,\n    )\n\n    return train_dataloader, test_dataloader\n\n\n\ndef int_parameter(level, maxval):"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/generate_corrupted_cifar10.py",
+      "hits": [
+        {
+          "line": 16,
+          "context": "        if not isExist:\n            os.makedirs(path)\n            print(\"The new directory is created!\")\n        image_names = glob.glob(path_orginal + '/*.png')\n        for image_name in image_names:\n            path_to_image = image_name\n            print(path_to_image)\n            image = Image.open(path_to_image)"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/train_mvtec_DINL.py",
+      "hits": [
+        {
+          "line": 85,
+          "context": "    train_path = './mvtec/' + _class_ + '/train' #update here\n    train_data = ImageFolder(root=train_path, transform=resize_transform)\n    train_data = AugMixDatasetMVTec(train_data, preprocess)\n    train_dataloader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True)\n\n    encoder, bn = wide_resnet50_2(pretrained=True)\n    encoder = encoder.to(device)\n    bn = bn.to(device)"
+        },
+        {
+          "line": 103,
+          "context": "        bn.train()\n        decoder.train()\n        loss_list = []\n        for normal, augmix_img, gray_img in train_dataloader:\n            normal = normal.to(device)\n            inputs_normal = encoder(normal)\n            bn_normal = bn(inputs_normal)\n            outputs_normal = decoder(bn_normal)  "
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/ADShift-GNL-working/generate_corrupted_mvtec.py",
+      "hits": [
+        {
+          "line": 17,
+          "context": "        if not isExist:\n            os.makedirs(path)\n            print(\"The new directory is created!\")\n        type_sets = glob.glob(path_orginal+'/*/')\n        for type in type_sets:\n            path_type = type\n            path_type_new = path_type.replace('mvtec', 'mvtec_'+type_cor)\n            print(path_type_new)"
+        },
+        {
+          "line": 26,
+          "context": "            if not isExist:\n                os.makedirs(path_type_new)\n                print(\"The new directory is created!\")\n            image_names = glob.glob(path_type + '/*.png')\n            for image_name in image_names:\n                path_to_image = image_name\n                print(path_to_image)\n                image = Image.open(path_to_image)"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/project_clean/docs/member3_final_evidence_index.json",
+      "hits": [
+        {
+          "line": 229,
+          "context": "        ]\n      },\n      {\n        \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\",\n        \"top_level_type\": \"dict\",\n        \"keys\": [\n          \"category\",\n          \"method\","
+        },
+        {
+          "line": 565,
+          "context": "        ]\n      },\n      {\n        \"path\": \"/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/grid_efdm_evaluation.json\",\n        \"top_level_type\": \"dict\",\n        \"keys\": [\n          \"category\",\n          \"method\","
+        },
+        {
+          "line": 784,
+          "context": "        \"lambda\": 0.5,\n        \"image_size\": 256,\n        \"smoothing_sigma\": 4,\n        \"source\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\"\n      },\n      {\n        \"category\": \"hazelnut\",\n        \"pixel_auroc\": 0.9877435862260812,"
+        },
+        {
+          "line": 984,
+          "context": "  \"task_1n_investigation\": {\n    \"generated_utc\": \"2026-11-19T05:44:17.529140+00:00\",\n    \"grid_related_json\": {\n      \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\": {\n        \"category\": \"grid\",\n        \"method\": \"EFDM-GNL\",\n        \"test_images\": 78,\n        \"pixel_auroc\": 0.9722630292359766,"
+        },
+        {
+          "line": 994,
+          "context": "        \"image_size\": 256,\n        \"smoothing_sigma\": 4\n      },\n      \"/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/grid_efdm_evaluation.json\": {\n        \"category\": \"grid\",\n        \"method\": \"EFDM-GNL\",\n        \"test_images\": 78,\n        \"pixel_auroc\": 0.9722630292359766,"
+        },
+        {
+          "line": 1299,
+          "context": "              \"de_resnet\",\n              \"teacher\"\n            ],\n            \"preview\": \"\\n%%writefile /content/ADShift-GNL-working/train_gnl_bottle.py\\n\\nimport os\\nimport csv\\nimport argparse\\nimport random\\nimport numpy as np\\nimport torch\\n\\nfrom torch.utils.data import DataLoader\\nfrom torchvision import transforms\\nfrom torchvision.datasets import ImageFolder\\n\\nfrom resnet import wide_resnet50_2\\nfrom de_resnet import de_wide_resnet50_2\\nfrom dataset import AugMixDatasetMVTec, mean_train, std_train\\n\\n\\ndef loss_function(a, b):\\n    cosine = torch.nn.CosineSimilarity(dim=1)\\n    loss = 0.0\\n\\n    f\"\n          },\n          {\n            \"cell\": 59,\n            \"matches\": ["
+        },
+        {
+          "line": 1306,
+          "context": "            \"matches\": [\n              \"de_resnet\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\nprint(\\\"===== TTA MODEL DEFINITION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def wide_resnet50_2\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== EFDM IMPLEMENTATION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def EFDM_test\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== ENCODER FORWARD METHODS =====\\\")\\n!grep -n -A 65 -B 10 \\\"def forward\\\" resnet_TTA.py\"\n          },\n          {\n            \"cell\": 61,\n            \"matches\": ["
+        },
+        {
+          "line": 1332,
+          "context": "            \"matches\": [\n              \"anomaly_map\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\nimport os\\nimport pandas as pd\\nimport numpy as np\\n\\noutput_dir = \\\"results/bottle_id\\\"\\nmap_dir = os.path.join(output_dir, \\\"anomaly_maps\\\")\\n\\nscores = pd.read_csv(\\n    os.path.join(output_dir, \\\"image_scores.csv\\\")\\n)\\n\\nsummary = open(\\n    os.path.join(output_dir, \\\"evaluation_summary.txt\\\")\\n).read()\\n\\nnpy_files = [\\n    f for f in os.listdir(map_dir)\\n    if f.endswith(\\\".npy\\\")\\n]\\n\\nheatmap_files = [\\n    f for f in os.listdir(map_dir)\\n    if f.endswith(\\\"_heatmap.png\\\")\\n]\\n\\nprint(\\\"=\"\n          },\n          {\n            \"cell\": 67,\n            \"matches\": ["
+        },
+        {
+          "line": 1339,
+          "context": "            \"matches\": [\n              \"anomaly_map\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\nimport pandas as pd\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport os\\n\\nscores = pd.read_csv(\\\"results/bottle_id/image_scores.csv\\\")\\n\\nnormal = scores[scores.label == 0].iloc[0]\\ndefect = scores[scores.label == 1].iloc[0]\\n\\nfor sample in [normal, defect]:\\n    matching = [\\n        f for f in os.listdir(\\\"results/bottle_id/anomaly_maps\\\")\\n        if f.endswith(\\\"_heatmap.png\\\")\\n        and f.split(\\\"_\\\", 2)[-1] == sample.filename\\n    ]\\n\\n    print(\\\"Type:\\\", sample.de\"\n          },\n          {\n            \"cell\": 68,\n            \"matches\": ["
+        },
+        {
+          "line": 1346,
+          "context": "            \"matches\": [\n              \"anomaly_map\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\nimport os\\nimport numpy as np\\nimport matplotlib.pyplot as plt\\nfrom PIL import Image\\n\\nfrom dataset import MVTecDataset, get_data_transforms\\n\\nroot = \\\"/content/mvtec_dataset/bottle\\\"\\nmap_dir = \\\"results/bottle_id/anomaly_maps\\\"\\n\\nimage_transform, mask_transform = get_data_transforms(256, 256)\\n\\ndataset = MVTecDataset(\\n    root=root,\\n    transform=image_transform,\\n    gt_transform=mask_transform,\\n    phase=\\\"test\\\"\\n)\\n\\nexamples = [\\n    (\\\"012.png\\\", \\\"good\\\"),\\n    (\\\"000.png\\\", \\\"b\"\n          },\n          {\n            \"cell\": 77,\n            \"matches\": ["
+        },
+        {
+          "line": 1353,
+          "context": "            \"matches\": [\n              \"anomaly_map\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\n!grep -nE \\\"ArgumentParser|add_argument|bottle|dataset_root|checkpoint|results|MVTecDataset|roc_auc|anomaly_maps\\\" infer_gnl_bottle_id.py\"\n          },\n          {\n            \"cell\": 81,\n            \"matches\": ["
+        },
+        {
+          "line": 1499,
+          "context": "              \"de_resnet\",\n              \"teacher\"\n            ],\n            \"preview\": \"\\n%%writefile /content/ADShift-GNL-working/train_gnl_bottle.py\\n\\nimport os\\nimport csv\\nimport argparse\\nimport random\\nimport numpy as np\\nimport torch\\n\\nfrom torch.utils.data import DataLoader\\nfrom torchvision import transforms\\nfrom torchvision.datasets import ImageFolder\\n\\nfrom resnet import wide_resnet50_2\\nfrom de_resnet import de_wide_resnet50_2\\nfrom dataset import AugMixDatasetMVTec, mean_train, std_train\\n\\n\\ndef loss_function(a, b):\\n    cosine = torch.nn.CosineSimilarity(dim=1)\\n    loss = 0.0\\n\\n    f\"\n          },\n          {\n            \"cell\": 59,\n            \"matches\": ["
+        },
+        {
+          "line": 1506,
+          "context": "            \"matches\": [\n              \"de_resnet\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\nprint(\\\"===== TTA MODEL DEFINITION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def wide_resnet50_2\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== EFDM IMPLEMENTATION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def EFDM_test\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== ENCODER FORWARD METHODS =====\\\")\\n!grep -n -A 65 -B 10 \\\"def forward\\\" resnet_TTA.py\"\n          },\n          {\n            \"cell\": 61,\n            \"matches\": ["
+        },
+        {
+          "line": 1532,
+          "context": "            \"matches\": [\n              \"anomaly_map\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\nimport os\\nimport pandas as pd\\nimport numpy as np\\n\\noutput_dir = \\\"results/bottle_id\\\"\\nmap_dir = os.path.join(output_dir, \\\"anomaly_maps\\\")\\n\\nscores = pd.read_csv(\\n    os.path.join(output_dir, \\\"image_scores.csv\\\")\\n)\\n\\nsummary = open(\\n    os.path.join(output_dir, \\\"evaluation_summary.txt\\\")\\n).read()\\n\\nnpy_files = [\\n    f for f in os.listdir(map_dir)\\n    if f.endswith(\\\".npy\\\")\\n]\\n\\nheatmap_files = [\\n    f for f in os.listdir(map_dir)\\n    if f.endswith(\\\"_heatmap.png\\\")\\n]\\n\\nprint(\\\"=\"\n          },\n          {\n            \"cell\": 67,\n            \"matches\": ["
+        },
+        {
+          "line": 1539,
+          "context": "            \"matches\": [\n              \"anomaly_map\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\nimport pandas as pd\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport os\\n\\nscores = pd.read_csv(\\\"results/bottle_id/image_scores.csv\\\")\\n\\nnormal = scores[scores.label == 0].iloc[0]\\ndefect = scores[scores.label == 1].iloc[0]\\n\\nfor sample in [normal, defect]:\\n    matching = [\\n        f for f in os.listdir(\\\"results/bottle_id/anomaly_maps\\\")\\n        if f.endswith(\\\"_heatmap.png\\\")\\n        and f.split(\\\"_\\\", 2)[-1] == sample.filename\\n    ]\\n\\n    print(\\\"Type:\\\", sample.de\"\n          },\n          {\n            \"cell\": 68,\n            \"matches\": ["
+        },
+        {
+          "line": 1546,
+          "context": "            \"matches\": [\n              \"anomaly_map\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\nimport os\\nimport numpy as np\\nimport matplotlib.pyplot as plt\\nfrom PIL import Image\\n\\nfrom dataset import MVTecDataset, get_data_transforms\\n\\nroot = \\\"/content/mvtec_dataset/bottle\\\"\\nmap_dir = \\\"results/bottle_id/anomaly_maps\\\"\\n\\nimage_transform, mask_transform = get_data_transforms(256, 256)\\n\\ndataset = MVTecDataset(\\n    root=root,\\n    transform=image_transform,\\n    gt_transform=mask_transform,\\n    phase=\\\"test\\\"\\n)\\n\\nexamples = [\\n    (\\\"012.png\\\", \\\"good\\\"),\\n    (\\\"000.png\\\", \\\"b\"\n          },\n          {\n            \"cell\": 77,\n            \"matches\": ["
+        },
+        {
+          "line": 1553,
+          "context": "            \"matches\": [\n              \"anomaly_map\"\n            ],\n            \"preview\": \"%cd /content/ADShift-GNL-working\\n\\n!grep -nE \\\"ArgumentParser|add_argument|bottle|dataset_root|checkpoint|results|MVTecDataset|roc_auc|anomaly_maps\\\" infer_gnl_bottle_id.py\"\n          },\n          {\n            \"cell\": 81,\n            \"matches\": ["
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/project_clean/docs/member3_task1o_grid_rd4ad_audit.json",
+      "hits": [
+        {
+          "line": 1708,
+          "context": "    \"checkpoint_tensors_loaded\": false,\n    \"checkpoint_files_modified\": false,\n    \"training_performed\": false,\n    \"anomaly_maps_modified\": false\n  }\n}"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/project_clean/experiments/gnl/infer_gnl_category_id.py",
+      "hits": [
+        {
+          "line": 49,
+          "context": "    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\n    os.makedirs(args.output_dir, exist_ok=True)\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)\n    print(\"Category:\", args.category)"
+        },
+        {
+          "line": 66,
+          "context": "        phase=\"test\"\n    )\n\n    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2"
+        },
+        {
+          "line": 69,
+          "context": "    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2\n    )\n\n    print(\"Test images:\", len(test_dataset))"
+        },
+        {
+          "line": 134,
+          "context": "                index, defect_type, filename\n            )\n\n            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/project_clean/experiments/gnl/train_gnl_category.py",
+      "hits": [
+        {
+          "line": 8,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 102,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 105,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        persistent_workers=(args.num_workers > 0),\n        prefetch_factor=2 if args.num_workers > 0 else None,"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/project_clean/experiments/gnl/infer_gnl_bottle_id.py",
+      "hits": [
+        {
+          "line": 63,
+          "context": "\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)\n    print(\"Dataset:\", args.dataset_root)"
+        },
+        {
+          "line": 80,
+          "context": "        phase=\"test\"\n    )\n\n    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2"
+        },
+        {
+          "line": 83,
+          "context": "    test_loader = torch.utils.data.DataLoader(\n        test_dataset,\n        batch_size=1,\n        shuffle=False,\n        num_workers=2\n    )\n\n    print(\"Test images:\", len(test_dataset))"
+        },
+        {
+          "line": 152,
+          "context": "                \"{:03d}_{}_{}\".format(index, defect_type, filename)\n            )\n\n            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/project_clean/experiments/gnl/train_gnl_bottle.py",
+      "hits": [
+        {
+          "line": 8,
+          "context": "import numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2"
+        },
+        {
+          "line": 97,
+          "context": "        preprocess\n    )\n\n    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,"
+        },
+        {
+          "line": 100,
+          "context": "    train_loader = DataLoader(\n        train_dataset,\n        batch_size=args.batch_size,\n        shuffle=True,\n        num_workers=args.num_workers,\n        pin_memory=(device.type == \"cuda\"),\n        drop_last=False\n    )"
+        }
+      ]
+    },
+    {
+      "file": "/kaggle/working/project_clean/experiments/gnl/dataset.py",
+      "hits": [
+        {
+          "line": 69,
+          "context": "        tot_labels = []\n        tot_types = []\n\n        defect_types = os.listdir(self.img_path)\n\n        for defect_type in defect_types:\n            if defect_type == 'good':\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")"
+        },
+        {
+          "line": 73,
+          "context": "\n        for defect_type in defect_types:\n            if defect_type == 'good':\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                img_tot_paths.extend(img_paths)\n                gt_tot_paths.extend([0] * len(img_paths))\n                tot_labels.extend([0] * len(img_paths))\n                tot_types.extend(['good'] * len(img_paths))"
+        },
+        {
+          "line": 79,
+          "context": "                tot_labels.extend([0] * len(img_paths))\n                tot_types.extend(['good'] * len(img_paths))\n            else:\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")\n                img_paths.sort()\n                gt_paths.sort()\n                img_tot_paths.extend(img_paths)"
+        },
+        {
+          "line": 80,
+          "context": "                tot_types.extend(['good'] * len(img_paths))\n            else:\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")\n                img_paths.sort()\n                gt_paths.sort()\n                img_tot_paths.extend(img_paths)\n                gt_tot_paths.extend(gt_paths)"
+        },
+        {
+          "line": 129,
+          "context": "        tot_labels = []\n        tot_types = []\n\n        defect_types = os.listdir(self.img_path)\n\n        for defect_type in defect_types:\n            if defect_type == 'good':\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")"
+        },
+        {
+          "line": 133,
+          "context": "\n        for defect_type in defect_types:\n            if defect_type == 'good':\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                img_tot_paths.extend(img_paths)\n                gt_tot_paths.extend([0] * len(img_paths))\n                tot_labels.extend([0] * len(img_paths))\n                tot_types.extend(['good'] * len(img_paths))"
+        },
+        {
+          "line": 139,
+          "context": "                tot_labels.extend([0] * len(img_paths))\n                tot_types.extend(['good'] * len(img_paths))\n            else:\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")\n                img_paths.sort()\n                gt_paths.sort()\n                img_tot_paths.extend(img_paths)"
+        },
+        {
+          "line": 140,
+          "context": "                tot_types.extend(['good'] * len(img_paths))\n            else:\n                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")\n                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")\n                img_paths.sort()\n                gt_paths.sort()\n                img_tot_paths.extend(img_paths)\n                gt_tot_paths.extend(gt_paths)"
+        },
+        {
+          "line": 192,
+          "context": "\n        self.transform = transform\n        # load dataset\n        self.img_paths = glob.glob(self.img_path+'/*.png')\n\n    def __len__(self):\n        return len(self.img_paths)\n"
+        },
+        {
+          "line": 217,
+          "context": "\n        os.makedirs(\"./Dataset/CIFAR10/train\", exist_ok=True)\n        dataset = CIFAR10('./Dataset/CIFAR10/train', train=True, download=True, transform=img_transform)\n        print(\"Cifar10 DataLoader Called...\")\n        print(\"All Train Data: \", dataset.data.shape)\n        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]\n        dataset.targets = [normal_class] * dataset.data.shape[0]\n        print(\"Normal Train Data: \", dataset.data.shape)"
+        },
+        {
+          "line": 235,
+          "context": "\n        os.makedirs(\"./Dataset/MNIST/train\", exist_ok=True)\n        dataset = MNIST('./Dataset/MNIST/train', train=True, download=True, transform=img_transform)\n        print(\"MNIST DataLoader Called...\")\n        print(\"All Train Data: \", dataset.data.shape)\n        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]\n        dataset.targets = [normal_class] * dataset.data.shape[0]\n        print(\"Normal Train Data: \", dataset.data.shape)"
+        },
+        {
+          "line": 253,
+          "context": "\n        os.makedirs(\"./Dataset/FashionMNIST/train\", exist_ok=True)\n        dataset = FashionMNIST('./Dataset/FashionMNIST/train', train=True, download=True, transform=img_transform)\n        print(\"FashionMNIST DataLoader Called...\")\n        print(\"All Train Data: \", dataset.data.shape)\n        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]\n        dataset.targets = [normal_class] * dataset.data.shape[0]\n        print(\"Normal Train Data: \", dataset.data.shape)"
+        },
+        {
+          "line": 281,
+          "context": "        raise Exception(\n            \"You enter {} as dataset, which is not a valid dataset for this repository!\".format(dataset_name))\n\n    train_dataloader = torch.utils.data.DataLoader(\n        dataset,\n        batch_size=batch_size,\n        shuffle=True,\n    )"
+        },
+        {
+          "line": 284,
+          "context": "    train_dataloader = torch.utils.data.DataLoader(\n        dataset,\n        batch_size=batch_size,\n        shuffle=True,\n    )\n    test_dataloader = torch.utils.data.DataLoader(\n        test_set,\n        batch_size=1,"
+        },
+        {
+          "line": 286,
+          "context": "        batch_size=batch_size,\n        shuffle=True,\n    )\n    test_dataloader = torch.utils.data.DataLoader(\n        test_set,\n        batch_size=1,\n        shuffle=False,\n    )"
+        },
+        {
+          "line": 289,
+          "context": "    test_dataloader = torch.utils.data.DataLoader(\n        test_set,\n        batch_size=1,\n        shuffle=False,\n    )\n\n    return train_dataloader, test_dataloader\n"
+        },
+        {
+          "line": 292,
+          "context": "        shuffle=False,\n    )\n\n    return train_dataloader, test_dataloader\n\n\n\ndef int_parameter(level, maxval):"
+        }
+      ]
+    }
+  ],
+  "rd4ad_checkpoint_key_patterns": {
+    "bottle": {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+      "bytes": 1039728208,
+      "key_count": 491,
+      "sample_keys": [
+        "bn",
+        "bn_layer.0.conv1.weight",
+        "bn_layer.0.bn1.weight",
+        "bn_layer.0.bn1.bias",
+        "bn_layer.0.bn1.running_mean",
+        "bn_layer.0.bn1.running_var",
+        "bn_layer.0.bn1.num_batches_tracked",
+        "bn_layer.0.conv2.weight",
+        "bn_layer.0.bn2.weight",
+        "bn_layer.0.bn2.bias",
+        "bn_layer.0.bn2.running_mean",
+        "bn_layer.0.bn2.running_var",
+        "bn_layer.0.bn2.num_batches_tracked",
+        "bn_layer.0.conv3.weight",
+        "bn_layer.0.bn3.weight",
+        "bn_layer.0.bn3.bias",
+        "bn_layer.0.bn3.running_mean",
+        "bn_layer.0.bn3.running_var",
+        "bn_layer.0.bn3.num_batches_tracked",
+        "bn_layer.0.downsample.0.weight",
+        "bn_layer.0.downsample.1.weight",
+        "bn_layer.0.downsample.1.bias",
+        "bn_layer.0.downsample.1.running_mean",
+        "bn_layer.0.downsample.1.running_var",
+        "bn_layer.0.downsample.1.num_batches_tracked",
+        "bn_layer.1.conv1.weight",
+        "bn_layer.1.bn1.weight",
+        "bn_layer.1.bn1.bias",
+        "bn_layer.1.bn1.running_mean",
+        "bn_layer.1.bn1.running_var",
+        "bn_layer.1.bn1.num_batches_tracked",
+        "bn_layer.1.conv2.weight",
+        "bn_layer.1.bn2.weight",
+        "bn_layer.1.bn2.bias",
+        "bn_layer.1.bn2.running_mean",
+        "bn_layer.1.bn2.running_var",
+        "bn_layer.1.bn2.num_batches_tracked",
+        "bn_layer.1.conv3.weight",
+        "bn_layer.1.bn3.weight",
+        "bn_layer.1.bn3.bias",
+        "bn_layer.1.bn3.running_mean",
+        "bn_layer.1.bn3.running_var",
+        "bn_layer.1.bn3.num_batches_tracked",
+        "bn_layer.2.conv1.weight",
+        "bn_layer.2.bn1.weight",
+        "bn_layer.2.bn1.bias",
+        "bn_layer.2.bn1.running_mean",
+        "bn_layer.2.bn1.running_var",
+        "bn_layer.2.bn1.num_batches_tracked",
+        "bn_layer.2.conv2.weight",
+        "bn_layer.2.bn2.weight",
+        "bn_layer.2.bn2.bias",
+        "bn_layer.2.bn2.running_mean",
+        "bn_layer.2.bn2.running_var",
+        "bn_layer.2.bn2.num_batches_tracked",
+        "bn_layer.2.conv3.weight",
+        "bn_layer.2.bn3.weight",
+        "bn_layer.2.bn3.bias",
+        "bn_layer.2.bn3.running_mean",
+        "bn_layer.2.bn3.running_var",
+        "bn_layer.2.bn3.num_batches_tracked",
+        "conv1.weight",
+        "bn1.weight",
+        "bn1.bias",
+        "bn1.running_mean",
+        "bn1.running_var",
+        "bn1.num_batches_tracked",
+        "conv2.weight",
+        "bn2.weight",
+        "bn2.bias",
+        "bn2.running_mean",
+        "bn2.running_var",
+        "bn2.num_batches_tracked",
+        "conv3.weight",
+        "bn3.weight",
+        "bn3.bias",
+        "bn3.running_mean",
+        "bn3.running_var",
+        "bn3.num_batches_tracked",
+        "conv4.weight",
+        "bn4.weight",
+        "bn4.bias",
+        "bn4.running_mean",
+        "bn4.running_var",
+        "bn4.num_batches_tracked",
+        "bn_layer",
+        "bn_layer.0",
+        "bn_layer.0.conv1",
+        "bn_layer.0.bn1",
+        "bn_layer.0.conv2",
+        "bn_layer.0.bn2",
+        "bn_layer.0.conv3",
+        "bn_layer.0.bn3",
+        "bn_layer.0.relu",
+        "bn_layer.0.downsample",
+        "bn_layer.0.downsample.0",
+        "bn_layer.0.downsample.1",
+        "bn_layer.1",
+        "bn_layer.1.conv1",
+        "bn_layer.1.bn1"
+      ],
+      "top_level_prefix_counts": {
+        "bn": 1,
+        "bn_layer": 88,
+        "conv1": 2,
+        "bn1": 6,
+        "conv2": 2,
+        "bn2": 6,
+        "conv3": 2,
+        "bn3": 6,
+        "conv4": 2,
+        "bn4": 6,
+        "layer1": 88,
+        "layer2": 114,
+        "layer3": 166,
+        "weight_decay": 1,
+        "decoupled_weight_decay": 1
+      }
+    },
+    "carpet": {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/carpet_full/latest.pth",
+      "bytes": 369163921,
+      "key_count": 489,
+      "sample_keys": [
+        "bn",
+        "bn_layer.0.conv1.weight",
+        "bn_layer.0.bn1.weight",
+        "bn_layer.0.bn1.bias",
+        "bn_layer.0.bn1.running_mean",
+        "bn_layer.0.bn1.running_var",
+        "bn_layer.0.bn1.num_batches_tracked",
+        "bn_layer.0.conv2.weight",
+        "bn_layer.0.bn2.weight",
+        "bn_layer.0.bn2.bias",
+        "bn_layer.0.bn2.running_mean",
+        "bn_layer.0.bn2.running_var",
+        "bn_layer.0.bn2.num_batches_tracked",
+        "bn_layer.0.conv3.weight",
+        "bn_layer.0.bn3.weight",
+        "bn_layer.0.bn3.bias",
+        "bn_layer.0.bn3.running_mean",
+        "bn_layer.0.bn3.running_var",
+        "bn_layer.0.bn3.num_batches_tracked",
+        "bn_layer.0.downsample.0.weight",
+        "bn_layer.0.downsample.1.weight",
+        "bn_layer.0.downsample.1.bias",
+        "bn_layer.0.downsample.1.running_mean",
+        "bn_layer.0.downsample.1.running_var",
+        "bn_layer.0.downsample.1.num_batches_tracked",
+        "bn_layer.1.conv1.weight",
+        "bn_layer.1.bn1.weight",
+        "bn_layer.1.bn1.bias",
+        "bn_layer.1.bn1.running_mean",
+        "bn_layer.1.bn1.running_var",
+        "bn_layer.1.bn1.num_batches_tracked",
+        "bn_layer.1.conv2.weight",
+        "bn_layer.1.bn2.weight",
+        "bn_layer.1.bn2.bias",
+        "bn_layer.1.bn2.running_mean",
+        "bn_layer.1.bn2.running_var",
+        "bn_layer.1.bn2.num_batches_tracked",
+        "bn_layer.1.conv3.weight",
+        "bn_layer.1.bn3.weight",
+        "bn_layer.1.bn3.bias",
+        "bn_layer.1.bn3.running_mean",
+        "bn_layer.1.bn3.running_var",
+        "bn_layer.1.bn3.num_batches_tracked",
+        "bn_layer.2.conv1.weight",
+        "bn_layer.2.bn1.weight",
+        "bn_layer.2.bn1.bias",
+        "bn_layer.2.bn1.running_mean",
+        "bn_layer.2.bn1.running_var",
+        "bn_layer.2.bn1.num_batches_tracked",
+        "bn_layer.2.conv2.weight",
+        "bn_layer.2.bn2.weight",
+        "bn_layer.2.bn2.bias",
+        "bn_layer.2.bn2.running_mean",
+        "bn_layer.2.bn2.running_var",
+        "bn_layer.2.bn2.num_batches_tracked",
+        "bn_layer.2.conv3.weight",
+        "bn_layer.2.bn3.weight",
+        "bn_layer.2.bn3.bias",
+        "bn_layer.2.bn3.running_mean",
+        "bn_layer.2.bn3.running_var",
+        "bn_layer.2.bn3.num_batches_tracked",
+        "conv1.weight",
+        "bn1.weight",
+        "bn1.bias",
+        "bn1.running_mean",
+        "bn1.running_var",
+        "bn1.num_batches_tracked",
+        "conv2.weight",
+        "bn2.weight",
+        "bn2.bias",
+        "bn2.running_mean",
+        "bn2.running_var",
+        "bn2.num_batches_tracked",
+        "conv3.weight",
+        "bn3.weight",
+        "bn3.bias",
+        "bn3.running_mean",
+        "bn3.running_var",
+        "bn3.num_batches_tracked",
+        "conv4.weight",
+        "bn4.weight",
+        "bn4.bias",
+        "bn4.running_mean",
+        "bn4.running_var",
+        "bn4.num_batches_tracked",
+        "bn_layer",
+        "bn_layer.0",
+        "bn_layer.0.conv1",
+        "bn_layer.0.bn1",
+        "bn_layer.0.conv2",
+        "bn_layer.0.bn2",
+        "bn_layer.0.conv3",
+        "bn_layer.0.bn3",
+        "bn_layer.0.relu",
+        "bn_layer.0.downsample",
+        "bn_layer.0.downsample.0",
+        "bn_layer.0.downsample.1",
+        "bn_layer.1",
+        "bn_layer.1.conv1",
+        "bn_layer.1.bn1"
+      ],
+      "top_level_prefix_counts": {
+        "bn": 1,
+        "bn_layer": 88,
+        "conv1": 2,
+        "bn1": 6,
+        "conv2": 2,
+        "bn2": 6,
+        "conv3": 2,
+        "bn3": 6,
+        "conv4": 2,
+        "bn4": 6,
+        "layer1": 88,
+        "layer2": 114,
+        "layer3": 166
+      }
+    },
+    "grid": {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/grid_full/latest.pth",
+      "bytes": 369163921,
+      "key_count": 489,
+      "sample_keys": [
+        "bn",
+        "bn_layer.0.conv1.weight",
+        "bn_layer.0.bn1.weight",
+        "bn_layer.0.bn1.bias",
+        "bn_layer.0.bn1.running_mean",
+        "bn_layer.0.bn1.running_var",
+        "bn_layer.0.bn1.num_batches_tracked",
+        "bn_layer.0.conv2.weight",
+        "bn_layer.0.bn2.weight",
+        "bn_layer.0.bn2.bias",
+        "bn_layer.0.bn2.running_mean",
+        "bn_layer.0.bn2.running_var",
+        "bn_layer.0.bn2.num_batches_tracked",
+        "bn_layer.0.conv3.weight",
+        "bn_layer.0.bn3.weight",
+        "bn_layer.0.bn3.bias",
+        "bn_layer.0.bn3.running_mean",
+        "bn_layer.0.bn3.running_var",
+        "bn_layer.0.bn3.num_batches_tracked",
+        "bn_layer.0.downsample.0.weight",
+        "bn_layer.0.downsample.1.weight",
+        "bn_layer.0.downsample.1.bias",
+        "bn_layer.0.downsample.1.running_mean",
+        "bn_layer.0.downsample.1.running_var",
+        "bn_layer.0.downsample.1.num_batches_tracked",
+        "bn_layer.1.conv1.weight",
+        "bn_layer.1.bn1.weight",
+        "bn_layer.1.bn1.bias",
+        "bn_layer.1.bn1.running_mean",
+        "bn_layer.1.bn1.running_var",
+        "bn_layer.1.bn1.num_batches_tracked",
+        "bn_layer.1.conv2.weight",
+        "bn_layer.1.bn2.weight",
+        "bn_layer.1.bn2.bias",
+        "bn_layer.1.bn2.running_mean",
+        "bn_layer.1.bn2.running_var",
+        "bn_layer.1.bn2.num_batches_tracked",
+        "bn_layer.1.conv3.weight",
+        "bn_layer.1.bn3.weight",
+        "bn_layer.1.bn3.bias",
+        "bn_layer.1.bn3.running_mean",
+        "bn_layer.1.bn3.running_var",
+        "bn_layer.1.bn3.num_batches_tracked",
+        "bn_layer.2.conv1.weight",
+        "bn_layer.2.bn1.weight",
+        "bn_layer.2.bn1.bias",
+        "bn_layer.2.bn1.running_mean",
+        "bn_layer.2.bn1.running_var",
+        "bn_layer.2.bn1.num_batches_tracked",
+        "bn_layer.2.conv2.weight",
+        "bn_layer.2.bn2.weight",
+        "bn_layer.2.bn2.bias",
+        "bn_layer.2.bn2.running_mean",
+        "bn_layer.2.bn2.running_var",
+        "bn_layer.2.bn2.num_batches_tracked",
+        "bn_layer.2.conv3.weight",
+        "bn_layer.2.bn3.weight",
+        "bn_layer.2.bn3.bias",
+        "bn_layer.2.bn3.running_mean",
+        "bn_layer.2.bn3.running_var",
+        "bn_layer.2.bn3.num_batches_tracked",
+        "conv1.weight",
+        "bn1.weight",
+        "bn1.bias",
+        "bn1.running_mean",
+        "bn1.running_var",
+        "bn1.num_batches_tracked",
+        "conv2.weight",
+        "bn2.weight",
+        "bn2.bias",
+        "bn2.running_mean",
+        "bn2.running_var",
+        "bn2.num_batches_tracked",
+        "conv3.weight",
+        "bn3.weight",
+        "bn3.bias",
+        "bn3.running_mean",
+        "bn3.running_var",
+        "bn3.num_batches_tracked",
+        "conv4.weight",
+        "bn4.weight",
+        "bn4.bias",
+        "bn4.running_mean",
+        "bn4.running_var",
+        "bn4.num_batches_tracked",
+        "bn_layer",
+        "bn_layer.0",
+        "bn_layer.0.conv1",
+        "bn_layer.0.bn1",
+        "bn_layer.0.conv2",
+        "bn_layer.0.bn2",
+        "bn_layer.0.conv3",
+        "bn_layer.0.bn3",
+        "bn_layer.0.relu",
+        "bn_layer.0.downsample",
+        "bn_layer.0.downsample.0",
+        "bn_layer.0.downsample.1",
+        "bn_layer.1",
+        "bn_layer.1.conv1",
+        "bn_layer.1.bn1"
+      ],
+      "top_level_prefix_counts": {
+        "bn": 1,
+        "bn_layer": 88,
+        "conv1": 2,
+        "bn1": 6,
+        "conv2": 2,
+        "bn2": 6,
+        "conv3": 2,
+        "bn3": 6,
+        "conv4": 2,
+        "bn4": 6,
+        "layer1": 88,
+        "layer2": 114,
+        "layer3": 166
+      }
+    },
+    "pill": {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/pill_full/latest.pth",
+      "bytes": 1039728144,
+      "key_count": 491,
+      "sample_keys": [
+        "bn",
+        "bn_layer.0.conv1.weight",
+        "bn_layer.0.bn1.weight",
+        "bn_layer.0.bn1.bias",
+        "bn_layer.0.bn1.running_mean",
+        "bn_layer.0.bn1.running_var",
+        "bn_layer.0.bn1.num_batches_tracked",
+        "bn_layer.0.conv2.weight",
+        "bn_layer.0.bn2.weight",
+        "bn_layer.0.bn2.bias",
+        "bn_layer.0.bn2.running_mean",
+        "bn_layer.0.bn2.running_var",
+        "bn_layer.0.bn2.num_batches_tracked",
+        "bn_layer.0.conv3.weight",
+        "bn_layer.0.bn3.weight",
+        "bn_layer.0.bn3.bias",
+        "bn_layer.0.bn3.running_mean",
+        "bn_layer.0.bn3.running_var",
+        "bn_layer.0.bn3.num_batches_tracked",
+        "bn_layer.0.downsample.0.weight",
+        "bn_layer.0.downsample.1.weight",
+        "bn_layer.0.downsample.1.bias",
+        "bn_layer.0.downsample.1.running_mean",
+        "bn_layer.0.downsample.1.running_var",
+        "bn_layer.0.downsample.1.num_batches_tracked",
+        "bn_layer.1.conv1.weight",
+        "bn_layer.1.bn1.weight",
+        "bn_layer.1.bn1.bias",
+        "bn_layer.1.bn1.running_mean",
+        "bn_layer.1.bn1.running_var",
+        "bn_layer.1.bn1.num_batches_tracked",
+        "bn_layer.1.conv2.weight",
+        "bn_layer.1.bn2.weight",
+        "bn_layer.1.bn2.bias",
+        "bn_layer.1.bn2.running_mean",
+        "bn_layer.1.bn2.running_var",
+        "bn_layer.1.bn2.num_batches_tracked",
+        "bn_layer.1.conv3.weight",
+        "bn_layer.1.bn3.weight",
+        "bn_layer.1.bn3.bias",
+        "bn_layer.1.bn3.running_mean",
+        "bn_layer.1.bn3.running_var",
+        "bn_layer.1.bn3.num_batches_tracked",
+        "bn_layer.2.conv1.weight",
+        "bn_layer.2.bn1.weight",
+        "bn_layer.2.bn1.bias",
+        "bn_layer.2.bn1.running_mean",
+        "bn_layer.2.bn1.running_var",
+        "bn_layer.2.bn1.num_batches_tracked",
+        "bn_layer.2.conv2.weight",
+        "bn_layer.2.bn2.weight",
+        "bn_layer.2.bn2.bias",
+        "bn_layer.2.bn2.running_mean",
+        "bn_layer.2.bn2.running_var",
+        "bn_layer.2.bn2.num_batches_tracked",
+        "bn_layer.2.conv3.weight",
+        "bn_layer.2.bn3.weight",
+        "bn_layer.2.bn3.bias",
+        "bn_layer.2.bn3.running_mean",
+        "bn_layer.2.bn3.running_var",
+        "bn_layer.2.bn3.num_batches_tracked",
+        "conv1.weight",
+        "bn1.weight",
+        "bn1.bias",
+        "bn1.running_mean",
+        "bn1.running_var",
+        "bn1.num_batches_tracked",
+        "conv2.weight",
+        "bn2.weight",
+        "bn2.bias",
+        "bn2.running_mean",
+        "bn2.running_var",
+        "bn2.num_batches_tracked",
+        "conv3.weight",
+        "bn3.weight",
+        "bn3.bias",
+        "bn3.running_mean",
+        "bn3.running_var",
+        "bn3.num_batches_tracked",
+        "conv4.weight",
+        "bn4.weight",
+        "bn4.bias",
+        "bn4.running_mean",
+        "bn4.running_var",
+        "bn4.num_batches_tracked",
+        "bn_layer",
+        "bn_layer.0",
+        "bn_layer.0.conv1",
+        "bn_layer.0.bn1",
+        "bn_layer.0.conv2",
+        "bn_layer.0.bn2",
+        "bn_layer.0.conv3",
+        "bn_layer.0.bn3",
+        "bn_layer.0.relu",
+        "bn_layer.0.downsample",
+        "bn_layer.0.downsample.0",
+        "bn_layer.0.downsample.1",
+        "bn_layer.1",
+        "bn_layer.1.conv1",
+        "bn_layer.1.bn1"
+      ],
+      "top_level_prefix_counts": {
+        "bn": 1,
+        "bn_layer": 88,
+        "conv1": 2,
+        "bn1": 6,
+        "conv2": 2,
+        "bn2": 6,
+        "conv3": 2,
+        "bn3": 6,
+        "conv4": 2,
+        "bn4": 6,
+        "layer1": 88,
+        "layer2": 114,
+        "layer3": 166,
+        "weight_decay": 1,
+        "decoupled_weight_decay": 1
+      }
+    },
+    "wood": {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/wood_full/latest.pth",
+      "bytes": 369163921,
+      "key_count": 489,
+      "sample_keys": [
+        "bn",
+        "bn_layer.0.conv1.weight",
+        "bn_layer.0.bn1.weight",
+        "bn_layer.0.bn1.bias",
+        "bn_layer.0.bn1.running_mean",
+        "bn_layer.0.bn1.running_var",
+        "bn_layer.0.bn1.num_batches_tracked",
+        "bn_layer.0.conv2.weight",
+        "bn_layer.0.bn2.weight",
+        "bn_layer.0.bn2.bias",
+        "bn_layer.0.bn2.running_mean",
+        "bn_layer.0.bn2.running_var",
+        "bn_layer.0.bn2.num_batches_tracked",
+        "bn_layer.0.conv3.weight",
+        "bn_layer.0.bn3.weight",
+        "bn_layer.0.bn3.bias",
+        "bn_layer.0.bn3.running_mean",
+        "bn_layer.0.bn3.running_var",
+        "bn_layer.0.bn3.num_batches_tracked",
+        "bn_layer.0.downsample.0.weight",
+        "bn_layer.0.downsample.1.weight",
+        "bn_layer.0.downsample.1.bias",
+        "bn_layer.0.downsample.1.running_mean",
+        "bn_layer.0.downsample.1.running_var",
+        "bn_layer.0.downsample.1.num_batches_tracked",
+        "bn_layer.1.conv1.weight",
+        "bn_layer.1.bn1.weight",
+        "bn_layer.1.bn1.bias",
+        "bn_layer.1.bn1.running_mean",
+        "bn_layer.1.bn1.running_var",
+        "bn_layer.1.bn1.num_batches_tracked",
+        "bn_layer.1.conv2.weight",
+        "bn_layer.1.bn2.weight",
+        "bn_layer.1.bn2.bias",
+        "bn_layer.1.bn2.running_mean",
+        "bn_layer.1.bn2.running_var",
+        "bn_layer.1.bn2.num_batches_tracked",
+        "bn_layer.1.conv3.weight",
+        "bn_layer.1.bn3.weight",
+        "bn_layer.1.bn3.bias",
+        "bn_layer.1.bn3.running_mean",
+        "bn_layer.1.bn3.running_var",
+        "bn_layer.1.bn3.num_batches_tracked",
+        "bn_layer.2.conv1.weight",
+        "bn_layer.2.bn1.weight",
+        "bn_layer.2.bn1.bias",
+        "bn_layer.2.bn1.running_mean",
+        "bn_layer.2.bn1.running_var",
+        "bn_layer.2.bn1.num_batches_tracked",
+        "bn_layer.2.conv2.weight",
+        "bn_layer.2.bn2.weight",
+        "bn_layer.2.bn2.bias",
+        "bn_layer.2.bn2.running_mean",
+        "bn_layer.2.bn2.running_var",
+        "bn_layer.2.bn2.num_batches_tracked",
+        "bn_layer.2.conv3.weight",
+        "bn_layer.2.bn3.weight",
+        "bn_layer.2.bn3.bias",
+        "bn_layer.2.bn3.running_mean",
+        "bn_layer.2.bn3.running_var",
+        "bn_layer.2.bn3.num_batches_tracked",
+        "conv1.weight",
+        "bn1.weight",
+        "bn1.bias",
+        "bn1.running_mean",
+        "bn1.running_var",
+        "bn1.num_batches_tracked",
+        "conv2.weight",
+        "bn2.weight",
+        "bn2.bias",
+        "bn2.running_mean",
+        "bn2.running_var",
+        "bn2.num_batches_tracked",
+        "conv3.weight",
+        "bn3.weight",
+        "bn3.bias",
+        "bn3.running_mean",
+        "bn3.running_var",
+        "bn3.num_batches_tracked",
+        "conv4.weight",
+        "bn4.weight",
+        "bn4.bias",
+        "bn4.running_mean",
+        "bn4.running_var",
+        "bn4.num_batches_tracked",
+        "bn_layer",
+        "bn_layer.0",
+        "bn_layer.0.conv1",
+        "bn_layer.0.bn1",
+        "bn_layer.0.conv2",
+        "bn_layer.0.bn2",
+        "bn_layer.0.conv3",
+        "bn_layer.0.bn3",
+        "bn_layer.0.relu",
+        "bn_layer.0.downsample",
+        "bn_layer.0.downsample.0",
+        "bn_layer.0.downsample.1",
+        "bn_layer.1",
+        "bn_layer.1.conv1",
+        "bn_layer.1.bn1"
+      ],
+      "top_level_prefix_counts": {
+        "bn": 1,
+        "bn_layer": 88,
+        "conv1": 2,
+        "bn1": 6,
+        "conv2": 2,
+        "bn2": 6,
+        "conv3": 2,
+        "bn3": 6,
+        "conv4": 2,
+        "bn4": 6,
+        "layer1": 88,
+        "layer2": 114,
+        "layer3": 166
+      }
+    }
+  },
+  "safety": {
+    "checkpoint_tensors_loaded": false,
+    "checkpoint_files_modified": false,
+    "anomaly_maps_modified": false,
+    "training_performed": false
+  }
+}
