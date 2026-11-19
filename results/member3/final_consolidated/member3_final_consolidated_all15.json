@@ -1,0 +1,59 @@
+{
+  "title": "Member 3 consolidated experimental results",
+  "categories": [
+    "bottle",
+    "cable",
+    "capsule",
+    "carpet",
+    "grid",
+    "hazelnut",
+    "leather",
+    "metal_nut",
+    "pill",
+    "screw",
+    "tile",
+    "toothbrush",
+    "transistor",
+    "wood",
+    "zipper"
+  ],
+  "category_count": 15,
+  "corrected_efdm_gnl_reference": "train/good/000.png",
+  "efdm_gnl_evaluation": {
+    "image_auroc": 0.9709168039118387,
+    "pixel_auroc": 0.9706069380328367,
+    "aupro": 0.9270383899019004
+  },
+  "baseline_gnl": {
+    "image_auroc": 0.9558074166084906,
+    "pixel_auroc": 0.9658135772421494,
+    "aupro": 0.9007487852255294
+  },
+  "macro_deltas": {
+    "image_auroc": 0.015109387303348099,
+    "pixel_auroc": 0.004793360790687262,
+    "aupro": 0.02628960467637098
+  },
+  "category_outcomes": {
+    "image_auroc": {
+      "improved": 9,
+      "declined": 2,
+      "unchanged": 4
+    },
+    "pixel_auroc": {
+      "improved": 2,
+      "declined": 13,
+      "unchanged": 0
+    },
+    "aupro": {
+      "improved": 2,
+      "declined": 13,
+      "unchanged": 0
+    }
+  },
+  "pca_source_csv": "/kaggle/working/project_clean/results/pca/all_category_comparison.csv",
+  "gnl_source_csv": "/kaggle/working/project_clean/results/gnl/GNL_all_15_categories.csv",
+  "corrected_efdm_auroc_source": "/kaggle/working/project_clean/results/member3/efdm_gnl_all15/efdm_gnl_corrected_all15_comparison.csv",
+  "corrected_efdm_aupro_source": "/kaggle/working/project_clean/results/member3/aupro_corrected_all15/aupro_corrected_all15_comparison.csv",
+  "consolidated_csv": "/kaggle/working/project_clean/results/member3/final_consolidated/member3_final_consolidated_all15.csv"
+}

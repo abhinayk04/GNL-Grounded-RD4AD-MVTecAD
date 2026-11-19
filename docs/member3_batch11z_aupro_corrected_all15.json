@@ -1,0 +1,140 @@
+{
+  "batch": "11Z",
+  "title": "Corrected all-category AUPRO evaluation",
+  "reference": "train/good/000.png",
+  "max_fpr": 0.3,
+  "thresholds": 200,
+  "connectivity": 8,
+  "device": "cuda",
+  "categories_completed": 15,
+  "categories_failed": 0,
+  "macro": {
+    "baseline_aupro": 0.9007487852255294,
+    "efdm_gnl_aupro": 0.9270383899019004,
+    "aupro_delta": 0.02628960467637091
+  },
+  "results": [
+    {
+      "category": "bottle",
+      "images": 83,
+      "baseline_aupro": 0.9599009407986824,
+      "efdm_gnl_aupro": 0.958924949495101,
+      "aupro_delta": -0.0009759913035813916,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "cable",
+      "images": 150,
+      "baseline_aupro": 0.9274267438643784,
+      "efdm_gnl_aupro": 0.9267742532713817,
+      "aupro_delta": -0.0006524905929966573,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "capsule",
+      "images": 132,
+      "baseline_aupro": 0.9141116556932065,
+      "efdm_gnl_aupro": 0.9129710902108568,
+      "aupro_delta": -0.0011405654823497535,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "carpet",
+      "images": 117,
+      "baseline_aupro": 0.9650303789891939,
+      "efdm_gnl_aupro": 0.9686081403976964,
+      "aupro_delta": 0.0035777614085025222,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "grid",
+      "images": 78,
+      "baseline_aupro": 0.49717449109959366,
+      "efdm_gnl_aupro": 0.9273263736490472,
+      "aupro_delta": 0.4301518825494536,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "hazelnut",
+      "images": 110,
+      "baseline_aupro": 0.9587651690054976,
+      "efdm_gnl_aupro": 0.9546835982358859,
+      "aupro_delta": -0.0040815707696116865,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "leather",
+      "images": 124,
+      "baseline_aupro": 0.9864082689848302,
+      "efdm_gnl_aupro": 0.985527123269984,
+      "aupro_delta": -0.0008811457148462098,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "metal_nut",
+      "images": 115,
+      "baseline_aupro": 0.951741494389271,
+      "efdm_gnl_aupro": 0.9475102664205898,
+      "aupro_delta": -0.00423122796868125,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "pill",
+      "images": 167,
+      "baseline_aupro": 0.9574167648695017,
+      "efdm_gnl_aupro": 0.9504311549816429,
+      "aupro_delta": -0.00698560988785879,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "screw",
+      "images": 160,
+      "baseline_aupro": 0.9548807242968892,
+      "efdm_gnl_aupro": 0.9520784722589728,
+      "aupro_delta": -0.0028022520379163973,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "tile",
+      "images": 117,
+      "baseline_aupro": 0.8789218578731558,
+      "efdm_gnl_aupro": 0.8721587921937112,
+      "aupro_delta": -0.006763065679444624,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "toothbrush",
+      "images": 42,
+      "baseline_aupro": 0.9001826244171115,
+      "efdm_gnl_aupro": 0.8945605423298361,
+      "aupro_delta": -0.005622082087275437,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "transistor",
+      "images": 100,
+      "baseline_aupro": 0.7883157189721844,
+      "efdm_gnl_aupro": 0.7863161927746735,
+      "aupro_delta": -0.0019995261975109813,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "wood",
+      "images": 79,
+      "baseline_aupro": 0.9313407490359285,
+      "efdm_gnl_aupro": 0.9283478530648889,
+      "aupro_delta": -0.0029928959710395775,
+      "reference": "train/good/000.png"
+    },
+    {
+      "category": "zipper",
+      "images": 151,
+      "baseline_aupro": 0.9396141960935167,
+      "efdm_gnl_aupro": 0.939357045974237,
+      "aupro_delta": -0.0002571501192797365,
+      "reference": "train/good/000.png"
+    }
+  ],
+  "failures": [],
+  "elapsed_seconds": 280.16
+}
