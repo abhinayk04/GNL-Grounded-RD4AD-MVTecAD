@@ -668,5 +668,314 @@
       }
     ]
   },
-  "important_scope_note": "This index inventories existing artifacts. It does not claim that missing metrics or experiments were completed."
+  "important_scope_note": "This index inventories existing artifacts. It does not claim that missing metrics or experiments were completed.",
+  "efdm_deep_validation": {
+    "generated_utc": "2026-11-19T05:42:13.077137+00:00",
+    "comparison_tables": {
+      "standard_vs_efdm_final_comparison.csv": {
+        "rows": 15,
+        "columns": [
+          "category",
+          "standard_pixel_auroc",
+          "efdm_pixel_auroc",
+          "pixel_change",
+          "standard_image_auroc",
+          "efdm_image_auroc",
+          "image_change",
+          "test_images"
+        ],
+        "metric_means": {
+          "standard_pixel_auroc": 0.9664693333333332,
+          "efdm_pixel_auroc": 0.9716188540851528,
+          "pixel_change": 0.005149520751819593,
+          "standard_image_auroc": 0.9592162,
+          "efdm_image_auroc": 0.9733637573745265,
+          "image_change": 0.014147557374526554
+        }
+      },
+      "standard_vs_efdm_aligned.csv": {
+        "rows": 15,
+        "columns": [
+          "category",
+          "test_images",
+          "standard_pixel_auroc",
+          "aligned_efdm_pixel_auroc",
+          "pixel_change",
+          "standard_image_auroc",
+          "aligned_efdm_image_auroc",
+          "image_change"
+        ],
+        "metric_means": {
+          "standard_pixel_auroc": 0.9664693333333332,
+          "aligned_efdm_pixel_auroc": 0.9716188540851528,
+          "pixel_change": 0.005149520751819585,
+          "standard_image_auroc": 0.9592162,
+          "aligned_efdm_image_auroc": 0.9733637573745265,
+          "image_change": 0.014147557374526559
+        }
+      },
+      "efdm_gnl_all_categories.csv": {
+        "rows": 15,
+        "columns": [
+          "category",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "map_shape",
+          "maps_valid",
+          "test_count_match"
+        ],
+        "metric_means": {
+          "pixel_auroc": 0.9715755867356981,
+          "image_auroc": 0.9733637573745265
+        }
+      }
+    },
+    "per_category_json_record_count": 15,
+    "per_category_json_metrics": [
+      {
+        "category": "bottle",
+        "pixel_auroc": 0.9825328708782026,
+        "image_auroc": 0.9936507936507936,
+        "test_images": 83,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": null,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json"
+      },
+      {
+        "category": "cable",
+        "pixel_auroc": 0.9780041540362296,
+        "image_auroc": 0.9580209895052473,
+        "test_images": 150,
+        "lambda": null,
+        "image_size": null,
+        "smoothing_sigma": null,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json"
+      },
+      {
+        "category": "capsule",
+        "pixel_auroc": 0.9843291123129079,
+        "image_auroc": 0.9385719984044676,
+        "test_images": 132,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json"
+      },
+      {
+        "category": "carpet",
+        "pixel_auroc": 0.9916355569796319,
+        "image_auroc": 0.9959871589085072,
+        "test_images": 117,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_evaluation.json"
+      },
+      {
+        "category": "grid",
+        "pixel_auroc": 0.9722630292359766,
+        "image_auroc": 0.9715956558061821,
+        "test_images": 78,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json"
+      },
+      {
+        "category": "hazelnut",
+        "pixel_auroc": 0.9877435862260812,
+        "image_auroc": 1.0,
+        "test_images": 110,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json"
+      },
+      {
+        "category": "leather",
+        "pixel_auroc": 0.9932463224620425,
+        "image_auroc": 1.0,
+        "test_images": 124,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json"
+      },
+      {
+        "category": "metal_nut",
+        "pixel_auroc": 0.9727406034303667,
+        "image_auroc": 1.0,
+        "test_images": 115,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json"
+      },
+      {
+        "category": "pill",
+        "pixel_auroc": 0.9598337458658135,
+        "image_auroc": 0.9645390070921986,
+        "test_images": 167,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json"
+      },
+      {
+        "category": "screw",
+        "pixel_auroc": 0.9919938140734041,
+        "image_auroc": 0.9307235089157615,
+        "test_images": 160,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json"
+      },
+      {
+        "category": "tile",
+        "pixel_auroc": 0.9469865468311676,
+        "image_auroc": 0.9974747474747475,
+        "test_images": 117,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json"
+      },
+      {
+        "category": "toothbrush",
+        "pixel_auroc": 0.9887912668244844,
+        "image_auroc": 0.9972222222222222,
+        "test_images": 42,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json"
+      },
+      {
+        "category": "transistor",
+        "pixel_auroc": 0.9015872943949307,
+        "image_auroc": 0.9770833333333333,
+        "test_images": 100,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_evaluation.json"
+      },
+      {
+        "category": "wood",
+        "pixel_auroc": 0.9464145070106511,
+        "image_auroc": 0.987719298245614,
+        "test_images": 79,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json"
+      },
+      {
+        "category": "zipper",
+        "pixel_auroc": 0.9755313904735807,
+        "image_auroc": 0.8878676470588236,
+        "test_images": 151,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4,
+        "source": "/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json"
+      }
+    ],
+    "rd4ad_source_candidates": [],
+    "checkpoint_inventory": [
+      {
+        "directory": "bottle_full",
+        "latest_checkpoint_bytes": 1039728208,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "cable_full",
+        "latest_checkpoint_bytes": 1039728144,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/cable_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "capsule_full",
+        "latest_checkpoint_bytes": 1039728144,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/capsule_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "carpet_full",
+        "latest_checkpoint_bytes": 369163921,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/carpet_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "grid_full",
+        "latest_checkpoint_bytes": 369163921,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/grid_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "hazelnut_full",
+        "latest_checkpoint_bytes": 1039728144,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/hazelnut_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "leather_full",
+        "latest_checkpoint_bytes": 369163985,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/leather_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "metal_nut_full",
+        "latest_checkpoint_bytes": 1039728208,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/metal_nut_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "pill_full",
+        "latest_checkpoint_bytes": 1039728144,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/pill_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "screw_full",
+        "latest_checkpoint_bytes": 1039728144,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/screw_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "tile_full",
+        "latest_checkpoint_bytes": 369163921,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/tile_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "toothbrush_full",
+        "latest_checkpoint_bytes": 1039728208,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/toothbrush_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "transistor_full",
+        "latest_checkpoint_bytes": 1039730000,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/transistor_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "wood_full",
+        "latest_checkpoint_bytes": 369163921,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/wood_full/latest.pth",
+        "other_files": []
+      },
+      {
+        "directory": "zipper_full",
+        "latest_checkpoint_bytes": 369163921,
+        "latest_checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/zipper_full/latest.pth",
+        "other_files": []
+      }
+    ]
+  }
 }
