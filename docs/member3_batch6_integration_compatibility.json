@@ -1,0 +1,1276 @@
+{
+  "batch": "member3_batch6",
+  "files": [
+    {
+      "path": "/kaggle/working/project_clean/experiments/gnl/resnet.py",
+      "status": "found",
+      "bytes": 19790,
+      "sha256": "547a31bf9d8d84dde28ebf5f0fc91eb6e9c0349db4fe0170efa6bd658ab15d25",
+      "matched_lines": [
+        "69:     def forward(self, x: Tensor) -> Tensor:",
+        "123:     def forward(self, x: Tensor) -> Tensor:",
+        "146: class ResNet(nn.Module):",
+        "239:         feature_a = self.layer1(x)",
+        "240:         feature_b = self.layer2(feature_a)",
+        "241:         feature_c = self.layer3(feature_b)",
+        "242:         feature_d = self.layer4(feature_c)",
+        "244:         return [feature_a, feature_b, feature_c]",
+        "246:     def forward(self, x: Tensor) -> Tensor:",
+        "303:     def forward(self, x: Tensor) -> Tensor:",
+        "359:     def forward(self, x: Tensor) -> Tensor:",
+        "458:     def forward(self, x: Tensor) -> Tensor:",
+        "496: def wide_resnet50_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "conv3x3",
+          "line": 28,
+          "args": [
+            "in_planes",
+            "out_planes",
+            "stride",
+            "groups",
+            "dilation"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "conv1x1",
+          "line": 34,
+          "args": [
+            "in_planes",
+            "out_planes",
+            "stride"
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "BasicBlock",
+          "line": 39
+        },
+        {
+          "kind": "class",
+          "name": "Bottleneck",
+          "line": 88
+        },
+        {
+          "kind": "class",
+          "name": "ResNet",
+          "line": 146
+        },
+        {
+          "kind": "function",
+          "name": "_resnet",
+          "line": 250,
+          "args": [
+            "arch",
+            "block",
+            "layers",
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AttnBasicBlock",
+          "line": 269
+        },
+        {
+          "kind": "class",
+          "name": "AttnBottleneck",
+          "line": 324
+        },
+        {
+          "kind": "class",
+          "name": "BN_layer",
+          "line": 384
+        },
+        {
+          "kind": "function",
+          "name": "resnet18",
+          "line": 462,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "resnet34",
+          "line": 473,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "resnet50",
+          "line": 484,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "wide_resnet50_2",
+          "line": 496,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 42,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "downsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 69,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 97,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "downsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 123,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 148,
+          "args": [
+            "self",
+            "block",
+            "layers",
+            "num_classes",
+            "zero_init_residual",
+            "groups",
+            "width_per_group",
+            "replace_stride_with_dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_make_layer",
+          "line": 207,
+          "args": [
+            "self",
+            "block",
+            "planes",
+            "blocks",
+            "stride",
+            "dilate"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_forward_impl",
+          "line": 232,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 246,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 272,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "downsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer",
+            "attention"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 303,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 327,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "downsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer",
+            "attention"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 359,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 385,
+          "args": [
+            "self",
+            "block",
+            "layers",
+            "groups",
+            "width_per_group",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_make_layer",
+          "line": 420,
+          "args": [
+            "self",
+            "block",
+            "planes",
+            "blocks",
+            "stride",
+            "dilate"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_forward_impl",
+          "line": 445,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 458,
+          "args": [
+            "self",
+            "x"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/project_clean/experiments/gnl/de_resnet.py",
+      "status": "found",
+      "bytes": 16410,
+      "sha256": "853c920d0af6b80b785c852e9ec667b02761017c059c63d1eb7d4fc4f3be9712",
+      "matched_lines": [
+        "78:     def forward(self, x: Tensor) -> Tensor:",
+        "135:     def forward(self, x: Tensor) -> Tensor:",
+        "158: class ResNet(nn.Module):",
+        "251:         feature_a = self.layer1(x)  # 512*8*8->256*16*16",
+        "252:         feature_b = self.layer2(feature_a)  # 256*16*16->128*32*32",
+        "253:         feature_c = self.layer3(feature_b)  # 128*32*32->64*64*64",
+        "254:         #feature_d = self.layer4(feature_c)  # 64*64*64->128*32*32",
+        "260:         return [feature_c, feature_b, feature_a]",
+        "262:     def forward(self, x: Tensor) -> Tensor:"
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "conv3x3",
+          "line": 29,
+          "args": [
+            "in_planes",
+            "out_planes",
+            "stride",
+            "groups",
+            "dilation"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "conv1x1",
+          "line": 35,
+          "args": [
+            "in_planes",
+            "out_planes",
+            "stride"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "deconv2x2",
+          "line": 39,
+          "args": [
+            "in_planes",
+            "out_planes",
+            "stride",
+            "groups",
+            "dilation"
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "BasicBlock",
+          "line": 45
+        },
+        {
+          "kind": "class",
+          "name": "Bottleneck",
+          "line": 97
+        },
+        {
+          "kind": "class",
+          "name": "ResNet",
+          "line": 158
+        },
+        {
+          "kind": "function",
+          "name": "_resnet",
+          "line": 266,
+          "args": [
+            "arch",
+            "block",
+            "layers",
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "de_resnet18",
+          "line": 285,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "de_resnet34",
+          "line": 296,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "de_resnet50",
+          "line": 307,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "resnet101",
+          "line": 318,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "resnet152",
+          "line": 329,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "resnext50_32x4d",
+          "line": 340,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "resnext101_32x8d",
+          "line": 353,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "de_wide_resnet50_2",
+          "line": 366,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "de_wide_resnet101_2",
+          "line": 382,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 48,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "upsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 78,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 106,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "upsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 135,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 160,
+          "args": [
+            "self",
+            "block",
+            "layers",
+            "num_classes",
+            "zero_init_residual",
+            "groups",
+            "width_per_group",
+            "replace_stride_with_dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_make_layer",
+          "line": 219,
+          "args": [
+            "self",
+            "block",
+            "planes",
+            "blocks",
+            "stride",
+            "dilate"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_forward_impl",
+          "line": 244,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 262,
+          "args": [
+            "self",
+            "x"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/project_clean/experiments/gnl/train_gnl_category.py",
+      "status": "found",
+      "bytes": 11296,
+      "sha256": "041b12d126db2c8e0368529dcb7846ad41ba7ac47e8c2f42e0840be1cb0e2c1a",
+      "matched_lines": [
+        "113:     # Pretrained teacher and attention bottleneck.",
+        "119:     # Explicitly freeze the teacher.",
+        "235:                     # Frozen teacher feature extraction."
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "loss_function",
+          "line": 17,
+          "args": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "loss_function_last",
+          "line": 32,
+          "args": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line": 44,
+          "args": [
+            "args"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/project_clean/experiments/gnl/infer_gnl_category_id.py",
+      "status": "found",
+      "bytes": 6378,
+      "sha256": "e5e37b4d37cb10e080add1f2f19e6b004e87178a98ddb10e5c5dcbfd00c151a5",
+      "matched_lines": [
+        "18: def calculate_anomaly_map(teacher_features, student_features, out_size=256):",
+        "21:     for teacher, student in zip(teacher_features, student_features):",
+        "22:         distance = 1 - F.cosine_similarity(teacher, student)",
+        "109:             teacher_features = encoder(images)",
+        "110:             student_features = decoder(bn(teacher_features))",
+        "113:                 teacher_features, student_features, out_size=256"
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "calculate_anomaly_map",
+          "line": 18,
+          "args": [
+            "teacher_features",
+            "student_features",
+            "out_size"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line": 38,
+          "args": []
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/project_clean/experiments/gnl/infer_gnl_bottle_id.py",
+      "status": "found",
+      "bytes": 6654,
+      "sha256": "c03eebf5730676b591fe8548f244864c4c9752330a1d01792ec814012ed0128d",
+      "matched_lines": [
+        "18: def calculate_anomaly_map(teacher_features, student_features, out_size=256):",
+        "21:     for teacher, student in zip(teacher_features, student_features):",
+        "22:         distance = 1 - F.cosine_similarity(teacher, student)",
+        "122:             teacher_features = encoder(images)",
+        "123:             student_features = decoder(bn(teacher_features))",
+        "126:                 teacher_features,",
+        "127:                 student_features,"
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "calculate_anomaly_map",
+          "line": 18,
+          "args": [
+            "teacher_features",
+            "student_features",
+            "out_size"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line": 37,
+          "args": []
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/project_clean/pca_method/inference_pca_gating.py",
+      "status": "found",
+      "bytes": 1102,
+      "sha256": "a6766c4c0170e7b3b8507f37745bb7542898894ea51eb0467f65a8217427d232",
+      "matched_lines": [
+        "7:     Remove the nuisance subspace from teacher-student residuals."
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "apply_pca_gating",
+          "line": 5,
+          "args": [
+            "residual",
+            "basis"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/project_clean/pca_method/integration_interface.py",
+      "status": "found",
+      "bytes": 1502,
+      "sha256": "581e5b3b64cedfc16f0716adc51977edf881215813e672009ebf1e49f2df8ab4",
+      "matched_lines": [
+        "6: def pca_filtered_residual(",
+        "7:     teacher_features,",
+        "8:     student_features,",
+        "9:     nuisance_basis",
+        "12:     Apply nuisance PCA filtering to teacher-student feature residuals.",
+        "15:         teacher_features: Teacher output [B, C, H, W].",
+        "16:         student_features: Student output [B, C, H, W].",
+        "17:         nuisance_basis: PCA basis [C, K].",
+        "21:             raw_residual: Original teacher-student residual.",
+        "25:     if teacher_features.ndim != 4:",
+        "26:         raise ValueError(\"Teacher features must have shape [B,C,H,W].\")",
+        "28:     if student_features.ndim != 4:",
+        "29:         raise ValueError(\"Student features must have shape [B,C,H,W].\")",
+        "31:     if teacher_features.shape != student_features.shape:",
+        "32:         raise ValueError(\"Teacher and student feature shapes must match.\")",
+        "34:     if nuisance_basis.ndim != 2:",
+        "37:     if teacher_features.shape[1] != nuisance_basis.shape[0]:",
+        "40:     # Compute teacher-student residual",
+        "41:     raw_residual = teacher_features - student_features",
+        "46:         nuisance_basis"
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "pca_filtered_residual",
+          "line": 6,
+          "args": [
+            "teacher_features",
+            "student_features",
+            "nuisance_basis"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/resnet_TTA.py",
+      "status": "found",
+      "bytes": 23551,
+      "sha256": "caece495500f2400aaad1c30a20bdd8bd668bd85f10283a8a86441127c164450",
+      "matched_lines": [
+        "69:     def forward(self, x: Tensor) -> Tensor:",
+        "123:     def forward(self, x: Tensor) -> Tensor:",
+        "145: def mixstyle_test(input_image, normal_image, lamda = 0.5):",
+        "149:     normal_x = normal_image",
+        "171: def EFDM_test(input_image, normal_image, lamda = 0.5):",
+        "177:     normal_x = normal_image",
+        "198: class ResNet(nn.Module):",
+        "298:         feature_a = self.layer1(x)",
+        "299:         feature_a_original = self.layer1(original)",
+        "301:         if type_of_test == \"EFDM_test\":",
+        "302:             feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)",
+        "303:             feature_a = feature_a.to('cuda')",
+        "305:             feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)",
+        "307:             feature_a_EFDM = EFDM_test(feature_a, feature_a_original)",
+        "308:             feature_a_EFDM = feature_a_EFDM.to('cuda')",
+        "309:             feature_a_mixstyle = mixstyle_test(feature_a, feature_a_original)",
+        "310:             feature_a = (feature_a_EFDM + feature_a_mixstyle)/2",
+        "313:         feature_b = self.layer2(feature_a)",
+        "314:         feature_b_original = self.layer2(feature_a_original)",
+        "315:         if type_of_test == \"EFDM_test\":",
+        "316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)",
+        "317:             feature_b = feature_b.to('cuda')",
+        "319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)",
+        "321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)",
+        "322:             feature_b_EFDM = feature_b_EFDM.to('cuda')",
+        "323:             feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)",
+        "324:             feature_b = (feature_b_EFDM + feature_b_mixstyle)/2",
+        "326:         feature_c = self.layer3(feature_b)",
+        "327:         feature_c_original = self.layer3(feature_b_original)",
+        "329:         feature_d = self.layer4(feature_c)",
+        "331:         return [feature_a, feature_b, feature_c]",
+        "333:     def forward(self, x: Tensor, original, type_of_test, lamda=0.5) -> Tensor:",
+        "390:     def forward(self, x: Tensor) -> Tensor:",
+        "446:     def forward(self, x: Tensor) -> Tensor:",
+        "545:     def forward(self, x: Tensor) -> Tensor:",
+        "583: def wide_resnet50_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "conv3x3",
+          "line": 28,
+          "args": [
+            "in_planes",
+            "out_planes",
+            "stride",
+            "groups",
+            "dilation"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "conv1x1",
+          "line": 34,
+          "args": [
+            "in_planes",
+            "out_planes",
+            "stride"
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "BasicBlock",
+          "line": 39
+        },
+        {
+          "kind": "class",
+          "name": "Bottleneck",
+          "line": 88
+        },
+        {
+          "kind": "function",
+          "name": "mixstyle_test",
+          "line": 145,
+          "args": [
+            "input_image",
+            "normal_image",
+            "lamda"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "EFDM_test",
+          "line": 171,
+          "args": [
+            "input_image",
+            "normal_image",
+            "lamda"
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "ResNet",
+          "line": 198
+        },
+        {
+          "kind": "function",
+          "name": "_resnet",
+          "line": 337,
+          "args": [
+            "arch",
+            "block",
+            "layers",
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "class",
+          "name": "AttnBasicBlock",
+          "line": 356
+        },
+        {
+          "kind": "class",
+          "name": "AttnBottleneck",
+          "line": 411
+        },
+        {
+          "kind": "class",
+          "name": "BN_layer",
+          "line": 471
+        },
+        {
+          "kind": "function",
+          "name": "resnet18",
+          "line": 549,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "resnet34",
+          "line": 560,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "resnet50",
+          "line": 571,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "wide_resnet50_2",
+          "line": 583,
+          "args": [
+            "pretrained",
+            "progress"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 42,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "downsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 69,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 97,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "downsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 123,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 200,
+          "args": [
+            "self",
+            "block",
+            "layers",
+            "num_classes",
+            "zero_init_residual",
+            "groups",
+            "width_per_group",
+            "replace_stride_with_dilation",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_make_layer",
+          "line": 259,
+          "args": [
+            "self",
+            "block",
+            "planes",
+            "blocks",
+            "stride",
+            "dilate"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_forward_impl",
+          "line": 284,
+          "args": [
+            "self",
+            "x",
+            "original",
+            "type_of_test",
+            "lamda"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 333,
+          "args": [
+            "self",
+            "x",
+            "original",
+            "type_of_test",
+            "lamda"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 359,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "downsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer",
+            "attention"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 390,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 414,
+          "args": [
+            "self",
+            "inplanes",
+            "planes",
+            "stride",
+            "downsample",
+            "groups",
+            "base_width",
+            "dilation",
+            "norm_layer",
+            "attention"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 446,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "__init__",
+          "line": 472,
+          "args": [
+            "self",
+            "block",
+            "layers",
+            "groups",
+            "width_per_group",
+            "norm_layer"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_make_layer",
+          "line": 507,
+          "args": [
+            "self",
+            "block",
+            "planes",
+            "blocks",
+            "stride",
+            "dilate"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "_forward_impl",
+          "line": 532,
+          "args": [
+            "self",
+            "x"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "forward",
+          "line": 545,
+          "args": [
+            "self",
+            "x"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/test.py",
+      "status": "found",
+      "bytes": 4708,
+      "sha256": "e685b697be3c5fea88d1a36da6dda400fadc35eb420d4a14bd644e08b831d1f6",
+      "matched_lines": [
+        "63:         normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")",
+        "68:         normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")",
+        "84:         normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")",
+        "101:     normal_image = trans(normal_image)",
+        "102:     normal_image = torch.unsqueeze(normal_image, 0)",
+        "122:             normal_image = normal_image.to(device)",
+        "124:             inputs = encoder(img, normal_image, type_of_test, lamda=lamda)"
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "cal_anomaly_map",
+          "line": 18,
+          "args": [
+            "fs_list",
+            "ft_list",
+            "out_size",
+            "amap_mode"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "show_cam_on_image",
+          "line": 38,
+          "args": [
+            "img",
+            "anomaly_map"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "min_max_norm",
+          "line": 43,
+          "args": [
+            "image"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "cvt2heatmap",
+          "line": 47,
+          "args": [
+            "gray"
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "evaluation_ATTA",
+          "line": 52,
+          "args": [
+            "encoder",
+            "bn",
+            "decoder",
+            "dataloader",
+            "device",
+            "type_of_test",
+            "img_size",
+            "lamda",
+            "dataset_name",
+            "_class_"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/inference_mvtec_ATTA.py",
+      "status": "found",
+      "bytes": 5126,
+      "sha256": "b477b6518c8f1d843f8bebed372efa2fb502ae57fd6a958d10ee47d98e66c7a2",
+      "matched_lines": [
+        "59:                                                type_of_test='EFDM_test',",
+        "65:                                                type_of_test='EFDM_test',",
+        "71:                                                type_of_test='EFDM_test',",
+        "77:                                                type_of_test='EFDM_test',",
+        "83:                                                type_of_test='EFDM_test',"
+      ],
+      "definitions": [
+        {
+          "kind": "function",
+          "name": "test_mvtec",
+          "line": 10,
+          "args": [
+            "_class_"
+          ]
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_batch4_efdm_workflow_alignment.json",
+      "relevant_excerpt": "{\n  \"batch\": \"member3_batch4\",\n  \"source\": \"/kaggle/working/ADShift-GNL-working/resnet_TTA.py\",\n  \"source_sha256\": \"caece495500f2400aaad1c30a20bdd8bd668bd85f10283a8a86441127c164450\",\n  \"efdm_calls\": [\n    {\n      \"line\": 171,\n      \"excerpt\": \"0166: \\n0167:     new_input_x = x_normed * sig_mix + mu_mix\\n0168: \\n0169:     return new_input_x\\n0170: \\n0171: def EFDM_test(input_image, normal_image, lamda = 0.5):\\n0172: \\n0173:     lamda = 1-lamda\\n0174:     input_x = input_image\\n0175: \\n0176: \\n0177:     normal_x = normal_image\\n0178: \\n0179: \\n0180:     B, C, W, H = input_x.size(0), input_x.size(1), input_x.size(2), input_x.size(3)\\n0181: \\n0182: \\n0183:     input_x_view = input_x.view(B, C, -1)\\n0184:     normal_x_view = normal_x.view(B, C, -1)\\n0185: \\n0186:     value_input_x, index_input_x = torch.sort(input_x_view)\\n0187:     value_normal_x, index_normal_x = torch.sort(normal_x_view)\\n0188:     new_input_x = value_input_x + (value_normal_x - value_input_x) * lamda\\n0189:     inverse_index = index_input_x.argsort(-1)\\n0190:     new_input_x = new_input_x.gather(-1, inverse_index)\\n0191:     new_input_x = new_input_x.view(B, C, W, H)\\n0192:     new_input_x = new_input_x.cpu().detach().numpy()\\n0193:     new_input_x = torch.from_numpy(new_input_x)\\n0194: \"\n    },\n    {\n      \"line\": 301,\n      \"excerpt\": \"0296:         original = self.maxpool(original)\\n0297: \\n0298:         feature_a = self.layer1(x)\\n0299:         feature_a_original = self.layer1(original)\\n0300: \\n0301:         if type_of_test == \\\"EFDM_test\\\":\\n0302:             feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)\\n0303:             feature_a = feature_a.to('cuda')\\n0304:         elif type_of_test == \\\"mixstyle\\\":\\n0305:             feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)\\n0306:         if type_of_test == \\\"both\\\":\\n0307:             feature_a_EFDM = EFDM_test(feature_a, feature_a_original)\\n0308:             feature_a_EFDM = feature_a_EFDM.to('cuda')\\n0309:             feature_a_mixstyle = mixstyle_test(feature_a, feature_a_original)\\n0310:             feature_a = (feature_a_EFDM + feature_a_mixstyle)/2\\n0311: \\n0312: \\n0313:         feature_b = self.layer2(feature_a)\\n0314:         feature_b_original = self.layer2(feature_a_original)\\n0315:         if type_of_test == \\\"EFDM_test\\\":\\n0316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\\n0317:             feature_b = feature_b.to('cuda')\\n0318:         elif type_of_test == \\\"mixstyle\\\":\\n0319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\\n0320:         elif type_of_test == \\\"both\\\":\\n0321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)\\n0322:             feature_b_EFDM = feature_b_EFDM.to('cuda')\\n0323:             feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)\\n0324:             feature_b = (feature_b_EFDM + feature_b_mixstyle)/2\"\n    },\n    {\n      \"line\": 302,\n      \"excerpt\": \"0297: \\n0298:         feature_a = self.layer1(x)\\n0299:         feature_a_original = self.layer1(original)\\n0300: \\n0301:         if type_of_test == \\\"EFDM_test\\\":\\n0302:             feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)\\n0303:             feature_a = feature_a.to('cuda')\\n0304:         elif type_of_test == \\\"mixstyle\\\":\\n0305:             feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)\\n0306:         if type_of_test == \\\"both\\\":\\n0307:      "
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_batch2_source_recovery.json",
+      "relevant_excerpt": "{\n  \"repository\": \"/kaggle/working/project_clean\",\n  \"git_status\": {\n    \"returncode\": 0,\n    \"stdout\": \"## member3/pca-method...origin/member3/pca-method [ahead 8]\\n?? docs/member3_batch2_source_recovery.json\\n?? docs/member3_batch3_validation.json\\n?? docs/member3_remaining_work_audit.json\",\n    \"stderr\": \"\"\n  },\n  \"git_latest_commit\": {\n    \"returncode\": 0,\n    \"stdout\": \"7216c8c Search original EFDM grid provenance\",\n    \"stderr\": \"\"\n  },\n  \"pca_files\": {\n    \"pca_method/pca_config.py\": {\n      \"exists\": true,\n      \"characters\": 422\n    },\n    \"pca_method/compute_nuisance_pca.py\": {\n      \"exists\": true,\n      \"characters\": 3400\n    },\n    \"pca_method/inference_pca_gating.py\": {\n      \"exists\": true,\n      \"characters\": 1102\n    },\n    \"pca_method/integration_interface.py\": {\n      \"exists\": true,\n      \"characters\": 1502\n    }\n  },\n  \"gnl_files\": {\n    \"experiments/gnl/infer_gnl_category_id.py\": {\n      \"exists\": true,\n      \"characters\": 6378\n    },\n    \"experiments/gnl/infer_gnl_bottle_id.py\": {\n      \"exists\": true,\n      \"characters\": 6654\n    },\n    \"experiments/gnl/resnet.py\": {\n      \"exists\": true,\n      \"characters\": 19790\n    },\n    \"experiments/gnl/de_resnet.py\": {\n      \"exists\": true,\n      \"characters\": 16410\n    }\n  },\n  \"python_files_inspected\": 20,\n  \"efdm_source_candidates\": [],\n  \"notebooks_inspected\": 2,\n  \"notebook_efdm_hits\": [\n    {\n      \"notebook\": \"/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb\",\n      \"cell\": 5,\n      \"source\": \"%cd /content/ADShift-official\\n\\nprint(\\\"========== AUGMIX DATASET ==========\\\")\\n!sed -n '440,540p' dataset.py\\n\\nprint(\\\"\\\\n========== MVTec DATASET LOADER ==========\\\")\\n!sed -n '1,155p' dataset.py\\n\\nprint(\\\"\\\\n========== TTA FEATURE MATCHING ==========\\\")\\n!grep -n -E \\\"EFDM|FDM|def forward|class\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n========== TRAINING MODEL ARCHITECTURE ==========\\\")\\n!grep -n -E \\\"def wide_resnet50_2|class\\\" resnet.py de_resnet.py\"\n    },\n    {\n      \"notebook\": \"/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb\",\n      \"cell\": 7,\n      \"source\": \"%cd /content/ADShift-official\\n\\nimport torch\\nimport torchvision\\nimport numpy as np\\n\\nprint(\\\"========== BASIC LIBRARY TEST ==========\\\")\\n\\nmodules = [\\n    \\\"cv2\\\",\\n    \\\"scipy\\\",\\n    \\\"sklearn\\\",\\n    \\\"PIL\\\",\\n    \\\"matplotlib\\\",\\n    \\\"tqdm\\\"\\n]\\n\\nimport importlib\\n\\nfor name in modules:\\n    try:\\n        mod = importlib.import_module(name)\\n        print(name, \\\"OK\\\", getattr(mod, \\\"__version__\\\", \\\"\\\"))\\n    except Exception as e:\\n        print(name, \\\"FAILED:\\\", repr(e))\\n\\nprint(\\\"\\\\n========== ADShift IMPORT TEST ==========\\\")\\n\\nfor name in [\\\"resnet\\\", \\\"de_resnet\\\", \\\"dataset\\\", \\\"resnet_TTA\\\", \\\"test\\\"]:\\n    try:\\n        importlib.import_module(name)\\n        print(name, \\\"IMPORT SUCCESS\\\")\\n    except Exception as e:\\n        print(name, \\\"IMPORT FAILED:\\\", repr(e))\\n\\nprint(\\\"\\\\n========== ARCHITECTURE FACTORIES ==========\\\")\\n\\n!sed -n '480,520p' resnet.py\\n!sed -n '490,560p' de_resnet.py\\n\\nprint(\\\"\\\\n========== EFDM IMPLEMENTATION ==========\\\")\\n!sed -n '165,195p' resnet_TTA.py\"\n    },\n    {\n      \"notebook\": \"/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb\",\n      \"cell\": 59,\n      \"source\": \"%cd /content/ADShift-GNL-working\\n\\nprint(\\\"===== TTA MODEL DEFINITION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def wide_resnet50_2\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== EFDM IMPLEMENTATION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def EFDM_test\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n=="
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_batch5_efdm_trace.json",
+      "relevant_excerpt": "{\n  \"batch\": \"member3_batch5\",\n  \"evaluation_scripts\": {\n    \"inference_mvtec_ATTA.py\": {\n      \"path\": \"/kaggle/working/ADShift-GNL-working/inference_mvtec_ATTA.py\",\n      \"excerpts\": [\n        \"...\",\n        \"0001: import torch\",\n        \"0002: from dataset import get_data_transforms\",\n        \"0003: from resnet_TTA import  wide_resnet50_2\",\n        \"0004: from de_resnet import  de_wide_resnet50_2\",\n        \"0005: from dataset import MVTecDataset, MVTecDatasetOOD\",\n        \"0006: from test import  evaluation_ATTA\",\n        \"0007: \",\n        \"0008: \",\n        \"0009: \",\n        \"0010: def test_mvtec(_class_):\",\n        \"0011:     device = 'cuda' if torch.cuda.is_available() else 'cpu'\",\n        \"0012:     print('Class: ', _class_)\",\n        \"0013:     data_transform, gt_transform = get_data_transforms(256, 256)\",\n        \"0014: \",\n        \"0015:     #load data\",\n        \"0016:     test_path_id = './mvtec/' + _class_ #update here\",\n        \"0017:     test_path_brightness = './mvtec_brightness/' + _class_ #update here\",\n        \"0018:     test_path_constrast = './mvtec_contrast/' + _class_ #update here\",\n        \"0019:     test_path_defocus_blur = './mvtec_defocus_blur/' + _class_ #update here\",\n        \"0020:     test_path_gaussian_noise = './mvtec_gaussian_noise/' + _class_ #update here\",\n        \"0021:     ckp_path = './checkpoints/' + 'mvtec_DINL_' + str(_class_) + '_19.pth'\",\n        \"0022:     test_data_id = MVTecDataset(root=test_path_id, transform=data_transform, gt_transform=gt_transform,\",\n        \"...\",\n        \"0049:     for k, v in list(ckp['bn'].items()):\",\n        \"0050:         if 'memory' in k:\",\n        \"0051:             ckp['bn'].pop(k)\",\n        \"0052:     decoder.load_state_dict(ckp['decoder'])\",\n        \"0053:     bn.load_state_dict(ckp['bn'])\",\n        \"0054: \",\n        \"0055:     lamda = 0.5\",\n        \"0056: \",\n        \"0057:     list_results = []\",\n        \"0058:     auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_id, device,\",\n        \"0059:                                                type_of_test='EFDM_test',\",\n        \"0060:                                                img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\",\n        \"0061:     list_results.append(round(auroc_sp, 4))\",\n        \"0062:     print('Auroc of ID data{:.4f}'.format(auroc_sp))\",\n        \"0063: \",\n        \"0064:     auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_brightness, device,\",\n        \"0065:                                                type_of_test='EFDM_test',\",\n        \"0066:                                                img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\",\n        \"0067:     list_results.append(round(auroc_sp, 4))\",\n        \"0068:     print('Auroc of brightness data{:.4f}'.format(auroc_sp))\",\n        \"0069: \",\n        \"0070:     auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_constrast, device,\",\n        \"0071:                                                type_of_test='EFDM_test',\",\n        \"0072:                                                img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)\",\n        \"0073:     list_results.append(round(auroc_sp, 4))\",\n        \"0074:     print('Auroc of contrast data{:.4f}'.format(auroc_sp))\",\n        \"0075: \",\n        \"0076:     auroc_sp = evaluation_ATTA(encoder, bn, decoder, test_dataloader_defocus_blur, device,\",\n        \"0077:                                           "
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_final_evidence_index.json",
+      "relevant_excerpt": "{\n  \"generated_utc\": \"2026-11-19T05:40:45.833195+00:00\",\n  \"repository\": \"/kaggle/working/project_clean\",\n  \"branch\": \"member3/pca-method\",\n  \"head_before_final_report\": \"c2f1ffd\",\n  \"git_status_before_final_report\": \"## member3/pca-method...origin/member3/pca-method [ahead 1]\",\n  \"storage\": {\n    \"total_bytes\": 20957446144,\n    \"used_bytes\": 20898783232,\n    \"free_bytes\": 41885696\n  },\n  \"inventory\": [\n    {\n      \"path\": \"experiments/gnl\",\n      \"file_count\": 15,\n      \"bytes\": 199561\n    },\n    {\n      \"path\": \"experiments/rd4ad\",\n      \"file_count\": 1,\n      \"bytes\": 0\n    },\n    {\n      \"path\": \"pca_method\",\n      \"file_count\": 56,\n      \"bytes\": 1839007\n    },\n    {\n      \"path\": \"results/gnl\",\n      \"file_count\": 2,\n      \"bytes\": 1268\n    },\n    {\n      \"path\": \"results/pca\",\n      \"file_count\": 10,\n      \"bytes\": 282518\n    },\n    {\n      \"path\": \"docs\",\n      \"file_count\": 2,\n      \"bytes\": 2918\n    }\n  ],\n  \"pca\": {\n    \"summary\": {\n      \"rows\": 15,\n      \"columns\": [\n        \"category\",\n        \"baseline_pixel_auroc\",\n        \"pca_pixel_auroc\",\n        \"pixel_delta\",\n        \"baseline_image_auroc\",\n        \"pca_image_auroc\",\n        \"image_delta\",\n        \"baseline_matches_original\"\n      ],\n      \"numeric_means\": {\n        \"baseline_pixel_auroc\": 0.9664692984943628,\n        \"pca_pixel_auroc\": 0.9645765169605152,\n        \"pixel_delta\": -0.0018927815338475298,\n        \"baseline_image_auroc\": 0.9592161800974417,\n        \"pca_image_auroc\": 0.9615148054171272,\n        \"image_delta\": 0.0022986253196853866\n      },\n      \"baseline_match_count\": 15,\n      \"baseline_match_column\": \"baseline_matches_original\"\n    },\n    \"plots\": [\n      {\n        \"path\": \"results/pca/image_auroc_improvement.png\",\n        \"exists_nonempty\": true,\n        \"bytes\": 99995\n      },\n      {\n        \"path\": \"results/pca/macro_auroc_comparison.png\",\n        \"exists_nonempty\": true,\n        \"bytes\": 46642\n      },\n      {\n        \"path\": \"results/pca/pixel_auroc_improvement.png\",\n        \"exists_nonempty\": true,\n        \"bytes\": 102061\n      }\n    ],\n    \"basis_pth_file_count\": 45\n  },\n  \"gnl\": {\n    \"results/gnl/GNL_all_15_categories.csv\": {\n      \"rows\": 15,\n      \"columns\": [\n        \"category\",\n        \"checkpoint_epoch\",\n        \"test_images\",\n        \"normal_images\",\n        \"anomalous_images\",\n        \"image_auroc\",\n        \"pixel_auroc\"\n      ],\n      \"numeric_means\": {\n        \"checkpoint_epoch\": 18.933333333333334,\n        \"test_images\": 115.0,\n        \"normal_images\": 31.133333333333333,\n        \"anomalous_images\": 83.86666666666666,\n        \"image_auroc\": 0.9592162000000001,\n        \"pixel_auroc\": 0.9664693333333333\n      }\n    },\n    \"results/gnl/GNL_AUPRO_recalculated_15.csv\": {\n      \"rows\": 15,\n      \"columns\": [\n        \"category\",\n        \"images\",\n        \"regions\",\n        \"max_fpr\",\n        \"aupro\"\n      ],\n      \"numeric_means\": {\n        \"images\": 115.0,\n        \"regions\": 125.6,\n        \"max_fpr\": 0.29999999999999993,\n        \"aupro\": 0.9031784333760152\n      }\n    }\n  },\n  \"efdm\": {\n    \"files_found\": 53,\n    \"files_by_extension\": {\n      \".json\": 30,\n      \".npy\": 16,\n      \".md\": 1,\n      \".csv\": 4,\n      \".ipynb\": 1,\n      \".txt\": 1\n    },\n    \"small_tabular_files\": [\n      {\n        \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/efdm_automation_summary.json\",\n        \"top_level_type\": \"dict\",\n        \"keys\": [\n          \"successful_categories\",\n          \"failed_categories\"\n        ]\n      },\n      {\n        \"path\": \"/k"
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_efdm_results_addendum.md",
+      "relevant_excerpt": "# Member 3 \u2014 EFDM Results Addendum\n\nGenerated: 2026-11-19T05:42:13.075547+00:00\n\n## Comparison CSV inventory\n\n### `standard_vs_efdm_final_comparison.csv`\n- Rows: 15\n- Columns: category, standard_pixel_auroc, efdm_pixel_auroc, pixel_change, standard_image_auroc, efdm_image_auroc, image_change, test_images\n- Macro mean `standard_pixel_auroc`: 0.966469\n- Macro mean `efdm_pixel_auroc`: 0.971619\n- Macro mean `pixel_change`: 0.005150\n- Macro mean `standard_image_auroc`: 0.959216\n- Macro mean `efdm_image_auroc`: 0.973364\n- Macro mean `image_change`: 0.014148\n\n### `standard_vs_efdm_aligned.csv`\n- Rows: 15\n- Columns: category, test_images, standard_pixel_auroc, aligned_efdm_pixel_auroc, pixel_change, standard_image_auroc, aligned_efdm_image_auroc, image_change\n- Macro mean `standard_pixel_auroc`: 0.966469\n- Macro mean `aligned_efdm_pixel_auroc`: 0.971619\n- Macro mean `pixel_change`: 0.005150\n- Macro mean `standard_image_auroc`: 0.959216\n- Macro mean `aligned_efdm_image_auroc`: 0.973364\n- Macro mean `image_change`: 0.014148\n\n### `efdm_gnl_all_categories.csv`\n- Rows: 15\n- Columns: category, test_images, pixel_auroc, image_auroc, map_shape, maps_valid, test_count_match\n- Macro mean `pixel_auroc`: 0.971576\n- Macro mean `image_auroc`: 0.973364\n\n## Per-category EFDM JSON metrics\n\n- Category JSON records found: 15\n\n- Macro `pixel_auroc` across valid JSON records: 0.971576 (15 valid records)\n- Macro `image_auroc` across valid JSON records: 0.973364 (15 valid records)\n\n## RD4AD source discovery\n\n- Likely source files found: 0\n- Checkpoint directories found: 15\n\nCheckpoint files are not assumed to be RD4AD until their model architecture and state-dictionary keys are verified.\n\n## Interpretation caution\n\nThe standard-vs-EFDM comparison CSVs are retained as the primary comparison evidence. Do not combine separate CSV summaries unless their test-image sets, category coverage, and metric definitions align.\nNo models were retrained in this task."
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_remaining_work_audit.json",
+      "relevant_excerpt": "{\n  \"scope\": [\n    \"GNL\",\n    \"PCA\",\n    \"EFDM\",\n    \"PCA+EFDM\"\n  ],\n  \"repository\": \"/kaggle/working/project_clean\",\n  \"git\": {\n    \"status\": {\n      \"returncode\": 0,\n      \"stdout\": \"## member3/pca-method...origin/member3/pca-method [ahead 8]\",\n      \"stderr\": \"\"\n    },\n    \"branch\": {\n      \"returncode\": 0,\n      \"stdout\": \"member3/pca-method\",\n      \"stderr\": \"\"\n    },\n    \"recent_commits\": {\n      \"returncode\": 0,\n      \"stdout\": \"7216c8c Search original EFDM grid provenance\\nb4f5068 Audit original EFDM run and checkpoint architecture\\n79cac6d Record EFDM ordering and RD4AD checkpoint recovery findings\\n9e11979 Audit EFDM grid metrics and RD4AD recovery readiness\\n1e8f90e Document EFDM grid and RD4AD recovery investigation\",\n      \"stderr\": \"\"\n    },\n    \"whitespace_check\": {\n      \"returncode\": 0,\n      \"stdout\": \"\",\n      \"stderr\": \"\"\n    }\n  },\n  \"pca_files\": [\n    {\n      \"path\": \"pca_method/inference_pca_gating.py\",\n      \"size\": 1102\n    },\n    {\n      \"path\": \"pca_method/pca_config.py\",\n      \"size\": 422\n    },\n    {\n      \"path\": \"pca_method/compute_nuisance_pca.py\",\n      \"size\": 3400\n    },\n    {\n      \"path\": \"pca_method/__init__.py\",\n      \"size\": 0\n    },\n    {\n      \"path\": \"pca_method/integration_interface.py\",\n      \"size\": 1502\n    }\n  ],\n  \"efdm_files\": [],\n  \"provenance_candidates\": [\n    {\n      \"path\": \"/kaggle/working/project_clean/docs/member3_task1s_provenance_search.json\",\n      \"type\": \"manifest_or_provenance_report\",\n      \"size\": 359804\n    },\n    {\n      \"path\": \"/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_RECOVERY_MANIFEST.json\",\n      \"type\": \"manifest_or_provenance_report\",\n      \"size\": 49116\n    },\n    {\n      \"path\": \"/kaggle/working/project_clean/results/pca/bottle_cable_detailed/bottle/image_scores.csv\",\n      \"type\": \"score_csv\",\n      \"header\": [\n        \"index\",\n        \"filename\",\n        \"defect_type\",\n        \"label\",\n        \"baseline_image_score\",\n        \"pca_image_score\"\n      ],\n      \"sample_rows\": [\n        [\n          \"0\",\n          \"000.png\",\n          \"contamination\",\n          \"1\",\n          \"1.1649302244186401\",\n          \"1.1137466430664062\"\n        ],\n        [\n          \"1\",\n          \"001.png\",\n          \"contamination\",\n          \"1\",\n          \"1.1833478212356567\",\n          \"1.0990866422653198\"\n        ],\n        [\n          \"2\",\n          \"002.png\",\n          \"contamination\",\n          \"1\",\n          \"1.0761514902114868\",\n          \"1.0065395832061768\"\n        ],\n        [\n          \"3\",\n          \"003.png\",\n          \"contamination\",\n          \"1\",\n          \"0.9377961158752441\",\n          \"0.9087665677070618\"\n        ]\n      ]\n    },\n    {\n      \"path\": \"/kaggle/working/project_clean/results/pca/bottle_cable_detailed/cable/image_scores.csv\",\n      \"type\": \"score_csv\",\n      \"header\": [\n        \"index\",\n        \"filename\",\n        \"defect_type\",\n        \"label\",\n        \"baseline_image_score\",\n        \"pca_image_score\"\n      ],\n      \"sample_rows\": [\n        [\n          \"0\",\n          \"000.png\",\n          \"missing_cable\",\n          \"1\",\n          \"0.8704203963279724\",\n          \"0.8761879801750183\"\n        ],\n        [\n          \"1\",\n          \"001.png\",\n          \"missing_cable\",\n          \"1\",\n          \"0.8457772135734558\",\n          \"0.8512651920318604\"\n        ],\n        [\n          \"2\",\n          \"002.png\",\n          \"missing_cable\",\n          \"1\",\n          \"0.8730077147483826\",\n          \"0.8421164751052856\"\n        ],\n        [\n          \"3\",\n        "
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1o_grid_rd4ad_audit.md",
+      "relevant_excerpt": "# Member 3 \u2014 Task 1O audit\n\n## EFDM grid\n\n```json\n{\n  \"stored\": {\n    \"category\": \"grid\",\n    \"method\": \"EFDM-GNL\",\n    \"test_images\": 78,\n    \"pixel_auroc\": 0.9722630292359766,\n    \"image_auroc\": 0.9715956558061821,\n    \"lambda\": 0.5,\n    \"image_size\": 256,\n    \"smoothing_sigma\": 4\n  },\n  \"recomputed\": {\n    \"sample_count\": 78,\n    \"pixel_auroc_recomputed\": 0.5737257752796951,\n    \"image_auroc_recomputed\": 0.3208020050125313,\n    \"pixel_auroc_stored\": 0.9722630292359766,\n    \"image_auroc_stored\": 0.9715956558061821,\n    \"pixel_ordering_assumption\": \"sorted defect folders, then sorted image filenames\",\n    \"image_score_definition\": \"maximum anomaly-map value\"\n  },\n  \"map_shape\": [\n    78,\n    256,\n    256\n  ]\n}\n```\n\n## RD4AD source availability\n\n```json\n{\n  \"/kaggle/working/ADShift-GNL-working\": {\n    \"resnet.py\": {\n      \"path\": \"/kaggle/working/ADShift-GNL-working/resnet.py\",\n      \"bytes\": 20303,\n      \"sha256\": \"ad3e8509e046b91c42c1cdea9449cac83f5938ac7af6ed96e6ff5a8f39bb26f2\"\n    },\n    \"de_resnet.py\": {\n      \"path\": \"/kaggle/working/ADShift-GNL-working/de_resnet.py\",\n      \"bytes\": 16803,\n      \"sha256\": \"c2740b70cd38453c8521151c539f3976d6e51adf64336224d02d4187f8cce4ee\"\n    },\n    \"dataset.py\": {\n      \"path\": \"/kaggle/working/ADShift-GNL-working/dataset.py\",\n      \"bytes\": 17894,\n      \"sha256\": \"aedc0e00fecaa413c6cf1b05c11de3e2194ca95516739e3bb0ae3e3a623793fd\"\n    },\n    \"test.py\": {\n      \"path\": \"/kaggle/working/ADShift-GNL-working/test.py\",\n      \"bytes\": 4708,\n      \"sha256\": \"e685b697be3c5fea88d1a36da6dda400fadc35eb420d4a14bd644e08b831d1f6\"\n    },\n    \"resnet_TTA.py\": {\n      \"path\": \"/kaggle/working/ADShift-GNL-working/resnet_TTA.py\",\n      \"bytes\": 23551,\n      \"sha256\": \"caece495500f2400aaad1c30a20bdd8bd668bd85f10283a8a86441127c164450\"\n    }\n  },\n  \"/kaggle/working/project_clean/ADShift\": {},\n  \"/kaggle/working/project_clean/experiments/rd4ad\": {}\n}\n```\n\n## RD4AD checkpoint metadata\n\n```json\n{\n  \"bottle_full\": {\n    \"path\": \"/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth\",\n    \"bytes\": 1039728208,\n    \"zip_based_torch_checkpoint\": true,\n    \"archive_member_count\": 837,\n    \"parameter_name_strings_sample\": [\n      \"bn\",\n      \"bn_layer.0.conv1.weight\",\n      \"bn_layer.0.bn1.weight\",\n      \"bn_layer.0.bn1.bias\",\n      \"bn_layer.0.bn1.running_mean\",\n      \"bn_layer.0.bn1.running_var\",\n      \"bn_layer.0.bn1.num_batches_tracked\",\n      \"bn_layer.0.conv2.weight\",\n      \"bn_layer.0.bn2.weight\",\n      \"bn_layer.0.bn2.bias\",\n      \"bn_layer.0.bn2.running_mean\",\n      \"bn_layer.0.bn2.running_var\",\n      \"bn_layer.0.bn2.num_batches_tracked\",\n      \"bn_layer.0.conv3.weight\",\n      \"bn_layer.0.bn3.weight\",\n      \"bn_layer.0.bn3.bias\",\n      \"bn_layer.0.bn3.running_mean\",\n      \"bn_layer.0.bn3.running_var\",\n      \"bn_layer.0.bn3.num_batches_tracked\",\n      \"bn_layer.0.downsample.0.weight\",\n      \"bn_layer.0.downsample.1.weight\",\n      \"bn_layer.0.downsample.1.bias\",\n      \"bn_layer.0.downsample.1.running_mean\",\n      \"bn_layer.0.downsample.1.running_var\",\n      \"bn_layer.0.downsample.1.num_batches_tracked\",\n      \"bn_layer.1.conv1.weight\",\n      \"bn_layer.1.bn1.weight\",\n      \"bn_layer.1.bn1.bias\",\n      \"bn_layer.1.bn1.running_mean\",\n      \"bn_layer.1.bn1.running_var\",\n      \"bn_layer.1.bn1.num_batches_tracked\",\n      \"bn_layer.1.conv2.weight\",\n      \"bn_layer.1.bn2.weight\",\n      \"bn_layer.1.bn2.bias\",\n      \"bn_layer.1.bn2.running_mean\",\n      \"bn_layer.1.bn2.running_var\",\n      \"bn_layer.1.bn2.num_batches_t"
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1r_recovery_audit.json",
+      "relevant_excerpt": "{\n  \"task\": \"1R\",\n  \"notebook_scan\": {\n    \"notebooks_scanned\": 2,\n    \"read_errors\": 0,\n    \"relevant_cells\": [\n      {\n        \"notebook\": \"/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb\",\n        \"cell_index\": 3,\n        \"cell_type\": \"code\",\n        \"matched_terms\": [\n          \"EFDM_test\",\n          \"evaluation_ATTA\",\n          \"DataLoader(\",\n          \"shuffle=False\",\n          \"MVTecDataset(\",\n          \"grid\"\n        ],\n        \"execution_count\": 4,\n        \"source\": \"%cd /content\\n\\n!git clone https://github.com/mala-lab/ADShift.git ADShift-official\\n\\n%cd /content/ADShift-official\\n\\n!ls -lah\\n\\n!sed -n '1,180p' train_mvtec_DINL.py\\n\\n!sed -n '1,130p' inference_mvtec_ATTA.py\",\n        \"saved_output\": \"/content\\nCloning into 'ADShift-official'...\\nremote: Enumerating objects: 78, done.\\u001b[K\\nremote: Counting objects: 100% (34/34), done.\\u001b[K\\nremote: Compressing objects: 100% (12/12), done.\\u001b[K\\nremote: Total 78 (delta 27), reused 22 (delta 22), pack-reused 44 (from 1)\\u001b[K\\nReceiving objects: 100% (78/78), 33.56 KiB | 394.00 KiB/s, done.\\nResolving deltas: 100% (39/39), done.\\n/content/ADShift-official\\ntotal 156K\\ndrwxr-xr-x 3 root root 4.0K Nov 17 18:30 .\\ndrwxr-xr-x 1 root root 4.0K Nov 17 18:30 ..\\n-rw-r--r-- 1 root root  18K Nov 17 18:30 dataset.py\\n-rw-r--r-- 1 root root  17K Nov 17 18:30 de_resnet.py\\n-rw-r--r-- 1 root root 4.1K Nov 17 18:30 environment.yml\\n-rw-r--r-- 1 root root 1019 Nov 17 18:30 generate_corrupted_cifar10.py\\n-rw-r--r-- 1 root root 1.7K Nov 17 18:30 generate_corrupted_mvtec.py\\ndrwxr-xr-x 8 root root 4.0K Nov 17 18:30 .git\\n-rw-r--r-- 1 root root 5.1K Nov 17 18:30 inference_mvtec_ATTA.py\\n-rw-r--r-- 1 root root 4.3K Nov 17 18:30 inference_PACS_ATTA.py\\n-rw-r--r-- 1 root root 1.9K Nov 17 18:30 README.md\\n-rw-r--r-- 1 root root  20K Nov 17 18:30 resnet.py\\n-rw-r--r-- 1 root root  23K Nov 17 18:30 resnet_TTA.py\\n-rw-r--r-- 1 root root 4.6K Nov 17 18:30 test.py\\n-rw-r--r-- 1 root root 4.8K Nov 17 18:30 train_mvtec_DINL.py\\n-rw-r--r-- 1 root root 5.0K Nov 17 18:30 train_PACS_DINL.py\\nimport torch\\nfrom torchvision.datasets import ImageFolder\\nfrom resnet import wide_resnet50_2\\nfrom de_resnet import de_wide_resnet50_2\\nfrom torch.nn import functional as F\\nimport torchvision.transforms as transforms\\nfrom dataset import AugMixDatasetMVTec\\n\\n\\ndef count_parameters(model):\\n    return sum(p.numel() for p in model.parameters() if p.requires_grad)\\n\\n\\n\\ndef loss_fucntion(a, b):\\n    # mse_loss = torch.nn.MSELoss()\\n    cos_loss = torch.nn.CosineSimilarity()\\n    loss = 0\\n    for item in range(len(a)):\\n        # print(a[item].shape)\\n        # print(b[item].shape)\\n        # loss += 0.1*mse_loss(a[item], b[item])\\n        loss += torch.mean(1 - cos_loss(a[item].view(a[item].shape[0], -1),\\n                                        b[item].view(b[item].shape[0], -1)))\\n    return loss\\n\\ndef loss_fucntion_last(a, b):\\n    mse_loss = torch.nn.MSELoss()\\n    cos_loss = torch.nn.CosineSimilarity()\\n    loss = 0\\n    # for item in range(len(a)):\\n    #     # print(a[item].shape)\\n    #     # print(b[item].shape)\\n    #     # loss += 0.1*mse_loss(a[item], b[item])\\n    item = 0\\n    loss += torch.mean(1 - cos_loss(a[item].view(a[item].shape[0], -1),\\n                                    b[item].view(b[item].s\\n...[truncated]\"\n      },\n      {\n        \"notebook\": \"/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb\",\n        \"cell_index\": 4,\n        \"cell_type\": \"code\",\n       "
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1s_provenance_search.json",
+      "relevant_excerpt": "{\n  \"task\": \"1S\",\n  \"manifest_exists\": true,\n  \"manifest_hits\": [\n    {\n      \"path\": \"$.discovered_files[5].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[5].name\",\n      \"value\": \"transistor_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[7].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[7].name\",\n      \"value\": \"leather_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[8].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[8].name\",\n      \"value\": \"grid_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[9].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\"\n    },\n    {\n      \"path\": \"$.discovered_files[9].name\",\n      \"value\": \"grid_efdm_evaluation.json\"\n    },\n    {\n      \"path\": \"$.discovered_files[11].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[11].name\",\n      \"value\": \"capsule_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[13].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[13].name\",\n      \"value\": \"tile_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[15].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[15].name\",\n      \"value\": \"metal_nut_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[17].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[17].name\",\n      \"value\": \"hazelnut_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[18].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[18].name\",\n      \"value\": \"cable_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[20].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[20].name\",\n      \"value\": \"bottle_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[23].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[23].name\",\n      \"value\": \"screw_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[24].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[24].name\",\n      \"value\": \"zipper_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[26].path\",\n      \"value\": \"/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$.discovered_files[26].name\",\n      \"value\": \"wood_efdm_anomaly_maps.npy\"\n    },\n    {\n      \"path\": \"$"
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1r_recovery_audit.md",
+      "relevant_excerpt": "# Member 3 Task 1R \u2014 EFDM and checkpoint recovery audit\n\n## Summary\n- Notebooks scanned: 2\n- Relevant notebook cells: 54\n- Grid map: [78, 256, 256] (float32)\n- Grid map ordering remains unverified unless original per-image provenance is recovered.\n- Checkpoint key patterns are recorded for all available categories.\n- No checkpoint tensors were loaded and no model was modified.\n\n## Checkpoint signature groups\n- Categories: bottle, cable, capsule, carpet, grid, hazelnut, leather, metal_nut, pill, screw, tile, toothbrush, transistor, wood, zipper\n  - Prefix signature: `{'bn1': 5, 'bn2': 5, 'bn3': 5, 'bn4': 5, 'bn_layer': 87, 'conv1': 1, 'conv2': 1, 'conv3': 1, 'conv4': 1, 'layer1': 87, 'layer2': 113, 'layer3': 165}`\n\n## Interpretation\nThe grid anomaly-map array has no intrinsic filename metadata. A current dataset ordering\ncannot prove the original map-to-image mapping. Do not publish the stored grid metric as\nindependently reproduced until the original inference order or a filename manifest is found.\n\nCheckpoint key-name patterns are evidence about likely model structure, not proof of\nRD4AD compatibility. Do not run RD4AD evaluation against these checkpoints until the\nexpected architecture and checkpoint loading contract are established.\n\n## Detailed evidence\nSee `member3_task1r_recovery_audit.json` for notebook cells, source contexts, checkpoint fingerprints, and sidecar candidates.\n"
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_final_research_summary.md",
+      "relevant_excerpt": "# Member 3 \u2014 Final Research Handoff\n\nGenerated: 2026-11-19T05:40:45.834996+00:00\n\n## 1. Repository state\n\n- Branch: `member3/pca-method`\n- HEAD at report generation: `c2f1ffd`\n- Working directory: `/kaggle/working/project_clean`\n- The final report and evidence index are generated from files present in this workspace.\n- GitHub push status must be checked separately; the previous push attempt failed because GitHub credentials were unavailable in Kaggle.\n\n## 2. PCA nuisance-subspace filtering\n\nThe repository contains the PCA implementation under `pca_method/`.\n\n- PCA basis files discovered (`.pth`): **45**\n- Category comparison rows: **15**\n- PCA numeric column means:\n- Mean `baseline_pixel_auroc`: 0.966469\n- Mean `pca_pixel_auroc`: 0.964577\n- Mean `pixel_delta`: -0.001893\n- Mean `baseline_image_auroc`: 0.959216\n- Mean `pca_image_auroc`: 0.961515\n- Mean `image_delta`: 0.002299\n\n### PCA plot status\n\n- Available: `results/pca/image_auroc_improvement.png`\n- Available: `results/pca/macro_auroc_comparison.png`\n- Available: `results/pca/pixel_auroc_improvement.png`\n\nThe three plots were restored from their committed Git blobs and verified by byte-for-byte hash comparison in the preceding recovery task.\n\n## 3. GNL baseline\n\nGNL result CSV inventory and numeric summaries:\n\n#### `results/gnl/GNL_all_15_categories.csv`\n- Rows: 15\n- Mean `checkpoint_epoch`: 18.933333\n- Mean `test_images`: 115.000000\n- Mean `normal_images`: 31.133333\n- Mean `anomalous_images`: 83.866667\n- Mean `image_auroc`: 0.959216\n- Mean `pixel_auroc`: 0.966469\n#### `results/gnl/GNL_AUPRO_recalculated_15.csv`\n- Rows: 15\n- Mean `images`: 115.000000\n- Mean `regions`: 125.600000\n- Mean `max_fpr`: 0.300000\n- Mean `aupro`: 0.903178\n\n## 4. EFDM evidence\n\n- Files discovered in the EFDM backup/evidence roots: **53**\n- File extensions: `{\".csv\": 4, \".ipynb\": 1, \".json\": 30, \".md\": 1, \".npy\": 16, \".txt\": 1}`\n- Small CSV/JSON evidence files are enumerated in `member3_final_evidence_index.json`.\n\nThe bottle and grid anomaly-map evidence copies in `EFDM_COMPLETE_EVIDENCE/category_results/` were removed only after their SHA-256 hashes were verified identical to the corresponding backup files. The backup originals remain preserved. The wood evidence copies were different and were preserved.\n\n## 5. RD4AD\n\n- Training script present: **False**\n- Evaluation script present: **False**\n- `latest.pth` checkpoint files discovered in the backup: **15**\n\nCheckpoint presence does not by itself establish successful evaluation or a complete RD4AD comparison. Checkpoint evaluation should be reported only when matching evaluation outputs are available.\n\n## 6. Reproducibility and interpretation\n\n- Existing results were inventoried; this task did not retrain models.\n- No new model metrics were fabricated or inferred from missing files.\n- The evidence index records file discovery, row counts, numeric column means, plot availability, and checkpoint inventory.\n- For scientific comparison, use identical test splits, image preprocessing, scoring rules, and metric implementations across methods.\n- Report image AUROC, pixel AUROC, and AUPRO separately. Do not treat them as interchangeable.\n\n## 7. Remaining delivery item\n\nThe documentation commit is local. The earlier push failed with:\n\n`fatal: could not read Username for 'https://github.com': No such device or address`\n\nTherefore the local commit must be pushed from an authenticated Git environment, or after configuring a GitHub credential in Kaggle Secrets and an approp"
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1o_grid_rd4ad_audit.json",
+      "relevant_excerpt": "{\n  \"task\": \"Task 1O \\u2014 EFDM grid metric recheck and RD4AD recovery readiness\",\n  \"grid\": {\n    \"map_found\": true,\n    \"metrics_found\": true,\n    \"map_shape\": [\n      78,\n      256,\n      256\n    ],\n    \"map_dtype\": \"float32\",\n    \"map_finite\": true,\n    \"map_min\": 0.11006252467632294,\n    \"map_max\": 1.2922899723052979,\n    \"map_mean\": 0.3054589331150055,\n    \"stored_metrics\": {\n      \"category\": \"grid\",\n      \"method\": \"EFDM-GNL\",\n      \"test_images\": 78,\n      \"pixel_auroc\": 0.9722630292359766,\n      \"image_auroc\": 0.9715956558061821,\n      \"lambda\": 0.5,\n      \"image_size\": 256,\n      \"smoothing_sigma\": 4\n    }\n  },\n  \"grid_recomputed_metrics\": {\n    \"sample_count\": 78,\n    \"pixel_auroc_recomputed\": 0.5737257752796951,\n    \"image_auroc_recomputed\": 0.3208020050125313,\n    \"pixel_auroc_stored\": 0.9722630292359766,\n    \"image_auroc_stored\": 0.9715956558061821,\n    \"pixel_ordering_assumption\": \"sorted defect folders, then sorted image filenames\",\n    \"image_score_definition\": \"maximum anomaly-map value\"\n  },\n  \"rd4ad_source_inventory\": {\n    \"/kaggle/working/ADShift-GNL-working\": {\n      \"resnet.py\": {\n        \"path\": \"/kaggle/working/ADShift-GNL-working/resnet.py\",\n        \"bytes\": 20303,\n        \"sha256\": \"ad3e8509e046b91c42c1cdea9449cac83f5938ac7af6ed96e6ff5a8f39bb26f2\"\n      },\n      \"de_resnet.py\": {\n        \"path\": \"/kaggle/working/ADShift-GNL-working/de_resnet.py\",\n        \"bytes\": 16803,\n        \"sha256\": \"c2740b70cd38453c8521151c539f3976d6e51adf64336224d02d4187f8cce4ee\"\n      },\n      \"dataset.py\": {\n        \"path\": \"/kaggle/working/ADShift-GNL-working/dataset.py\",\n        \"bytes\": 17894,\n        \"sha256\": \"aedc0e00fecaa413c6cf1b05c11de3e2194ca95516739e3bb0ae3e3a623793fd\"\n      },\n      \"test.py\": {\n        \"path\": \"/kaggle/working/ADShift-GNL-working/test.py\",\n        \"bytes\": 4708,\n        \"sha256\": \"e685b697be3c5fea88d1a36da6dda400fadc35eb420d4a14bd644e08b831d1f6\"\n      },\n      \"resnet_TTA.py\": {\n        \"path\": \"/kaggle/working/ADShift-GNL-working/resnet_TTA.py\",\n        \"bytes\": 23551,\n        \"sha256\": \"caece495500f2400aaad1c30a20bdd8bd668bd85f10283a8a86441127c164450\"\n      }\n    },\n    \"/kaggle/working/project_clean/ADShift\": {},\n    \"/kaggle/working/project_clean/experiments/rd4ad\": {}\n  },\n  \"rd4ad_checkpoint_metadata\": {\n    \"bottle_full\": {\n      \"path\": \"/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth\",\n      \"bytes\": 1039728208,\n      \"zip_based_torch_checkpoint\": true,\n      \"archive_member_count\": 837,\n      \"parameter_name_strings_sample\": [\n        \"bn\",\n        \"bn_layer.0.conv1.weight\",\n        \"bn_layer.0.bn1.weight\",\n        \"bn_layer.0.bn1.bias\",\n        \"bn_layer.0.bn1.running_mean\",\n        \"bn_layer.0.bn1.running_var\",\n        \"bn_layer.0.bn1.num_batches_tracked\",\n        \"bn_layer.0.conv2.weight\",\n        \"bn_layer.0.bn2.weight\",\n        \"bn_layer.0.bn2.bias\",\n        \"bn_layer.0.bn2.running_mean\",\n        \"bn_layer.0.bn2.running_var\",\n        \"bn_layer.0.bn2.num_batches_tracked\",\n        \"bn_layer.0.conv3.weight\",\n        \"bn_layer.0.bn3.weight\",\n        \"bn_layer.0.bn3.bias\",\n        \"bn_layer.0.bn3.running_mean\",\n        \"bn_layer.0.bn3.running_var\",\n        \"bn_layer.0.bn3.num_batches_tracked\",\n        \"bn_layer.0.downsample.0.weight\",\n        \"bn_layer.0.downsample.1.weight\",\n        \"bn_layer.0.downsample.1.bias\",\n        \"bn_layer.0.downsample.1.running_mean\",\n        \"bn_layer.0.downsample.1.running_var\",\n        \"bn_layer.0.downsample.1.num_batches_tracked\",\n        "
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_batch3_validation.json",
+      "relevant_excerpt": "{\n  \"pca_bases\": {\n    \"/kaggle/working/project_clean/pca_method/saved_bases/tile/level1/tile.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/tile/level1/tile.pth\",\n      \"category\": \"tile\",\n      \"basis_shape\": [\n        256,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/tile/level3/tile.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/tile/level3/tile.pth\",\n      \"category\": \"tile\",\n      \"basis_shape\": [\n        1024,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/tile/level2/tile.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/tile/level2/tile.pth\",\n      \"category\": \"tile\",\n      \"basis_shape\": [\n        512,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/zipper/level1/zipper.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/zipper/level1/zipper.pth\",\n      \"category\": \"zipper\",\n      \"basis_shape\": [\n        256,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/zipper/level3/zipper.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/zipper/level3/zipper.pth\",\n      \"category\": \"zipper\",\n      \"basis_shape\": [\n        1024,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/zipper/level2/zipper.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/zipper/level2/zipper.pth\",\n      \"category\": \"zipper\",\n      \"basis_shape\": [\n        512,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level1/hazelnut.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level1/hazelnut.pth\",\n      \"category\": \"hazelnut\",\n      \"basis_shape\": [\n        256,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level3/hazelnut.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level3/hazelnut.pth\",\n      \"category\": \"hazelnut\",\n      \"basis_shape\": [\n        1024,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level2/hazelnut.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level2/hazelnut.pth\",\n      \"category\": \"hazelnut\",\n      \"basis_shape\": [\n        512,\n        16\n      ],\n      \"dtype\": \"torch.float32\",\n      \"eigenvalues_shape\": [\n        16\n      ]\n    },\n    \"/kaggle/working/project_clean/pca_method/saved_bases/toothbrush/level1/toothbrush.pth\": {\n      \"path\": \"/kaggle/working/project_clean/pca_method/saved_bases/toothbrush/level1/toothbrush.pth\",\n      \"category\": \"toothbrush\",\n      \"basis_shape\": [\n        256,\n        16\n      ],\n      \"dtype\": "
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_batch3_efdm_source_recovery.json",
+      "relevant_excerpt": "{\n  \"batch\": \"member3_batch3\",\n  \"source_files\": [\n    {\n      \"path\": \"/kaggle/working/ADShift-GNL-working/resnet_TTA.py\",\n      \"bytes\": 23551,\n      \"sha256\": \"caece495500f2400aaad1c30a20bdd8bd668bd85f10283a8a86441127c164450\"\n    }\n  ],\n  \"notebook_hits\": [\n    {\n      \"notebook\": \"/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb\",\n      \"cell_index\": 59,\n      \"source\": \"%cd /content/ADShift-GNL-working\\n\\nprint(\\\"===== TTA MODEL DEFINITION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def wide_resnet50_2\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== EFDM IMPLEMENTATION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def EFDM_test\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== ENCODER FORWARD METHODS =====\\\")\\n!grep -n -A 65 -B 10 \\\"def forward\\\" resnet_TTA.py\"\n    },\n    {\n      \"notebook\": \"/kaggle/working/EFDM_COMPLETE_EVIDENCE/implementation_candidates/GNL_Baseline_recovery.ipynb\",\n      \"cell_index\": 59,\n      \"source\": \"%cd /content/ADShift-GNL-working\\n\\nprint(\\\"===== TTA MODEL DEFINITION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def wide_resnet50_2\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== EFDM IMPLEMENTATION =====\\\")\\n!grep -n -A 65 -B 10 \\\"def EFDM_test\\\" resnet_TTA.py\\n\\nprint(\\\"\\\\n===== ENCODER FORWARD METHODS =====\\\")\\n!grep -n -A 65 -B 10 \\\"def forward\\\" resnet_TTA.py\"\n    }\n  ],\n  \"efdm_definitions\": [\n    {\n      \"path\": \"/kaggle/working/ADShift-GNL-working/resnet_TTA.py\",\n      \"start_line\": 159,\n      \"end_line\": 235,\n      \"excerpt\": \"0159:     x_normed = (input_x - mu) / sig\\n0160: \\n0161:     mu2 = normal_x.mean(dim=[2, 3], keepdim=True)\\n0162:     var2 = normal_x.var(dim=[2, 3], keepdim=True)\\n0163:     sig2 = (var2 + 1e-6).sqrt()\\n0164:     mu_mix = mu * lamda + mu2 * (1 - lamda)\\n0165:     sig_mix = sig * lamda + sig2 * (1 - lamda)\\n0166: \\n0167:     new_input_x = x_normed * sig_mix + mu_mix\\n0168: \\n0169:     return new_input_x\\n0170: \\n0171: def EFDM_test(input_image, normal_image, lamda = 0.5):\\n0172: \\n0173:     lamda = 1-lamda\\n0174:     input_x = input_image\\n0175: \\n0176: \\n0177:     normal_x = normal_image\\n0178: \\n0179: \\n0180:     B, C, W, H = input_x.size(0), input_x.size(1), input_x.size(2), input_x.size(3)\\n0181: \\n0182: \\n0183:     input_x_view = input_x.view(B, C, -1)\\n0184:     normal_x_view = normal_x.view(B, C, -1)\\n0185: \\n0186:     value_input_x, index_input_x = torch.sort(input_x_view)\\n0187:     value_normal_x, index_normal_x = torch.sort(normal_x_view)\\n0188:     new_input_x = value_input_x + (value_normal_x - value_input_x) * lamda\\n0189:     inverse_index = index_input_x.argsort(-1)\\n0190:     new_input_x = new_input_x.gather(-1, inverse_index)\\n0191:     new_input_x = new_input_x.view(B, C, W, H)\\n0192:     new_input_x = new_input_x.cpu().detach().numpy()\\n0193:     new_input_x = torch.from_numpy(new_input_x)\\n0194: \\n0195:     return new_input_x\\n0196: \\n0197: \\n0198: class ResNet(nn.Module):\\n0199: \\n0200:     def __init__(\\n0201:             self,\\n0202:             block: Type[Union[BasicBlock, Bottleneck]],\\n0203:             layers: List[int],\\n0204:             num_classes: int = 1000,\\n0205:             zero_init_residual: bool = False,\\n0206:             groups: int = 1,\\n0207:             width_per_group: int = 64,\\n0208:             replace_stride_with_dilation: Optional[List[bool]] = None,\\n0209:             norm_layer: Optional[Callable[..., nn.Module]] = None\\n0210:     ) -> None:\\n0211:         super(ResNet, self).__init__()\\n0212:         if norm_layer is None:\\n0213:             norm_layer = nn.BatchNorm2d\\n0214:   "
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1p_recovery_findings.json",
+      "relevant_excerpt": "{\n  \"task\": \"Task 1P\",\n  \"efdm_code_matches\": [\n    {\n      \"file\": \"/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb\",\n      \"hits\": [\n        {\n          \"line\": 217,\n          \"context\": \"print(\\\"Extraction completed.\\\")\\nprint(\\\"Extracted top-level contents:\\\")\\n\\nfor item in os.listdir(extract_path):\\n    print(item)\\nimport os\\n\\nroot = \\\"/content/mvtec_dataset\\\"\"\n        },\n        {\n          \"line\": 249,\n          \"context\": \"    print(f\\\"\\\\n{folder}: {'PRESENT' if os.path.isdir(path) else 'MISSING'}\\\")\\n\\n    if os.path.isdir(path):\\n        files = os.listdir(path)\\n        print(\\\"  Items:\\\", len(files))\\n        print(\\\"  Sample:\\\", files[:5])\\nimport os\\n\"\n        },\n        {\n          \"line\": 261,\n          \"context\": \"\\n    if os.path.isdir(path):\\n        files = [\\n            f for f in os.listdir(path)\\n            if os.path.isfile(os.path.join(path, f))\\n        ]\\n        print(f\\\"{folder}: {len(files)} files\\\")\\nimport os\"\n        },\n        {\n          \"line\": 274,\n          \"context\": \"\\n    parent_path = os.path.join(root, parent)\\n\\n    for folder in sorted(os.listdir(parent_path)):\\n        folder_path = os.path.join(parent_path, folder)\\n\\n        if os.path.isdir(folder_path):\\n            files = [\"\n        },\n        {\n          \"line\": 279,\n          \"context\": \"\\n        if os.path.isdir(folder_path):\\n            files = [\\n                f for f in os.listdir(folder_path)\\n                if f.lower().endswith(\\\".png\\\")\\n            ]\\n\\n            print(f\\\"{folder}: {len(files)} images\\\")\"\n        },\n        {\n          \"line\": 293,\n          \"context\": \"    test_path = os.path.join(root, \\\"test\\\", defect)\\n    mask_path = os.path.join(root, \\\"ground_truth\\\", defect)\\n\\n    test_files = set(os.listdir(test_path))\\n    mask_files = set(os.listdir(mask_path))\\n\\n    print(f\\\"\\\\n{defect}\\\")\\n    print(\\\"Test images:\\\", len(test_files))\"\n        },\n        {\n          \"line\": 294,\n          \"context\": \"    mask_path = os.path.join(root, \\\"ground_truth\\\", defect)\\n\\n    test_files = set(os.listdir(test_path))\\n    mask_files = set(os.listdir(mask_path))\\n\\n    print(f\\\"\\\\n{defect}\\\")\\n    print(\\\"Test images:\\\", len(test_files))\\n    print(\\\"Ground-truth masks:\\\", len(mask_files))\"\n        },\n        {\n          \"line\": 299,\n          \"context\": \"    print(f\\\"\\\\n{defect}\\\")\\n    print(\\\"Test images:\\\", len(test_files))\\n    print(\\\"Ground-truth masks:\\\", len(mask_files))\\n    print(\\\"Missing masks:\\\", sorted(test_files - {\\n        f.replace(\\\"_mask.png\\\", \\\".png\\\") for f in mask_files\\n    })[:5])\\n%cd /content/ADShift-official\\n\"\n        },\n        {\n          \"line\": 350,\n          \"context\": \"\\nimport torch\\nfrom torchvision import transforms\\nfrom torch.utils.data import DataLoader\\nfrom dataset import MVTecDataset, AugMixDatasetMVTec\\nfrom dataset import mean_train, std_train\\n\\nroot = \\\"/content/mvtec_dataset/bottle\\\"\"\n        },\n        {\n          \"line\": 439,\n          \"context\": \"\\n        good_path = os.path.join(root, \\\"train\\\", \\\"good\\\")\\n\\n        for filename in sorted(os.listdir(good_path)):\\n            if filename.lower().endswith(\\\".png\\\"):\\n                self.image_paths.append(\\n                    os.path.join(good_path, filename)\\n                )\"\n        },\n        {\n          \"line\": 673,\n          \"context\": \"import numpy as np\\nimport torch\\n\\nfrom torch.utils.data import DataLoader\\nfrom torchvision import transforms\\nfrom torchvision.datasets import Imag"
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_efdm_rd4ad_investigation.md",
+      "relevant_excerpt": "# Member 3 \u2014 EFDM and RD4AD Investigation\n\nGenerated UTC: 2026-11-19T05:44:17.528035+00:00\n\n## EFDM grid outlier\n\nThe standard-versus-EFDM comparison reports a large grid-category change.\nThe grid metrics and metadata were inspected from the existing evaluation\nJSON, aligned summary, integrity audit, and category result directory.\n\nDo not treat the grid improvement as validated until its evaluation\nprotocol and metric provenance are confirmed against the original maps\nand masks. This investigation does not recalculate AUROC from maps.\n\n## RD4AD source recovery\n\n- Likely source files found: 4\n- Archive files with matching members: 0\n- Notebooks with matching source cells: 2\n\n## Checkpoint inspection\n\n- Checkpoint files inspected: 15\n- Inspection was limited to serialization format and metadata.\n- No tensor payloads were loaded and no checkpoint was modified.\n\nA checkpoint's presence and size alone do not prove its architecture.\nRD4AD must not be claimed as validated until its source architecture,\ncheckpoint keys, and evaluation script are matched.\n\n## Search evidence\n\n- Source candidate: `/kaggle/working/ADShift-GNL-working/__pycache__/de_resnet.cpython-313.pyc` (18,136 bytes)\n- Source candidate: `/kaggle/working/ADShift-GNL-working/de_resnet.py` (16,803 bytes)\n- Source candidate: `/kaggle/working/project_clean/experiments/gnl/__pycache__/de_resnet.cpython-313.pyc` (18,146 bytes)\n- Source candidate: `/kaggle/working/project_clean/experiments/gnl/de_resnet.py` (16,410 bytes)\n- Notebook candidate: `/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb`\n- Notebook candidate: `/kaggle/working/EFDM_COMPLETE_EVIDENCE/implementation_candidates/GNL_Baseline_recovery.ipynb`"
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_pca_implementation.md",
+      "relevant_excerpt": "# Member 3 - PCA Nuisance Subspace Implementation\n\n## Objective\nReduce nuisance feature variation in GNL teacher/student representations\nusing category-specific Principal Component Analysis.\n\n## Nuisance feature differences\nFor each normal MVTec training image, the frozen pretrained teacher extracts\nfeatures from the original image and its AugMix-transformed counterpart.\n\nDelta F = F_teacher(original) - F_teacher(AugMix)\n\n## PCA\nPCA is performed independently for each category and each of the three\nteacher feature levels. Spatial positions are treated as observations and\nchannels as features. The covariance is centered before eigendecomposition.\n\nThe retained basis contains K=16 principal directions.\n\n## Inference\nAt each feature level, teacher and student features are projected onto the\northogonal complement of the nuisance basis:\n\nF_projected = F - V(V^T F)\n\nCosine distance is then calculated between projected teacher and student\nfeatures. The three distance maps are resized to 256x256, summed and\nGaussian-smoothed with sigma=4.\n\n## Evaluation\nImage-level score: maximum anomaly-map value.\nPixel-level evaluation: flattened anomaly map against ground-truth masks\nthresholded at 0.5.\n\n## Experimental safeguards\n- PCA bases are category-specific.\n- PCA bases are generated from train/good images only.\n- GNL checkpoints are not retrained or modified.\n- Original baseline inference files are preserved.\n- Baseline and PCA are evaluated on identical test batches.\n- Existing Bottle/Cable PCA results are reused.\n\n## Limitations\nPCA performance can vary by category. A gain in one metric does not imply\na gain in every metric. Test-set results are comparative experimental\nresults and should not be used to claim universal improvement.\n"
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_integration_handoff.md",
+      "relevant_excerpt": "# Member 3 - PCA Integration Handoff\n\n## Implementation\nPCA nuisance-subspace filtering is implemented in:\n- pca_method/pca_config.py\n- pca_method/compute_nuisance_pca.py\n- pca_method/inference_pca_gating.py\n- pca_method/integration_interface.py\n\n## Reproduction artifacts\nPCA bases:\n`GNL_Project_Backup/pca_reproduction_v1/bases/`\n\nBottle/Cable evaluation:\n`GNL_Project_Backup/pca_reproduction_v1/evaluation_run_01/`\n\nAll-category evaluation:\nSee the `all_categories_run_*` directory created by the final pipeline.\n\n## Inference method\nThe original GNL inference script remains unchanged.\nPCA-GNL uses orthogonal-complement projection at all three feature levels,\nfollowed by the original GNL cosine-distance anomaly-map protocol.\n\n## Check before submission\n1. Confirm all 15 category result entries exist.\n2. Inspect baseline reproduction checks.\n3. Verify all 45 PCA bases exist and are finite/orthonormal.\n4. Include the generated CSV and JSON reports.\n5. Keep the original GNL checkpoints and baseline results unchanged.\n\n## Interpretation\nReport per-category pixel and image AUROC changes. Do not describe PCA as\nuniversally improving GNL if results are mixed.\n"
+    }
+  ],
+  "errors": []
+}

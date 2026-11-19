@@ -1,0 +1,1649 @@
+{
+  "batch": "11G",
+  "files": {
+    "/kaggle/working/project_clean/experiments/gnl/infer_gnl_bottle_id.py": {
+      "total_lines": 240,
+      "matching_context": [
+        {
+          "line": 7,
+          "text": "import torch.nn.functional as F"
+        },
+        {
+          "line": 8,
+          "text": ""
+        },
+        {
+          "line": 9,
+          "text": "from scipy.ndimage import gaussian_filter"
+        },
+        {
+          "line": 10,
+          "text": "from sklearn.metrics import roc_auc_score"
+        },
+        {
+          "line": 11,
+          "text": "from PIL import Image"
+        },
+        {
+          "line": 16,
+          "text": ""
+        },
+        {
+          "line": 17,
+          "text": ""
+        },
+        {
+          "line": 18,
+          "text": "def calculate_anomaly_map(teacher_features, student_features, out_size=256):"
+        },
+        {
+          "line": 19,
+          "text": "    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)"
+        },
+        {
+          "line": 20,
+          "text": ""
+        },
+        {
+          "line": 21,
+          "text": "    for teacher, student in zip(teacher_features, student_features):"
+        },
+        {
+          "line": 22,
+          "text": "        distance = 1 - F.cosine_similarity(teacher, student)"
+        },
+        {
+          "line": 23,
+          "text": "        distance = distance.unsqueeze(1)"
+        },
+        {
+          "line": 24,
+          "text": ""
+        },
+        {
+          "line": 25,
+          "text": "        distance = F.interpolate("
+        },
+        {
+          "line": 26,
+          "text": "            distance,"
+        },
+        {
+          "line": 27,
+          "text": "            size=(out_size, out_size),"
+        },
+        {
+          "line": 28,
+          "text": "            mode=\"bilinear\","
+        },
+        {
+          "line": 30,
+          "text": "        )"
+        },
+        {
+          "line": 31,
+          "text": ""
+        },
+        {
+          "line": 32,
+          "text": "        anomaly_map += distance[0, 0].cpu().numpy()"
+        },
+        {
+          "line": 33,
+          "text": ""
+        },
+        {
+          "line": 34,
+          "text": "    return gaussian_filter(anomaly_map, sigma=4)"
+        },
+        {
+          "line": 35,
+          "text": ""
+        },
+        {
+          "line": 36,
+          "text": ""
+        },
+        {
+          "line": 37,
+          "text": "def main():"
+        },
+        {
+          "line": 38,
+          "text": "    parser = argparse.ArgumentParser()"
+        },
+        {
+          "line": 39,
+          "text": ""
+        },
+        {
+          "line": 61,
+          "text": "    os.makedirs(args.output_dir, exist_ok=True)"
+        },
+        {
+          "line": 62,
+          "text": ""
+        },
+        {
+          "line": 63,
+          "text": "    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")"
+        },
+        {
+          "line": 64,
+          "text": "    os.makedirs(map_dir, exist_ok=True)"
+        },
+        {
+          "line": 65,
+          "text": ""
+        },
+        {
+          "line": 120,
+          "text": "            images = images.to(device)"
+        },
+        {
+          "line": 121,
+          "text": ""
+        },
+        {
+          "line": 122,
+          "text": "            teacher_features = encoder(images)"
+        },
+        {
+          "line": 123,
+          "text": "            student_features = decoder(bn(teacher_features))"
+        },
+        {
+          "line": 124,
+          "text": ""
+        },
+        {
+          "line": 125,
+          "text": "            anomaly_map = calculate_anomaly_map("
+        },
+        {
+          "line": 126,
+          "text": "                teacher_features,"
+        },
+        {
+          "line": 127,
+          "text": "                student_features,"
+        },
+        {
+          "line": 128,
+          "text": "                out_size=256"
+        },
+        {
+          "line": 129,
+          "text": "            )"
+        },
+        {
+          "line": 135,
+          "text": "            )"
+        },
+        {
+          "line": 136,
+          "text": ""
+        },
+        {
+          "line": 137,
+          "text": "            image_score = float(np.max(anomaly_map))"
+        },
+        {
+          "line": 138,
+          "text": ""
+        },
+        {
+          "line": 139,
+          "text": "            image_labels.append(label)"
+        },
+        {
+          "line": 144,
+          "text": ""
+        },
+        {
+          "line": 145,
+          "text": "            pixel_labels.extend(mask_binary.reshape(-1).tolist())"
+        },
+        {
+          "line": 146,
+          "text": "            pixel_scores.extend(anomaly_map.reshape(-1).tolist())"
+        },
+        {
+          "line": 147,
+          "text": ""
+        },
+        {
+          "line": 148,
+          "text": "            map_name = ("
+        },
+        {
+          "line": 150,
+          "text": "            )"
+        },
+        {
+          "line": 151,
+          "text": ""
+        },
+        {
+          "line": 152,
+          "text": "            np.save("
+        },
+        {
+          "line": 153,
+          "text": "                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),"
+        },
+        {
+          "line": 154,
+          "text": "                anomaly_map"
+        },
+        {
+          "line": 155,
+          "text": "            )"
+        },
+        {
+          "line": 156,
+          "text": ""
+        },
+        {
+          "line": 157,
+          "text": "            # Save normalized heatmap for visualization only"
+        },
+        {
+          "line": 158,
+          "text": "            map_min = anomaly_map.min()"
+        },
+        {
+          "line": 159,
+          "text": "            map_max = anomaly_map.max()"
+        },
+        {
+          "line": 160,
+          "text": ""
+        },
+        {
+          "line": 161,
+          "text": "            normalized_map = ("
+        },
+        {
+          "line": 162,
+          "text": "                (anomaly_map - map_min) / (map_max - map_min + 1e-8)"
+        },
+        {
+          "line": 163,
+          "text": "            )"
+        },
+        {
+          "line": 164,
+          "text": ""
+        },
+        {
+          "line": 167,
+          "text": "            )"
+        },
+        {
+          "line": 168,
+          "text": ""
+        },
+        {
+          "line": 169,
+          "text": "            heatmap.save("
+        },
+        {
+          "line": 170,
+          "text": "                os.path.join("
+        },
+        {
+          "line": 171,
+          "text": "                    map_dir,"
+        },
+        {
+          "line": 195,
+          "text": "    pixel_auroc = roc_auc_score(pixel_labels, pixel_scores)"
+        },
+        {
+          "line": 196,
+          "text": ""
+        },
+        {
+          "line": 197,
+          "text": "    # Save image-level scores"
+        },
+        {
+          "line": 198,
+          "text": "    csv_path = os.path.join(args.output_dir, \"image_scores.csv\")"
+        },
+        {
+          "line": 199,
+          "text": ""
+        },
+        {
+          "line": 211,
+          "text": "        writer.writerows(records)"
+        },
+        {
+          "line": 212,
+          "text": ""
+        },
+        {
+          "line": 213,
+          "text": "    # Save evaluation summary"
+        },
+        {
+          "line": 214,
+          "text": "    summary_path = os.path.join("
+        },
+        {
+          "line": 215,
+          "text": "        args.output_dir,"
+        },
+        {
+          "line": 234,
+          "text": "    print(\"Pixel-level AUROC:\", round(pixel_auroc, 6))"
+        },
+        {
+          "line": 235,
+          "text": ""
+        },
+        {
+          "line": 236,
+          "text": "    print(\"\\nResults saved:\", args.output_dir)"
+        },
+        {
+          "line": 237,
+          "text": ""
+        },
+        {
+          "line": 238,
+          "text": ""
+        }
+      ]
+    },
+    "/kaggle/working/project_clean/experiments/gnl/infer_gnl_category_id.py": {
+      "total_lines": 199,
+      "matching_context": [
+        {
+          "line": 7,
+          "text": "import torch.nn.functional as F"
+        },
+        {
+          "line": 8,
+          "text": ""
+        },
+        {
+          "line": 9,
+          "text": "from scipy.ndimage import gaussian_filter"
+        },
+        {
+          "line": 10,
+          "text": "from sklearn.metrics import roc_auc_score"
+        },
+        {
+          "line": 11,
+          "text": "from PIL import Image"
+        },
+        {
+          "line": 16,
+          "text": ""
+        },
+        {
+          "line": 17,
+          "text": ""
+        },
+        {
+          "line": 18,
+          "text": "def calculate_anomaly_map(teacher_features, student_features, out_size=256):"
+        },
+        {
+          "line": 19,
+          "text": "    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)"
+        },
+        {
+          "line": 20,
+          "text": ""
+        },
+        {
+          "line": 21,
+          "text": "    for teacher, student in zip(teacher_features, student_features):"
+        },
+        {
+          "line": 22,
+          "text": "        distance = 1 - F.cosine_similarity(teacher, student)"
+        },
+        {
+          "line": 23,
+          "text": "        distance = distance.unsqueeze(1)"
+        },
+        {
+          "line": 24,
+          "text": ""
+        },
+        {
+          "line": 25,
+          "text": "        distance = F.interpolate("
+        },
+        {
+          "line": 26,
+          "text": "            distance,"
+        },
+        {
+          "line": 27,
+          "text": "            size=(out_size, out_size),"
+        },
+        {
+          "line": 28,
+          "text": "            mode=\"bilinear\","
+        },
+        {
+          "line": 30,
+          "text": "        )"
+        },
+        {
+          "line": 31,
+          "text": ""
+        },
+        {
+          "line": 32,
+          "text": "        anomaly_map += distance[0, 0].cpu().numpy()"
+        },
+        {
+          "line": 33,
+          "text": ""
+        },
+        {
+          "line": 34,
+          "text": "    return gaussian_filter(anomaly_map, sigma=4)"
+        },
+        {
+          "line": 35,
+          "text": ""
+        },
+        {
+          "line": 36,
+          "text": ""
+        },
+        {
+          "line": 37,
+          "text": ""
+        },
+        {
+          "line": 38,
+          "text": "def main():"
+        },
+        {
+          "line": 39,
+          "text": "    parser = argparse.ArgumentParser()"
+        },
+        {
+          "line": 40,
+          "text": "    parser.add_argument(\"--category\", required=True)"
+        },
+        {
+          "line": 47,
+          "text": ""
+        },
+        {
+          "line": 48,
+          "text": "    os.makedirs(args.output_dir, exist_ok=True)"
+        },
+        {
+          "line": 49,
+          "text": "    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")"
+        },
+        {
+          "line": 50,
+          "text": "    os.makedirs(map_dir, exist_ok=True)"
+        },
+        {
+          "line": 51,
+          "text": ""
+        },
+        {
+          "line": 107,
+          "text": "            images = images.to(device)"
+        },
+        {
+          "line": 108,
+          "text": ""
+        },
+        {
+          "line": 109,
+          "text": "            teacher_features = encoder(images)"
+        },
+        {
+          "line": 110,
+          "text": "            student_features = decoder(bn(teacher_features))"
+        },
+        {
+          "line": 111,
+          "text": ""
+        },
+        {
+          "line": 112,
+          "text": "            anomaly_map = calculate_anomaly_map("
+        },
+        {
+          "line": 113,
+          "text": "                teacher_features, student_features, out_size=256"
+        },
+        {
+          "line": 114,
+          "text": "            )"
+        },
+        {
+          "line": 115,
+          "text": ""
+        },
+        {
+          "line": 117,
+          "text": "            defect_type = defect_types[0]"
+        },
+        {
+          "line": 118,
+          "text": "            filename = os.path.basename(test_dataset.img_paths[index])"
+        },
+        {
+          "line": 119,
+          "text": "            image_score = float(np.max(anomaly_map))"
+        },
+        {
+          "line": 120,
+          "text": ""
+        },
+        {
+          "line": 121,
+          "text": "            image_labels.append(label)"
+        },
+        {
+          "line": 126,
+          "text": ""
+        },
+        {
+          "line": 127,
+          "text": "            pixel_labels.extend(mask_binary.reshape(-1).tolist())"
+        },
+        {
+          "line": 128,
+          "text": "            pixel_scores.extend(anomaly_map.reshape(-1).tolist())"
+        },
+        {
+          "line": 129,
+          "text": ""
+        },
+        {
+          "line": 130,
+          "text": "            map_name = \"{:03d}_{}_{}\".format("
+        },
+        {
+          "line": 132,
+          "text": "            )"
+        },
+        {
+          "line": 133,
+          "text": ""
+        },
+        {
+          "line": 134,
+          "text": "            np.save("
+        },
+        {
+          "line": 135,
+          "text": "                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),"
+        },
+        {
+          "line": 136,
+          "text": "                anomaly_map"
+        },
+        {
+          "line": 137,
+          "text": "            )"
+        },
+        {
+          "line": 138,
+          "text": ""
+        },
+        {
+          "line": 139,
+          "text": "            map_min, map_max = anomaly_map.min(), anomaly_map.max()"
+        },
+        {
+          "line": 140,
+          "text": "            normalized_map = ("
+        },
+        {
+          "line": 141,
+          "text": "                (anomaly_map - map_min) / (map_max - map_min + 1e-8)"
+        },
+        {
+          "line": 142,
+          "text": "            )"
+        },
+        {
+          "line": 143,
+          "text": ""
+        },
+        {
+          "line": 145,
+          "text": "                (normalized_map * 255).astype(np.uint8)"
+        },
+        {
+          "line": 146,
+          "text": "            )"
+        },
+        {
+          "line": 147,
+          "text": "            heatmap.save("
+        },
+        {
+          "line": 148,
+          "text": "                os.path.join("
+        },
+        {
+          "line": 149,
+          "text": "                    map_dir, map_name.replace(\".png\", \"_heatmap.png\")"
+        },
+        {
+          "line": 193,
+          "text": "    print(\"Image-level AUROC:\", round(image_auroc, 6))"
+        },
+        {
+          "line": 194,
+          "text": "    print(\"Pixel-level AUROC:\", round(pixel_auroc, 6))"
+        },
+        {
+          "line": 195,
+          "text": "    print(\"Results saved:\", args.output_dir)"
+        },
+        {
+          "line": 196,
+          "text": ""
+        },
+        {
+          "line": 197,
+          "text": ""
+        }
+      ]
+    },
+    "/kaggle/working/project_clean/experiments/gnl/resnet.py": {
+      "total_lines": 509,
+      "matching_context": [
+        {
+          "line": 26,
+          "text": ""
+        },
+        {
+          "line": 27,
+          "text": ""
+        },
+        {
+          "line": 28,
+          "text": "def conv3x3(in_planes: int, out_planes: int, stride: int = 1, groups: int = 1, dilation: int = 1) -> nn.Conv2d:"
+        },
+        {
+          "line": 29,
+          "text": "    \"\"\"3x3 convolution with padding\"\"\""
+        },
+        {
+          "line": 30,
+          "text": "    return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride,"
+        },
+        {
+          "line": 32,
+          "text": ""
+        },
+        {
+          "line": 33,
+          "text": ""
+        },
+        {
+          "line": 34,
+          "text": "def conv1x1(in_planes: int, out_planes: int, stride: int = 1) -> nn.Conv2d:"
+        },
+        {
+          "line": 35,
+          "text": "    \"\"\"1x1 convolution\"\"\""
+        },
+        {
+          "line": 36,
+          "text": "    return nn.Conv2d(in_planes, out_planes, kernel_size=1, stride=stride, bias=False)"
+        },
+        {
+          "line": 40,
+          "text": "    expansion: int = 1"
+        },
+        {
+          "line": 41,
+          "text": ""
+        },
+        {
+          "line": 42,
+          "text": "    def __init__("
+        },
+        {
+          "line": 43,
+          "text": "            self,"
+        },
+        {
+          "line": 44,
+          "text": "            inplanes: int,"
+        },
+        {
+          "line": 67,
+          "text": "        self.stride = stride"
+        },
+        {
+          "line": 68,
+          "text": ""
+        },
+        {
+          "line": 69,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 70,
+          "text": "        identity = x"
+        },
+        {
+          "line": 71,
+          "text": ""
+        },
+        {
+          "line": 88,
+          "text": "class Bottleneck(nn.Module):"
+        },
+        {
+          "line": 89,
+          "text": "    # Bottleneck in torchvision places the stride for downsampling at 3x3 convolution(self.conv2)"
+        },
+        {
+          "line": 90,
+          "text": "    # while original implementation places the stride at the first 1x1 convolution(self.conv1)"
+        },
+        {
+          "line": 91,
+          "text": "    # according to \"Deep residual learning for image recognition\"https://arxiv.org/abs/1512.03385."
+        },
+        {
+          "line": 92,
+          "text": "    # This variant is also known as ResNet V1.5 and improves accuracy according to"
+        },
+        {
+          "line": 95,
+          "text": "    expansion: int = 4"
+        },
+        {
+          "line": 96,
+          "text": ""
+        },
+        {
+          "line": 97,
+          "text": "    def __init__("
+        },
+        {
+          "line": 98,
+          "text": "            self,"
+        },
+        {
+          "line": 99,
+          "text": "            inplanes: int,"
+        },
+        {
+          "line": 121,
+          "text": "        self.stride = stride"
+        },
+        {
+          "line": 122,
+          "text": ""
+        },
+        {
+          "line": 123,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 124,
+          "text": "        identity = x"
+        },
+        {
+          "line": 125,
+          "text": ""
+        },
+        {
+          "line": 146,
+          "text": "class ResNet(nn.Module):"
+        },
+        {
+          "line": 147,
+          "text": ""
+        },
+        {
+          "line": 148,
+          "text": "    def __init__("
+        },
+        {
+          "line": 149,
+          "text": "            self,"
+        },
+        {
+          "line": 150,
+          "text": "            block: Type[Union[BasicBlock, Bottleneck]],"
+        },
+        {
+          "line": 205,
+          "text": "                    nn.init.constant_(m.bn2.weight, 0)  # type: ignore[arg-type]"
+        },
+        {
+          "line": 206,
+          "text": ""
+        },
+        {
+          "line": 207,
+          "text": "    def _make_layer(self, block: Type[Union[BasicBlock, Bottleneck]], planes: int, blocks: int,"
+        },
+        {
+          "line": 208,
+          "text": "                    stride: int = 1, dilate: bool = False) -> nn.Sequential:"
+        },
+        {
+          "line": 209,
+          "text": "        norm_layer = self._norm_layer"
+        },
+        {
+          "line": 230,
+          "text": "        return nn.Sequential(*layers)"
+        },
+        {
+          "line": 231,
+          "text": ""
+        },
+        {
+          "line": 232,
+          "text": "    def _forward_impl(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 233,
+          "text": "        # See note [TorchScript super()]"
+        },
+        {
+          "line": 234,
+          "text": "        x = self.conv1(x)"
+        },
+        {
+          "line": 237,
+          "text": "        x = self.maxpool(x)"
+        },
+        {
+          "line": 238,
+          "text": ""
+        },
+        {
+          "line": 239,
+          "text": "        feature_a = self.layer1(x)"
+        },
+        {
+          "line": 240,
+          "text": "        feature_b = self.layer2(feature_a)"
+        },
+        {
+          "line": 241,
+          "text": "        feature_c = self.layer3(feature_b)"
+        },
+        {
+          "line": 242,
+          "text": "        feature_d = self.layer4(feature_c)"
+        },
+        {
+          "line": 243,
+          "text": ""
+        },
+        {
+          "line": 244,
+          "text": "        return [feature_a, feature_b, feature_c]"
+        },
+        {
+          "line": 245,
+          "text": ""
+        },
+        {
+          "line": 246,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 247,
+          "text": "        return self._forward_impl(x)"
+        },
+        {
+          "line": 248,
+          "text": ""
+        },
+        {
+          "line": 249,
+          "text": ""
+        },
+        {
+          "line": 250,
+          "text": "def _resnet("
+        },
+        {
+          "line": 251,
+          "text": "        arch: str,"
+        },
+        {
+          "line": 252,
+          "text": "        block: Type[Union[BasicBlock, Bottleneck]],"
+        },
+        {
+          "line": 270,
+          "text": "    expansion: int = 1"
+        },
+        {
+          "line": 271,
+          "text": ""
+        },
+        {
+          "line": 272,
+          "text": "    def __init__("
+        },
+        {
+          "line": 273,
+          "text": "            self,"
+        },
+        {
+          "line": 274,
+          "text": "            inplanes: int,"
+        },
+        {
+          "line": 301,
+          "text": "        self.stride = stride"
+        },
+        {
+          "line": 302,
+          "text": ""
+        },
+        {
+          "line": 303,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 304,
+          "text": "        # if self.attention:"
+        },
+        {
+          "line": 305,
+          "text": "        #    x = self.cbam(x)"
+        },
+        {
+          "line": 325,
+          "text": "    expansion: int = 4"
+        },
+        {
+          "line": 326,
+          "text": ""
+        },
+        {
+          "line": 327,
+          "text": "    def __init__("
+        },
+        {
+          "line": 328,
+          "text": "            self,"
+        },
+        {
+          "line": 329,
+          "text": "            inplanes: int,"
+        },
+        {
+          "line": 357,
+          "text": "        self.stride = stride"
+        },
+        {
+          "line": 358,
+          "text": ""
+        },
+        {
+          "line": 359,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 360,
+          "text": "        # if self.attention:"
+        },
+        {
+          "line": 361,
+          "text": "        #    x = self.cbam(x)"
+        },
+        {
+          "line": 383,
+          "text": ""
+        },
+        {
+          "line": 384,
+          "text": "class BN_layer(nn.Module):"
+        },
+        {
+          "line": 385,
+          "text": "    def __init__(self,"
+        },
+        {
+          "line": 386,
+          "text": "                 block: Type[Union[BasicBlock, Bottleneck]],"
+        },
+        {
+          "line": 387,
+          "text": "                 layers: int,"
+        },
+        {
+          "line": 418,
+          "text": "                nn.init.constant_(m.bias, 0)"
+        },
+        {
+          "line": 419,
+          "text": ""
+        },
+        {
+          "line": 420,
+          "text": "    def _make_layer(self, block: Type[Union[BasicBlock, Bottleneck]], planes: int, blocks: int,"
+        },
+        {
+          "line": 421,
+          "text": "                    stride: int = 1, dilate: bool = False) -> nn.Sequential:"
+        },
+        {
+          "line": 422,
+          "text": "        norm_layer = self._norm_layer"
+        },
+        {
+          "line": 443,
+          "text": "        return nn.Sequential(*layers)"
+        },
+        {
+          "line": 444,
+          "text": ""
+        },
+        {
+          "line": 445,
+          "text": "    def _forward_impl(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 446,
+          "text": "        # See note [TorchScript super()]"
+        },
+        {
+          "line": 447,
+          "text": "        # x = self.cbam(x)"
+        },
+        {
+          "line": 456,
+          "text": "        return output.contiguous()"
+        },
+        {
+          "line": 457,
+          "text": ""
+        },
+        {
+          "line": 458,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 459,
+          "text": "        return self._forward_impl(x)"
+        },
+        {
+          "line": 460,
+          "text": ""
+        },
+        {
+          "line": 461,
+          "text": ""
+        },
+        {
+          "line": 462,
+          "text": "def resnet18(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 463,
+          "text": "    r\"\"\"ResNet-18 model from"
+        },
+        {
+          "line": 464,
+          "text": "    `\"Deep Residual Learning for Image Recognition\" <https://arxiv.org/pdf/1512.03385.pdf>`_."
+        },
+        {
+          "line": 471,
+          "text": ""
+        },
+        {
+          "line": 472,
+          "text": ""
+        },
+        {
+          "line": 473,
+          "text": "def resnet34(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 474,
+          "text": "    r\"\"\"ResNet-34 model from"
+        },
+        {
+          "line": 475,
+          "text": "    `\"Deep Residual Learning for Image Recognition\" <https://arxiv.org/pdf/1512.03385.pdf>`_."
+        },
+        {
+          "line": 482,
+          "text": ""
+        },
+        {
+          "line": 483,
+          "text": ""
+        },
+        {
+          "line": 484,
+          "text": "def resnet50(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 485,
+          "text": "    r\"\"\"ResNet-50 model from"
+        },
+        {
+          "line": 486,
+          "text": "    `\"Deep Residual Learning for Image Recognition\" <https://arxiv.org/pdf/1512.03385.pdf>`_."
+        },
+        {
+          "line": 494,
+          "text": ""
+        },
+        {
+          "line": 495,
+          "text": ""
+        },
+        {
+          "line": 496,
+          "text": "def wide_resnet50_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 497,
+          "text": "    r\"\"\"Wide ResNet-50-2 model from"
+        },
+        {
+          "line": 498,
+          "text": "    `\"Wide Residual Networks\" <https://arxiv.org/pdf/1605.07146.pdf>`_."
+        }
+      ]
+    },
+    "/kaggle/working/project_clean/experiments/gnl/de_resnet.py": {
+      "total_lines": 395,
+      "matching_context": [
+        {
+          "line": 27,
+          "text": ""
+        },
+        {
+          "line": 28,
+          "text": ""
+        },
+        {
+          "line": 29,
+          "text": "def conv3x3(in_planes: int, out_planes: int, stride: int = 1, groups: int = 1, dilation: int = 1) -> nn.Conv2d:"
+        },
+        {
+          "line": 30,
+          "text": "    \"\"\"3x3 convolution with padding\"\"\""
+        },
+        {
+          "line": 31,
+          "text": "    return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride,"
+        },
+        {
+          "line": 33,
+          "text": ""
+        },
+        {
+          "line": 34,
+          "text": ""
+        },
+        {
+          "line": 35,
+          "text": "def conv1x1(in_planes: int, out_planes: int, stride: int = 1) -> nn.Conv2d:"
+        },
+        {
+          "line": 36,
+          "text": "    \"\"\"1x1 convolution\"\"\""
+        },
+        {
+          "line": 37,
+          "text": "    return nn.Conv2d(in_planes, out_planes, kernel_size=1, stride=stride, bias=False)"
+        },
+        {
+          "line": 38,
+          "text": ""
+        },
+        {
+          "line": 39,
+          "text": "def deconv2x2(in_planes: int, out_planes: int, stride: int = 1, groups: int = 1, dilation: int = 1) -> nn.Conv2d:"
+        },
+        {
+          "line": 40,
+          "text": "    \"\"\"1x1 convolution\"\"\""
+        },
+        {
+          "line": 41,
+          "text": "    return nn.ConvTranspose2d(in_planes, out_planes, kernel_size=2, stride=stride,"
+        },
+        {
+          "line": 46,
+          "text": "    expansion: int = 1"
+        },
+        {
+          "line": 47,
+          "text": ""
+        },
+        {
+          "line": 48,
+          "text": "    def __init__("
+        },
+        {
+          "line": 49,
+          "text": "        self,"
+        },
+        {
+          "line": 50,
+          "text": "        inplanes: int,"
+        },
+        {
+          "line": 76,
+          "text": "        self.stride = stride"
+        },
+        {
+          "line": 77,
+          "text": ""
+        },
+        {
+          "line": 78,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 79,
+          "text": "        identity = x"
+        },
+        {
+          "line": 80,
+          "text": ""
+        },
+        {
+          "line": 97,
+          "text": "class Bottleneck(nn.Module):"
+        },
+        {
+          "line": 98,
+          "text": "    # Bottleneck in torchvision places the stride for downsampling at 3x3 convolution(self.conv2)"
+        },
+        {
+          "line": 99,
+          "text": "    # while original implementation places the stride at the first 1x1 convolution(self.conv1)"
+        },
+        {
+          "line": 100,
+          "text": "    # according to \"Deep residual learning for image recognition\"https://arxiv.org/abs/1512.03385."
+        },
+        {
+          "line": 101,
+          "text": "    # This variant is also known as ResNet V1.5 and improves accuracy according to"
+        },
+        {
+          "line": 104,
+          "text": "    expansion: int = 4"
+        },
+        {
+          "line": 105,
+          "text": ""
+        },
+        {
+          "line": 106,
+          "text": "    def __init__("
+        },
+        {
+          "line": 107,
+          "text": "        self,"
+        },
+        {
+          "line": 108,
+          "text": "        inplanes: int,"
+        },
+        {
+          "line": 133,
+          "text": "        self.stride = stride"
+        },
+        {
+          "line": 134,
+          "text": ""
+        },
+        {
+          "line": 135,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 136,
+          "text": "        identity = x"
+        },
+        {
+          "line": 137,
+          "text": ""
+        },
+        {
+          "line": 158,
+          "text": "class ResNet(nn.Module):"
+        },
+        {
+          "line": 159,
+          "text": ""
+        },
+        {
+          "line": 160,
+          "text": "    def __init__("
+        },
+        {
+          "line": 161,
+          "text": "        self,"
+        },
+        {
+          "line": 162,
+          "text": "        block: Type[Union[BasicBlock, Bottleneck]],"
+        },
+        {
+          "line": 217,
+          "text": "                    nn.init.constant_(m.bn2.weight, 0)  # type: ignore[arg-type]"
+        },
+        {
+          "line": 218,
+          "text": ""
+        },
+        {
+          "line": 219,
+          "text": "    def _make_layer(self, block: Type[Union[BasicBlock, Bottleneck]], planes: int, blocks: int,"
+        },
+        {
+          "line": 220,
+          "text": "                    stride: int = 1, dilate: bool = False) -> nn.Sequential:"
+        },
+        {
+          "line": 221,
+          "text": "        norm_layer = self._norm_layer"
+        },
+        {
+          "line": 242,
+          "text": "        return nn.Sequential(*layers)"
+        },
+        {
+          "line": 243,
+          "text": ""
+        },
+        {
+          "line": 244,
+          "text": "    def _forward_impl(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 245,
+          "text": "        # See note [TorchScript super()]"
+        },
+        {
+          "line": 246,
+          "text": "        #x = self.conv1(x)"
+        },
+        {
+          "line": 249,
+          "text": "        #x = self.maxpool(x)"
+        },
+        {
+          "line": 250,
+          "text": ""
+        },
+        {
+          "line": 251,
+          "text": "        feature_a = self.layer1(x)  # 512*8*8->256*16*16"
+        },
+        {
+          "line": 252,
+          "text": "        feature_b = self.layer2(feature_a)  # 256*16*16->128*32*32"
+        },
+        {
+          "line": 253,
+          "text": "        feature_c = self.layer3(feature_b)  # 128*32*32->64*64*64"
+        },
+        {
+          "line": 254,
+          "text": "        #feature_d = self.layer4(feature_c)  # 64*64*64->128*32*32"
+        },
+        {
+          "line": 255,
+          "text": ""
+        },
+        {
+          "line": 256,
+          "text": "        #x = self.avgpool(feature_d)"
+        },
+        {
+          "line": 258,
+          "text": "        #x = self.fc(x)"
+        },
+        {
+          "line": 259,
+          "text": ""
+        },
+        {
+          "line": 260,
+          "text": "        return [feature_c, feature_b, feature_a]"
+        },
+        {
+          "line": 261,
+          "text": ""
+        },
+        {
+          "line": 262,
+          "text": "    def forward(self, x: Tensor) -> Tensor:"
+        },
+        {
+          "line": 263,
+          "text": "        return self._forward_impl(x)"
+        },
+        {
+          "line": 264,
+          "text": ""
+        },
+        {
+          "line": 265,
+          "text": ""
+        },
+        {
+          "line": 266,
+          "text": "def _resnet("
+        },
+        {
+          "line": 267,
+          "text": "    arch: str,"
+        },
+        {
+          "line": 268,
+          "text": "    block: Type[Union[BasicBlock, Bottleneck]],"
+        },
+        {
+          "line": 283,
+          "text": ""
+        },
+        {
+          "line": 284,
+          "text": ""
+        },
+        {
+          "line": 285,
+          "text": "def de_resnet18(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 286,
+          "text": "    r\"\"\"ResNet-18 model from"
+        },
+        {
+          "line": 287,
+          "text": "    `\"Deep Residual Learning for Image Recognition\" <https://arxiv.org/pdf/1512.03385.pdf>`_."
+        },
+        {
+          "line": 294,
+          "text": ""
+        },
+        {
+          "line": 295,
+          "text": ""
+        },
+        {
+          "line": 296,
+          "text": "def de_resnet34(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 297,
+          "text": "    r\"\"\"ResNet-34 model from"
+        },
+        {
+          "line": 298,
+          "text": "    `\"Deep Residual Learning for Image Recognition\" <https://arxiv.org/pdf/1512.03385.pdf>`_."
+        },
+        {
+          "line": 305,
+          "text": ""
+        },
+        {
+          "line": 306,
+          "text": ""
+        },
+        {
+          "line": 307,
+          "text": "def de_resnet50(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 308,
+          "text": "    r\"\"\"ResNet-50 model from"
+        },
+        {
+          "line": 309,
+          "text": "    `\"Deep Residual Learning for Image Recognition\" <https://arxiv.org/pdf/1512.03385.pdf>`_."
+        },
+        {
+          "line": 316,
+          "text": ""
+        },
+        {
+          "line": 317,
+          "text": ""
+        },
+        {
+          "line": 318,
+          "text": "def resnet101(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 319,
+          "text": "    r\"\"\"ResNet-101 model from"
+        },
+        {
+          "line": 320,
+          "text": "    `\"Deep Residual Learning for Image Recognition\" <https://arxiv.org/pdf/1512.03385.pdf>`_."
+        },
+        {
+          "line": 327,
+          "text": ""
+        },
+        {
+          "line": 328,
+          "text": ""
+        },
+        {
+          "line": 329,
+          "text": "def resnet152(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 330,
+          "text": "    r\"\"\"ResNet-152 model from"
+        },
+        {
+          "line": 331,
+          "text": "    `\"Deep Residual Learning for Image Recognition\" <https://arxiv.org/pdf/1512.03385.pdf>`_."
+        },
+        {
+          "line": 338,
+          "text": ""
+        },
+        {
+          "line": 339,
+          "text": ""
+        },
+        {
+          "line": 340,
+          "text": "def resnext50_32x4d(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 341,
+          "text": "    r\"\"\"ResNeXt-50 32x4d model from"
+        },
+        {
+          "line": 342,
+          "text": "    `\"Aggregated Residual Transformation for Deep Neural Networks\" <https://arxiv.org/pdf/1611.05431.pdf>`_."
+        },
+        {
+          "line": 351,
+          "text": ""
+        },
+        {
+          "line": 352,
+          "text": ""
+        },
+        {
+          "line": 353,
+          "text": "def resnext101_32x8d(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 354,
+          "text": "    r\"\"\"ResNeXt-101 32x8d model from"
+        },
+        {
+          "line": 355,
+          "text": "    `\"Aggregated Residual Transformation for Deep Neural Networks\" <https://arxiv.org/pdf/1611.05431.pdf>`_."
+        },
+        {
+          "line": 364,
+          "text": ""
+        },
+        {
+          "line": 365,
+          "text": ""
+        },
+        {
+          "line": 366,
+          "text": "def de_wide_resnet50_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 367,
+          "text": "    r\"\"\"Wide ResNet-50-2 model from"
+        },
+        {
+          "line": 368,
+          "text": "    `\"Wide Residual Networks\" <https://arxiv.org/pdf/1605.07146.pdf>`_."
+        },
+        {
+          "line": 380,
+          "text": ""
+        },
+        {
+          "line": 381,
+          "text": ""
+        },
+        {
+          "line": 382,
+          "text": "def de_wide_resnet101_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+        },
+        {
+          "line": 383,
+          "text": "    r\"\"\"Wide ResNet-101-2 model from"
+        },
+        {
+          "line": 384,
+          "text": "    `\"Wide Residual Networks\" <https://arxiv.org/pdf/1605.07146.pdf>`_."
+        }
+      ]
+    }
+  }
+}

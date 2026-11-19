@@ -1,0 +1,2470 @@
+{
+  "scope": [
+    "GNL",
+    "PCA",
+    "EFDM",
+    "PCA+EFDM"
+  ],
+  "repository": "/kaggle/working/project_clean",
+  "git": {
+    "status": {
+      "returncode": 0,
+      "stdout": "## member3/pca-method...origin/member3/pca-method [ahead 8]",
+      "stderr": ""
+    },
+    "branch": {
+      "returncode": 0,
+      "stdout": "member3/pca-method",
+      "stderr": ""
+    },
+    "recent_commits": {
+      "returncode": 0,
+      "stdout": "7216c8c Search original EFDM grid provenance\nb4f5068 Audit original EFDM run and checkpoint architecture\n79cac6d Record EFDM ordering and RD4AD checkpoint recovery findings\n9e11979 Audit EFDM grid metrics and RD4AD recovery readiness\n1e8f90e Document EFDM grid and RD4AD recovery investigation",
+      "stderr": ""
+    },
+    "whitespace_check": {
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "pca_files": [
+    {
+      "path": "pca_method/inference_pca_gating.py",
+      "size": 1102
+    },
+    {
+      "path": "pca_method/pca_config.py",
+      "size": 422
+    },
+    {
+      "path": "pca_method/compute_nuisance_pca.py",
+      "size": 3400
+    },
+    {
+      "path": "pca_method/__init__.py",
+      "size": 0
+    },
+    {
+      "path": "pca_method/integration_interface.py",
+      "size": 1502
+    }
+  ],
+  "efdm_files": [],
+  "provenance_candidates": [
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1s_provenance_search.json",
+      "type": "manifest_or_provenance_report",
+      "size": 359804
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_RECOVERY_MANIFEST.json",
+      "type": "manifest_or_provenance_report",
+      "size": 49116
+    },
+    {
+      "path": "/kaggle/working/project_clean/results/pca/bottle_cable_detailed/bottle/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "contamination",
+          "1",
+          "1.1649302244186401",
+          "1.1137466430664062"
+        ],
+        [
+          "1",
+          "001.png",
+          "contamination",
+          "1",
+          "1.1833478212356567",
+          "1.0990866422653198"
+        ],
+        [
+          "2",
+          "002.png",
+          "contamination",
+          "1",
+          "1.0761514902114868",
+          "1.0065395832061768"
+        ],
+        [
+          "3",
+          "003.png",
+          "contamination",
+          "1",
+          "0.9377961158752441",
+          "0.9087665677070618"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/project_clean/results/pca/bottle_cable_detailed/cable/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "missing_cable",
+          "1",
+          "0.8704203963279724",
+          "0.8761879801750183"
+        ],
+        [
+          "1",
+          "001.png",
+          "missing_cable",
+          "1",
+          "0.8457772135734558",
+          "0.8512651920318604"
+        ],
+        [
+          "2",
+          "002.png",
+          "missing_cable",
+          "1",
+          "0.8730077147483826",
+          "0.8421164751052856"
+        ],
+        [
+          "3",
+          "003.png",
+          "missing_cable",
+          "1",
+          "0.8546504378318787",
+          "0.8592002987861633"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/transistor/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "bent_lead",
+          "1",
+          "0.8860399723052979",
+          "0.856256902217865"
+        ],
+        [
+          "1",
+          "001.png",
+          "bent_lead",
+          "1",
+          "0.8301768898963928",
+          "0.7659041881561279"
+        ],
+        [
+          "2",
+          "002.png",
+          "bent_lead",
+          "1",
+          "1.0677350759506226",
+          "0.9738592505455017"
+        ],
+        [
+          "3",
+          "003.png",
+          "bent_lead",
+          "1",
+          "0.8796816468238831",
+          "0.8181470036506653"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/metal_nut/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "bent",
+          "1",
+          "0.9676368832588196",
+          "0.9249457716941833"
+        ],
+        [
+          "1",
+          "001.png",
+          "bent",
+          "1",
+          "0.9834733605384827",
+          "0.8758615255355835"
+        ],
+        [
+          "2",
+          "002.png",
+          "bent",
+          "1",
+          "0.971463143825531",
+          "0.8135143518447876"
+        ],
+        [
+          "3",
+          "003.png",
+          "bent",
+          "1",
+          "1.0233832597732544",
+          "0.8962750434875488"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/leather/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "fold",
+          "1",
+          "1.188444972038269",
+          "1.2285563945770264"
+        ],
+        [
+          "1",
+          "001.png",
+          "fold",
+          "1",
+          "1.045846939086914",
+          "1.1243935823440552"
+        ],
+        [
+          "2",
+          "002.png",
+          "fold",
+          "1",
+          "1.1567693948745728",
+          "1.1906408071517944"
+        ],
+        [
+          "3",
+          "003.png",
+          "fold",
+          "1",
+          "1.1415653228759766",
+          "1.2087488174438477"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/carpet/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "025.png",
+          "good",
+          "0",
+          "0.41187232732772827",
+          "0.4019775986671448"
+        ],
+        [
+          "1",
+          "005.png",
+          "good",
+          "0",
+          "0.4725092053413391",
+          "0.47074082493782043"
+        ],
+        [
+          "2",
+          "020.png",
+          "good",
+          "0",
+          "0.47413089871406555",
+          "0.42805665731430054"
+        ],
+        [
+          "3",
+          "017.png",
+          "good",
+          "0",
+          "0.44106924533843994",
+          "0.40824124217033386"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/grid/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "bent",
+          "1",
+          "1.6932742595672607",
+          "1.8084220886230469"
+        ],
+        [
+          "1",
+          "001.png",
+          "bent",
+          "1",
+          "1.0052372217178345",
+          "1.1484326124191284"
+        ],
+        [
+          "2",
+          "002.png",
+          "bent",
+          "1",
+          "0.8452426791191101",
+          "0.9201053977012634"
+        ],
+        [
+          "3",
+          "003.png",
+          "bent",
+          "1",
+          "0.9657347798347473",
+          "1.0524736642837524"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/pill/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "contamination",
+          "1",
+          "0.6500551700592041",
+          "0.6534588932991028"
+        ],
+        [
+          "1",
+          "001.png",
+          "contamination",
+          "1",
+          "0.7311495542526245",
+          "0.6964714527130127"
+        ],
+        [
+          "2",
+          "002.png",
+          "contamination",
+          "1",
+          "0.8174952864646912",
+          "0.7625656723976135"
+        ],
+        [
+          "3",
+          "003.png",
+          "contamination",
+          "1",
+          "1.0744987726211548",
+          "1.102089524269104"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/wood/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "combined",
+          "1",
+          "1.0776695013046265",
+          "1.089467167854309"
+        ],
+        [
+          "1",
+          "001.png",
+          "combined",
+          "1",
+          "1.1843621730804443",
+          "1.2380958795547485"
+        ],
+        [
+          "2",
+          "002.png",
+          "combined",
+          "1",
+          "1.0819728374481201",
+          "1.1817457675933838"
+        ],
+        [
+          "3",
+          "003.png",
+          "combined",
+          "1",
+          "1.2219092845916748",
+          "1.2999340295791626"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/screw/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "thread_top",
+          "1",
+          "0.6676552295684814",
+          "0.614112138748169"
+        ],
+        [
+          "1",
+          "001.png",
+          "thread_top",
+          "1",
+          "0.7853632569313049",
+          "0.7534705400466919"
+        ],
+        [
+          "2",
+          "002.png",
+          "thread_top",
+          "1",
+          "0.7571608424186707",
+          "0.7251091003417969"
+        ],
+        [
+          "3",
+          "003.png",
+          "thread_top",
+          "1",
+          "0.6161865592002869",
+          "0.5591980814933777"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/capsule/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "crack",
+          "1",
+          "0.5241429209709167",
+          "0.5531892776489258"
+        ],
+        [
+          "1",
+          "001.png",
+          "crack",
+          "1",
+          "1.5225354433059692",
+          "1.4024770259857178"
+        ],
+        [
+          "2",
+          "002.png",
+          "crack",
+          "1",
+          "0.9371767640113831",
+          "0.844237208366394"
+        ],
+        [
+          "3",
+          "003.png",
+          "crack",
+          "1",
+          "0.8019684553146362",
+          "0.6509805917739868"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/toothbrush/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "defective",
+          "1",
+          "1.3159691095352173",
+          "1.2627495527267456"
+        ],
+        [
+          "1",
+          "001.png",
+          "defective",
+          "1",
+          "0.8539519309997559",
+          "0.8146188259124756"
+        ],
+        [
+          "2",
+          "002.png",
+          "defective",
+          "1",
+          "0.896209716796875",
+          "0.9315962195396423"
+        ],
+        [
+          "3",
+          "003.png",
+          "defective",
+          "1",
+          "0.8368530869483948",
+          "0.8454800844192505"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/hazelnut/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "crack",
+          "1",
+          "1.0025804042816162",
+          "1.0168511867523193"
+        ],
+        [
+          "1",
+          "001.png",
+          "crack",
+          "1",
+          "0.9764105677604675",
+          "0.9712890982627869"
+        ],
+        [
+          "2",
+          "002.png",
+          "crack",
+          "1",
+          "0.7854353785514832",
+          "0.7651978731155396"
+        ],
+        [
+          "3",
+          "003.png",
+          "crack",
+          "1",
+          "0.8589754700660706",
+          "0.844902515411377"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/zipper/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "combined",
+          "1",
+          "1.1484121084213257",
+          "1.1007516384124756"
+        ],
+        [
+          "1",
+          "001.png",
+          "combined",
+          "1",
+          "0.6575213670730591",
+          "0.6349051594734192"
+        ],
+        [
+          "2",
+          "002.png",
+          "combined",
+          "1",
+          "0.6870609521865845",
+          "0.5819821953773499"
+        ],
+        [
+          "3",
+          "003.png",
+          "combined",
+          "1",
+          "1.0531851053237915",
+          "1.205804467201233"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/tile/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "oil",
+          "1",
+          "1.0494297742843628",
+          "1.0723377466201782"
+        ],
+        [
+          "1",
+          "001.png",
+          "oil",
+          "1",
+          "1.125496745109558",
+          "1.1728038787841797"
+        ],
+        [
+          "2",
+          "002.png",
+          "oil",
+          "1",
+          "1.0070990324020386",
+          "1.025249719619751"
+        ],
+        [
+          "3",
+          "003.png",
+          "oil",
+          "1",
+          "1.1332401037216187",
+          "1.182586908340454"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/evaluation_run_01/bottle/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "contamination",
+          "1",
+          "1.1649302244186401",
+          "1.1137466430664062"
+        ],
+        [
+          "1",
+          "001.png",
+          "contamination",
+          "1",
+          "1.1833478212356567",
+          "1.0990866422653198"
+        ],
+        [
+          "2",
+          "002.png",
+          "contamination",
+          "1",
+          "1.0761514902114868",
+          "1.0065395832061768"
+        ],
+        [
+          "3",
+          "003.png",
+          "contamination",
+          "1",
+          "0.9377961158752441",
+          "0.9087665677070618"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/evaluation_run_01/cable/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "missing_cable",
+          "1",
+          "0.8704203963279724",
+          "0.8761879801750183"
+        ],
+        [
+          "1",
+          "001.png",
+          "missing_cable",
+          "1",
+          "0.8457772135734558",
+          "0.8512651920318604"
+        ],
+        [
+          "2",
+          "002.png",
+          "missing_cable",
+          "1",
+          "0.8730077147483826",
+          "0.8421164751052856"
+        ],
+        [
+          "3",
+          "003.png",
+          "missing_cable",
+          "1",
+          "0.8546504378318787",
+          "0.8592002987861633"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/evaluation_results/bottle_cable_detailed/bottle/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "contamination",
+          "1",
+          "1.1649302244186401",
+          "1.1137466430664062"
+        ],
+        [
+          "1",
+          "001.png",
+          "contamination",
+          "1",
+          "1.1833478212356567",
+          "1.0990866422653198"
+        ],
+        [
+          "2",
+          "002.png",
+          "contamination",
+          "1",
+          "1.0761514902114868",
+          "1.0065395832061768"
+        ],
+        [
+          "3",
+          "003.png",
+          "contamination",
+          "1",
+          "0.9377961158752441",
+          "0.9087665677070618"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/evaluation_results/bottle_cable_detailed/cable/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "index",
+        "filename",
+        "defect_type",
+        "label",
+        "baseline_image_score",
+        "pca_image_score"
+      ],
+      "sample_rows": [
+        [
+          "0",
+          "000.png",
+          "missing_cable",
+          "1",
+          "0.8704203963279724",
+          "0.8761879801750183"
+        ],
+        [
+          "1",
+          "001.png",
+          "missing_cable",
+          "1",
+          "0.8457772135734558",
+          "0.8512651920318604"
+        ],
+        [
+          "2",
+          "002.png",
+          "missing_cable",
+          "1",
+          "0.8730077147483826",
+          "0.8421164751052856"
+        ],
+        [
+          "3",
+          "003.png",
+          "missing_cable",
+          "1",
+          "0.8546504378318787",
+          "0.8592002987861633"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/pill_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "combined",
+          "1",
+          "0.7694346308708191"
+        ],
+        [
+          "001.png",
+          "combined",
+          "1",
+          "0.9137557148933411"
+        ],
+        [
+          "002.png",
+          "combined",
+          "1",
+          "0.8872879147529602"
+        ],
+        [
+          "003.png",
+          "combined",
+          "1",
+          "0.8510882258415222"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/cable_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "combined",
+          "1",
+          "1.302323341369629"
+        ],
+        [
+          "001.png",
+          "combined",
+          "1",
+          "1.3257590532302856"
+        ],
+        [
+          "002.png",
+          "combined",
+          "1",
+          "0.9178634881973267"
+        ],
+        [
+          "003.png",
+          "combined",
+          "1",
+          "0.8619682192802429"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/screw_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "manipulated_front",
+          "1",
+          "0.5708531141281128"
+        ],
+        [
+          "001.png",
+          "manipulated_front",
+          "1",
+          "0.6727748513221741"
+        ],
+        [
+          "002.png",
+          "manipulated_front",
+          "1",
+          "0.5068995356559753"
+        ],
+        [
+          "003.png",
+          "manipulated_front",
+          "1",
+          "0.6100077629089355"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/tile_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "025.png",
+          "good",
+          "0",
+          "0.6048598885536194"
+        ],
+        [
+          "030.png",
+          "good",
+          "0",
+          "0.5745840668678284"
+        ],
+        [
+          "023.png",
+          "good",
+          "0",
+          "0.5650596022605896"
+        ],
+        [
+          "013.png",
+          "good",
+          "0",
+          "0.5569549798965454"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/hazelnut_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "036.png",
+          "good",
+          "0",
+          "0.6802077293395996"
+        ],
+        [
+          "001.png",
+          "good",
+          "0",
+          "0.6130475401878357"
+        ],
+        [
+          "011.png",
+          "good",
+          "0",
+          "0.533470094203949"
+        ],
+        [
+          "008.png",
+          "good",
+          "0",
+          "0.5725340247154236"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/capsule_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "squeeze",
+          "1",
+          "1.1065785884857178"
+        ],
+        [
+          "001.png",
+          "squeeze",
+          "1",
+          "0.9532768726348877"
+        ],
+        [
+          "002.png",
+          "squeeze",
+          "1",
+          "0.6733933091163635"
+        ],
+        [
+          "003.png",
+          "squeeze",
+          "1",
+          "1.0253775119781494"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/leather_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "fold",
+          "1",
+          "1.188444972038269"
+        ],
+        [
+          "001.png",
+          "fold",
+          "1",
+          "1.045846939086914"
+        ],
+        [
+          "002.png",
+          "fold",
+          "1",
+          "1.1567693948745728"
+        ],
+        [
+          "003.png",
+          "fold",
+          "1",
+          "1.1415653228759766"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/zipper_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "025.png",
+          "good",
+          "0",
+          "0.3328036665916443"
+        ],
+        [
+          "030.png",
+          "good",
+          "0",
+          "0.27178695797920227"
+        ],
+        [
+          "023.png",
+          "good",
+          "0",
+          "0.536777913570404"
+        ],
+        [
+          "013.png",
+          "good",
+          "0",
+          "0.4384840428829193"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/carpet_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "color",
+          "1",
+          "0.8122273087501526"
+        ],
+        [
+          "001.png",
+          "color",
+          "1",
+          "0.7072435617446899"
+        ],
+        [
+          "002.png",
+          "color",
+          "1",
+          "0.5773197412490845"
+        ],
+        [
+          "003.png",
+          "color",
+          "1",
+          "0.6802881360054016"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/wood_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "color",
+          "1",
+          "1.0820497274398804"
+        ],
+        [
+          "001.png",
+          "color",
+          "1",
+          "1.0034626722335815"
+        ],
+        [
+          "002.png",
+          "color",
+          "1",
+          "0.9205936193466187"
+        ],
+        [
+          "003.png",
+          "color",
+          "1",
+          "1.2035584449768066"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/toothbrush_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "001.png",
+          "good",
+          "0",
+          "0.6888734102249146"
+        ],
+        [
+          "011.png",
+          "good",
+          "0",
+          "0.8403127193450928"
+        ],
+        [
+          "008.png",
+          "good",
+          "0",
+          "0.713388979434967"
+        ],
+        [
+          "003.png",
+          "good",
+          "0",
+          "0.6833900809288025"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/grid_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "013.png",
+          "good",
+          "0",
+          "0.438751220703125"
+        ],
+        [
+          "019.png",
+          "good",
+          "0",
+          "1.613873839378357"
+        ],
+        [
+          "001.png",
+          "good",
+          "0",
+          "0.3919474184513092"
+        ],
+        [
+          "009.png",
+          "good",
+          "0",
+          "1.6984730958938599"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/transistor_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "damaged_case",
+          "1",
+          "0.9773972034454346"
+        ],
+        [
+          "001.png",
+          "damaged_case",
+          "1",
+          "1.013806939125061"
+        ],
+        [
+          "002.png",
+          "damaged_case",
+          "1",
+          "0.8728935718536377"
+        ],
+        [
+          "003.png",
+          "damaged_case",
+          "1",
+          "0.9072358012199402"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/metal_nut_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "flip",
+          "1",
+          "1.0069485902786255"
+        ],
+        [
+          "001.png",
+          "flip",
+          "1",
+          "0.9396785497665405"
+        ],
+        [
+          "002.png",
+          "flip",
+          "1",
+          "1.0018725395202637"
+        ],
+        [
+          "003.png",
+          "flip",
+          "1",
+          "0.9971566200256348"
+        ]
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/results/bottle_id/image_scores.csv",
+      "type": "score_csv",
+      "header": [
+        "filename",
+        "defect_type",
+        "label",
+        "image_score"
+      ],
+      "sample_rows": [
+        [
+          "000.png",
+          "broken_large",
+          "1",
+          "1.394181489944458"
+        ],
+        [
+          "001.png",
+          "broken_large",
+          "1",
+          "1.384863018989563"
+        ],
+        [
+          "002.png",
+          "broken_large",
+          "1",
+          "1.3634189367294312"
+        ],
+        [
+          "003.png",
+          "broken_large",
+          "1",
+          "1.4099419116973877"
+        ]
+      ]
+    }
+  ],
+  "grid_evidence": {
+    "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy": {
+      "shape": [
+        78,
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/018_good_020.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/030_broken_009.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/019_good_015.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/040_metal_contamination_007.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/047_glue_003.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/051_glue_007.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/029_broken_008.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/050_glue_006.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/038_metal_contamination_005.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/066_bent_011.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/065_bent_010.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/073_thread_006.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/003_good_009.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/004_good_016.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/012_good_017.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/069_thread_002.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/045_glue_001.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/044_glue_000.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/037_metal_contamination_004.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/021_broken_000.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/010_good_002.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/027_broken_006.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/020_good_004.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/015_good_007.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/067_thread_000.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/011_good_014.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/072_thread_005.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/008_good_011.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/009_good_012.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/060_bent_005.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/035_metal_contamination_002.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/007_good_005.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/039_metal_contamination_006.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/036_metal_contamination_003.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/023_broken_002.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/031_broken_010.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/006_good_006.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/034_metal_contamination_001.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/000_good_013.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/048_glue_004.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/053_glue_009.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/057_bent_002.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/016_good_000.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/005_good_010.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/059_bent_004.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/052_glue_008.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/068_thread_001.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/056_bent_001.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/062_bent_007.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/049_glue_005.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/077_thread_010.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/043_metal_contamination_010.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/061_bent_006.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/002_good_001.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/026_broken_005.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/064_bent_009.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/058_bent_003.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/071_thread_004.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/054_glue_010.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/055_bent_000.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/025_broken_004.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/075_thread_008.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/024_broken_003.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/032_broken_011.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/042_metal_contamination_009.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/074_thread_007.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/063_bent_008.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/001_good_019.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/022_broken_001.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/017_good_008.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/046_glue_002.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/033_metal_contamination_000.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/014_good_003.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/028_broken_007.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/070_thread_003.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/076_thread_009.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/013_good_018.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    },
+    "/kaggle/working/GNL_Project_Backup/results/grid_id/anomaly_maps/041_metal_contamination_008.npy": {
+      "shape": [
+        256,
+        256
+      ],
+      "dtype": "float32"
+    }
+  },
+  "integration_findings": [
+    {
+      "path": "pca_method/inference_pca_gating.py",
+      "functions": [
+        "apply_pca_gating"
+      ],
+      "classes": [],
+      "relevant_lines": [
+        "def apply_pca_gating(residual, basis):",
+        "# Orthogonal projection onto nuisance subspace."
+      ]
+    },
+    {
+      "path": "pca_method/pca_config.py",
+      "functions": [],
+      "classes": [],
+      "relevant_lines": [
+        "\"feature_difference\": \"teacher_original_minus_teacher_transformed\",",
+        "\"feature_layout\": \"BCHW\",",
+        "\"projection\": \"orthogonal\","
+      ]
+    },
+    {
+      "path": "pca_method/compute_nuisance_pca.py",
+      "functions": [
+        "compute_nuisance_basis",
+        "save_nuisance_basis"
+      ],
+      "classes": [],
+      "relevant_lines": [
+        "def compute_nuisance_basis(feature_differences, num_components=16):",
+        "if feature_differences is None or len(feature_differences) == 0:",
+        "raise ValueError(\"No feature differences provided.\")",
+        "for difference in feature_differences:",
+        "for difference in feature_differences:",
+        "def save_nuisance_basis("
+      ]
+    },
+    {
+      "path": "pca_method/__init__.py",
+      "functions": [],
+      "classes": [],
+      "relevant_lines": []
+    },
+    {
+      "path": "pca_method/integration_interface.py",
+      "functions": [
+        "pca_filtered_residual"
+      ],
+      "classes": [],
+      "relevant_lines": [
+        "def pca_filtered_residual(",
+        "teacher_features,",
+        "student_features,",
+        "Apply nuisance PCA filtering to teacher-student feature residuals.",
+        "teacher_features: Teacher output [B, C, H, W].",
+        "student_features: Student output [B, C, H, W].",
+        "if teacher_features.ndim != 4:",
+        "raise ValueError(\"Teacher features must have shape [B,C,H,W].\")",
+        "if student_features.ndim != 4:",
+        "raise ValueError(\"Student features must have shape [B,C,H,W].\")",
+        "if teacher_features.shape != student_features.shape:",
+        "raise ValueError(\"Teacher and student feature shapes must match.\")",
+        "if teacher_features.shape[1] != nuisance_basis.shape[0]:",
+        "raise ValueError(\"Feature channels and PCA basis channels do not match.\")",
+        "raw_residual = teacher_features - student_features"
+      ]
+    },
+    {
+      "path": "experiments/gnl/resnet.py",
+      "functions": [
+        "conv3x3",
+        "conv1x1",
+        "_resnet",
+        "resnet18",
+        "resnet34",
+        "resnet50",
+        "wide_resnet50_2",
+        "__init__",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "_make_layer",
+        "_forward_impl",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "_make_layer",
+        "_forward_impl",
+        "forward"
+      ],
+      "classes": [
+        "BasicBlock",
+        "Bottleneck",
+        "ResNet",
+        "AttnBasicBlock",
+        "AttnBottleneck",
+        "BN_layer"
+      ],
+      "relevant_lines": [
+        "def conv3x3(in_planes: int, out_planes: int, stride: int = 1, groups: int = 1, dilation: int = 1) -> nn.Conv2d:",
+        "def conv1x1(in_planes: int, out_planes: int, stride: int = 1) -> nn.Conv2d:",
+        "class BasicBlock(nn.Module):",
+        "def __init__(",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "class Bottleneck(nn.Module):",
+        "def __init__(",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "class ResNet(nn.Module):",
+        "def __init__(",
+        "def _make_layer(self, block: Type[Union[BasicBlock, Bottleneck]], planes: int, blocks: int,",
+        "def _forward_impl(self, x: Tensor) -> Tensor:",
+        "feature_a = self.layer1(x)",
+        "feature_b = self.layer2(feature_a)",
+        "feature_c = self.layer3(feature_b)",
+        "feature_d = self.layer4(feature_c)",
+        "return [feature_a, feature_b, feature_c]",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "def _resnet(",
+        "class AttnBasicBlock(nn.Module):",
+        "def __init__(",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "class AttnBottleneck(nn.Module):",
+        "def __init__(",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "class BN_layer(nn.Module):",
+        "def __init__(self,",
+        "def _make_layer(self, block: Type[Union[BasicBlock, Bottleneck]], planes: int, blocks: int,",
+        "def _forward_impl(self, x: Tensor) -> Tensor:",
+        "feature = torch.cat([l1, l2, x[2]], 1)",
+        "output = self.bn_layer(feature)",
+        "# x = self.avgpool(feature_d)",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "def resnet18(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "def resnet34(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+      ]
+    },
+    {
+      "path": "experiments/gnl/infer_gnl_category_id.py",
+      "functions": [
+        "calculate_anomaly_map",
+        "main"
+      ],
+      "classes": [],
+      "relevant_lines": [
+        "from sklearn.metrics import roc_auc_score",
+        "from dataset import MVTecDataset, get_data_transforms",
+        "def calculate_anomaly_map(teacher_features, student_features, out_size=256):",
+        "anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)",
+        "for teacher, student in zip(teacher_features, student_features):",
+        "anomaly_map += distance[0, 0].cpu().numpy()",
+        "return gaussian_filter(anomaly_map, sigma=4)",
+        "def main():",
+        "map_dir = os.path.join(args.output_dir, \"anomaly_maps\")",
+        "os.makedirs(map_dir, exist_ok=True)",
+        "image_transform, mask_transform = get_data_transforms(256, 256)",
+        "transform=image_transform,",
+        "gt_transform=mask_transform,",
+        "map_location=\"cpu\",",
+        "image_labels, image_scores = [], []",
+        "pixel_labels, pixel_scores = [], []",
+        "teacher_features = encoder(images)",
+        "student_features = decoder(bn(teacher_features))",
+        "anomaly_map = calculate_anomaly_map(",
+        "teacher_features, student_features, out_size=256",
+        "image_score = float(np.max(anomaly_map))",
+        "image_scores.append(image_score)",
+        "pixel_scores.extend(anomaly_map.reshape(-1).tolist())",
+        "map_name = \"{:03d}_{}_{}\".format(",
+        "os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),",
+        "anomaly_map",
+        "map_min, map_max = anomaly_map.min(), anomaly_map.max()",
+        "normalized_map = (",
+        "(anomaly_map - map_min) / (map_max - map_min + 1e-8)",
+        "heatmap = Image.fromarray(",
+        "(normalized_map * 255).astype(np.uint8)",
+        "heatmap.save(",
+        "map_dir, map_name.replace(\".png\", \"_heatmap.png\")",
+        "\"image_score\": image_score",
+        "image_auroc = roc_auc_score(image_labels, image_scores)"
+      ]
+    },
+    {
+      "path": "experiments/gnl/train_gnl_category.py",
+      "functions": [
+        "loss_function",
+        "loss_function_last",
+        "main"
+      ],
+      "classes": [],
+      "relevant_lines": [
+        "from torchvision import transforms",
+        "def loss_function(a, b):",
+        "def loss_function_last(a, b):",
+        "def main(args):",
+        "resize_transform = transforms.Compose([",
+        "transforms.Resize((256, 256))",
+        "preprocess = transforms.Compose([",
+        "transforms.ToTensor(),",
+        "transforms.Normalize(",
+        "transform=resize_transform",
+        "map_location=device,",
+        "# Frozen teacher feature extraction."
+      ]
+    },
+    {
+      "path": "experiments/gnl/infer_gnl_bottle_id.py",
+      "functions": [
+        "calculate_anomaly_map",
+        "main"
+      ],
+      "classes": [],
+      "relevant_lines": [
+        "from sklearn.metrics import roc_auc_score",
+        "from dataset import MVTecDataset, get_data_transforms",
+        "def calculate_anomaly_map(teacher_features, student_features, out_size=256):",
+        "anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)",
+        "for teacher, student in zip(teacher_features, student_features):",
+        "anomaly_map += distance[0, 0].cpu().numpy()",
+        "return gaussian_filter(anomaly_map, sigma=4)",
+        "def main():",
+        "map_dir = os.path.join(args.output_dir, \"anomaly_maps\")",
+        "os.makedirs(map_dir, exist_ok=True)",
+        "image_transform, mask_transform = get_data_transforms(256, 256)",
+        "transform=image_transform,",
+        "gt_transform=mask_transform,",
+        "map_location=\"cpu\",",
+        "image_scores = []",
+        "pixel_scores = []",
+        "teacher_features = encoder(images)",
+        "student_features = decoder(bn(teacher_features))",
+        "anomaly_map = calculate_anomaly_map(",
+        "teacher_features,",
+        "student_features,",
+        "image_score = float(np.max(anomaly_map))",
+        "image_scores.append(image_score)",
+        "pixel_scores.extend(anomaly_map.reshape(-1).tolist())",
+        "map_name = (",
+        "os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),",
+        "anomaly_map",
+        "# Save normalized heatmap for visualization only",
+        "map_min = anomaly_map.min()",
+        "map_max = anomaly_map.max()",
+        "normalized_map = (",
+        "(anomaly_map - map_min) / (map_max - map_min + 1e-8)",
+        "heatmap = Image.fromarray(",
+        "(normalized_map * 255).astype(np.uint8)",
+        "heatmap.save("
+      ]
+    },
+    {
+      "path": "experiments/gnl/train_gnl_bottle.py",
+      "functions": [
+        "loss_function",
+        "loss_function_last",
+        "main"
+      ],
+      "classes": [],
+      "relevant_lines": [
+        "from torchvision import transforms",
+        "def loss_function(a, b):",
+        "def loss_function_last(a, b):",
+        "def main(args):",
+        "resize_transform = transforms.Compose([",
+        "transforms.Resize((256, 256))",
+        "preprocess = transforms.Compose([",
+        "transforms.ToTensor(),",
+        "transforms.Normalize(",
+        "transform=resize_transform",
+        "# Teacher feature extraction without gradients."
+      ]
+    },
+    {
+      "path": "experiments/gnl/de_resnet.py",
+      "functions": [
+        "conv3x3",
+        "conv1x1",
+        "deconv2x2",
+        "_resnet",
+        "de_resnet18",
+        "de_resnet34",
+        "de_resnet50",
+        "resnet101",
+        "resnet152",
+        "resnext50_32x4d",
+        "resnext101_32x8d",
+        "de_wide_resnet50_2",
+        "de_wide_resnet101_2",
+        "__init__",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "_make_layer",
+        "_forward_impl",
+        "forward"
+      ],
+      "classes": [
+        "BasicBlock",
+        "Bottleneck",
+        "ResNet"
+      ],
+      "relevant_lines": [
+        "def conv3x3(in_planes: int, out_planes: int, stride: int = 1, groups: int = 1, dilation: int = 1) -> nn.Conv2d:",
+        "def conv1x1(in_planes: int, out_planes: int, stride: int = 1) -> nn.Conv2d:",
+        "def deconv2x2(in_planes: int, out_planes: int, stride: int = 1, groups: int = 1, dilation: int = 1) -> nn.Conv2d:",
+        "class BasicBlock(nn.Module):",
+        "def __init__(",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "class Bottleneck(nn.Module):",
+        "def __init__(",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "class ResNet(nn.Module):",
+        "def __init__(",
+        "def _make_layer(self, block: Type[Union[BasicBlock, Bottleneck]], planes: int, blocks: int,",
+        "def _forward_impl(self, x: Tensor) -> Tensor:",
+        "feature_a = self.layer1(x)  # 512*8*8->256*16*16",
+        "feature_b = self.layer2(feature_a)  # 256*16*16->128*32*32",
+        "feature_c = self.layer3(feature_b)  # 128*32*32->64*64*64",
+        "#feature_d = self.layer4(feature_c)  # 64*64*64->128*32*32",
+        "#x = self.avgpool(feature_d)",
+        "return [feature_c, feature_b, feature_a]",
+        "def forward(self, x: Tensor) -> Tensor:",
+        "def _resnet(",
+        "def de_resnet18(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "def de_resnet34(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "def de_resnet50(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "def resnet101(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "def resnet152(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "def resnext50_32x4d(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "`\"Aggregated Residual Transformation for Deep Neural Networks\" <https://arxiv.org/pdf/1611.05431.pdf>`_.",
+        "def resnext101_32x8d(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "`\"Aggregated Residual Transformation for Deep Neural Networks\" <https://arxiv.org/pdf/1611.05431.pdf>`_.",
+        "def de_wide_resnet50_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:",
+        "def de_wide_resnet101_2(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> ResNet:"
+      ]
+    },
+    {
+      "path": "experiments/gnl/dataset.py",
+      "functions": [
+        "get_data_transforms",
+        "get_data_transforms_augmix",
+        "load_data",
+        "int_parameter",
+        "float_parameter",
+        "sample_level",
+        "autocontrast",
+        "equalize",
+        "posterize",
+        "rotate",
+        "solarize",
+        "shear_x",
+        "shear_y",
+        "translate_x",
+        "translate_y",
+        "color",
+        "contrast",
+        "brightness",
+        "sharpness",
+        "augmvtec",
+        "augpacs",
+        "__init__",
+        "load_dataset",
+        "__len__",
+        "__getitem__",
+        "__init__",
+        "load_dataset",
+        "__len__",
+        "__getitem__",
+        "__init__",
+        "__len__",
+        "__getitem__",
+        "__init__",
+        "__len__",
+        "__getitem__",
+        "__init__",
+        "__getitem__",
+        "__len__",
+        "__init__",
+        "__getitem__",
+        "__len__"
+      ],
+      "classes": [
+        "MVTecDataset",
+        "MVTecDatasetOOD",
+        "MNIST_M",
+        "PACSDataset",
+        "AugMixDatasetMVTec",
+        "AugMixDatasetPACS"
+      ],
+      "relevant_lines": [
+        "from torchvision import transforms",
+        "def get_data_transforms(size, isize):",
+        "data_transforms = transforms.Compose([",
+        "transforms.Resize((size, size)),",
+        "transforms.ToTensor(),",
+        "transforms.CenterCrop(isize),",
+        "transforms.Normalize(mean=mean_train,",
+        "gt_transforms = transforms.Compose([",
+        "transforms.Resize((size, size)),",
+        "transforms.CenterCrop(isize),",
+        "transforms.ToTensor()])",
+        "return data_transforms, gt_transforms",
+        "def get_data_transforms_augmix(size, isize):",
+        "data_transforms = transforms.Compose([",
+        "transforms.AugMix(severity=10, all_ops=False),",
+        "transforms.Resize((size, size)),",
+        "transforms.ToTensor(),",
+        "transforms.CenterCrop(isize),",
+        "transforms.Normalize(mean=mean_train,",
+        "gt_transforms = transforms.Compose([",
+        "transforms.Resize((size, size)),",
+        "transforms.CenterCrop(isize),",
+        "transforms.ToTensor()])",
+        "return data_transforms, gt_transforms",
+        "class MVTecDataset(torch.utils.data.Dataset):",
+        "def __init__(self, root, transform, gt_transform, phase):",
+        "self.transform = transform",
+        "self.gt_transform = gt_transform",
+        "self.img_paths, self.gt_paths, self.labels, self.types = self.load_dataset()  # self.labels => good : 0, anomaly : 1",
+        "def load_dataset(self):",
+        "def __len__(self):",
+        "def __getitem__(self, idx):",
+        "img = self.transform(img)",
+        "gt = self.gt_transform(gt)",
+        "class MVTecDatasetOOD(torch.utils.data.Dataset):"
+      ]
+    }
+  ],
+  "warnings": []
+}

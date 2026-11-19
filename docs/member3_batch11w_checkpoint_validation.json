@@ -1,0 +1,762 @@
+{
+  "batch": "11W",
+  "timestamp": "2026-11-19T07:17:45.648835",
+  "device": "cuda",
+  "total_categories": 15,
+  "completed": 15,
+  "failed": 0,
+  "all_passed": true,
+  "results": [
+    {
+      "category": "bottle",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+      "epoch": 4,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "cable",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/cable_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "capsule",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/capsule_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "carpet",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/carpet_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "grid",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/grid_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "hazelnut",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/hazelnut_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "leather",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/leather_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "metal_nut",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/metal_nut_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "pill",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/pill_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "screw",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/screw_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "tile",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/tile_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "toothbrush",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/toothbrush_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "transistor",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/transistor_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "wood",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/wood_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    },
+    {
+      "category": "zipper",
+      "status": "PASS",
+      "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/zipper_full/latest.pth",
+      "epoch": 20,
+      "teacher_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "student_shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ],
+        [
+          1,
+          512,
+          32,
+          32
+        ],
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "bn_architecture": "custom BN_layer",
+      "strict_bn_load": true,
+      "strict_decoder_load": true,
+      "finite_outputs": true
+    }
+  ],
+  "failures": []
+}

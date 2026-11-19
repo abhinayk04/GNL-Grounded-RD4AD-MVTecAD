@@ -1,0 +1,1112 @@
+{
+  "experiment": "Batch 11M storage-safe real-image validation",
+  "category": "bottle",
+  "checkpoint_epoch": 4,
+  "reference": "/kaggle/working/mvtec_dataset/bottle/train/good/097.png",
+  "feature_order": [
+    "A",
+    "B",
+    "C"
+  ],
+  "efdm_levels": [
+    "A",
+    "B"
+  ],
+  "lambda": 0.5,
+  "gaussian_sigma": 4,
+  "image_count": 83,
+  "feature_changed_image_counts_A_B_C": [
+    83,
+    83,
+    83
+  ],
+  "metrics": {
+    "baseline_image_auroc": 0.9936507936507936,
+    "efdm_gnl_image_auroc": 0.9936507936507936,
+    "baseline_pixel_auroc": 0.9828554693563979,
+    "efdm_gnl_pixel_auroc": 0.982160878853925
+  },
+  "all_maps_finite": true,
+  "per_image": [
+    {
+      "image": "000.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.375846028327942,
+      "efdm_score": 1.3390843868255615,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "001.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.3787431716918945,
+      "efdm_score": 1.334328532218933,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "002.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.3804597854614258,
+      "efdm_score": 1.3732138872146606,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "003.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.4043399095535278,
+      "efdm_score": 1.3773200511932373,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "004.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.4530706405639648,
+      "efdm_score": 1.3988314867019653,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "005.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.428528070449829,
+      "efdm_score": 1.3862111568450928,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "006.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.4871387481689453,
+      "efdm_score": 1.433099389076233,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "007.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.2713258266448975,
+      "efdm_score": 1.246582269668579,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "008.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.3876519203186035,
+      "efdm_score": 1.3378849029541016,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "009.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.3060312271118164,
+      "efdm_score": 1.2689300775527954,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "010.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.3823028802871704,
+      "efdm_score": 1.3549234867095947,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "011.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.3229625225067139,
+      "efdm_score": 1.2688060998916626,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "012.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.4558122158050537,
+      "efdm_score": 1.4011280536651611,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "013.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.2423981428146362,
+      "efdm_score": 1.2024822235107422,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "014.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.4076980352401733,
+      "efdm_score": 1.349209189414978,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "015.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.4771140813827515,
+      "efdm_score": 1.4266631603240967,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "016.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.3858822584152222,
+      "efdm_score": 1.3217885494232178,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "017.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.496475338935852,
+      "efdm_score": 1.4405100345611572,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "018.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.326096534729004,
+      "efdm_score": 1.2928094863891602,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "019.png",
+      "defect": "broken_large",
+      "label": 1,
+      "baseline_score": 1.246448040008545,
+      "efdm_score": 1.1999051570892334,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "000.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.2110706567764282,
+      "efdm_score": 1.1625196933746338,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "001.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.442478895187378,
+      "efdm_score": 1.3872604370117188,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "002.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.3603073358535767,
+      "efdm_score": 1.3117464780807495,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "003.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.4317584037780762,
+      "efdm_score": 1.3671563863754272,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "004.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.5595427751541138,
+      "efdm_score": 1.5013338327407837,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "005.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.197034239768982,
+      "efdm_score": 1.1547205448150635,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "006.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.38295316696167,
+      "efdm_score": 1.338309407234192,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "007.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.23811674118042,
+      "efdm_score": 1.1871458292007446,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "008.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.2330061197280884,
+      "efdm_score": 1.1801897287368774,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "009.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.4028781652450562,
+      "efdm_score": 1.3611940145492554,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "010.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.391158103942871,
+      "efdm_score": 1.34058678150177,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "011.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.39357590675354,
+      "efdm_score": 1.3499987125396729,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "012.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.483211874961853,
+      "efdm_score": 1.4185949563980103,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "013.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.291351318359375,
+      "efdm_score": 1.268571376800537,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "014.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.3554521799087524,
+      "efdm_score": 1.3202686309814453,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "015.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.2110302448272705,
+      "efdm_score": 1.1639503240585327,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "016.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.3196529150009155,
+      "efdm_score": 1.2864174842834473,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "017.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.501106858253479,
+      "efdm_score": 1.4476451873779297,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "018.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.5072368383407593,
+      "efdm_score": 1.447231411933899,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "019.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.4347405433654785,
+      "efdm_score": 1.3911834955215454,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "020.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.4976887702941895,
+      "efdm_score": 1.4519604444503784,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "021.png",
+      "defect": "broken_small",
+      "label": 1,
+      "baseline_score": 1.4216796159744263,
+      "efdm_score": 1.3761992454528809,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "000.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.1486105918884277,
+      "efdm_score": 1.1391767263412476,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "001.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.172326922416687,
+      "efdm_score": 1.1718710660934448,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "002.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.0701922178268433,
+      "efdm_score": 1.0384141206741333,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "003.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 0.9264643788337708,
+      "efdm_score": 0.8946008682250977,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "004.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 0.9971537590026855,
+      "efdm_score": 0.9660794734954834,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "005.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.3177522420883179,
+      "efdm_score": 1.240592360496521,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "006.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.1606779098510742,
+      "efdm_score": 1.115877628326416,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "007.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.685251235961914,
+      "efdm_score": 1.6277141571044922,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "008.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.252069115638733,
+      "efdm_score": 1.22449791431427,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "009.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.1720354557037354,
+      "efdm_score": 1.1326271295547485,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "010.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.229746699333191,
+      "efdm_score": 1.2076478004455566,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "011.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.017892599105835,
+      "efdm_score": 0.96624755859375,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "012.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 0.7316765189170837,
+      "efdm_score": 0.7062769532203674,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "013.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.495477318763733,
+      "efdm_score": 1.4779685735702515,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "014.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.3220839500427246,
+      "efdm_score": 1.2542941570281982,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "015.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.26999032497406,
+      "efdm_score": 1.2368346452713013,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "016.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 0.9825955033302307,
+      "efdm_score": 0.9338594675064087,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "017.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.5440258979797363,
+      "efdm_score": 1.5094395875930786,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "018.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 1.5526602268218994,
+      "efdm_score": 1.4805470705032349,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "019.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 0.9892697930335999,
+      "efdm_score": 0.9595332145690918,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "020.png",
+      "defect": "contamination",
+      "label": 1,
+      "baseline_score": 0.8085400462150574,
+      "efdm_score": 0.7823926210403442,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "000.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.6681499481201172,
+      "efdm_score": 0.6527962684631348,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "001.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.7226384282112122,
+      "efdm_score": 0.7043747901916504,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "002.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.7866899371147156,
+      "efdm_score": 0.7671093344688416,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "003.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.6551262140274048,
+      "efdm_score": 0.645276665687561,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "004.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.6659892201423645,
+      "efdm_score": 0.6498302221298218,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "005.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.6476002335548401,
+      "efdm_score": 0.6293402314186096,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "006.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.8315444588661194,
+      "efdm_score": 0.8003479242324829,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "007.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.740100085735321,
+      "efdm_score": 0.7242027521133423,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "008.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.7267709374427795,
+      "efdm_score": 0.7015986442565918,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "009.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.7653654217720032,
+      "efdm_score": 0.7349026203155518,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "010.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.8239114880561829,
+      "efdm_score": 0.8098096251487732,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "011.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.6445662975311279,
+      "efdm_score": 0.6366310715675354,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "012.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.7029629349708557,
+      "efdm_score": 0.6879346370697021,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "013.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.6614334583282471,
+      "efdm_score": 0.6411026120185852,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "014.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.6716222167015076,
+      "efdm_score": 0.6537705659866333,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "015.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.7421203255653381,
+      "efdm_score": 0.7199727892875671,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "016.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.7086408734321594,
+      "efdm_score": 0.6860160231590271,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "017.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.6675557494163513,
+      "efdm_score": 0.6529122591018677,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "018.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.71041339635849,
+      "efdm_score": 0.6916112303733826,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    },
+    {
+      "image": "019.png",
+      "defect": "good",
+      "label": 0,
+      "baseline_score": 0.7093878388404846,
+      "efdm_score": 0.6847923994064331,
+      "feature_changed_A_B_C": [
+        true,
+        true,
+        true
+      ],
+      "maps_finite": true
+    }
+  ],
+  "individual_maps_saved": false
+}

@@ -1,0 +1,11 @@
+{
+  "batch": "11F",
+  "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+  "category": "bottle",
+  "epoch": 4,
+  "encoder_initialization": "pretrained=True",
+  "bn_strict_loading": true,
+  "decoder_strict_loading": true,
+  "forward_status": "PASSED",
+  "device": "cuda"
+}

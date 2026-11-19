@@ -1,0 +1,10 @@
+{
+  "batch": "11Q",
+  "metric_definitions": [],
+  "metric_imports": [],
+  "ground_truth_mask_locations": [],
+  "evaluation_files": [
+    "experiments/gnl/infer_gnl_category_id.py",
+    "experiments/gnl/infer_gnl_bottle_id.py"
+  ]
+}

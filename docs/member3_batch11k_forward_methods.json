@@ -1,0 +1,113 @@
+{
+  "original_efdm": [
+    {
+      "name": "EFDM_test",
+      "start": 171,
+      "end": 195
+    },
+    {
+      "name": "ResNet",
+      "start": 198,
+      "end": 334
+    },
+    {
+      "name": "_resnet",
+      "start": 337,
+      "end": 353
+    },
+    {
+      "name": "resnet18",
+      "start": 549,
+      "end": 557
+    },
+    {
+      "name": "resnet34",
+      "start": 560,
+      "end": 568
+    },
+    {
+      "name": "resnet50",
+      "start": 571,
+      "end": 579
+    },
+    {
+      "name": "wide_resnet50_2",
+      "start": 583,
+      "end": 596
+    },
+    {
+      "name": "forward",
+      "start": 69,
+      "end": 85
+    },
+    {
+      "name": "_forward_impl",
+      "start": 284,
+      "end": 331
+    }
+  ],
+  "gnl_encoder": [
+    {
+      "name": "ResNet",
+      "start": 146,
+      "end": 247
+    },
+    {
+      "name": "_resnet",
+      "start": 250,
+      "end": 266
+    },
+    {
+      "name": "resnet18",
+      "start": 462,
+      "end": 470
+    },
+    {
+      "name": "resnet34",
+      "start": 473,
+      "end": 481
+    },
+    {
+      "name": "resnet50",
+      "start": 484,
+      "end": 492
+    },
+    {
+      "name": "wide_resnet50_2",
+      "start": 496,
+      "end": 509
+    },
+    {
+      "name": "forward",
+      "start": 69,
+      "end": 85
+    },
+    {
+      "name": "_forward_impl",
+      "start": 232,
+      "end": 244
+    }
+  ],
+  "gnl_decoder": [
+    {
+      "name": "de_wide_resnet50_2",
+      "start": 366,
+      "end": 379
+    },
+    {
+      "name": "de_wide_resnet101_2",
+      "start": 382,
+      "end": 395
+    },
+    {
+      "name": "forward",
+      "start": 78,
+      "end": 94
+    },
+    {
+      "name": "_forward_impl",
+      "start": 244,
+      "end": 260
+    }
+  ]
+}

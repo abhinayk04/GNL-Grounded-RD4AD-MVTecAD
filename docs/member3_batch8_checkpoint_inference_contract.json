@@ -1,0 +1,492 @@
+{
+  "batch": "member3_batch8",
+  "source_files": {
+    "/kaggle/working/project_clean/experiments/gnl/infer_gnl_category_id.py": {
+      "exists": true,
+      "bytes": 6378,
+      "sha256": "e5e37b4d37cb10e080add1f2f19e6b004e87178a98ddb10e5c5dcbfd00c151a5"
+    },
+    "/kaggle/working/project_clean/experiments/gnl/infer_gnl_bottle_id.py": {
+      "exists": true,
+      "bytes": 6654,
+      "sha256": "c03eebf5730676b591fe8548f244864c4c9752330a1d01792ec814012ed0128d"
+    },
+    "/kaggle/working/project_clean/experiments/gnl/train_gnl_category.py": {
+      "exists": true,
+      "bytes": 11296,
+      "sha256": "041b12d126db2c8e0368529dcb7846ad41ba7ac47e8c2f42e0840be1cb0e2c1a"
+    },
+    "/kaggle/working/project_clean/experiments/gnl/train_gnl_bottle.py": {
+      "exists": true,
+      "bytes": 8683,
+      "sha256": "fe50f316540a23db28879f24a671e6c57cfbb2e609b97fe0757d96f7fd86434a"
+    },
+    "/kaggle/working/project_clean/experiments/gnl/resnet.py": {
+      "exists": true,
+      "bytes": 19790,
+      "sha256": "547a31bf9d8d84dde28ebf5f0fc91eb6e9c0349db4fe0170efa6bd658ab15d25"
+    },
+    "/kaggle/working/project_clean/experiments/gnl/de_resnet.py": {
+      "exists": true,
+      "bytes": 16410,
+      "sha256": "853c920d0af6b80b785c852e9ec667b02761017c059c63d1eb7d4fc4f3be9712"
+    },
+    "/kaggle/working/project_clean/pca_method/inference_pca_gating.py": {
+      "exists": true,
+      "bytes": 1102,
+      "sha256": "a6766c4c0170e7b3b8507f37745bb7542898894ea51eb0467f65a8217427d232"
+    },
+    "/kaggle/working/project_clean/pca_method/integration_interface.py": {
+      "exists": true,
+      "bytes": 1502,
+      "sha256": "581e5b3b64cedfc16f0716adc51977edf881215813e672009ebf1e49f2df8ab4"
+    }
+  },
+  "checkpoints": [
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/hazelnut_full/latest.pth",
+      "bytes": 1039728144
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/screw_full/latest.pth",
+      "bytes": 1039728144
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/cable_full/latest.pth",
+      "bytes": 1039728144
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/grid_full/latest.pth",
+      "bytes": 369163921
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/wood_full/latest.pth",
+      "bytes": 369163921
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/metal_nut_full/latest.pth",
+      "bytes": 1039728208
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/carpet_full/latest.pth",
+      "bytes": 369163921
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/toothbrush_full/latest.pth",
+      "bytes": 1039728208
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/zipper_full/latest.pth",
+      "bytes": 369163921
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+      "bytes": 1039728208
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/leather_full/latest.pth",
+      "bytes": 369163985
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/pill_full/latest.pth",
+      "bytes": 1039728144
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/tile_full/latest.pth",
+      "bytes": 369163921
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/capsule_full/latest.pth",
+      "bytes": 1039728144
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/transistor_full/latest.pth",
+      "bytes": 1039730000
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/tile/level1/tile.pth",
+      "bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/tile/level3/tile.pth",
+      "bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/tile/level2/tile.pth",
+      "bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/zipper/level1/zipper.pth",
+      "bytes": 18648
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/zipper/level3/zipper.pth",
+      "bytes": 67800
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/zipper/level2/zipper.pth",
+      "bytes": 35032
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/hazelnut/level1/hazelnut.pth",
+      "bytes": 18858
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/hazelnut/level3/hazelnut.pth",
+      "bytes": 68010
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/hazelnut/level2/hazelnut.pth",
+      "bytes": 35242
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/toothbrush/level1/toothbrush.pth",
+      "bytes": 18940
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/toothbrush/level3/toothbrush.pth",
+      "bytes": 68028
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/toothbrush/level2/toothbrush.pth",
+      "bytes": 35260
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/capsule/level1/capsule.pth",
+      "bytes": 18721
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/capsule/level3/capsule.pth",
+      "bytes": 67873
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/capsule/level2/capsule.pth",
+      "bytes": 35105
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/screw/level1/screw.pth",
+      "bytes": 18639
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/screw/level3/screw.pth",
+      "bytes": 67791
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/screw/level2/screw.pth",
+      "bytes": 35023
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/wood/level1/wood.pth",
+      "bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/wood/level3/wood.pth",
+      "bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/wood/level2/wood.pth",
+      "bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/pill/level1/pill.pth",
+      "bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/pill/level3/pill.pth",
+      "bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/pill/level2/pill.pth",
+      "bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level1/grid.pth",
+      "bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level3/grid.pth",
+      "bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level2/grid.pth",
+      "bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/carpet/level1/carpet.pth",
+      "bytes": 18648
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/carpet/level3/carpet.pth",
+      "bytes": 67800
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/carpet/level2/carpet.pth",
+      "bytes": 35032
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/cable/level1/cable.pth",
+      "bytes": 18575
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/cable/level3/cable.pth",
+      "bytes": 67727
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/cable/level2/cable.pth",
+      "bytes": 34959
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/leather/level1/leather.pth",
+      "bytes": 18721
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/leather/level3/leather.pth",
+      "bytes": 67873
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/leather/level2/leather.pth",
+      "bytes": 35105
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level1/bottle.pth",
+      "bytes": 18584
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level3/bottle.pth",
+      "bytes": 67736
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level2/bottle.pth",
+      "bytes": 34968
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/metal_nut/level1/metal_nut.pth",
+      "bytes": 18867
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/metal_nut/level3/metal_nut.pth",
+      "bytes": 68019
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/metal_nut/level2/metal_nut.pth",
+      "bytes": 35251
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/transistor/level1/transistor.pth",
+      "bytes": 18940
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/transistor/level3/transistor.pth",
+      "bytes": 68028
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/transistor/level2/transistor.pth",
+      "bytes": 35324
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/tile/level1/tile.pth",
+      "bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/tile/level3/tile.pth",
+      "bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/tile/level2/tile.pth",
+      "bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/zipper/level1/zipper.pth",
+      "bytes": 18648
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/zipper/level3/zipper.pth",
+      "bytes": 67800
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/zipper/level2/zipper.pth",
+      "bytes": 35032
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/hazelnut/level1/hazelnut.pth",
+      "bytes": 18858
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/hazelnut/level3/hazelnut.pth",
+      "bytes": 68010
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/hazelnut/level2/hazelnut.pth",
+      "bytes": 35242
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/toothbrush/level1/toothbrush.pth",
+      "bytes": 18940
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/toothbrush/level3/toothbrush.pth",
+      "bytes": 68028
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/toothbrush/level2/toothbrush.pth",
+      "bytes": 35260
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/capsule/level1/capsule.pth",
+      "bytes": 18721
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/capsule/level3/capsule.pth",
+      "bytes": 67873
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/capsule/level2/capsule.pth",
+      "bytes": 35105
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/screw/level1/screw.pth",
+      "bytes": 18639
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/screw/level3/screw.pth",
+      "bytes": 67791
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/screw/level2/screw.pth",
+      "bytes": 35023
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/wood/level1/wood.pth",
+      "bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/wood/level3/wood.pth",
+      "bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/wood/level2/wood.pth",
+      "bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/pill/level1/pill.pth",
+      "bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/pill/level3/pill.pth",
+      "bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/pill/level2/pill.pth",
+      "bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level1/grid.pth",
+      "bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level3/grid.pth",
+      "bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level2/grid.pth",
+      "bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/carpet/level1/carpet.pth",
+      "bytes": 18648
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/carpet/level3/carpet.pth",
+      "bytes": 67800
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/carpet/level2/carpet.pth",
+      "bytes": 35032
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/cable/level1/cable.pth",
+      "bytes": 18575
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/cable/level3/cable.pth",
+      "bytes": 67727
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/cable/level2/cable.pth",
+      "bytes": 34959
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/leather/level1/leather.pth",
+      "bytes": 18721
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/leather/level3/leather.pth",
+      "bytes": 67873
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/leather/level2/leather.pth",
+      "bytes": 35105
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level1/bottle.pth",
+      "bytes": 18584
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level3/bottle.pth",
+      "bytes": 67736
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level2/bottle.pth",
+      "bytes": 34968
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/metal_nut/level1/metal_nut.pth",
+      "bytes": 18867
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/metal_nut/level3/metal_nut.pth",
+      "bytes": 68019
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/metal_nut/level2/metal_nut.pth",
+      "bytes": 35251
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/transistor/level1/transistor.pth",
+      "bytes": 18940
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/transistor/level3/transistor.pth",
+      "bytes": 68028
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/transistor/level2/transistor.pth",
+      "bytes": 35324
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/cable/level1/cable.pth",
+      "bytes": 18447
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/cable/level3/cable.pth",
+      "bytes": 67599
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/cable/level2/cable.pth",
+      "bytes": 34831
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level1/bottle.pth",
+      "bytes": 18456
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level3/bottle.pth",
+      "bytes": 67608
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level2/bottle.pth",
+      "bytes": 34840
+    }
+  ],
+  "errors": []
+}

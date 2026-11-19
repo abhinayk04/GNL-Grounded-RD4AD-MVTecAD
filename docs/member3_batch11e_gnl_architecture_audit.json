@@ -1,0 +1,28 @@
+{
+  "batch": "11E",
+  "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+  "category": "bottle",
+  "epoch": 4,
+  "config": {
+    "dataset_root": "/content/mvtec_dataset/bottle",
+    "epochs": 20,
+    "batch_size": 16,
+    "learning_rate": 0.005,
+    "num_workers": 2,
+    "seed": 42,
+    "max_batches": 0,
+    "checkpoint_dir": "/content/drive/MyDrive/GNL_Project_Backup/checkpoints/bottle_full",
+    "results_dir": "/content/drive/MyDrive/GNL_Project_Backup/results/bottle_full"
+  },
+  "bn_key_count": 84,
+  "decoder_key_count": 252,
+  "encoder_related_top_level_keys": [],
+  "source_files_with_architecture_references": [
+    "/kaggle/working/project_clean/experiments/gnl/de_resnet.py",
+    "/kaggle/working/project_clean/experiments/gnl/infer_gnl_bottle_id.py",
+    "/kaggle/working/project_clean/experiments/gnl/infer_gnl_category_id.py",
+    "/kaggle/working/project_clean/experiments/gnl/resnet.py",
+    "/kaggle/working/project_clean/experiments/gnl/train_gnl_bottle.py",
+    "/kaggle/working/project_clean/experiments/gnl/train_gnl_category.py"
+  ]
+}

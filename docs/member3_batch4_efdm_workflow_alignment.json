@@ -1,0 +1,763 @@
+{
+  "batch": "member3_batch4",
+  "source": "/kaggle/working/ADShift-GNL-working/resnet_TTA.py",
+  "source_sha256": "caece495500f2400aaad1c30a20bdd8bd668bd85f10283a8a86441127c164450",
+  "efdm_calls": [
+    {
+      "line": 171,
+      "excerpt": "0166: \n0167:     new_input_x = x_normed * sig_mix + mu_mix\n0168: \n0169:     return new_input_x\n0170: \n0171: def EFDM_test(input_image, normal_image, lamda = 0.5):\n0172: \n0173:     lamda = 1-lamda\n0174:     input_x = input_image\n0175: \n0176: \n0177:     normal_x = normal_image\n0178: \n0179: \n0180:     B, C, W, H = input_x.size(0), input_x.size(1), input_x.size(2), input_x.size(3)\n0181: \n0182: \n0183:     input_x_view = input_x.view(B, C, -1)\n0184:     normal_x_view = normal_x.view(B, C, -1)\n0185: \n0186:     value_input_x, index_input_x = torch.sort(input_x_view)\n0187:     value_normal_x, index_normal_x = torch.sort(normal_x_view)\n0188:     new_input_x = value_input_x + (value_normal_x - value_input_x) * lamda\n0189:     inverse_index = index_input_x.argsort(-1)\n0190:     new_input_x = new_input_x.gather(-1, inverse_index)\n0191:     new_input_x = new_input_x.view(B, C, W, H)\n0192:     new_input_x = new_input_x.cpu().detach().numpy()\n0193:     new_input_x = torch.from_numpy(new_input_x)\n0194: "
+    },
+    {
+      "line": 301,
+      "excerpt": "0296:         original = self.maxpool(original)\n0297: \n0298:         feature_a = self.layer1(x)\n0299:         feature_a_original = self.layer1(original)\n0300: \n0301:         if type_of_test == \"EFDM_test\":\n0302:             feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)\n0303:             feature_a = feature_a.to('cuda')\n0304:         elif type_of_test == \"mixstyle\":\n0305:             feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)\n0306:         if type_of_test == \"both\":\n0307:             feature_a_EFDM = EFDM_test(feature_a, feature_a_original)\n0308:             feature_a_EFDM = feature_a_EFDM.to('cuda')\n0309:             feature_a_mixstyle = mixstyle_test(feature_a, feature_a_original)\n0310:             feature_a = (feature_a_EFDM + feature_a_mixstyle)/2\n0311: \n0312: \n0313:         feature_b = self.layer2(feature_a)\n0314:         feature_b_original = self.layer2(feature_a_original)\n0315:         if type_of_test == \"EFDM_test\":\n0316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\n0317:             feature_b = feature_b.to('cuda')\n0318:         elif type_of_test == \"mixstyle\":\n0319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\n0320:         elif type_of_test == \"both\":\n0321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)\n0322:             feature_b_EFDM = feature_b_EFDM.to('cuda')\n0323:             feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)\n0324:             feature_b = (feature_b_EFDM + feature_b_mixstyle)/2"
+    },
+    {
+      "line": 302,
+      "excerpt": "0297: \n0298:         feature_a = self.layer1(x)\n0299:         feature_a_original = self.layer1(original)\n0300: \n0301:         if type_of_test == \"EFDM_test\":\n0302:             feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)\n0303:             feature_a = feature_a.to('cuda')\n0304:         elif type_of_test == \"mixstyle\":\n0305:             feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)\n0306:         if type_of_test == \"both\":\n0307:             feature_a_EFDM = EFDM_test(feature_a, feature_a_original)\n0308:             feature_a_EFDM = feature_a_EFDM.to('cuda')\n0309:             feature_a_mixstyle = mixstyle_test(feature_a, feature_a_original)\n0310:             feature_a = (feature_a_EFDM + feature_a_mixstyle)/2\n0311: \n0312: \n0313:         feature_b = self.layer2(feature_a)\n0314:         feature_b_original = self.layer2(feature_a_original)\n0315:         if type_of_test == \"EFDM_test\":\n0316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\n0317:             feature_b = feature_b.to('cuda')\n0318:         elif type_of_test == \"mixstyle\":\n0319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\n0320:         elif type_of_test == \"both\":\n0321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)\n0322:             feature_b_EFDM = feature_b_EFDM.to('cuda')\n0323:             feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)\n0324:             feature_b = (feature_b_EFDM + feature_b_mixstyle)/2\n0325: "
+    },
+    {
+      "line": 307,
+      "excerpt": "0302:             feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)\n0303:             feature_a = feature_a.to('cuda')\n0304:         elif type_of_test == \"mixstyle\":\n0305:             feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)\n0306:         if type_of_test == \"both\":\n0307:             feature_a_EFDM = EFDM_test(feature_a, feature_a_original)\n0308:             feature_a_EFDM = feature_a_EFDM.to('cuda')\n0309:             feature_a_mixstyle = mixstyle_test(feature_a, feature_a_original)\n0310:             feature_a = (feature_a_EFDM + feature_a_mixstyle)/2\n0311: \n0312: \n0313:         feature_b = self.layer2(feature_a)\n0314:         feature_b_original = self.layer2(feature_a_original)\n0315:         if type_of_test == \"EFDM_test\":\n0316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\n0317:             feature_b = feature_b.to('cuda')\n0318:         elif type_of_test == \"mixstyle\":\n0319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\n0320:         elif type_of_test == \"both\":\n0321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)\n0322:             feature_b_EFDM = feature_b_EFDM.to('cuda')\n0323:             feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)\n0324:             feature_b = (feature_b_EFDM + feature_b_mixstyle)/2\n0325: \n0326:         feature_c = self.layer3(feature_b)\n0327:         feature_c_original = self.layer3(feature_b_original)\n0328: \n0329:         feature_d = self.layer4(feature_c)\n0330: "
+    },
+    {
+      "line": 315,
+      "excerpt": "0310:             feature_a = (feature_a_EFDM + feature_a_mixstyle)/2\n0311: \n0312: \n0313:         feature_b = self.layer2(feature_a)\n0314:         feature_b_original = self.layer2(feature_a_original)\n0315:         if type_of_test == \"EFDM_test\":\n0316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\n0317:             feature_b = feature_b.to('cuda')\n0318:         elif type_of_test == \"mixstyle\":\n0319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\n0320:         elif type_of_test == \"both\":\n0321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)\n0322:             feature_b_EFDM = feature_b_EFDM.to('cuda')\n0323:             feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)\n0324:             feature_b = (feature_b_EFDM + feature_b_mixstyle)/2\n0325: \n0326:         feature_c = self.layer3(feature_b)\n0327:         feature_c_original = self.layer3(feature_b_original)\n0328: \n0329:         feature_d = self.layer4(feature_c)\n0330: \n0331:         return [feature_a, feature_b, feature_c]\n0332: \n0333:     def forward(self, x: Tensor, original, type_of_test, lamda=0.5) -> Tensor:\n0334:         return self._forward_impl(x, original, type_of_test, lamda=lamda)\n0335: \n0336: \n0337: def _resnet(\n0338:         arch: str,"
+    },
+    {
+      "line": 316,
+      "excerpt": "0311: \n0312: \n0313:         feature_b = self.layer2(feature_a)\n0314:         feature_b_original = self.layer2(feature_a_original)\n0315:         if type_of_test == \"EFDM_test\":\n0316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\n0317:             feature_b = feature_b.to('cuda')\n0318:         elif type_of_test == \"mixstyle\":\n0319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\n0320:         elif type_of_test == \"both\":\n0321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)\n0322:             feature_b_EFDM = feature_b_EFDM.to('cuda')\n0323:             feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)\n0324:             feature_b = (feature_b_EFDM + feature_b_mixstyle)/2\n0325: \n0326:         feature_c = self.layer3(feature_b)\n0327:         feature_c_original = self.layer3(feature_b_original)\n0328: \n0329:         feature_d = self.layer4(feature_c)\n0330: \n0331:         return [feature_a, feature_b, feature_c]\n0332: \n0333:     def forward(self, x: Tensor, original, type_of_test, lamda=0.5) -> Tensor:\n0334:         return self._forward_impl(x, original, type_of_test, lamda=lamda)\n0335: \n0336: \n0337: def _resnet(\n0338:         arch: str,\n0339:         block: Type[Union[BasicBlock, Bottleneck]],"
+    },
+    {
+      "line": 321,
+      "excerpt": "0316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)\n0317:             feature_b = feature_b.to('cuda')\n0318:         elif type_of_test == \"mixstyle\":\n0319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)\n0320:         elif type_of_test == \"both\":\n0321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)\n0322:             feature_b_EFDM = feature_b_EFDM.to('cuda')\n0323:             feature_b_mixstyle = mixstyle_test(feature_b, feature_b_original)\n0324:             feature_b = (feature_b_EFDM + feature_b_mixstyle)/2\n0325: \n0326:         feature_c = self.layer3(feature_b)\n0327:         feature_c_original = self.layer3(feature_b_original)\n0328: \n0329:         feature_d = self.layer4(feature_c)\n0330: \n0331:         return [feature_a, feature_b, feature_c]\n0332: \n0333:     def forward(self, x: Tensor, original, type_of_test, lamda=0.5) -> Tensor:\n0334:         return self._forward_impl(x, original, type_of_test, lamda=lamda)\n0335: \n0336: \n0337: def _resnet(\n0338:         arch: str,\n0339:         block: Type[Union[BasicBlock, Bottleneck]],\n0340:         layers: List[int],\n0341:         pretrained: bool,\n0342:         progress: bool,\n0343:         **kwargs: Any\n0344: ) -> ResNet:"
+    }
+  ],
+  "workflow_hits": [
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/infer_gnl_category_id.py",
+      "matches": [
+        "49:     map_dir = os.path.join(args.output_dir, \"anomaly_maps\")"
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/test.py",
+      "matches": [
+        "52: def evaluation_ATTA(encoder, bn, decoder, dataloader,device, type_of_test, img_size, lamda=0.5, dataset_name='mnist', _class_=None):",
+        "63:         normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")",
+        "68:         normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")",
+        "84:         normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")",
+        "101:     normal_image = trans(normal_image)",
+        "102:     normal_image = torch.unsqueeze(normal_image, 0)",
+        "122:             normal_image = normal_image.to(device)",
+        "124:             inputs = encoder(img, normal_image, type_of_test, lamda=lamda)"
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/resnet_TTA.py",
+      "matches": [
+        "145: def mixstyle_test(input_image, normal_image, lamda = 0.5):",
+        "149:     normal_x = normal_image",
+        "171: def EFDM_test(input_image, normal_image, lamda = 0.5):",
+        "173:     lamda = 1-lamda",
+        "177:     normal_x = normal_image",
+        "284:     def _forward_impl(self, x: Tensor, original, type_of_test, lamda=0.5) -> Tensor:",
+        "301:         if type_of_test == \"EFDM_test\":",
+        "302:             feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)",
+        "304:         elif type_of_test == \"mixstyle\":",
+        "305:             feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)",
+        "306:         if type_of_test == \"both\":",
+        "307:             feature_a_EFDM = EFDM_test(feature_a, feature_a_original)",
+        "315:         if type_of_test == \"EFDM_test\":",
+        "316:             feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)",
+        "318:         elif type_of_test == \"mixstyle\":",
+        "319:             feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)",
+        "320:         elif type_of_test == \"both\":",
+        "321:             feature_b_EFDM = EFDM_test(feature_b, feature_b_original)",
+        "333:     def forward(self, x: Tensor, original, type_of_test, lamda=0.5) -> Tensor:",
+        "334:         return self._forward_impl(x, original, type_of_test, lamda=lamda)"
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/infer_gnl_bottle_id.py",
+      "matches": [
+        "63:     map_dir = os.path.join(args.output_dir, \"anomaly_maps\")"
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/inference_mvtec_ATTA.py",
+      "matches": [
+        "55:     lamda = 0.5",
+        "59:                                                type_of_test='EFDM_test',",
+        "60:                                                img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)",
+        "65:                                                type_of_test='EFDM_test',",
+        "66:                                                img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)",
+        "71:                                                type_of_test='EFDM_test',",
+        "72:                                                img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)",
+        "77:                                                type_of_test='EFDM_test',",
+        "78:                                                img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)",
+        "83:                                                type_of_test='EFDM_test',",
+        "84:                                                img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)"
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/inference_PACS_ATTA.py",
+      "matches": [
+        "70:     lamda = 0.5",
+        "74:                                                type_of_test='EFDM_test',",
+        "75:                                                img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)",
+        "80:                                                type_of_test='EFDM_test',",
+        "81:                                                img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)",
+        "86:                                                type_of_test='EFDM_test',",
+        "87:                                                img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)",
+        "92:                                                type_of_test='EFDM_test',",
+        "93:                                                img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb",
+      "matches": [
+        "1: {\"nbformat\":4,\"nbformat_minor\":0,\"metadata\":{\"colab\":{\"provenance\":[],\"gpuType\":\"T4\",\"authorship_tag\":\"ABX9TyNar8pDXpS1JCn9miIpr6zL\"},\"kernelspec\":{\"name\":\"python3\",\"display_name\":\"Python 3\"},\"language_info\":{\"name\":\"python\"},\"accelerator\":\"GPU\"},\"cells\":[{\"cell_type\":\"code\",\"execution_count\":1,\"met"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/recovered_scripts/infer_gnl_category_id.py",
+      "matches": [
+        "49:     map_dir = os.path.join(args.output_dir, \"anomaly_maps\")"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/recovered_scripts/infer_gnl_bottle_id.py",
+      "matches": [
+        "63:     map_dir = os.path.join(args.output_dir, \"anomaly_maps\")"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/evaluation_run_01/combined_results.json",
+      "matches": [
+        "9:             \"normal_images\": 20,",
+        "39:             \"normal_images\": 58,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/all_categories_run_01/combined_results.json",
+      "matches": [
+        "10:             \"normal_images\": 20,",
+        "40:             \"normal_images\": 58,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/evaluation_run_01/bottle/evaluation_results.json",
+      "matches": [
+        "5:     \"normal_images\": 20,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/evaluation_run_01/cable/evaluation_results.json",
+      "matches": [
+        "5:     \"normal_images\": 58,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/evaluation_results/combined_results.json",
+      "matches": [
+        "10:             \"normal_images\": 20,",
+        "40:             \"normal_images\": 58,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/evaluation_results/bottle_cable_detailed/combined_results.json",
+      "matches": [
+        "9:             \"normal_images\": 20,",
+        "39:             \"normal_images\": 58,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/evaluation_results/bottle_cable_detailed/bottle/evaluation_results.json",
+      "matches": [
+        "5:     \"normal_images\": 20,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/evaluation_results/bottle_cable_detailed/cable/evaluation_results.json",
+      "matches": [
+        "5:     \"normal_images\": 58,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json",
+      "matches": [
+        "5:     \"normal_images\": 20,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/implementation_candidates/GNL_Baseline_recovery.ipynb",
+      "matches": [
+        "1: {\"nbformat\":4,\"nbformat_minor\":0,\"metadata\":{\"colab\":{\"provenance\":[],\"gpuType\":\"T4\",\"authorship_tag\":\"ABX9TyNar8pDXpS1JCn9miIpr6zL\"},\"kernelspec\":{\"name\":\"python3\",\"display_name\":\"Python 3\"},\"language_info\":{\"name\":\"python\"},\"accelerator\":\"GPU\"},\"cells\":[{\"cell_type\":\"code\",\"execution_count\":1,\"met"
+      ]
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/bottle_efdm_evaluation.json",
+      "matches": [
+        "5:     \"normal_images\": 20,"
+      ]
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_RECOVERY_MANIFEST.json",
+      "matches": [
+        "37:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\",",
+        "38:       \"name\": \"transistor_efdm_anomaly_maps.npy\",",
+        "49:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\",",
+        "50:       \"name\": \"leather_efdm_anomaly_maps.npy\",",
+        "55:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\",",
+        "56:       \"name\": \"grid_efdm_anomaly_maps.npy\",",
+        "61:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\",",
+        "62:       \"name\": \"grid_efdm_evaluation.json\",",
+        "73:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy\",",
+        "74:       \"name\": \"capsule_efdm_anomaly_maps.npy\",",
+        "85:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy\",",
+        "86:       \"name\": \"tile_efdm_anomaly_maps.npy\",",
+        "97:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy\",",
+        "98:       \"name\": \"metal_nut_efdm_anomaly_maps.npy\",",
+        "109:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy\",",
+        "110:       \"name\": \"hazelnut_efdm_anomaly_maps.npy\",",
+        "115:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy\",",
+        "116:       \"name\": \"cable_efdm_anomaly_maps.npy\",",
+        "127:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy\",",
+        "128:       \"name\": \"bottle_efdm_anomaly_maps.npy\",",
+        "145:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy\",",
+        "146:       \"name\": \"screw_efdm_anomaly_maps.npy\",",
+        "151:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy\",",
+        "152:       \"name\": \"zipper_efdm_anomaly_maps.npy\",",
+        "163:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy\",",
+        "164:       \"name\": \"wood_efdm_anomaly_maps.npy\",",
+        "181:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy\",",
+        "182:       \"name\": \"pill_efdm_anomaly_maps.npy\",",
+        "193:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy\",",
+        "194:       \"name\": \"toothbrush_efdm_anomaly_maps.npy\",",
+        "205:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_anomaly_maps.npy\",",
+        "206:       \"name\": \"carpet_efdm_anomaly_maps.npy\",",
+        "254:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy\",",
+        "266:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy\",",
+        "272:       \"path\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy\","
+      ]
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_METHODOLOGY_RECOVERY.txt",
+      "matches": [
+        "11: /kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy",
+        "13: /kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy",
+        "14: /kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy",
+        "15: /kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json",
+        "17: /kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy",
+        "19: /kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy",
+        "21: /kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy",
+        "23: /kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy",
+        "24: /kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy",
+        "26: /kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy",
+        "29: /kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy",
+        "30: /kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy",
+        "32: /kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy",
+        "35: /kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy",
+        "37: /kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy",
+        "39: /kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_anomaly_maps.npy",
+        "50: /kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy",
+        "52: /kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy",
+        "53: /kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy",
+        "54: /kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json",
+        "56: /kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy",
+        "58: /kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy",
+        "60: /kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy",
+        "62: /kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy",
+        "63: /kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy",
+        "65: /kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy",
+        "68: /kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy",
+        "69: /kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy",
+        "71: /kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy",
+        "74: /kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy",
+        "76: /kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy",
+        "78: /kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_anomaly_maps.npy",
+        "379:     \"file\": \"/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json\","
+      ]
+    }
+  ],
+  "grid_alignment": {
+    "grid_shape": [
+      78,
+      256,
+      256
+    ],
+    "indexed_file_count": 78,
+    "exact_match_count": 0,
+    "best_matches": [
+      {
+        "file": "000_good_013.npy",
+        "exact_index": null,
+        "closest_index": 27,
+        "max_absolute_error": 0.02701534330844879
+      },
+      {
+        "file": "001_good_019.npy",
+        "exact_index": null,
+        "closest_index": 31,
+        "max_absolute_error": 1.168955534696579
+      },
+      {
+        "file": "002_good_001.npy",
+        "exact_index": null,
+        "closest_index": 16,
+        "max_absolute_error": 0.09565772116184235
+      },
+      {
+        "file": "003_good_009.npy",
+        "exact_index": null,
+        "closest_index": 26,
+        "max_absolute_error": 1.2602862119674683
+      },
+      {
+        "file": "004_good_016.npy",
+        "exact_index": null,
+        "closest_index": 24,
+        "max_absolute_error": 0.08496277034282684
+      },
+      {
+        "file": "005_good_010.npy",
+        "exact_index": null,
+        "closest_index": 16,
+        "max_absolute_error": 0.13485777378082275
+      },
+      {
+        "file": "006_good_006.npy",
+        "exact_index": null,
+        "closest_index": 29,
+        "max_absolute_error": 0.14989835023880005
+      },
+      {
+        "file": "007_good_005.npy",
+        "exact_index": null,
+        "closest_index": 12,
+        "max_absolute_error": 0.06711053848266602
+      },
+      {
+        "file": "008_good_011.npy",
+        "exact_index": null,
+        "closest_index": 30,
+        "max_absolute_error": 0.03908693790435791
+      },
+      {
+        "file": "009_good_012.npy",
+        "exact_index": null,
+        "closest_index": 26,
+        "max_absolute_error": 1.2973489463329315
+      },
+      {
+        "file": "010_good_002.npy",
+        "exact_index": null,
+        "closest_index": 14,
+        "max_absolute_error": 0.11408492922782898
+      },
+      {
+        "file": "011_good_014.npy",
+        "exact_index": null,
+        "closest_index": 18,
+        "max_absolute_error": 1.093266874551773
+      },
+      {
+        "file": "012_good_017.npy",
+        "exact_index": null,
+        "closest_index": 14,
+        "max_absolute_error": 0.05854219198226929
+      },
+      {
+        "file": "013_good_018.npy",
+        "exact_index": null,
+        "closest_index": 22,
+        "max_absolute_error": 0.09259676933288574
+      },
+      {
+        "file": "014_good_003.npy",
+        "exact_index": null,
+        "closest_index": 21,
+        "max_absolute_error": 0.0396636426448822
+      },
+      {
+        "file": "015_good_007.npy",
+        "exact_index": null,
+        "closest_index": 26,
+        "max_absolute_error": 1.0204623937606812
+      },
+      {
+        "file": "016_good_000.npy",
+        "exact_index": null,
+        "closest_index": 17,
+        "max_absolute_error": 0.086652472615242
+      },
+      {
+        "file": "017_good_008.npy",
+        "exact_index": null,
+        "closest_index": 16,
+        "max_absolute_error": 0.11921514570713043
+      },
+      {
+        "file": "018_good_020.npy",
+        "exact_index": null,
+        "closest_index": 13,
+        "max_absolute_error": 0.0587407648563385
+      },
+      {
+        "file": "019_good_015.npy",
+        "exact_index": null,
+        "closest_index": 32,
+        "max_absolute_error": 0.065134197473526
+      },
+      {
+        "file": "020_good_004.npy",
+        "exact_index": null,
+        "closest_index": 19,
+        "max_absolute_error": 0.08475035429000854
+      },
+      {
+        "file": "021_broken_000.npy",
+        "exact_index": null,
+        "closest_index": 66,
+        "max_absolute_error": 1.2554526627063751
+      },
+      {
+        "file": "022_broken_001.npy",
+        "exact_index": null,
+        "closest_index": 67,
+        "max_absolute_error": 1.211434781551361
+      },
+      {
+        "file": "023_broken_002.npy",
+        "exact_index": null,
+        "closest_index": 68,
+        "max_absolute_error": 0.05325920879840851
+      },
+      {
+        "file": "024_broken_003.npy",
+        "exact_index": null,
+        "closest_index": 69,
+        "max_absolute_error": 0.16695238649845123
+      },
+      {
+        "file": "025_broken_004.npy",
+        "exact_index": null,
+        "closest_index": 70,
+        "max_absolute_error": 0.06456607580184937
+      },
+      {
+        "file": "026_broken_005.npy",
+        "exact_index": null,
+        "closest_index": 71,
+        "max_absolute_error": 0.05859476327896118
+      },
+      {
+        "file": "027_broken_006.npy",
+        "exact_index": null,
+        "closest_index": 72,
+        "max_absolute_error": 0.1940300464630127
+      },
+      {
+        "file": "028_broken_007.npy",
+        "exact_index": null,
+        "closest_index": 73,
+        "max_absolute_error": 0.2130049467086792
+      },
+      {
+        "file": "029_broken_008.npy",
+        "exact_index": null,
+        "closest_index": 74,
+        "max_absolute_error": 0.06163763999938965
+      },
+      {
+        "file": "030_broken_009.npy",
+        "exact_index": null,
+        "closest_index": 75,
+        "max_absolute_error": 0.15753427147865295
+      },
+      {
+        "file": "031_broken_010.npy",
+        "exact_index": null,
+        "closest_index": 76,
+        "max_absolute_error": 1.233177274465561
+      },
+      {
+        "file": "032_broken_011.npy",
+        "exact_index": null,
+        "closest_index": 77,
+        "max_absolute_error": 0.07338076829910278
+      },
+      {
+        "file": "033_metal_contamination_000.npy",
+        "exact_index": null,
+        "closest_index": 44,
+        "max_absolute_error": 0.14830636978149414
+      },
+      {
+        "file": "034_metal_contamination_001.npy",
+        "exact_index": null,
+        "closest_index": 45,
+        "max_absolute_error": 0.17242363095283508
+      },
+      {
+        "file": "035_metal_contamination_002.npy",
+        "exact_index": null,
+        "closest_index": 46,
+        "max_absolute_error": 0.14465318620204926
+      },
+      {
+        "file": "036_metal_contamination_003.npy",
+        "exact_index": null,
+        "closest_index": 47,
+        "max_absolute_error": 0.12603816390037537
+      },
+      {
+        "file": "037_metal_contamination_004.npy",
+        "exact_index": null,
+        "closest_index": 48,
+        "max_absolute_error": 1.2413599789142609
+      },
+      {
+        "file": "038_metal_contamination_005.npy",
+        "exact_index": null,
+        "closest_index": 49,
+        "max_absolute_error": 0.050839632749557495
+      },
+      {
+        "file": "039_metal_contamination_006.npy",
+        "exact_index": null,
+        "closest_index": 50,
+        "max_absolute_error": 0.03384596109390259
+      },
+      {
+        "file": "040_metal_contamination_007.npy",
+        "exact_index": null,
+        "closest_index": 51,
+        "max_absolute_error": 0.1728297472000122
+      },
+      {
+        "file": "041_metal_contamination_008.npy",
+        "exact_index": null,
+        "closest_index": 52,
+        "max_absolute_error": 0.12676940858364105
+      },
+      {
+        "file": "042_metal_contamination_009.npy",
+        "exact_index": null,
+        "closest_index": 53,
+        "max_absolute_error": 0.13423025608062744
+      },
+      {
+        "file": "043_metal_contamination_010.npy",
+        "exact_index": null,
+        "closest_index": 54,
+        "max_absolute_error": 0.17312368750572205
+      },
+      {
+        "file": "044_glue_000.npy",
+        "exact_index": null,
+        "closest_index": 26,
+        "max_absolute_error": 1.1839728951454163
+      },
+      {
+        "file": "045_glue_001.npy",
+        "exact_index": null,
+        "closest_index": 56,
+        "max_absolute_error": 0.03501810133457184
+      },
+      {
+        "file": "046_glue_002.npy",
+        "exact_index": null,
+        "closest_index": 57,
+        "max_absolute_error": 0.1061708927154541
+      },
+      {
+        "file": "047_glue_003.npy",
+        "exact_index": null,
+        "closest_index": 58,
+        "max_absolute_error": 0.08116376399993896
+      },
+      {
+        "file": "048_glue_004.npy",
+        "exact_index": null,
+        "closest_index": 59,
+        "max_absolute_error": 0.08971509337425232
+      },
+      {
+        "file": "049_glue_005.npy",
+        "exact_index": null,
+        "closest_index": 60,
+        "max_absolute_error": 0.09243613481521606
+      },
+      {
+        "file": "050_glue_006.npy",
+        "exact_index": null,
+        "closest_index": 61,
+        "max_absolute_error": 0.03326094150543213
+      },
+      {
+        "file": "051_glue_007.npy",
+        "exact_index": null,
+        "closest_index": 62,
+        "max_absolute_error": 0.1703244298696518
+      },
+      {
+        "file": "052_glue_008.npy",
+        "exact_index": null,
+        "closest_index": 63,
+        "max_absolute_error": 0.13074378669261932
+      },
+      {
+        "file": "053_glue_009.npy",
+        "exact_index": null,
+        "closest_index": 64,
+        "max_absolute_error": 0.03693649172782898
+      },
+      {
+        "file": "054_glue_010.npy",
+        "exact_index": null,
+        "closest_index": 65,
+        "max_absolute_error": 0.10976997017860413
+      },
+      {
+        "file": "055_bent_000.npy",
+        "exact_index": null,
+        "closest_index": 0,
+        "max_absolute_error": 1.229045569896698
+      },
+      {
+        "file": "056_bent_001.npy",
+        "exact_index": null,
+        "closest_index": 1,
+        "max_absolute_error": 0.26540422439575195
+      },
+      {
+        "file": "057_bent_002.npy",
+        "exact_index": null,
+        "closest_index": 2,
+        "max_absolute_error": 0.22273904085159302
+      },
+      {
+        "file": "058_bent_003.npy",
+        "exact_index": null,
+        "closest_index": 3,
+        "max_absolute_error": 0.125399649143219
+      },
+      {
+        "file": "059_bent_004.npy",
+        "exact_index": null,
+        "closest_index": 4,
+        "max_absolute_error": 0.09589654207229614
+      },
+      {
+        "file": "060_bent_005.npy",
+        "exact_index": null,
+        "closest_index": 5,
+        "max_absolute_error": 0.1992214024066925
+      },
+      {
+        "file": "061_bent_006.npy",
+        "exact_index": null,
+        "closest_index": 6,
+        "max_absolute_error": 0.173113152384758
+      },
+      {
+        "file": "062_bent_007.npy",
+        "exact_index": null,
+        "closest_index": 7,
+        "max_absolute_error": 1.2075800597667694
+      },
+      {
+        "file": "063_bent_008.npy",
+        "exact_index": null,
+        "closest_index": 8,
+        "max_absolute_error": 0.13502925634384155
+      },
+      {
+        "file": "064_bent_009.npy",
+        "exact_index": null,
+        "closest_index": 9,
+        "max_absolute_error": 0.18300652503967285
+      },
+      {
+        "file": "065_bent_010.npy",
+        "exact_index": null,
+        "closest_index": 10,
+        "max_absolute_error": 0.19419822096824646
+      },
+      {
+        "file": "066_bent_011.npy",
+        "exact_index": null,
+        "closest_index": 11,
+        "max_absolute_error": 0.26918989419937134
+      },
+      {
+        "file": "067_thread_000.npy",
+        "exact_index": null,
+        "closest_index": 33,
+        "max_absolute_error": 0.16946977376937866
+      },
+      {
+        "file": "068_thread_001.npy",
+        "exact_index": null,
+        "closest_index": 34,
+        "max_absolute_error": 0.20739030838012695
+      },
+      {
+        "file": "069_thread_002.npy",
+        "exact_index": null,
+        "closest_index": 35,
+        "max_absolute_error": 0.2132354974746704
+      },
+      {
+        "file": "070_thread_003.npy",
+        "exact_index": null,
+        "closest_index": 36,
+        "max_absolute_error": 0.05585411190986633
+      },
+      {
+        "file": "071_thread_004.npy",
+        "exact_index": null,
+        "closest_index": 37,
+        "max_absolute_error": 0.40081173181533813
+      },
+      {
+        "file": "072_thread_005.npy",
+        "exact_index": null,
+        "closest_index": 38,
+        "max_absolute_error": 0.1909588873386383
+      },
+      {
+        "file": "073_thread_006.npy",
+        "exact_index": null,
+        "closest_index": 39,
+        "max_absolute_error": 0.06268858909606934
+      },
+      {
+        "file": "074_thread_007.npy",
+        "exact_index": null,
+        "closest_index": 40,
+        "max_absolute_error": 0.048296332359313965
+      },
+      {
+        "file": "075_thread_008.npy",
+        "exact_index": null,
+        "closest_index": 41,
+        "max_absolute_error": 0.17873457074165344
+      },
+      {
+        "file": "076_thread_009.npy",
+        "exact_index": null,
+        "closest_index": 42,
+        "max_absolute_error": 0.16268783807754517
+      },
+      {
+        "file": "077_thread_010.npy",
+        "exact_index": null,
+        "closest_index": 43,
+        "max_absolute_error": 0.09229588508605957
+      }
+    ]
+  },
+  "errors": []
+}

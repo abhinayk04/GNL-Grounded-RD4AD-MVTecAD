@@ -1,0 +1,991 @@
+{
+  "checkpoint_count": 156,
+  "checkpoints": [
+    {
+      "size_mb": 0.018,
+      "name": "tile.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/tile/level1/tile.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "tile.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/tile/level3/tile.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "tile.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/tile/level2/tile.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/zipper/level1/zipper.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/zipper/level3/zipper.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/zipper/level2/zipper.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level1/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level3/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/hazelnut/level2/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/toothbrush/level1/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/toothbrush/level3/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/toothbrush/level2/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/capsule/level1/capsule.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/capsule/level3/capsule.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/capsule/level2/capsule.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "screw.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/screw/level1/screw.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "screw.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/screw/level3/screw.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "screw.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/screw/level2/screw.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "wood.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/wood/level1/wood.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "wood.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/wood/level3/wood.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "wood.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/wood/level2/wood.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "pill.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/pill/level1/pill.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "pill.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/pill/level3/pill.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "pill.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/pill/level2/pill.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "grid.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/grid/level1/grid.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "grid.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/grid/level3/grid.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "grid.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/grid/level2/grid.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/carpet/level1/carpet.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/carpet/level3/carpet.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/carpet/level2/carpet.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "cable.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/cable/level1/cable.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "cable.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/cable/level3/cable.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "cable.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/cable/level2/cable.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "leather.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/leather/level1/leather.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "leather.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/leather/level3/leather.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "leather.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/leather/level2/leather.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/bottle/level1/bottle.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/bottle/level3/bottle.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/bottle/level2/bottle.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/metal_nut/level1/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/metal_nut/level3/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/metal_nut/level2/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/transistor/level1/transistor.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/transistor/level3/transistor.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/transistor/level2/transistor.pth"
+    },
+    {
+      "size_mb": 991.562,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/hazelnut_full/latest.pth"
+    },
+    {
+      "size_mb": 991.562,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/screw_full/latest.pth"
+    },
+    {
+      "size_mb": 991.562,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/cable_full/latest.pth"
+    },
+    {
+      "size_mb": 352.062,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/grid_full/latest.pth"
+    },
+    {
+      "size_mb": 352.062,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/wood_full/latest.pth"
+    },
+    {
+      "size_mb": 991.562,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/metal_nut_full/latest.pth"
+    },
+    {
+      "size_mb": 352.062,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/carpet_full/latest.pth"
+    },
+    {
+      "size_mb": 991.562,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/toothbrush_full/latest.pth"
+    },
+    {
+      "size_mb": 352.062,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/zipper_full/latest.pth"
+    },
+    {
+      "size_mb": 991.562,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth"
+    },
+    {
+      "size_mb": 352.062,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/leather_full/latest.pth"
+    },
+    {
+      "size_mb": 991.562,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/pill_full/latest.pth"
+    },
+    {
+      "size_mb": 352.062,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/tile_full/latest.pth"
+    },
+    {
+      "size_mb": 991.562,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/capsule_full/latest.pth"
+    },
+    {
+      "size_mb": 991.564,
+      "name": "latest.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/transistor_full/latest.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "tile.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/tile/level1/tile.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "tile.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/tile/level3/tile.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "tile.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/tile/level2/tile.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/zipper/level1/zipper.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/zipper/level3/zipper.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/zipper/level2/zipper.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/hazelnut/level1/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/hazelnut/level3/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/hazelnut/level2/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/toothbrush/level1/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/toothbrush/level3/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/toothbrush/level2/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/capsule/level1/capsule.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/capsule/level3/capsule.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/capsule/level2/capsule.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "screw.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/screw/level1/screw.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "screw.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/screw/level3/screw.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "screw.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/screw/level2/screw.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "wood.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/wood/level1/wood.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "wood.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/wood/level3/wood.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "wood.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/wood/level2/wood.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "pill.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/pill/level1/pill.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "pill.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/pill/level3/pill.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "pill.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/pill/level2/pill.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "grid.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level1/grid.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "grid.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level3/grid.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "grid.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level2/grid.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/carpet/level1/carpet.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/carpet/level3/carpet.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/carpet/level2/carpet.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/cable/level1/cable.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/cable/level3/cable.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/cable/level2/cable.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "leather.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/leather/level1/leather.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "leather.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/leather/level3/leather.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "leather.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/leather/level2/leather.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level1/bottle.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level3/bottle.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level2/bottle.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/metal_nut/level1/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/metal_nut/level3/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/metal_nut/level2/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/transistor/level1/transistor.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/transistor/level3/transistor.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/transistor/level2/transistor.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "tile.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/tile/level1/tile.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "tile.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/tile/level3/tile.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "tile.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/tile/level2/tile.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/zipper/level1/zipper.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/zipper/level3/zipper.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "zipper.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/zipper/level2/zipper.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/hazelnut/level1/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/hazelnut/level3/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "hazelnut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/hazelnut/level2/hazelnut.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/toothbrush/level1/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/toothbrush/level3/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "toothbrush.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/toothbrush/level2/toothbrush.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/capsule/level1/capsule.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/capsule/level3/capsule.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "capsule.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/capsule/level2/capsule.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "screw.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/screw/level1/screw.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "screw.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/screw/level3/screw.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "screw.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/screw/level2/screw.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "wood.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/wood/level1/wood.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "wood.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/wood/level3/wood.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "wood.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/wood/level2/wood.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "pill.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/pill/level1/pill.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "pill.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/pill/level3/pill.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "pill.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/pill/level2/pill.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "grid.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level1/grid.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "grid.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level3/grid.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "grid.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level2/grid.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/carpet/level1/carpet.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/carpet/level3/carpet.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "carpet.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/carpet/level2/carpet.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/cable/level1/cable.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/cable/level3/cable.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/cable/level2/cable.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "leather.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/leather/level1/leather.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "leather.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/leather/level3/leather.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "leather.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/leather/level2/leather.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level1/bottle.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level3/bottle.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level2/bottle.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/metal_nut/level1/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/metal_nut/level3/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "metal_nut.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/metal_nut/level2/metal_nut.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/transistor/level1/transistor.pth"
+    },
+    {
+      "size_mb": 0.065,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/transistor/level3/transistor.pth"
+    },
+    {
+      "size_mb": 0.034,
+      "name": "transistor.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/transistor/level2/transistor.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/cable/level1/cable.pth"
+    },
+    {
+      "size_mb": 0.064,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/cable/level3/cable.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "cable.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/cable/level2/cable.pth"
+    },
+    {
+      "size_mb": 0.018,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level1/bottle.pth"
+    },
+    {
+      "size_mb": 0.064,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level3/bottle.pth"
+    },
+    {
+      "size_mb": 0.033,
+      "name": "bottle.pth",
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level2/bottle.pth"
+    }
+  ],
+  "bottle_candidates": [
+    {
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/bottle/level1/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/bottle/level3/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/project_clean/pca_method/saved_bases/bottle/level2/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+      "type": "dict",
+      "keys": [
+        "epoch",
+        "category",
+        "bn",
+        "decoder",
+        "optimizer",
+        "loss",
+        "config"
+      ],
+      "category": "bottle",
+      "epoch": 4
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level1/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level3/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/bottle/level2/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level1/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level3/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/bottle/level2/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category",
+        "level",
+        "num_components",
+        "observations",
+        "feature_difference",
+        "seed"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level1/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level3/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category"
+      ],
+      "category": "bottle",
+      "epoch": null
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_bases/bottle/level2/bottle.pth",
+      "type": "dict",
+      "keys": [
+        "basis",
+        "eigenvalues",
+        "explained_variance_ratio",
+        "category"
+      ],
+      "category": "bottle",
+      "epoch": null
+    }
+  ]
+}

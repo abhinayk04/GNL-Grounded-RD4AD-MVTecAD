@@ -1,0 +1,165 @@
+{
+  "batch": "member3_batch9",
+  "category": "bottle",
+  "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+  "device": "cuda",
+  "teacher_shapes": [
+    {
+      "index": 0,
+      "shape": [
+        1,
+        256,
+        64,
+        64
+      ],
+      "channels": 256,
+      "height": 64,
+      "width": 64
+    },
+    {
+      "index": 1,
+      "shape": [
+        1,
+        512,
+        32,
+        32
+      ],
+      "channels": 512,
+      "height": 32,
+      "width": 32
+    },
+    {
+      "index": 2,
+      "shape": [
+        1,
+        1024,
+        16,
+        16
+      ],
+      "channels": 1024,
+      "height": 16,
+      "width": 16
+    }
+  ],
+  "decoder_shapes": [
+    {
+      "index": 0,
+      "shape": [
+        1,
+        256,
+        64,
+        64
+      ],
+      "channels": 256,
+      "height": 64,
+      "width": 64
+    },
+    {
+      "index": 1,
+      "shape": [
+        1,
+        512,
+        32,
+        32
+      ],
+      "channels": 512,
+      "height": 32,
+      "width": 32
+    },
+    {
+      "index": 2,
+      "shape": [
+        1,
+        1024,
+        16,
+        16
+      ],
+      "channels": 1024,
+      "height": 16,
+      "width": 16
+    }
+  ],
+  "pair_checks": [
+    {
+      "index": 0,
+      "teacher_shape": [
+        1,
+        256,
+        64,
+        64
+      ],
+      "student_shape": [
+        1,
+        256,
+        64,
+        64
+      ],
+      "compatible": true
+    },
+    {
+      "index": 1,
+      "teacher_shape": [
+        1,
+        512,
+        32,
+        32
+      ],
+      "student_shape": [
+        1,
+        512,
+        32,
+        32
+      ],
+      "compatible": true
+    },
+    {
+      "index": 2,
+      "teacher_shape": [
+        1,
+        1024,
+        16,
+        16
+      ],
+      "student_shape": [
+        1,
+        1024,
+        16,
+        16
+      ],
+      "compatible": true
+    }
+  ],
+  "errors": [],
+  "all_pairs_compatible": true,
+  "teacher_count": 3,
+  "student_count": 3,
+  "cosine_checks": [
+    {
+      "index": 0,
+      "success": true,
+      "distance_shape": [
+        1,
+        64,
+        64
+      ]
+    },
+    {
+      "index": 1,
+      "success": true,
+      "distance_shape": [
+        1,
+        32,
+        32
+      ]
+    },
+    {
+      "index": 2,
+      "success": true,
+      "distance_shape": [
+        1,
+        16,
+        16
+      ]
+    }
+  ]
+}

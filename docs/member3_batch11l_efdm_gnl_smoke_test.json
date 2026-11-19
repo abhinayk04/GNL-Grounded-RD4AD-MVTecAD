@@ -1,0 +1,214 @@
+{
+  "category": "bottle",
+  "checkpoint_epoch": 4,
+  "reference": "/kaggle/working/mvtec_dataset/bottle/train/good/097.png",
+  "lambda": 0.5,
+  "efdm_levels": [
+    "A",
+    "B"
+  ],
+  "device": "cuda",
+  "baseline_features": [
+    {
+      "level": "baseline_feature_0",
+      "shape": [
+        1,
+        256,
+        64,
+        64
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.17222139239311218,
+      "std": 0.17611004412174225
+    },
+    {
+      "level": "baseline_feature_1",
+      "shape": [
+        1,
+        512,
+        32,
+        32
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.09403591603040695,
+      "std": 0.15842267870903015
+    },
+    {
+      "level": "baseline_feature_2",
+      "shape": [
+        1,
+        1024,
+        16,
+        16
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.0501546785235405,
+      "std": 0.11082522571086884
+    }
+  ],
+  "baseline_bn": [
+    {
+      "level": "baseline_bn_0",
+      "shape": [
+        1,
+        2048,
+        8,
+        8
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 1.2481845617294312,
+      "std": 2.1039602756500244
+    }
+  ],
+  "baseline_decoder": [
+    {
+      "level": "baseline_decoder_0",
+      "shape": [
+        1,
+        256,
+        64,
+        64
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 1.2770253419876099,
+      "std": 1.0944863557815552
+    },
+    {
+      "level": "baseline_decoder_1",
+      "shape": [
+        1,
+        512,
+        32,
+        32
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.6003887057304382,
+      "std": 0.8834437131881714
+    },
+    {
+      "level": "baseline_decoder_2",
+      "shape": [
+        1,
+        1024,
+        16,
+        16
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.43993130326271057,
+      "std": 0.9013292193412781
+    }
+  ],
+  "efdm_features": [
+    {
+      "level": "efdm_feature_0",
+      "shape": [
+        1,
+        256,
+        64,
+        64
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.17222139239311218,
+      "std": 0.17611004412174225
+    },
+    {
+      "level": "efdm_feature_1",
+      "shape": [
+        1,
+        512,
+        32,
+        32
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.09403591603040695,
+      "std": 0.15842267870903015
+    },
+    {
+      "level": "efdm_feature_2",
+      "shape": [
+        1,
+        1024,
+        16,
+        16
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.0501546785235405,
+      "std": 0.11082522571086884
+    }
+  ],
+  "efdm_bn": [
+    {
+      "level": "efdm_bn_0",
+      "shape": [
+        1,
+        2048,
+        8,
+        8
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 1.2481845617294312,
+      "std": 2.1039602756500244
+    }
+  ],
+  "efdm_decoder": [
+    {
+      "level": "efdm_decoder_0",
+      "shape": [
+        1,
+        256,
+        64,
+        64
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 1.2770253419876099,
+      "std": 1.0944863557815552
+    },
+    {
+      "level": "efdm_decoder_1",
+      "shape": [
+        1,
+        512,
+        32,
+        32
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.6003887057304382,
+      "std": 0.8834437131881714
+    },
+    {
+      "level": "efdm_decoder_2",
+      "shape": [
+        1,
+        1024,
+        16,
+        16
+      ],
+      "device": "cuda:0",
+      "finite": true,
+      "mean": 0.43993130326271057,
+      "std": 0.9013292193412781
+    }
+  ],
+  "all_outputs_finite": true,
+  "feature_shapes_match": true,
+  "decoder_shapes_match": true,
+  "efdm_changes_features": [
+    false,
+    false,
+    false
+  ],
+  "smoke_test_passed": true
+}

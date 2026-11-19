@@ -1,0 +1,4539 @@
+{
+  "batch": "11H",
+  "source_sections": {
+    "/kaggle/working/project_clean/experiments/gnl/infer_gnl_bottle_id.py": [
+      {
+        "line": 1,
+        "text": "import os"
+      },
+      {
+        "line": 2,
+        "text": "import csv"
+      },
+      {
+        "line": 3,
+        "text": "import argparse"
+      },
+      {
+        "line": 4,
+        "text": ""
+      },
+      {
+        "line": 5,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 6,
+        "text": "import torch"
+      },
+      {
+        "line": 7,
+        "text": "import torch.nn.functional as F"
+      },
+      {
+        "line": 8,
+        "text": ""
+      },
+      {
+        "line": 9,
+        "text": "from scipy.ndimage import gaussian_filter"
+      },
+      {
+        "line": 10,
+        "text": "from sklearn.metrics import roc_auc_score"
+      },
+      {
+        "line": 11,
+        "text": "from PIL import Image"
+      },
+      {
+        "line": 12,
+        "text": ""
+      },
+      {
+        "line": 13,
+        "text": "from resnet import wide_resnet50_2"
+      },
+      {
+        "line": 14,
+        "text": "from de_resnet import de_wide_resnet50_2"
+      },
+      {
+        "line": 15,
+        "text": "from dataset import MVTecDataset, get_data_transforms"
+      },
+      {
+        "line": 16,
+        "text": ""
+      },
+      {
+        "line": 17,
+        "text": ""
+      },
+      {
+        "line": 18,
+        "text": "def calculate_anomaly_map(teacher_features, student_features, out_size=256):"
+      },
+      {
+        "line": 19,
+        "text": "    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)"
+      },
+      {
+        "line": 20,
+        "text": ""
+      },
+      {
+        "line": 21,
+        "text": "    for teacher, student in zip(teacher_features, student_features):"
+      },
+      {
+        "line": 22,
+        "text": "        distance = 1 - F.cosine_similarity(teacher, student)"
+      },
+      {
+        "line": 23,
+        "text": "        distance = distance.unsqueeze(1)"
+      },
+      {
+        "line": 24,
+        "text": ""
+      },
+      {
+        "line": 25,
+        "text": "        distance = F.interpolate("
+      },
+      {
+        "line": 26,
+        "text": "            distance,"
+      },
+      {
+        "line": 27,
+        "text": "            size=(out_size, out_size),"
+      },
+      {
+        "line": 28,
+        "text": "            mode=\"bilinear\","
+      },
+      {
+        "line": 29,
+        "text": "            align_corners=True"
+      },
+      {
+        "line": 30,
+        "text": "        )"
+      },
+      {
+        "line": 31,
+        "text": ""
+      },
+      {
+        "line": 32,
+        "text": "        anomaly_map += distance[0, 0].cpu().numpy()"
+      },
+      {
+        "line": 33,
+        "text": ""
+      },
+      {
+        "line": 34,
+        "text": "    return gaussian_filter(anomaly_map, sigma=4)"
+      },
+      {
+        "line": 35,
+        "text": ""
+      },
+      {
+        "line": 36,
+        "text": ""
+      },
+      {
+        "line": 37,
+        "text": "def main():"
+      },
+      {
+        "line": 38,
+        "text": "    parser = argparse.ArgumentParser()"
+      },
+      {
+        "line": 39,
+        "text": ""
+      },
+      {
+        "line": 40,
+        "text": "    parser.add_argument("
+      },
+      {
+        "line": 41,
+        "text": "        \"--dataset-root\","
+      },
+      {
+        "line": 42,
+        "text": "        default=\"/content/mvtec_dataset/bottle\""
+      },
+      {
+        "line": 43,
+        "text": "    )"
+      },
+      {
+        "line": 44,
+        "text": ""
+      },
+      {
+        "line": 45,
+        "text": "    parser.add_argument("
+      },
+      {
+        "line": 46,
+        "text": "        \"--checkpoint\","
+      },
+      {
+        "line": 47,
+        "text": "        default=\"checkpoints/bottle_full/latest.pth\""
+      },
+      {
+        "line": 48,
+        "text": "    )"
+      },
+      {
+        "line": 49,
+        "text": ""
+      },
+      {
+        "line": 50,
+        "text": "    parser.add_argument("
+      },
+      {
+        "line": 51,
+        "text": "        \"--output-dir\","
+      },
+      {
+        "line": 52,
+        "text": "        default=\"results/bottle_id\""
+      },
+      {
+        "line": 53,
+        "text": "    )"
+      },
+      {
+        "line": 54,
+        "text": ""
+      },
+      {
+        "line": 55,
+        "text": "    args = parser.parse_args()"
+      },
+      {
+        "line": 56,
+        "text": ""
+      },
+      {
+        "line": 57,
+        "text": "    device = torch.device("
+      },
+      {
+        "line": 58,
+        "text": "        \"cuda\" if torch.cuda.is_available() else \"cpu\""
+      },
+      {
+        "line": 59,
+        "text": "    )"
+      },
+      {
+        "line": 60,
+        "text": ""
+      },
+      {
+        "line": 61,
+        "text": "    os.makedirs(args.output_dir, exist_ok=True)"
+      },
+      {
+        "line": 62,
+        "text": ""
+      },
+      {
+        "line": 63,
+        "text": "    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")"
+      },
+      {
+        "line": 64,
+        "text": "    os.makedirs(map_dir, exist_ok=True)"
+      },
+      {
+        "line": 65,
+        "text": ""
+      },
+      {
+        "line": 66,
+        "text": "    print(\"Device:\", device)"
+      },
+      {
+        "line": 67,
+        "text": "    print(\"Dataset:\", args.dataset_root)"
+      },
+      {
+        "line": 68,
+        "text": "    print(\"Checkpoint:\", args.checkpoint)"
+      },
+      {
+        "line": 69,
+        "text": ""
+      },
+      {
+        "line": 70,
+        "text": "    # Load dataset"
+      },
+      {
+        "line": 71,
+        "text": "    image_transform, mask_transform = get_data_transforms(256, 256)"
+      },
+      {
+        "line": 72,
+        "text": ""
+      },
+      {
+        "line": 73,
+        "text": "    test_dataset = MVTecDataset("
+      },
+      {
+        "line": 74,
+        "text": "        root=args.dataset_root,"
+      },
+      {
+        "line": 75,
+        "text": "        transform=image_transform,"
+      },
+      {
+        "line": 76,
+        "text": "        gt_transform=mask_transform,"
+      },
+      {
+        "line": 77,
+        "text": "        phase=\"test\""
+      },
+      {
+        "line": 78,
+        "text": "    )"
+      },
+      {
+        "line": 79,
+        "text": ""
+      },
+      {
+        "line": 80,
+        "text": "    test_loader = torch.utils.data.DataLoader("
+      },
+      {
+        "line": 81,
+        "text": "        test_dataset,"
+      },
+      {
+        "line": 82,
+        "text": "        batch_size=1,"
+      },
+      {
+        "line": 83,
+        "text": "        shuffle=False,"
+      },
+      {
+        "line": 84,
+        "text": "        num_workers=2"
+      },
+      {
+        "line": 85,
+        "text": "    )"
+      },
+      {
+        "line": 86,
+        "text": ""
+      },
+      {
+        "line": 87,
+        "text": "    print(\"Test images:\", len(test_dataset))"
+      },
+      {
+        "line": 88,
+        "text": ""
+      },
+      {
+        "line": 89,
+        "text": "    # Load model"
+      },
+      {
+        "line": 90,
+        "text": "    encoder, bn = wide_resnet50_2(pretrained=True)"
+      },
+      {
+        "line": 91,
+        "text": "    decoder = de_wide_resnet50_2(pretrained=False)"
+      },
+      {
+        "line": 92,
+        "text": ""
+      },
+      {
+        "line": 93,
+        "text": "    checkpoint = torch.load("
+      },
+      {
+        "line": 94,
+        "text": "        args.checkpoint,"
+      },
+      {
+        "line": 95,
+        "text": "        map_location=\"cpu\","
+      },
+      {
+        "line": 96,
+        "text": "        weights_only=False"
+      },
+      {
+        "line": 97,
+        "text": "    )"
+      },
+      {
+        "line": 98,
+        "text": ""
+      },
+      {
+        "line": 99,
+        "text": "    bn.load_state_dict(checkpoint[\"bn\"], strict=True)"
+      },
+      {
+        "line": 100,
+        "text": "    decoder.load_state_dict(checkpoint[\"decoder\"], strict=True)"
+      },
+      {
+        "line": 101,
+        "text": ""
+      },
+      {
+        "line": 102,
+        "text": "    encoder = encoder.to(device).eval()"
+      },
+      {
+        "line": 103,
+        "text": "    bn = bn.to(device).eval()"
+      },
+      {
+        "line": 104,
+        "text": "    decoder = decoder.to(device).eval()"
+      },
+      {
+        "line": 105,
+        "text": ""
+      },
+      {
+        "line": 106,
+        "text": "    print(\"Loaded checkpoint epoch:\", checkpoint[\"epoch\"])"
+      },
+      {
+        "line": 107,
+        "text": ""
+      },
+      {
+        "line": 108,
+        "text": "    image_labels = []"
+      },
+      {
+        "line": 109,
+        "text": "    image_scores = []"
+      },
+      {
+        "line": 110,
+        "text": "    pixel_labels = []"
+      },
+      {
+        "line": 111,
+        "text": "    pixel_scores = []"
+      },
+      {
+        "line": 112,
+        "text": "    records = []"
+      },
+      {
+        "line": 113,
+        "text": ""
+      },
+      {
+        "line": 114,
+        "text": "    # Inference"
+      },
+      {
+        "line": 115,
+        "text": "    with torch.no_grad():"
+      },
+      {
+        "line": 116,
+        "text": "        for index, batch in enumerate(test_loader):"
+      },
+      {
+        "line": 117,
+        "text": ""
+      },
+      {
+        "line": 118,
+        "text": "            images, masks, labels, defect_types = batch"
+      },
+      {
+        "line": 119,
+        "text": ""
+      },
+      {
+        "line": 120,
+        "text": "            images = images.to(device)"
+      },
+      {
+        "line": 121,
+        "text": ""
+      },
+      {
+        "line": 122,
+        "text": "            teacher_features = encoder(images)"
+      },
+      {
+        "line": 123,
+        "text": "            student_features = decoder(bn(teacher_features))"
+      },
+      {
+        "line": 124,
+        "text": ""
+      },
+      {
+        "line": 125,
+        "text": "            anomaly_map = calculate_anomaly_map("
+      },
+      {
+        "line": 126,
+        "text": "                teacher_features,"
+      },
+      {
+        "line": 127,
+        "text": "                student_features,"
+      },
+      {
+        "line": 128,
+        "text": "                out_size=256"
+      },
+      {
+        "line": 129,
+        "text": "            )"
+      },
+      {
+        "line": 130,
+        "text": ""
+      },
+      {
+        "line": 131,
+        "text": "            label = int(labels.item())"
+      },
+      {
+        "line": 132,
+        "text": "            defect_type = defect_types[0]"
+      },
+      {
+        "line": 133,
+        "text": "            filename = os.path.basename("
+      },
+      {
+        "line": 134,
+        "text": "                test_dataset.img_paths[index]"
+      },
+      {
+        "line": 135,
+        "text": "            )"
+      },
+      {
+        "line": 136,
+        "text": ""
+      },
+      {
+        "line": 137,
+        "text": "            image_score = float(np.max(anomaly_map))"
+      },
+      {
+        "line": 138,
+        "text": ""
+      },
+      {
+        "line": 139,
+        "text": "            image_labels.append(label)"
+      },
+      {
+        "line": 140,
+        "text": "            image_scores.append(image_score)"
+      },
+      {
+        "line": 141,
+        "text": ""
+      },
+      {
+        "line": 142,
+        "text": "            mask = masks[0, 0].cpu().numpy()"
+      },
+      {
+        "line": 143,
+        "text": "            mask_binary = (mask > 0.5).astype(np.uint8)"
+      },
+      {
+        "line": 144,
+        "text": ""
+      },
+      {
+        "line": 145,
+        "text": "            pixel_labels.extend(mask_binary.reshape(-1).tolist())"
+      },
+      {
+        "line": 146,
+        "text": "            pixel_scores.extend(anomaly_map.reshape(-1).tolist())"
+      },
+      {
+        "line": 147,
+        "text": ""
+      },
+      {
+        "line": 148,
+        "text": "            map_name = ("
+      },
+      {
+        "line": 149,
+        "text": "                \"{:03d}_{}_{}\".format(index, defect_type, filename)"
+      },
+      {
+        "line": 150,
+        "text": "            )"
+      },
+      {
+        "line": 151,
+        "text": ""
+      },
+      {
+        "line": 152,
+        "text": "            np.save("
+      },
+      {
+        "line": 153,
+        "text": "                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),"
+      },
+      {
+        "line": 154,
+        "text": "                anomaly_map"
+      },
+      {
+        "line": 155,
+        "text": "            )"
+      },
+      {
+        "line": 156,
+        "text": ""
+      },
+      {
+        "line": 157,
+        "text": "            # Save normalized heatmap for visualization only"
+      },
+      {
+        "line": 158,
+        "text": "            map_min = anomaly_map.min()"
+      },
+      {
+        "line": 159,
+        "text": "            map_max = anomaly_map.max()"
+      },
+      {
+        "line": 160,
+        "text": ""
+      },
+      {
+        "line": 161,
+        "text": "            normalized_map = ("
+      },
+      {
+        "line": 162,
+        "text": "                (anomaly_map - map_min) / (map_max - map_min + 1e-8)"
+      },
+      {
+        "line": 163,
+        "text": "            )"
+      },
+      {
+        "line": 164,
+        "text": ""
+      },
+      {
+        "line": 165,
+        "text": "            heatmap = Image.fromarray("
+      },
+      {
+        "line": 166,
+        "text": "                (normalized_map * 255).astype(np.uint8)"
+      },
+      {
+        "line": 167,
+        "text": "            )"
+      },
+      {
+        "line": 168,
+        "text": ""
+      },
+      {
+        "line": 169,
+        "text": "            heatmap.save("
+      },
+      {
+        "line": 170,
+        "text": "                os.path.join("
+      },
+      {
+        "line": 171,
+        "text": "                    map_dir,"
+      },
+      {
+        "line": 172,
+        "text": "                    map_name.replace(\".png\", \"_heatmap.png\")"
+      },
+      {
+        "line": 173,
+        "text": "                )"
+      },
+      {
+        "line": 174,
+        "text": "            )"
+      },
+      {
+        "line": 175,
+        "text": ""
+      },
+      {
+        "line": 175,
+        "text": ""
+      },
+      {
+        "line": 176,
+        "text": "            records.append({"
+      },
+      {
+        "line": 177,
+        "text": "                \"filename\": filename,"
+      },
+      {
+        "line": 178,
+        "text": "                \"defect_type\": defect_type,"
+      },
+      {
+        "line": 179,
+        "text": "                \"label\": label,"
+      },
+      {
+        "line": 180,
+        "text": "                \"image_score\": image_score"
+      },
+      {
+        "line": 181,
+        "text": "            })"
+      },
+      {
+        "line": 182,
+        "text": ""
+      },
+      {
+        "line": 183,
+        "text": "            if (index + 1) % 10 == 0 or index + 1 == len(test_dataset):"
+      },
+      {
+        "line": 184,
+        "text": "                print("
+      },
+      {
+        "line": 185,
+        "text": "                    \"Processed: {}/{}\".format("
+      },
+      {
+        "line": 186,
+        "text": "                        index + 1,"
+      },
+      {
+        "line": 187,
+        "text": "                        len(test_dataset)"
+      },
+      {
+        "line": 188,
+        "text": "                    )"
+      },
+      {
+        "line": 189,
+        "text": "                )"
+      },
+      {
+        "line": 190,
+        "text": ""
+      },
+      {
+        "line": 191,
+        "text": "    # Image-level AUROC"
+      },
+      {
+        "line": 192,
+        "text": "    image_auroc = roc_auc_score(image_labels, image_scores)"
+      },
+      {
+        "line": 193,
+        "text": ""
+      },
+      {
+        "line": 194,
+        "text": "    # Pixel-level AUROC"
+      },
+      {
+        "line": 195,
+        "text": "    pixel_auroc = roc_auc_score(pixel_labels, pixel_scores)"
+      },
+      {
+        "line": 196,
+        "text": ""
+      },
+      {
+        "line": 197,
+        "text": "    # Save image-level scores"
+      },
+      {
+        "line": 198,
+        "text": "    csv_path = os.path.join(args.output_dir, \"image_scores.csv\")"
+      },
+      {
+        "line": 199,
+        "text": ""
+      },
+      {
+        "line": 200,
+        "text": "    with open(csv_path, \"w\", newline=\"\") as f:"
+      },
+      {
+        "line": 201,
+        "text": "        writer = csv.DictWriter("
+      },
+      {
+        "line": 202,
+        "text": "            f,"
+      },
+      {
+        "line": 203,
+        "text": "            fieldnames=["
+      },
+      {
+        "line": 204,
+        "text": "                \"filename\","
+      },
+      {
+        "line": 205,
+        "text": "                \"defect_type\","
+      },
+      {
+        "line": 206,
+        "text": "                \"label\","
+      },
+      {
+        "line": 207,
+        "text": "                \"image_score\""
+      },
+      {
+        "line": 208,
+        "text": "            ]"
+      },
+      {
+        "line": 209,
+        "text": "        )"
+      },
+      {
+        "line": 210,
+        "text": "        writer.writeheader()"
+      },
+      {
+        "line": 211,
+        "text": "        writer.writerows(records)"
+      },
+      {
+        "line": 212,
+        "text": ""
+      },
+      {
+        "line": 213,
+        "text": "    # Save evaluation summary"
+      },
+      {
+        "line": 214,
+        "text": "    summary_path = os.path.join("
+      },
+      {
+        "line": 215,
+        "text": "        args.output_dir,"
+      },
+      {
+        "line": 216,
+        "text": "        \"evaluation_summary.txt\""
+      },
+      {
+        "line": 217,
+        "text": "    )"
+      },
+      {
+        "line": 218,
+        "text": ""
+      },
+      {
+        "line": 219,
+        "text": "    with open(summary_path, \"w\") as f:"
+      },
+      {
+        "line": 220,
+        "text": "        f.write(\"GNL Bottle ID Evaluation\\n\")"
+      },
+      {
+        "line": 221,
+        "text": "        f.write(\"========================\\n\")"
+      },
+      {
+        "line": 222,
+        "text": "        f.write(\"Checkpoint epoch: {}\\n\".format(checkpoint[\"epoch\"]))"
+      },
+      {
+        "line": 223,
+        "text": "        f.write(\"Test images: {}\\n\".format(len(test_dataset)))"
+      },
+      {
+        "line": 224,
+        "text": "        f.write(\"Normal images: {}\\n\".format(image_labels.count(0)))"
+      },
+      {
+        "line": 225,
+        "text": "        f.write(\"Anomalous images: {}\\n\".format(image_labels.count(1)))"
+      },
+      {
+        "line": 226,
+        "text": "        f.write(\"Image-level AUROC: {:.6f}\\n\".format(image_auroc))"
+      },
+      {
+        "line": 227,
+        "text": "        f.write(\"Pixel-level AUROC: {:.6f}\\n\".format(pixel_auroc))"
+      },
+      {
+        "line": 228,
+        "text": ""
+      },
+      {
+        "line": 229,
+        "text": "    print(\"\\n===== EVALUATION RESULTS =====\")"
+      },
+      {
+        "line": 230,
+        "text": "    print(\"Test images:\", len(test_dataset))"
+      },
+      {
+        "line": 231,
+        "text": "    print(\"Normal:\", image_labels.count(0))"
+      },
+      {
+        "line": 232,
+        "text": "    print(\"Anomalous:\", image_labels.count(1))"
+      },
+      {
+        "line": 233,
+        "text": "    print(\"Image-level AUROC:\", round(image_auroc, 6))"
+      },
+      {
+        "line": 234,
+        "text": "    print(\"Pixel-level AUROC:\", round(pixel_auroc, 6))"
+      },
+      {
+        "line": 235,
+        "text": ""
+      },
+      {
+        "line": 236,
+        "text": "    print(\"\\nResults saved:\", args.output_dir)"
+      },
+      {
+        "line": 237,
+        "text": ""
+      },
+      {
+        "line": 238,
+        "text": ""
+      },
+      {
+        "line": 239,
+        "text": "if __name__ == \"__main__\":"
+      },
+      {
+        "line": 240,
+        "text": "    main()"
+      }
+    ],
+    "/kaggle/working/project_clean/experiments/gnl/dataset.py": [
+      {
+        "line": 1,
+        "text": "from torchvision import transforms"
+      },
+      {
+        "line": 2,
+        "text": "from PIL import Image"
+      },
+      {
+        "line": 3,
+        "text": "import os"
+      },
+      {
+        "line": 4,
+        "text": "import torch"
+      },
+      {
+        "line": 5,
+        "text": "import glob"
+      },
+      {
+        "line": 6,
+        "text": "from torchvision.datasets import MNIST, CIFAR10, FashionMNIST, ImageFolder"
+      },
+      {
+        "line": 7,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 8,
+        "text": "from PIL import Image, ImageOps, ImageEnhance"
+      },
+      {
+        "line": 9,
+        "text": "import random"
+      },
+      {
+        "line": 10,
+        "text": "from torch.utils.data import Dataset"
+      },
+      {
+        "line": 11,
+        "text": ""
+      },
+      {
+        "line": 12,
+        "text": "IMAGE_SIZE = 256"
+      },
+      {
+        "line": 13,
+        "text": "mean_train = [0.485, 0.456, 0.406]"
+      },
+      {
+        "line": 14,
+        "text": "std_train = [0.229, 0.224, 0.225]"
+      },
+      {
+        "line": 15,
+        "text": ""
+      },
+      {
+        "line": 16,
+        "text": "def get_data_transforms(size, isize):"
+      },
+      {
+        "line": 17,
+        "text": "    mean_train = [0.485, 0.456, 0.406]"
+      },
+      {
+        "line": 18,
+        "text": "    std_train = [0.229, 0.224, 0.225]"
+      },
+      {
+        "line": 19,
+        "text": "    data_transforms = transforms.Compose(["
+      },
+      {
+        "line": 20,
+        "text": "        transforms.Resize((size, size)),"
+      },
+      {
+        "line": 21,
+        "text": "        transforms.ToTensor(),"
+      },
+      {
+        "line": 22,
+        "text": "        transforms.CenterCrop(isize),"
+      },
+      {
+        "line": 23,
+        "text": "        transforms.Normalize(mean=mean_train,"
+      },
+      {
+        "line": 24,
+        "text": "                             std=std_train)])"
+      },
+      {
+        "line": 25,
+        "text": "    gt_transforms = transforms.Compose(["
+      },
+      {
+        "line": 26,
+        "text": "        transforms.Resize((size, size)),"
+      },
+      {
+        "line": 27,
+        "text": "        transforms.CenterCrop(isize),"
+      },
+      {
+        "line": 28,
+        "text": "        transforms.ToTensor()])"
+      },
+      {
+        "line": 29,
+        "text": "    return data_transforms, gt_transforms"
+      },
+      {
+        "line": 30,
+        "text": ""
+      },
+      {
+        "line": 31,
+        "text": ""
+      },
+      {
+        "line": 32,
+        "text": "def get_data_transforms_augmix(size, isize):"
+      },
+      {
+        "line": 33,
+        "text": "    mean_train = [0.485, 0.456, 0.406]"
+      },
+      {
+        "line": 34,
+        "text": "    std_train = [0.229, 0.224, 0.225]"
+      },
+      {
+        "line": 35,
+        "text": "    data_transforms = transforms.Compose(["
+      },
+      {
+        "line": 36,
+        "text": "        transforms.AugMix(severity=10, all_ops=False),"
+      },
+      {
+        "line": 37,
+        "text": "        transforms.Resize((size, size)),"
+      },
+      {
+        "line": 38,
+        "text": "        transforms.ToTensor(),"
+      },
+      {
+        "line": 39,
+        "text": "        transforms.CenterCrop(isize),"
+      },
+      {
+        "line": 40,
+        "text": "        transforms.Normalize(mean=mean_train,"
+      },
+      {
+        "line": 41,
+        "text": "                             std=std_train)])"
+      },
+      {
+        "line": 42,
+        "text": "    gt_transforms = transforms.Compose(["
+      },
+      {
+        "line": 43,
+        "text": "        transforms.Resize((size, size)),"
+      },
+      {
+        "line": 44,
+        "text": "        transforms.CenterCrop(isize),"
+      },
+      {
+        "line": 45,
+        "text": "        transforms.ToTensor()])"
+      },
+      {
+        "line": 46,
+        "text": "    return data_transforms, gt_transforms"
+      },
+      {
+        "line": 47,
+        "text": ""
+      },
+      {
+        "line": 48,
+        "text": ""
+      },
+      {
+        "line": 49,
+        "text": ""
+      },
+      {
+        "line": 50,
+        "text": "class MVTecDataset(torch.utils.data.Dataset):"
+      },
+      {
+        "line": 51,
+        "text": "    def __init__(self, root, transform, gt_transform, phase):"
+      },
+      {
+        "line": 52,
+        "text": "        if phase == 'train':"
+      },
+      {
+        "line": 53,
+        "text": "            self.img_path = os.path.join(root, 'train')"
+      },
+      {
+        "line": 54,
+        "text": "        else:"
+      },
+      {
+        "line": 55,
+        "text": "            self.img_path = os.path.join(root, 'test')"
+      },
+      {
+        "line": 56,
+        "text": "            self.gt_path = os.path.join(root, 'ground_truth')"
+      },
+      {
+        "line": 57,
+        "text": "        self.transform = transform"
+      },
+      {
+        "line": 58,
+        "text": "        self.gt_transform = gt_transform"
+      },
+      {
+        "line": 59,
+        "text": "        # load dataset"
+      },
+      {
+        "line": 60,
+        "text": "        self.img_paths, self.gt_paths, self.labels, self.types = self.load_dataset()  # self.labels => good : 0, anomaly : 1"
+      },
+      {
+        "line": 61,
+        "text": ""
+      },
+      {
+        "line": 62,
+        "text": "    def load_dataset(self):"
+      },
+      {
+        "line": 63,
+        "text": ""
+      },
+      {
+        "line": 64,
+        "text": "        img_tot_paths = []"
+      },
+      {
+        "line": 65,
+        "text": "        gt_tot_paths = []"
+      },
+      {
+        "line": 66,
+        "text": "        tot_labels = []"
+      },
+      {
+        "line": 67,
+        "text": "        tot_types = []"
+      },
+      {
+        "line": 68,
+        "text": ""
+      },
+      {
+        "line": 69,
+        "text": "        defect_types = os.listdir(self.img_path)"
+      },
+      {
+        "line": 70,
+        "text": ""
+      },
+      {
+        "line": 71,
+        "text": "        for defect_type in defect_types:"
+      },
+      {
+        "line": 72,
+        "text": "            if defect_type == 'good':"
+      },
+      {
+        "line": 73,
+        "text": "                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")"
+      },
+      {
+        "line": 74,
+        "text": "                img_tot_paths.extend(img_paths)"
+      },
+      {
+        "line": 75,
+        "text": "                gt_tot_paths.extend([0] * len(img_paths))"
+      },
+      {
+        "line": 76,
+        "text": "                tot_labels.extend([0] * len(img_paths))"
+      },
+      {
+        "line": 77,
+        "text": "                tot_types.extend(['good'] * len(img_paths))"
+      },
+      {
+        "line": 78,
+        "text": "            else:"
+      },
+      {
+        "line": 79,
+        "text": "                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")"
+      },
+      {
+        "line": 80,
+        "text": "                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")"
+      },
+      {
+        "line": 81,
+        "text": "                img_paths.sort()"
+      },
+      {
+        "line": 82,
+        "text": "                gt_paths.sort()"
+      },
+      {
+        "line": 83,
+        "text": "                img_tot_paths.extend(img_paths)"
+      },
+      {
+        "line": 84,
+        "text": "                gt_tot_paths.extend(gt_paths)"
+      },
+      {
+        "line": 85,
+        "text": "                tot_labels.extend([1] * len(img_paths))"
+      },
+      {
+        "line": 86,
+        "text": "                tot_types.extend([defect_type] * len(img_paths))"
+      },
+      {
+        "line": 87,
+        "text": ""
+      },
+      {
+        "line": 88,
+        "text": "        assert len(img_tot_paths) == len(gt_tot_paths), \"Something wrong with test and ground truth pair!\""
+      },
+      {
+        "line": 89,
+        "text": ""
+      },
+      {
+        "line": 90,
+        "text": "        return img_tot_paths, gt_tot_paths, tot_labels, tot_types"
+      },
+      {
+        "line": 91,
+        "text": ""
+      },
+      {
+        "line": 92,
+        "text": "    def __len__(self):"
+      },
+      {
+        "line": 93,
+        "text": "        return len(self.img_paths)"
+      },
+      {
+        "line": 94,
+        "text": ""
+      },
+      {
+        "line": 95,
+        "text": "    def __getitem__(self, idx):"
+      },
+      {
+        "line": 96,
+        "text": "        img_path, gt, label, img_type = self.img_paths[idx], self.gt_paths[idx], self.labels[idx], self.types[idx]"
+      },
+      {
+        "line": 97,
+        "text": "        img = Image.open(img_path).convert('RGB')"
+      },
+      {
+        "line": 98,
+        "text": "        img = self.transform(img)"
+      },
+      {
+        "line": 99,
+        "text": "        if gt == 0:"
+      },
+      {
+        "line": 100,
+        "text": "            gt = torch.zeros([1, img.size()[-2], img.size()[-2]])"
+      },
+      {
+        "line": 101,
+        "text": "        else:"
+      },
+      {
+        "line": 102,
+        "text": "            gt = Image.open(gt)"
+      },
+      {
+        "line": 103,
+        "text": "            gt = self.gt_transform(gt)"
+      },
+      {
+        "line": 104,
+        "text": ""
+      },
+      {
+        "line": 105,
+        "text": "        assert img.size()[1:] == gt.size()[1:], \"image.size != gt.size !!!\""
+      },
+      {
+        "line": 106,
+        "text": ""
+      },
+      {
+        "line": 107,
+        "text": "        return img, gt, label, img_type"
+      },
+      {
+        "line": 108,
+        "text": ""
+      },
+      {
+        "line": 109,
+        "text": ""
+      },
+      {
+        "line": 110,
+        "text": "class MVTecDatasetOOD(torch.utils.data.Dataset):"
+      },
+      {
+        "line": 111,
+        "text": "    def __init__(self, root, transform, gt_transform, phase, _class_):"
+      },
+      {
+        "line": 112,
+        "text": "        if phase == 'train':"
+      },
+      {
+        "line": 113,
+        "text": "            self.img_path = os.path.join(root, 'train')"
+      },
+      {
+        "line": 114,
+        "text": "        else:"
+      },
+      {
+        "line": 115,
+        "text": "            self.img_path = os.path.join(root, 'test')"
+      },
+      {
+        "line": 116,
+        "text": "            self.gt_path = os.path.join('/home/cttri/anomaly/data/mvtec/'+_class_, 'ground_truth')"
+      },
+      {
+        "line": 117,
+        "text": "        self.transform = transform"
+      },
+      {
+        "line": 118,
+        "text": "        self.gt_transform = gt_transform"
+      },
+      {
+        "line": 119,
+        "text": "        # load dataset"
+      },
+      {
+        "line": 120,
+        "text": "        self.img_paths, self.gt_paths, self.labels, self.types = self.load_dataset()  # self.labels => good : 0, anomaly : 1"
+      },
+      {
+        "line": 121,
+        "text": ""
+      },
+      {
+        "line": 122,
+        "text": "    def load_dataset(self):"
+      },
+      {
+        "line": 123,
+        "text": ""
+      },
+      {
+        "line": 124,
+        "text": "        img_tot_paths = []"
+      },
+      {
+        "line": 125,
+        "text": "        gt_tot_paths = []"
+      },
+      {
+        "line": 126,
+        "text": "        tot_labels = []"
+      },
+      {
+        "line": 127,
+        "text": "        tot_types = []"
+      },
+      {
+        "line": 128,
+        "text": ""
+      },
+      {
+        "line": 129,
+        "text": "        defect_types = os.listdir(self.img_path)"
+      },
+      {
+        "line": 130,
+        "text": ""
+      },
+      {
+        "line": 131,
+        "text": "        for defect_type in defect_types:"
+      },
+      {
+        "line": 132,
+        "text": "            if defect_type == 'good':"
+      },
+      {
+        "line": 133,
+        "text": "                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")"
+      },
+      {
+        "line": 134,
+        "text": "                img_tot_paths.extend(img_paths)"
+      },
+      {
+        "line": 135,
+        "text": "                gt_tot_paths.extend([0] * len(img_paths))"
+      },
+      {
+        "line": 136,
+        "text": "                tot_labels.extend([0] * len(img_paths))"
+      },
+      {
+        "line": 137,
+        "text": "                tot_types.extend(['good'] * len(img_paths))"
+      },
+      {
+        "line": 138,
+        "text": "            else:"
+      },
+      {
+        "line": 139,
+        "text": "                img_paths = glob.glob(os.path.join(self.img_path, defect_type) + \"/*.png\")"
+      },
+      {
+        "line": 140,
+        "text": "                gt_paths = glob.glob(os.path.join(self.gt_path, defect_type) + \"/*.png\")"
+      },
+      {
+        "line": 141,
+        "text": "                img_paths.sort()"
+      },
+      {
+        "line": 142,
+        "text": "                gt_paths.sort()"
+      },
+      {
+        "line": 143,
+        "text": "                img_tot_paths.extend(img_paths)"
+      },
+      {
+        "line": 144,
+        "text": "                gt_tot_paths.extend(gt_paths)"
+      },
+      {
+        "line": 145,
+        "text": "                tot_labels.extend([1] * len(img_paths))"
+      },
+      {
+        "line": 146,
+        "text": "                tot_types.extend([defect_type] * len(img_paths))"
+      },
+      {
+        "line": 147,
+        "text": ""
+      },
+      {
+        "line": 148,
+        "text": "        assert len(img_tot_paths) == len(gt_tot_paths), \"Something wrong with test and ground truth pair!\""
+      },
+      {
+        "line": 149,
+        "text": ""
+      },
+      {
+        "line": 150,
+        "text": "        return img_tot_paths, gt_tot_paths, tot_labels, tot_types"
+      },
+      {
+        "line": 151,
+        "text": ""
+      },
+      {
+        "line": 152,
+        "text": "    def __len__(self):"
+      },
+      {
+        "line": 153,
+        "text": "        return len(self.img_paths)"
+      },
+      {
+        "line": 154,
+        "text": ""
+      },
+      {
+        "line": 155,
+        "text": "    def __getitem__(self, idx):"
+      },
+      {
+        "line": 156,
+        "text": "        img_path, gt, label, img_type = self.img_paths[idx], self.gt_paths[idx], self.labels[idx], self.types[idx]"
+      },
+      {
+        "line": 157,
+        "text": "        img = Image.open(img_path).convert('RGB')"
+      },
+      {
+        "line": 158,
+        "text": "        img = self.transform(img)"
+      },
+      {
+        "line": 159,
+        "text": "        if gt == 0:"
+      },
+      {
+        "line": 160,
+        "text": "            gt = torch.zeros([1, img.size()[-2], img.size()[-2]])"
+      },
+      {
+        "line": 161,
+        "text": "        else:"
+      },
+      {
+        "line": 162,
+        "text": "            gt = Image.open(gt)"
+      },
+      {
+        "line": 163,
+        "text": "            gt = self.gt_transform(gt)"
+      },
+      {
+        "line": 164,
+        "text": ""
+      },
+      {
+        "line": 165,
+        "text": "        assert img.size()[1:] == gt.size()[1:], \"image.size != gt.size !!!\""
+      },
+      {
+        "line": 166,
+        "text": ""
+      },
+      {
+        "line": 167,
+        "text": "        return img, gt, label, img_type"
+      },
+      {
+        "line": 168,
+        "text": ""
+      },
+      {
+        "line": 169,
+        "text": "class MNIST_M(Dataset):"
+      },
+      {
+        "line": 170,
+        "text": "    def __init__(self, path_to_image_tests, labs_test, transform):"
+      },
+      {
+        "line": 171,
+        "text": "        self.full_filenames = path_to_image_tests"
+      },
+      {
+        "line": 172,
+        "text": "        self.labels = labs_test"
+      },
+      {
+        "line": 173,
+        "text": "        self.transform = transform"
+      },
+      {
+        "line": 174,
+        "text": ""
+      },
+      {
+        "line": 175,
+        "text": "    def __len__(self):"
+      },
+      {
+        "line": 176,
+        "text": "        # return size of dataset"
+      },
+      {
+        "line": 177,
+        "text": "        return len(self.full_filenames)"
+      },
+      {
+        "line": 178,
+        "text": ""
+      },
+      {
+        "line": 179,
+        "text": "    def __getitem__(self, idx):"
+      },
+      {
+        "line": 180,
+        "text": "        # open image, apply transforms and return with label"
+      },
+      {
+        "line": 181,
+        "text": "        image = Image.open(self.full_filenames[idx])  # PIL image"
+      },
+      {
+        "line": 182,
+        "text": "        image = self.transform(image)"
+      },
+      {
+        "line": 183,
+        "text": "        return image, self.labels[idx]"
+      },
+      {
+        "line": 184,
+        "text": ""
+      },
+      {
+        "line": 185,
+        "text": "class PACSDataset(torch.utils.data.Dataset):"
+      },
+      {
+        "line": 186,
+        "text": "    def __init__(self, root, transform):"
+      },
+      {
+        "line": 187,
+        "text": ""
+      },
+      {
+        "line": 188,
+        "text": "        self.img_path = root"
+      },
+      {
+        "line": 189,
+        "text": ""
+      },
+      {
+        "line": 190,
+        "text": "        self.transform = transform"
+      },
+      {
+        "line": 191,
+        "text": "        # load dataset"
+      },
+      {
+        "line": 192,
+        "text": "        self.img_paths = glob.glob(self.img_path+'/*.png')"
+      },
+      {
+        "line": 193,
+        "text": ""
+      },
+      {
+        "line": 194,
+        "text": "    def __len__(self):"
+      },
+      {
+        "line": 195,
+        "text": "        return len(self.img_paths)"
+      },
+      {
+        "line": 196,
+        "text": ""
+      },
+      {
+        "line": 197,
+        "text": "    def __getitem__(self, idx):"
+      },
+      {
+        "line": 198,
+        "text": "        img_path= self.img_paths[idx]"
+      },
+      {
+        "line": 199,
+        "text": "        img = Image.open(img_path).convert('RGB')"
+      },
+      {
+        "line": 200,
+        "text": "        img = self.transform(img)"
+      },
+      {
+        "line": 201,
+        "text": ""
+      },
+      {
+        "line": 202,
+        "text": ""
+      },
+      {
+        "line": 203,
+        "text": "        return img, 0"
+      },
+      {
+        "line": 204,
+        "text": ""
+      },
+      {
+        "line": 205,
+        "text": "def load_data(dataset_name='mnist',normal_class=0,batch_size='16'):"
+      },
+      {
+        "line": 206,
+        "text": ""
+      },
+      {
+        "line": 207,
+        "text": "    if dataset_name == 'cifar10':"
+      },
+      {
+        "line": 208,
+        "text": "        img_transform = transforms.Compose(["
+      },
+      {
+        "line": 209,
+        "text": "            transforms.Resize((32, 32)),"
+      },
+      {
+        "line": 210,
+        "text": "            #transforms.CenterCrop(28),"
+      },
+      {
+        "line": 211,
+        "text": "            transforms.ToTensor(),"
+      },
+      {
+        "line": 212,
+        "text": "            transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))"
+      },
+      {
+        "line": 213,
+        "text": "        ])"
+      },
+      {
+        "line": 214,
+        "text": ""
+      },
+      {
+        "line": 215,
+        "text": "        os.makedirs(\"./Dataset/CIFAR10/train\", exist_ok=True)"
+      },
+      {
+        "line": 216,
+        "text": "        dataset = CIFAR10('./Dataset/CIFAR10/train', train=True, download=True, transform=img_transform)"
+      },
+      {
+        "line": 217,
+        "text": "        print(\"Cifar10 DataLoader Called...\")"
+      },
+      {
+        "line": 218,
+        "text": "        print(\"All Train Data: \", dataset.data.shape)"
+      },
+      {
+        "line": 219,
+        "text": "        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]"
+      },
+      {
+        "line": 220,
+        "text": "        dataset.targets = [normal_class] * dataset.data.shape[0]"
+      },
+      {
+        "line": 221,
+        "text": "        print(\"Normal Train Data: \", dataset.data.shape)"
+      },
+      {
+        "line": 222,
+        "text": ""
+      },
+      {
+        "line": 223,
+        "text": "        os.makedirs(\"./Dataset/CIFAR10/test\", exist_ok=True)"
+      },
+      {
+        "line": 224,
+        "text": "        test_set = CIFAR10(\"./Dataset/CIFAR10/test\", train=False, download=True, transform=img_transform)"
+      },
+      {
+        "line": 225,
+        "text": "        print(\"Test Train Data:\", test_set.data.shape)"
+      },
+      {
+        "line": 226,
+        "text": ""
+      },
+      {
+        "line": 227,
+        "text": "    elif dataset_name == 'mnist':"
+      },
+      {
+        "line": 228,
+        "text": "        img_transform = transforms.Compose(["
+      },
+      {
+        "line": 229,
+        "text": "            transforms.Resize((32, 32)),"
+      },
+      {
+        "line": 230,
+        "text": "            transforms.ToTensor()"
+      },
+      {
+        "line": 231,
+        "text": "        ])"
+      },
+      {
+        "line": 232,
+        "text": ""
+      },
+      {
+        "line": 233,
+        "text": "        os.makedirs(\"./Dataset/MNIST/train\", exist_ok=True)"
+      },
+      {
+        "line": 234,
+        "text": "        dataset = MNIST('./Dataset/MNIST/train', train=True, download=True, transform=img_transform)"
+      },
+      {
+        "line": 235,
+        "text": "        print(\"MNIST DataLoader Called...\")"
+      },
+      {
+        "line": 236,
+        "text": "        print(\"All Train Data: \", dataset.data.shape)"
+      },
+      {
+        "line": 237,
+        "text": "        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]"
+      },
+      {
+        "line": 238,
+        "text": "        dataset.targets = [normal_class] * dataset.data.shape[0]"
+      },
+      {
+        "line": 239,
+        "text": "        print(\"Normal Train Data: \", dataset.data.shape)"
+      },
+      {
+        "line": 240,
+        "text": ""
+      },
+      {
+        "line": 241,
+        "text": "        os.makedirs(\"./Dataset/MNIST/test\", exist_ok=True)"
+      },
+      {
+        "line": 242,
+        "text": "        test_set = MNIST(\"./Dataset/MNIST/test\", train=False, download=True, transform=img_transform)"
+      },
+      {
+        "line": 243,
+        "text": "        print(\"Test Train Data:\", test_set.data.shape)"
+      },
+      {
+        "line": 244,
+        "text": ""
+      },
+      {
+        "line": 245,
+        "text": "    elif dataset_name == 'fashionmnist':"
+      },
+      {
+        "line": 246,
+        "text": "        img_transform = transforms.Compose(["
+      },
+      {
+        "line": 247,
+        "text": "            transforms.Resize((32, 32)),"
+      },
+      {
+        "line": 248,
+        "text": "            transforms.ToTensor()"
+      },
+      {
+        "line": 249,
+        "text": "        ])"
+      },
+      {
+        "line": 250,
+        "text": ""
+      },
+      {
+        "line": 251,
+        "text": "        os.makedirs(\"./Dataset/FashionMNIST/train\", exist_ok=True)"
+      },
+      {
+        "line": 252,
+        "text": "        dataset = FashionMNIST('./Dataset/FashionMNIST/train', train=True, download=True, transform=img_transform)"
+      },
+      {
+        "line": 253,
+        "text": "        print(\"FashionMNIST DataLoader Called...\")"
+      },
+      {
+        "line": 254,
+        "text": "        print(\"All Train Data: \", dataset.data.shape)"
+      },
+      {
+        "line": 255,
+        "text": "        dataset.data = dataset.data[np.array(dataset.targets) == normal_class]"
+      },
+      {
+        "line": 256,
+        "text": "        dataset.targets = [normal_class] * dataset.data.shape[0]"
+      },
+      {
+        "line": 257,
+        "text": "        print(\"Normal Train Data: \", dataset.data.shape)"
+      },
+      {
+        "line": 258,
+        "text": ""
+      },
+      {
+        "line": 259,
+        "text": "        os.makedirs(\"./Dataset/FashionMNIST/test\", exist_ok=True)"
+      },
+      {
+        "line": 260,
+        "text": "        test_set = FashionMNIST(\"./Dataset/FashionMNIST/test\", train=False, download=True, transform=img_transform)"
+      },
+      {
+        "line": 261,
+        "text": "        print(\"Test Train Data:\", test_set.data.shape)"
+      },
+      {
+        "line": 262,
+        "text": ""
+      },
+      {
+        "line": 263,
+        "text": ""
+      },
+      {
+        "line": 264,
+        "text": "    elif dataset_name == 'retina':"
+      },
+      {
+        "line": 265,
+        "text": "        data_path = 'Dataset/OCT2017/train'"
+      },
+      {
+        "line": 266,
+        "text": ""
+      },
+      {
+        "line": 267,
+        "text": "        orig_transform = transforms.Compose(["
+      },
+      {
+        "line": 268,
+        "text": "            transforms.Resize([128, 128]),"
+      },
+      {
+        "line": 269,
+        "text": "            transforms.ToTensor()"
+      },
+      {
+        "line": 270,
+        "text": "        ])"
+      },
+      {
+        "line": 271,
+        "text": ""
+      },
+      {
+        "line": 272,
+        "text": "        dataset = ImageFolder(root=data_path, transform=orig_transform)"
+      },
+      {
+        "line": 273,
+        "text": ""
+      },
+      {
+        "line": 274,
+        "text": "        test_data_path = 'Dataset/OCT2017/test'"
+      },
+      {
+        "line": 275,
+        "text": "        test_set = ImageFolder(root=test_data_path, transform=orig_transform)"
+      },
+      {
+        "line": 276,
+        "text": ""
+      },
+      {
+        "line": 277,
+        "text": "    else:"
+      },
+      {
+        "line": 278,
+        "text": "        raise Exception("
+      },
+      {
+        "line": 279,
+        "text": "            \"You enter {} as dataset, which is not a valid dataset for this repository!\".format(dataset_name))"
+      },
+      {
+        "line": 280,
+        "text": ""
+      },
+      {
+        "line": 281,
+        "text": "    train_dataloader = torch.utils.data.DataLoader("
+      },
+      {
+        "line": 282,
+        "text": "        dataset,"
+      },
+      {
+        "line": 283,
+        "text": "        batch_size=batch_size,"
+      },
+      {
+        "line": 284,
+        "text": "        shuffle=True,"
+      },
+      {
+        "line": 285,
+        "text": "    )"
+      },
+      {
+        "line": 286,
+        "text": "    test_dataloader = torch.utils.data.DataLoader("
+      },
+      {
+        "line": 287,
+        "text": "        test_set,"
+      },
+      {
+        "line": 288,
+        "text": "        batch_size=1,"
+      },
+      {
+        "line": 289,
+        "text": "        shuffle=False,"
+      },
+      {
+        "line": 290,
+        "text": "    )"
+      },
+      {
+        "line": 291,
+        "text": ""
+      },
+      {
+        "line": 292,
+        "text": "    return train_dataloader, test_dataloader"
+      },
+      {
+        "line": 293,
+        "text": ""
+      },
+      {
+        "line": 294,
+        "text": ""
+      },
+      {
+        "line": 295,
+        "text": ""
+      },
+      {
+        "line": 296,
+        "text": "def int_parameter(level, maxval):"
+      },
+      {
+        "line": 297,
+        "text": "  \"\"\"Helper function to scale `val` between 0 and maxval ."
+      },
+      {
+        "line": 298,
+        "text": "  Args:"
+      },
+      {
+        "line": 299,
+        "text": "    level: Level of the operation that will be between [0, `PARAMETER_MAX`]."
+      },
+      {
+        "line": 300,
+        "text": "    maxval: Maximum value that the operation can have. This will be scaled to"
+      },
+      {
+        "line": 301,
+        "text": "      level/PARAMETER_MAX."
+      },
+      {
+        "line": 302,
+        "text": "  Returns:"
+      },
+      {
+        "line": 303,
+        "text": "    An int that results from scaling `maxval` according to `level`."
+      },
+      {
+        "line": 304,
+        "text": "  \"\"\""
+      },
+      {
+        "line": 305,
+        "text": "  return int(level * maxval / 10)"
+      },
+      {
+        "line": 306,
+        "text": ""
+      },
+      {
+        "line": 307,
+        "text": ""
+      },
+      {
+        "line": 308,
+        "text": "def float_parameter(level, maxval):"
+      },
+      {
+        "line": 309,
+        "text": "  \"\"\"Helper function to scale `val` between 0 and maxval."
+      },
+      {
+        "line": 310,
+        "text": "  Args:"
+      },
+      {
+        "line": 311,
+        "text": "    level: Level of the operation that will be between [0, `PARAMETER_MAX`]."
+      },
+      {
+        "line": 312,
+        "text": "    maxval: Maximum value that the operation can have. This will be scaled to"
+      },
+      {
+        "line": 313,
+        "text": "      level/PARAMETER_MAX."
+      },
+      {
+        "line": 314,
+        "text": "  Returns:"
+      },
+      {
+        "line": 315,
+        "text": "    A float that results from scaling `maxval` according to `level`."
+      },
+      {
+        "line": 316,
+        "text": "  \"\"\""
+      },
+      {
+        "line": 317,
+        "text": "  return float(level) * maxval / 10."
+      },
+      {
+        "line": 318,
+        "text": ""
+      },
+      {
+        "line": 319,
+        "text": ""
+      },
+      {
+        "line": 320,
+        "text": "def sample_level(n):"
+      },
+      {
+        "line": 321,
+        "text": "  return np.random.uniform(low=0.1, high=n)"
+      },
+      {
+        "line": 322,
+        "text": ""
+      },
+      {
+        "line": 323,
+        "text": ""
+      },
+      {
+        "line": 324,
+        "text": "def autocontrast(pil_img, _):"
+      },
+      {
+        "line": 325,
+        "text": "  return ImageOps.autocontrast(pil_img)"
+      },
+      {
+        "line": 326,
+        "text": ""
+      },
+      {
+        "line": 327,
+        "text": ""
+      },
+      {
+        "line": 328,
+        "text": "def equalize(pil_img, _):"
+      },
+      {
+        "line": 329,
+        "text": "  return ImageOps.equalize(pil_img)"
+      },
+      {
+        "line": 330,
+        "text": ""
+      },
+      {
+        "line": 331,
+        "text": ""
+      },
+      {
+        "line": 332,
+        "text": "def posterize(pil_img, level):"
+      },
+      {
+        "line": 333,
+        "text": "  level = int_parameter(sample_level(level), 4)"
+      },
+      {
+        "line": 334,
+        "text": "  return ImageOps.posterize(pil_img, 4 - level)"
+      },
+      {
+        "line": 335,
+        "text": ""
+      },
+      {
+        "line": 336,
+        "text": ""
+      },
+      {
+        "line": 337,
+        "text": "def rotate(pil_img, level):"
+      },
+      {
+        "line": 338,
+        "text": "  degrees = int_parameter(sample_level(level), 30)"
+      },
+      {
+        "line": 339,
+        "text": "  if np.random.uniform() > 0.5:"
+      },
+      {
+        "line": 340,
+        "text": "    degrees = -degrees"
+      },
+      {
+        "line": 341,
+        "text": "  return pil_img.rotate(degrees, resample=Image.Resampling.BILINEAR)"
+      },
+      {
+        "line": 342,
+        "text": ""
+      },
+      {
+        "line": 343,
+        "text": ""
+      },
+      {
+        "line": 344,
+        "text": "def solarize(pil_img, level):"
+      },
+      {
+        "line": 345,
+        "text": "  level = int_parameter(sample_level(level), 256)"
+      },
+      {
+        "line": 346,
+        "text": "  return ImageOps.solarize(pil_img, 256 - level)"
+      },
+      {
+        "line": 347,
+        "text": ""
+      },
+      {
+        "line": 348,
+        "text": ""
+      },
+      {
+        "line": 349,
+        "text": "def shear_x(pil_img, level):"
+      },
+      {
+        "line": 350,
+        "text": "  level = float_parameter(sample_level(level), 0.3)"
+      },
+      {
+        "line": 351,
+        "text": "  if np.random.uniform() > 0.5:"
+      },
+      {
+        "line": 352,
+        "text": "    level = -level"
+      },
+      {
+        "line": 353,
+        "text": "  return pil_img.transform((IMAGE_SIZE, IMAGE_SIZE),"
+      },
+      {
+        "line": 354,
+        "text": "                           Image.Transform.AFFINE, (1, level, 0, 0, 1, 0),"
+      },
+      {
+        "line": 355,
+        "text": "                           resample=Image.Resampling.BILINEAR)"
+      },
+      {
+        "line": 356,
+        "text": ""
+      },
+      {
+        "line": 357,
+        "text": ""
+      },
+      {
+        "line": 358,
+        "text": "def shear_y(pil_img, level):"
+      },
+      {
+        "line": 359,
+        "text": "  level = float_parameter(sample_level(level), 0.3)"
+      },
+      {
+        "line": 360,
+        "text": "  if np.random.uniform() > 0.5:"
+      },
+      {
+        "line": 361,
+        "text": "    level = -level"
+      },
+      {
+        "line": 362,
+        "text": "  return pil_img.transform((IMAGE_SIZE, IMAGE_SIZE),"
+      },
+      {
+        "line": 363,
+        "text": "                           Image.Transform.AFFINE, (1, 0, 0, level, 1, 0),"
+      },
+      {
+        "line": 364,
+        "text": "                           resample=Image.Resampling.BILINEAR)"
+      },
+      {
+        "line": 365,
+        "text": ""
+      },
+      {
+        "line": 366,
+        "text": ""
+      },
+      {
+        "line": 367,
+        "text": "def translate_x(pil_img, level):"
+      },
+      {
+        "line": 368,
+        "text": "  level = int_parameter(sample_level(level), IMAGE_SIZE / 3)"
+      },
+      {
+        "line": 369,
+        "text": "  if np.random.random() > 0.5:"
+      },
+      {
+        "line": 370,
+        "text": "    level = -level"
+      },
+      {
+        "line": 371,
+        "text": "  return pil_img.transform((IMAGE_SIZE, IMAGE_SIZE),"
+      },
+      {
+        "line": 372,
+        "text": "                           Image.Transform.AFFINE, (1, 0, level, 0, 1, 0),"
+      },
+      {
+        "line": 373,
+        "text": "                           resample=Image.Resampling.BILINEAR)"
+      },
+      {
+        "line": 374,
+        "text": ""
+      },
+      {
+        "line": 375,
+        "text": ""
+      },
+      {
+        "line": 376,
+        "text": "def translate_y(pil_img, level):"
+      },
+      {
+        "line": 377,
+        "text": "  level = int_parameter(sample_level(level), IMAGE_SIZE / 3)"
+      },
+      {
+        "line": 378,
+        "text": "  if np.random.random() > 0.5:"
+      },
+      {
+        "line": 379,
+        "text": "    level = -level"
+      },
+      {
+        "line": 380,
+        "text": "  return pil_img.transform((IMAGE_SIZE, IMAGE_SIZE),"
+      },
+      {
+        "line": 381,
+        "text": "                           Image.Transform.AFFINE, (1, 0, 0, 0, 1, level),"
+      },
+      {
+        "line": 382,
+        "text": "                           resample=Image.Resampling.BILINEAR)"
+      },
+      {
+        "line": 383,
+        "text": ""
+      },
+      {
+        "line": 384,
+        "text": ""
+      },
+      {
+        "line": 385,
+        "text": "# operation that overlaps with ImageNet-C's test set"
+      },
+      {
+        "line": 386,
+        "text": "def color(pil_img, level):"
+      },
+      {
+        "line": 387,
+        "text": "    level = float_parameter(sample_level(level), 1.8) + 0.1"
+      },
+      {
+        "line": 388,
+        "text": "    return ImageEnhance.Color(pil_img).enhance(level)"
+      },
+      {
+        "line": 389,
+        "text": ""
+      },
+      {
+        "line": 390,
+        "text": ""
+      },
+      {
+        "line": 391,
+        "text": "# operation that overlaps with ImageNet-C's test set"
+      },
+      {
+        "line": 392,
+        "text": "def contrast(pil_img, level):"
+      },
+      {
+        "line": 393,
+        "text": "    level = float_parameter(sample_level(level), 1.8) + 0.1"
+      },
+      {
+        "line": 394,
+        "text": "    return ImageEnhance.Contrast(pil_img).enhance(level)"
+      },
+      {
+        "line": 395,
+        "text": ""
+      },
+      {
+        "line": 396,
+        "text": ""
+      },
+      {
+        "line": 397,
+        "text": "# operation that overlaps with ImageNet-C's test set"
+      },
+      {
+        "line": 398,
+        "text": "def brightness(pil_img, level):"
+      },
+      {
+        "line": 399,
+        "text": "    level = float_parameter(sample_level(level), 1.8) + 0.1"
+      },
+      {
+        "line": 400,
+        "text": "    return ImageEnhance.Brightness(pil_img).enhance(level)"
+      },
+      {
+        "line": 401,
+        "text": ""
+      },
+      {
+        "line": 402,
+        "text": ""
+      },
+      {
+        "line": 403,
+        "text": "# operation that overlaps with ImageNet-C's test set"
+      },
+      {
+        "line": 404,
+        "text": "def sharpness(pil_img, level):"
+      },
+      {
+        "line": 405,
+        "text": "    level = float_parameter(sample_level(level), 1.8) + 0.1"
+      },
+      {
+        "line": 406,
+        "text": "    return ImageEnhance.Sharpness(pil_img).enhance(level)"
+      },
+      {
+        "line": 407,
+        "text": ""
+      },
+      {
+        "line": 408,
+        "text": "def augmvtec(image, preprocess, severity=3, width=3, depth=-1, alpha=1.):"
+      },
+      {
+        "line": 409,
+        "text": "  aug_list = ["
+      },
+      {
+        "line": 410,
+        "text": "      autocontrast, equalize, posterize, solarize, color, sharpness"
+      },
+      {
+        "line": 411,
+        "text": "  ]"
+      },
+      {
+        "line": 412,
+        "text": ""
+      },
+      {
+        "line": 413,
+        "text": ""
+      },
+      {
+        "line": 414,
+        "text": "  severity = random.randint(0, severity)"
+      },
+      {
+        "line": 415,
+        "text": ""
+      },
+      {
+        "line": 416,
+        "text": "  ws = np.float32(np.random.dirichlet([1] * width))"
+      },
+      {
+        "line": 417,
+        "text": "  m = np.float32(np.random.beta(alpha, alpha))"
+      },
+      {
+        "line": 418,
+        "text": "  preprocess_img = preprocess(image)"
+      },
+      {
+        "line": 419,
+        "text": "  mix = torch.zeros_like(preprocess_img)"
+      },
+      {
+        "line": 420,
+        "text": "  for i in range(width):"
+      },
+      {
+        "line": 421,
+        "text": "    image_aug = image.copy()"
+      },
+      {
+        "line": 422,
+        "text": "    depth = depth if depth > 0 else np.random.randint("
+      },
+      {
+        "line": 423,
+        "text": "        1, 4)"
+      },
+      {
+        "line": 424,
+        "text": "    for _ in range(depth):"
+      },
+      {
+        "line": 425,
+        "text": "      op = np.random.choice(aug_list)"
+      },
+      {
+        "line": 426,
+        "text": "      image_aug = op(image_aug, severity)"
+      },
+      {
+        "line": 427,
+        "text": "    # Preprocessing commutes since all coefficients are convex"
+      },
+      {
+        "line": 428,
+        "text": "    mix += ws[i] * preprocess(image_aug)"
+      },
+      {
+        "line": 429,
+        "text": ""
+      },
+      {
+        "line": 430,
+        "text": "  mixed = (1 - m) * preprocess_img + m * mix"
+      },
+      {
+        "line": 431,
+        "text": "  return mixed"
+      },
+      {
+        "line": 432,
+        "text": ""
+      },
+      {
+        "line": 433,
+        "text": "def augpacs(image, preprocess, severity=3, width=3, depth=-1, alpha=1.):"
+      },
+      {
+        "line": 434,
+        "text": "  aug_list = ["
+      },
+      {
+        "line": 435,
+        "text": "      autocontrast, equalize, posterize, solarize, color, contrast, brightness, sharpness"
+      },
+      {
+        "line": 436,
+        "text": "  ]"
+      },
+      {
+        "line": 437,
+        "text": "  severity = random.randint(0, severity)"
+      },
+      {
+        "line": 438,
+        "text": ""
+      },
+      {
+        "line": 439,
+        "text": "  ws = np.float32(np.random.dirichlet([1] * width))"
+      },
+      {
+        "line": 440,
+        "text": "  m = np.float32(np.random.beta(alpha, alpha))"
+      },
+      {
+        "line": 441,
+        "text": "  preprocess_img = preprocess(image)"
+      },
+      {
+        "line": 442,
+        "text": "  mix = torch.zeros_like(preprocess_img)"
+      },
+      {
+        "line": 443,
+        "text": "  for i in range(width):"
+      },
+      {
+        "line": 444,
+        "text": "    image_aug = image.copy()"
+      },
+      {
+        "line": 445,
+        "text": "    depth = depth if depth > 0 else np.random.randint("
+      },
+      {
+        "line": 446,
+        "text": "        1, 4)"
+      },
+      {
+        "line": 447,
+        "text": "    for _ in range(depth):"
+      },
+      {
+        "line": 448,
+        "text": "      op = np.random.choice(aug_list)"
+      },
+      {
+        "line": 449,
+        "text": "      image_aug = op(image_aug, severity)"
+      },
+      {
+        "line": 450,
+        "text": "    # Preprocessing commutes since all coefficients are convex"
+      },
+      {
+        "line": 451,
+        "text": "    mix += ws[i] * preprocess(image_aug)"
+      },
+      {
+        "line": 452,
+        "text": ""
+      },
+      {
+        "line": 453,
+        "text": "  mixed = (1 - m) * preprocess_img + m * mix"
+      },
+      {
+        "line": 454,
+        "text": "  return mixed"
+      },
+      {
+        "line": 455,
+        "text": ""
+      },
+      {
+        "line": 456,
+        "text": "class AugMixDatasetMVTec(torch.utils.data.Dataset):"
+      },
+      {
+        "line": 457,
+        "text": "  \"\"\"Dataset wrapper to perform AugMix augmentation.\"\"\""
+      },
+      {
+        "line": 458,
+        "text": ""
+      },
+      {
+        "line": 459,
+        "text": "  def __init__(self, dataset, preprocess):"
+      },
+      {
+        "line": 460,
+        "text": "    self.dataset = dataset"
+      },
+      {
+        "line": 461,
+        "text": "    self.preprocess = preprocess"
+      },
+      {
+        "line": 462,
+        "text": "    self.gray_preprocess = transforms.Compose(["
+      },
+      {
+        "line": 463,
+        "text": "        transforms.ToTensor(),"
+      },
+      {
+        "line": 464,
+        "text": "        transforms.Normalize(mean=mean_train,"
+      },
+      {
+        "line": 465,
+        "text": "                             std=std_train),"
+      },
+      {
+        "line": 466,
+        "text": "        transforms.Grayscale(3)"
+      },
+      {
+        "line": 467,
+        "text": "    ])"
+      },
+      {
+        "line": 468,
+        "text": "  def __getitem__(self, i):"
+      },
+      {
+        "line": 469,
+        "text": "    x, _ = self.dataset[i]"
+      },
+      {
+        "line": 470,
+        "text": "    return self.preprocess(x), augmvtec(x, self.preprocess), self.gray_preprocess(x)"
+      },
+      {
+        "line": 471,
+        "text": ""
+      },
+      {
+        "line": 472,
+        "text": "  def __len__(self):"
+      },
+      {
+        "line": 473,
+        "text": "    return len(self.dataset)"
+      },
+      {
+        "line": 474,
+        "text": ""
+      },
+      {
+        "line": 475,
+        "text": "class AugMixDatasetPACS(torch.utils.data.Dataset):"
+      },
+      {
+        "line": 476,
+        "text": "  \"\"\"Dataset wrapper to perform AugMix augmentation.\"\"\""
+      },
+      {
+        "line": 477,
+        "text": ""
+      },
+      {
+        "line": 478,
+        "text": "  def __init__(self, dataset, preprocess):"
+      },
+      {
+        "line": 479,
+        "text": "    self.dataset = dataset"
+      },
+      {
+        "line": 480,
+        "text": "    self.preprocess = preprocess"
+      },
+      {
+        "line": 481,
+        "text": "    self.gray_preprocess = transforms.Compose(["
+      },
+      {
+        "line": 482,
+        "text": "        transforms.ToTensor(),"
+      },
+      {
+        "line": 483,
+        "text": "        transforms.Normalize(mean=mean_train,"
+      },
+      {
+        "line": 484,
+        "text": "                             std=std_train),"
+      },
+      {
+        "line": 485,
+        "text": "        transforms.Grayscale(3)"
+      },
+      {
+        "line": 486,
+        "text": "    ])"
+      },
+      {
+        "line": 487,
+        "text": "  def __getitem__(self, i):"
+      },
+      {
+        "line": 488,
+        "text": "    x, _ = self.dataset[i]"
+      },
+      {
+        "line": 489,
+        "text": "    return self.preprocess(x), augpacs(x, self.preprocess), self.gray_preprocess(x)"
+      },
+      {
+        "line": 490,
+        "text": ""
+      },
+      {
+        "line": 491,
+        "text": "  def __len__(self):"
+      },
+      {
+        "line": 492,
+        "text": "    return len(self.dataset)"
+      }
+    ],
+    "/kaggle/working/project_clean/experiments/gnl/train_gnl_bottle.py": [
+      {
+        "line": 1,
+        "text": "import os"
+      },
+      {
+        "line": 2,
+        "text": "import csv"
+      },
+      {
+        "line": 3,
+        "text": "import argparse"
+      },
+      {
+        "line": 4,
+        "text": "import random"
+      },
+      {
+        "line": 5,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 6,
+        "text": "import torch"
+      },
+      {
+        "line": 7,
+        "text": ""
+      },
+      {
+        "line": 8,
+        "text": "from torch.utils.data import DataLoader"
+      },
+      {
+        "line": 9,
+        "text": "from torchvision import transforms"
+      },
+      {
+        "line": 10,
+        "text": "from torchvision.datasets import ImageFolder"
+      },
+      {
+        "line": 11,
+        "text": ""
+      },
+      {
+        "line": 12,
+        "text": "from resnet import wide_resnet50_2"
+      },
+      {
+        "line": 13,
+        "text": "from de_resnet import de_wide_resnet50_2"
+      },
+      {
+        "line": 14,
+        "text": "from dataset import AugMixDatasetMVTec, mean_train, std_train"
+      },
+      {
+        "line": 15,
+        "text": ""
+      },
+      {
+        "line": 16,
+        "text": ""
+      },
+      {
+        "line": 17,
+        "text": "def loss_function(a, b):"
+      },
+      {
+        "line": 18,
+        "text": "    cosine = torch.nn.CosineSimilarity(dim=1)"
+      },
+      {
+        "line": 19,
+        "text": "    loss = 0.0"
+      },
+      {
+        "line": 20,
+        "text": ""
+      },
+      {
+        "line": 21,
+        "text": "    for i in range(len(a)):"
+      },
+      {
+        "line": 22,
+        "text": "        loss += torch.mean("
+      },
+      {
+        "line": 23,
+        "text": "            1 - cosine("
+      },
+      {
+        "line": 24,
+        "text": "                a[i].flatten(1),"
+      },
+      {
+        "line": 25,
+        "text": "                b[i].flatten(1)"
+      },
+      {
+        "line": 26,
+        "text": "            )"
+      },
+      {
+        "line": 27,
+        "text": "        )"
+      },
+      {
+        "line": 28,
+        "text": ""
+      },
+      {
+        "line": 29,
+        "text": "    return loss"
+      },
+      {
+        "line": 30,
+        "text": ""
+      },
+      {
+        "line": 31,
+        "text": ""
+      },
+      {
+        "line": 32,
+        "text": "def loss_function_last(a, b):"
+      },
+      {
+        "line": 33,
+        "text": "    cosine = torch.nn.CosineSimilarity(dim=1)"
+      },
+      {
+        "line": 34,
+        "text": ""
+      },
+      {
+        "line": 35,
+        "text": "    # Preserve official ADShift implementation: index 0."
+      },
+      {
+        "line": 36,
+        "text": "    return torch.mean("
+      },
+      {
+        "line": 37,
+        "text": "        1 - cosine("
+      },
+      {
+        "line": 38,
+        "text": "            a[0].flatten(1),"
+      },
+      {
+        "line": 39,
+        "text": "            b[0].flatten(1)"
+      },
+      {
+        "line": 40,
+        "text": "        )"
+      },
+      {
+        "line": 41,
+        "text": "    )"
+      },
+      {
+        "line": 42,
+        "text": ""
+      },
+      {
+        "line": 43,
+        "text": ""
+      },
+      {
+        "line": 44,
+        "text": "def main(args):"
+      },
+      {
+        "line": 45,
+        "text": ""
+      },
+      {
+        "line": 46,
+        "text": "    random.seed(args.seed)"
+      },
+      {
+        "line": 47,
+        "text": "    np.random.seed(args.seed)"
+      },
+      {
+        "line": 48,
+        "text": "    torch.manual_seed(args.seed)"
+      },
+      {
+        "line": 49,
+        "text": ""
+      },
+      {
+        "line": 50,
+        "text": "    if torch.cuda.is_available():"
+      },
+      {
+        "line": 51,
+        "text": "        torch.cuda.manual_seed_all(args.seed)"
+      },
+      {
+        "line": 52,
+        "text": ""
+      },
+      {
+        "line": 53,
+        "text": "    device = torch.device("
+      },
+      {
+        "line": 54,
+        "text": "        \"cuda\" if torch.cuda.is_available() else \"cpu\""
+      },
+      {
+        "line": 55,
+        "text": "    )"
+      },
+      {
+        "line": 56,
+        "text": ""
+      },
+      {
+        "line": 57,
+        "text": "    print(\"Device:\", device)"
+      },
+      {
+        "line": 58,
+        "text": "    print(\"Category: bottle\")"
+      },
+      {
+        "line": 59,
+        "text": "    print(\"Dataset:\", args.dataset_root)"
+      },
+      {
+        "line": 60,
+        "text": ""
+      },
+      {
+        "line": 61,
+        "text": "    # Official ADShift image preprocessing."
+      },
+      {
+        "line": 62,
+        "text": "    resize_transform = transforms.Compose(["
+      },
+      {
+        "line": 63,
+        "text": "        transforms.Resize((256, 256))"
+      },
+      {
+        "line": 64,
+        "text": "    ])"
+      },
+      {
+        "line": 65,
+        "text": ""
+      },
+      {
+        "line": 66,
+        "text": "    preprocess = transforms.Compose(["
+      },
+      {
+        "line": 67,
+        "text": "        transforms.ToTensor(),"
+      },
+      {
+        "line": 68,
+        "text": "        transforms.Normalize("
+      },
+      {
+        "line": 69,
+        "text": "            mean=mean_train,"
+      },
+      {
+        "line": 70,
+        "text": "            std=std_train"
+      },
+      {
+        "line": 71,
+        "text": "        )"
+      },
+      {
+        "line": 72,
+        "text": "    ])"
+      },
+      {
+        "line": 73,
+        "text": ""
+      },
+      {
+        "line": 74,
+        "text": "    # Only normal training images are used."
+      },
+      {
+        "line": 75,
+        "text": "    train_path = os.path.join("
+      },
+      {
+        "line": 76,
+        "text": "        args.dataset_root,"
+      },
+      {
+        "line": 77,
+        "text": "        \"train\""
+      },
+      {
+        "line": 78,
+        "text": "    )"
+      },
+      {
+        "line": 79,
+        "text": ""
+      },
+      {
+        "line": 80,
+        "text": "    base_dataset = ImageFolder("
+      },
+      {
+        "line": 81,
+        "text": "        root=train_path,"
+      },
+      {
+        "line": 82,
+        "text": "        transform=resize_transform"
+      },
+      {
+        "line": 83,
+        "text": "    )"
+      },
+      {
+        "line": 84,
+        "text": ""
+      },
+      {
+        "line": 85,
+        "text": "    if len(base_dataset) == 0:"
+      },
+      {
+        "line": 86,
+        "text": "        raise RuntimeError(\"No training images found.\")"
+      },
+      {
+        "line": 87,
+        "text": ""
+      },
+      {
+        "line": 88,
+        "text": "    print(\"ImageFolder classes:\", base_dataset.classes)"
+      },
+      {
+        "line": 89,
+        "text": "    print(\"Normal training images:\", len(base_dataset))"
+      },
+      {
+        "line": 90,
+        "text": ""
+      },
+      {
+        "line": 91,
+        "text": "    # Official DINL augmentation wrapper."
+      },
+      {
+        "line": 92,
+        "text": "    train_dataset = AugMixDatasetMVTec("
+      },
+      {
+        "line": 93,
+        "text": "        base_dataset,"
+      },
+      {
+        "line": 94,
+        "text": "        preprocess"
+      },
+      {
+        "line": 95,
+        "text": "    )"
+      },
+      {
+        "line": 96,
+        "text": ""
+      },
+      {
+        "line": 97,
+        "text": "    train_loader = DataLoader("
+      },
+      {
+        "line": 98,
+        "text": "        train_dataset,"
+      },
+      {
+        "line": 99,
+        "text": "        batch_size=args.batch_size,"
+      },
+      {
+        "line": 100,
+        "text": "        shuffle=True,"
+      },
+      {
+        "line": 101,
+        "text": "        num_workers=args.num_workers,"
+      },
+      {
+        "line": 102,
+        "text": "        pin_memory=(device.type == \"cuda\"),"
+      },
+      {
+        "line": 103,
+        "text": "        drop_last=False"
+      },
+      {
+        "line": 104,
+        "text": "    )"
+      },
+      {
+        "line": 105,
+        "text": ""
+      },
+      {
+        "line": 106,
+        "text": "    # Pretrained teacher and attention bottleneck."
+      },
+      {
+        "line": 107,
+        "text": "    encoder, bn = wide_resnet50_2(pretrained=True)"
+      },
+      {
+        "line": 108,
+        "text": ""
+      },
+      {
+        "line": 109,
+        "text": "    encoder = encoder.to(device)"
+      },
+      {
+        "line": 110,
+        "text": "    bn = bn.to(device)"
+      },
+      {
+        "line": 111,
+        "text": ""
+      },
+      {
+        "line": 112,
+        "text": "    # Explicitly freeze the teacher."
+      },
+      {
+        "line": 113,
+        "text": "    encoder.eval()"
+      },
+      {
+        "line": 114,
+        "text": ""
+      },
+      {
+        "line": 115,
+        "text": "    for parameter in encoder.parameters():"
+      },
+      {
+        "line": 116,
+        "text": "        parameter.requires_grad = False"
+      },
+      {
+        "line": 117,
+        "text": ""
+      },
+      {
+        "line": 118,
+        "text": "    # Trainable decoder."
+      },
+      {
+        "line": 119,
+        "text": "    decoder = de_wide_resnet50_2(pretrained=False)"
+      },
+      {
+        "line": 120,
+        "text": "    decoder = decoder.to(device)"
+      },
+      {
+        "line": 121,
+        "text": ""
+      },
+      {
+        "line": 122,
+        "text": "    # Only bottleneck and decoder are optimized."
+      },
+      {
+        "line": 123,
+        "text": "    optimizer = torch.optim.Adam("
+      },
+      {
+        "line": 124,
+        "text": "        list(bn.parameters()) +"
+      },
+      {
+        "line": 125,
+        "text": "        list(decoder.parameters()),"
+      },
+      {
+        "line": 126,
+        "text": "        lr=args.learning_rate,"
+      },
+      {
+        "line": 127,
+        "text": "        betas=(0.5, 0.999)"
+      },
+      {
+        "line": 128,
+        "text": "    )"
+      },
+      {
+        "line": 129,
+        "text": ""
+      },
+      {
+        "line": 130,
+        "text": "    os.makedirs(args.checkpoint_dir, exist_ok=True)"
+      },
+      {
+        "line": 131,
+        "text": "    os.makedirs(args.results_dir, exist_ok=True)"
+      },
+      {
+        "line": 132,
+        "text": ""
+      },
+      {
+        "line": 133,
+        "text": "    log_path = os.path.join("
+      },
+      {
+        "line": 134,
+        "text": "        args.results_dir,"
+      },
+      {
+        "line": 135,
+        "text": "        \"training_log.csv\""
+      },
+      {
+        "line": 136,
+        "text": "    )"
+      },
+      {
+        "line": 137,
+        "text": ""
+      },
+      {
+        "line": 138,
+        "text": "    with open(log_path, \"w\", newline=\"\") as log_file:"
+      },
+      {
+        "line": 139,
+        "text": ""
+      },
+      {
+        "line": 140,
+        "text": "        writer = csv.writer(log_file)"
+      },
+      {
+        "line": 141,
+        "text": ""
+      },
+      {
+        "line": 142,
+        "text": "        writer.writerow(["
+      },
+      {
+        "line": 143,
+        "text": "            \"epoch\","
+      },
+      {
+        "line": 144,
+        "text": "            \"loss_total\","
+      },
+      {
+        "line": 145,
+        "text": "            \"loss_normal\","
+      },
+      {
+        "line": 146,
+        "text": "            \"loss_bn\","
+      },
+      {
+        "line": 147,
+        "text": "            \"loss_last\""
+      },
+      {
+        "line": 148,
+        "text": "        ])"
+      },
+      {
+        "line": 149,
+        "text": ""
+      },
+      {
+        "line": 150,
+        "text": "        for epoch in range(args.epochs):"
+      },
+      {
+        "line": 151,
+        "text": ""
+      },
+      {
+        "line": 152,
+        "text": "            encoder.eval()"
+      },
+      {
+        "line": 153,
+        "text": "            bn.train()"
+      },
+      {
+        "line": 154,
+        "text": "            decoder.train()"
+      },
+      {
+        "line": 155,
+        "text": ""
+      },
+      {
+        "line": 156,
+        "text": "            epoch_losses = []"
+      },
+      {
+        "line": 157,
+        "text": "            normal_losses = []"
+      },
+      {
+        "line": 158,
+        "text": "            bn_losses = []"
+      },
+      {
+        "line": 159,
+        "text": "            last_losses = []"
+      },
+      {
+        "line": 160,
+        "text": ""
+      },
+      {
+        "line": 161,
+        "text": "            for batch_index, ("
+      },
+      {
+        "line": 162,
+        "text": "                normal,"
+      },
+      {
+        "line": 163,
+        "text": "                augmix_img,"
+      },
+      {
+        "line": 164,
+        "text": "                gray_img"
+      },
+      {
+        "line": 165,
+        "text": "            ) in enumerate(train_loader):"
+      },
+      {
+        "line": 166,
+        "text": ""
+      },
+      {
+        "line": 167,
+        "text": "                if args.max_batches > 0 and batch_index >= args.max_batches:"
+      },
+      {
+        "line": 168,
+        "text": "                    break"
+      },
+      {
+        "line": 169,
+        "text": ""
+      },
+      {
+        "line": 170,
+        "text": "                normal = normal.to(device)"
+      },
+      {
+        "line": 171,
+        "text": "                augmix_img = augmix_img.to(device)"
+      },
+      {
+        "line": 172,
+        "text": "                gray_img = gray_img.to(device)"
+      },
+      {
+        "line": 173,
+        "text": ""
+      },
+      {
+        "line": 174,
+        "text": "                # Teacher feature extraction without gradients."
+      },
+      {
+        "line": 175,
+        "text": "                with torch.no_grad():"
+      },
+      {
+        "line": 176,
+        "text": "                    inputs_normal = encoder(normal)"
+      },
+      {
+        "line": 177,
+        "text": "                    inputs_augmix = encoder(augmix_img)"
+      },
+      {
+        "line": 178,
+        "text": "                    inputs_gray = encoder(gray_img)"
+      },
+      {
+        "line": 179,
+        "text": ""
+      },
+      {
+        "line": 180,
+        "text": "                # Trainable bottleneck and decoder."
+      },
+      {
+        "line": 181,
+        "text": "                bn_normal = bn(inputs_normal)"
+      },
+      {
+        "line": 182,
+        "text": "                outputs_normal = decoder(bn_normal)"
+      },
+      {
+        "line": 183,
+        "text": ""
+      },
+      {
+        "line": 184,
+        "text": "                bn_augmix = bn(inputs_augmix)"
+      },
+      {
+        "line": 185,
+        "text": "                outputs_augmix = decoder(bn_augmix)"
+      },
+      {
+        "line": 186,
+        "text": ""
+      },
+      {
+        "line": 187,
+        "text": "                bn_gray = bn(inputs_gray)"
+      },
+      {
+        "line": 188,
+        "text": "                outputs_gray = decoder(bn_gray)"
+      },
+      {
+        "line": 189,
+        "text": ""
+      },
+      {
+        "line": 190,
+        "text": "                # Official DINL losses."
+      }
+    ],
+    "/kaggle/working/project_clean/experiments/gnl/infer_gnl_category_id.py": [
+      {
+        "line": 1,
+        "text": "import os"
+      },
+      {
+        "line": 2,
+        "text": "import csv"
+      },
+      {
+        "line": 3,
+        "text": "import argparse"
+      },
+      {
+        "line": 4,
+        "text": ""
+      },
+      {
+        "line": 5,
+        "text": "import numpy as np"
+      },
+      {
+        "line": 6,
+        "text": "import torch"
+      },
+      {
+        "line": 7,
+        "text": "import torch.nn.functional as F"
+      },
+      {
+        "line": 8,
+        "text": ""
+      },
+      {
+        "line": 9,
+        "text": "from scipy.ndimage import gaussian_filter"
+      },
+      {
+        "line": 10,
+        "text": "from sklearn.metrics import roc_auc_score"
+      },
+      {
+        "line": 11,
+        "text": "from PIL import Image"
+      },
+      {
+        "line": 12,
+        "text": ""
+      },
+      {
+        "line": 13,
+        "text": "from resnet import wide_resnet50_2"
+      },
+      {
+        "line": 14,
+        "text": "from de_resnet import de_wide_resnet50_2"
+      },
+      {
+        "line": 15,
+        "text": "from dataset import MVTecDataset, get_data_transforms"
+      },
+      {
+        "line": 16,
+        "text": ""
+      },
+      {
+        "line": 17,
+        "text": ""
+      },
+      {
+        "line": 18,
+        "text": "def calculate_anomaly_map(teacher_features, student_features, out_size=256):"
+      },
+      {
+        "line": 19,
+        "text": "    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)"
+      },
+      {
+        "line": 20,
+        "text": ""
+      },
+      {
+        "line": 21,
+        "text": "    for teacher, student in zip(teacher_features, student_features):"
+      },
+      {
+        "line": 22,
+        "text": "        distance = 1 - F.cosine_similarity(teacher, student)"
+      },
+      {
+        "line": 23,
+        "text": "        distance = distance.unsqueeze(1)"
+      },
+      {
+        "line": 24,
+        "text": ""
+      },
+      {
+        "line": 25,
+        "text": "        distance = F.interpolate("
+      },
+      {
+        "line": 26,
+        "text": "            distance,"
+      },
+      {
+        "line": 27,
+        "text": "            size=(out_size, out_size),"
+      },
+      {
+        "line": 28,
+        "text": "            mode=\"bilinear\","
+      },
+      {
+        "line": 29,
+        "text": "            align_corners=True"
+      },
+      {
+        "line": 30,
+        "text": "        )"
+      },
+      {
+        "line": 31,
+        "text": ""
+      },
+      {
+        "line": 32,
+        "text": "        anomaly_map += distance[0, 0].cpu().numpy()"
+      },
+      {
+        "line": 33,
+        "text": ""
+      },
+      {
+        "line": 34,
+        "text": "    return gaussian_filter(anomaly_map, sigma=4)"
+      },
+      {
+        "line": 35,
+        "text": ""
+      },
+      {
+        "line": 36,
+        "text": ""
+      },
+      {
+        "line": 37,
+        "text": ""
+      },
+      {
+        "line": 38,
+        "text": "def main():"
+      },
+      {
+        "line": 39,
+        "text": "    parser = argparse.ArgumentParser()"
+      },
+      {
+        "line": 40,
+        "text": "    parser.add_argument(\"--category\", required=True)"
+      },
+      {
+        "line": 41,
+        "text": "    parser.add_argument(\"--dataset-root\", required=True)"
+      },
+      {
+        "line": 42,
+        "text": "    parser.add_argument(\"--checkpoint\", required=True)"
+      },
+      {
+        "line": 43,
+        "text": "    parser.add_argument(\"--output-dir\", required=True)"
+      },
+      {
+        "line": 44,
+        "text": "    args = parser.parse_args()"
+      },
+      {
+        "line": 45,
+        "text": ""
+      },
+      {
+        "line": 46,
+        "text": "    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")"
+      },
+      {
+        "line": 47,
+        "text": ""
+      },
+      {
+        "line": 48,
+        "text": "    os.makedirs(args.output_dir, exist_ok=True)"
+      },
+      {
+        "line": 49,
+        "text": "    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")"
+      },
+      {
+        "line": 50,
+        "text": "    os.makedirs(map_dir, exist_ok=True)"
+      },
+      {
+        "line": 51,
+        "text": ""
+      },
+      {
+        "line": 52,
+        "text": "    print(\"Device:\", device)"
+      },
+      {
+        "line": 53,
+        "text": "    print(\"Category:\", args.category)"
+      },
+      {
+        "line": 54,
+        "text": "    print(\"Dataset:\", args.dataset_root)"
+      },
+      {
+        "line": 55,
+        "text": "    print(\"Checkpoint:\", args.checkpoint)"
+      },
+      {
+        "line": 56,
+        "text": ""
+      },
+      {
+        "line": 57,
+        "text": "    image_transform, mask_transform = get_data_transforms(256, 256)"
+      },
+      {
+        "line": 58,
+        "text": ""
+      },
+      {
+        "line": 59,
+        "text": "    test_dataset = MVTecDataset("
+      },
+      {
+        "line": 60,
+        "text": "        root=os.path.join(args.dataset_root, args.category),"
+      },
+      {
+        "line": 61,
+        "text": "        transform=image_transform,"
+      },
+      {
+        "line": 62,
+        "text": "        gt_transform=mask_transform,"
+      },
+      {
+        "line": 63,
+        "text": "        phase=\"test\""
+      },
+      {
+        "line": 64,
+        "text": "    )"
+      },
+      {
+        "line": 65,
+        "text": ""
+      },
+      {
+        "line": 66,
+        "text": "    test_loader = torch.utils.data.DataLoader("
+      },
+      {
+        "line": 67,
+        "text": "        test_dataset,"
+      },
+      {
+        "line": 68,
+        "text": "        batch_size=1,"
+      },
+      {
+        "line": 69,
+        "text": "        shuffle=False,"
+      },
+      {
+        "line": 70,
+        "text": "        num_workers=2"
+      },
+      {
+        "line": 71,
+        "text": "    )"
+      },
+      {
+        "line": 72,
+        "text": ""
+      },
+      {
+        "line": 73,
+        "text": "    print(\"Test images:\", len(test_dataset))"
+      },
+      {
+        "line": 74,
+        "text": ""
+      },
+      {
+        "line": 75,
+        "text": "    encoder, bn = wide_resnet50_2(pretrained=True)"
+      },
+      {
+        "line": 76,
+        "text": "    decoder = de_wide_resnet50_2(pretrained=False)"
+      },
+      {
+        "line": 77,
+        "text": ""
+      },
+      {
+        "line": 78,
+        "text": "    checkpoint = torch.load("
+      },
+      {
+        "line": 79,
+        "text": "        args.checkpoint,"
+      },
+      {
+        "line": 80,
+        "text": "        map_location=\"cpu\","
+      },
+      {
+        "line": 81,
+        "text": "        weights_only=False"
+      },
+      {
+        "line": 82,
+        "text": "    )"
+      },
+      {
+        "line": 83,
+        "text": ""
+      },
+      {
+        "line": 84,
+        "text": "    if checkpoint.get(\"category\") != args.category:"
+      },
+      {
+        "line": 85,
+        "text": "        raise ValueError("
+      },
+      {
+        "line": 86,
+        "text": "            \"Checkpoint category mismatch: expected {}, got {}\".format("
+      },
+      {
+        "line": 87,
+        "text": "                args.category, checkpoint.get(\"category\")"
+      },
+      {
+        "line": 88,
+        "text": "            )"
+      },
+      {
+        "line": 89,
+        "text": "        )"
+      },
+      {
+        "line": 90,
+        "text": ""
+      },
+      {
+        "line": 91,
+        "text": "    bn.load_state_dict(checkpoint[\"bn\"], strict=True)"
+      },
+      {
+        "line": 92,
+        "text": "    decoder.load_state_dict(checkpoint[\"decoder\"], strict=True)"
+      },
+      {
+        "line": 93,
+        "text": ""
+      },
+      {
+        "line": 94,
+        "text": "    encoder = encoder.to(device).eval()"
+      },
+      {
+        "line": 95,
+        "text": "    bn = bn.to(device).eval()"
+      },
+      {
+        "line": 96,
+        "text": "    decoder = decoder.to(device).eval()"
+      },
+      {
+        "line": 97,
+        "text": ""
+      },
+      {
+        "line": 98,
+        "text": "    print(\"Loaded checkpoint epoch:\", checkpoint[\"epoch\"])"
+      },
+      {
+        "line": 99,
+        "text": ""
+      },
+      {
+        "line": 100,
+        "text": "    image_labels, image_scores = [], []"
+      },
+      {
+        "line": 101,
+        "text": "    pixel_labels, pixel_scores = [], []"
+      },
+      {
+        "line": 102,
+        "text": "    records = []"
+      },
+      {
+        "line": 103,
+        "text": ""
+      },
+      {
+        "line": 104,
+        "text": "    with torch.no_grad():"
+      },
+      {
+        "line": 105,
+        "text": "        for index, batch in enumerate(test_loader):"
+      },
+      {
+        "line": 106,
+        "text": "            images, masks, labels, defect_types = batch"
+      },
+      {
+        "line": 107,
+        "text": "            images = images.to(device)"
+      },
+      {
+        "line": 108,
+        "text": ""
+      },
+      {
+        "line": 109,
+        "text": "            teacher_features = encoder(images)"
+      },
+      {
+        "line": 110,
+        "text": "            student_features = decoder(bn(teacher_features))"
+      },
+      {
+        "line": 111,
+        "text": ""
+      },
+      {
+        "line": 112,
+        "text": "            anomaly_map = calculate_anomaly_map("
+      },
+      {
+        "line": 113,
+        "text": "                teacher_features, student_features, out_size=256"
+      },
+      {
+        "line": 114,
+        "text": "            )"
+      },
+      {
+        "line": 115,
+        "text": ""
+      },
+      {
+        "line": 116,
+        "text": "            label = int(labels.item())"
+      },
+      {
+        "line": 117,
+        "text": "            defect_type = defect_types[0]"
+      },
+      {
+        "line": 118,
+        "text": "            filename = os.path.basename(test_dataset.img_paths[index])"
+      },
+      {
+        "line": 119,
+        "text": "            image_score = float(np.max(anomaly_map))"
+      },
+      {
+        "line": 120,
+        "text": ""
+      },
+      {
+        "line": 121,
+        "text": "            image_labels.append(label)"
+      },
+      {
+        "line": 122,
+        "text": "            image_scores.append(image_score)"
+      },
+      {
+        "line": 123,
+        "text": ""
+      },
+      {
+        "line": 124,
+        "text": "            mask = masks[0, 0].cpu().numpy()"
+      },
+      {
+        "line": 125,
+        "text": "            mask_binary = (mask > 0.5).astype(np.uint8)"
+      },
+      {
+        "line": 126,
+        "text": ""
+      },
+      {
+        "line": 127,
+        "text": "            pixel_labels.extend(mask_binary.reshape(-1).tolist())"
+      },
+      {
+        "line": 128,
+        "text": "            pixel_scores.extend(anomaly_map.reshape(-1).tolist())"
+      },
+      {
+        "line": 129,
+        "text": ""
+      },
+      {
+        "line": 130,
+        "text": "            map_name = \"{:03d}_{}_{}\".format("
+      },
+      {
+        "line": 131,
+        "text": "                index, defect_type, filename"
+      },
+      {
+        "line": 132,
+        "text": "            )"
+      },
+      {
+        "line": 133,
+        "text": ""
+      },
+      {
+        "line": 134,
+        "text": "            np.save("
+      },
+      {
+        "line": 135,
+        "text": "                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),"
+      },
+      {
+        "line": 136,
+        "text": "                anomaly_map"
+      },
+      {
+        "line": 137,
+        "text": "            )"
+      },
+      {
+        "line": 138,
+        "text": ""
+      },
+      {
+        "line": 139,
+        "text": "            map_min, map_max = anomaly_map.min(), anomaly_map.max()"
+      },
+      {
+        "line": 140,
+        "text": "            normalized_map = ("
+      },
+      {
+        "line": 141,
+        "text": "                (anomaly_map - map_min) / (map_max - map_min + 1e-8)"
+      },
+      {
+        "line": 142,
+        "text": "            )"
+      },
+      {
+        "line": 143,
+        "text": ""
+      },
+      {
+        "line": 144,
+        "text": "            heatmap = Image.fromarray("
+      },
+      {
+        "line": 145,
+        "text": "                (normalized_map * 255).astype(np.uint8)"
+      },
+      {
+        "line": 146,
+        "text": "            )"
+      },
+      {
+        "line": 147,
+        "text": "            heatmap.save("
+      },
+      {
+        "line": 148,
+        "text": "                os.path.join("
+      },
+      {
+        "line": 149,
+        "text": "                    map_dir, map_name.replace(\".png\", \"_heatmap.png\")"
+      },
+      {
+        "line": 150,
+        "text": "                )"
+      }
+    ]
+  },
+  "efdm_files": [
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/test.py",
+      "matches": [
+        {
+          "line": 52,
+          "text": "def evaluation_ATTA(encoder, bn, decoder, dataloader,device, type_of_test, img_size, lamda=0.5, dataset_name='mnist', _class_=None):"
+        },
+        {
+          "line": 63,
+          "text": "normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")"
+        },
+        {
+          "line": 68,
+          "text": "normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")"
+        },
+        {
+          "line": 84,
+          "text": "normal_image = Image.open(link_to_normal_sample).convert(\"RGB\")"
+        },
+        {
+          "line": 101,
+          "text": "normal_image = trans(normal_image)"
+        },
+        {
+          "line": 102,
+          "text": "normal_image = torch.unsqueeze(normal_image, 0)"
+        },
+        {
+          "line": 122,
+          "text": "normal_image = normal_image.to(device)"
+        },
+        {
+          "line": 124,
+          "text": "inputs = encoder(img, normal_image, type_of_test, lamda=lamda)"
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/resnet_TTA.py",
+      "matches": [
+        {
+          "line": 145,
+          "text": "def mixstyle_test(input_image, normal_image, lamda = 0.5):"
+        },
+        {
+          "line": 149,
+          "text": "normal_x = normal_image"
+        },
+        {
+          "line": 164,
+          "text": "mu_mix = mu * lamda + mu2 * (1 - lamda)"
+        },
+        {
+          "line": 165,
+          "text": "sig_mix = sig * lamda + sig2 * (1 - lamda)"
+        },
+        {
+          "line": 171,
+          "text": "def EFDM_test(input_image, normal_image, lamda = 0.5):"
+        },
+        {
+          "line": 173,
+          "text": "lamda = 1-lamda"
+        },
+        {
+          "line": 177,
+          "text": "normal_x = normal_image"
+        },
+        {
+          "line": 187,
+          "text": "value_normal_x, index_normal_x = torch.sort(normal_x_view)"
+        },
+        {
+          "line": 188,
+          "text": "new_input_x = value_input_x + (value_normal_x - value_input_x) * lamda"
+        },
+        {
+          "line": 189,
+          "text": "inverse_index = index_input_x.argsort(-1)"
+        },
+        {
+          "line": 284,
+          "text": "def _forward_impl(self, x: Tensor, original, type_of_test, lamda=0.5) -> Tensor:"
+        },
+        {
+          "line": 301,
+          "text": "if type_of_test == \"EFDM_test\":"
+        },
+        {
+          "line": 302,
+          "text": "feature_a = EFDM_test(feature_a, feature_a_original, lamda=lamda)"
+        },
+        {
+          "line": 305,
+          "text": "feature_a = mixstyle_test(feature_a, feature_a_original, lamda=lamda)"
+        },
+        {
+          "line": 307,
+          "text": "feature_a_EFDM = EFDM_test(feature_a, feature_a_original)"
+        },
+        {
+          "line": 308,
+          "text": "feature_a_EFDM = feature_a_EFDM.to('cuda')"
+        },
+        {
+          "line": 310,
+          "text": "feature_a = (feature_a_EFDM + feature_a_mixstyle)/2"
+        },
+        {
+          "line": 315,
+          "text": "if type_of_test == \"EFDM_test\":"
+        },
+        {
+          "line": 316,
+          "text": "feature_b = EFDM_test(feature_b, feature_b_original, lamda=lamda)"
+        },
+        {
+          "line": 319,
+          "text": "feature_b = mixstyle_test(feature_b, feature_b_original, lamda=lamda)"
+        },
+        {
+          "line": 321,
+          "text": "feature_b_EFDM = EFDM_test(feature_b, feature_b_original)"
+        },
+        {
+          "line": 322,
+          "text": "feature_b_EFDM = feature_b_EFDM.to('cuda')"
+        },
+        {
+          "line": 324,
+          "text": "feature_b = (feature_b_EFDM + feature_b_mixstyle)/2"
+        },
+        {
+          "line": 333,
+          "text": "def forward(self, x: Tensor, original, type_of_test, lamda=0.5) -> Tensor:"
+        },
+        {
+          "line": 334,
+          "text": "return self._forward_impl(x, original, type_of_test, lamda=lamda)"
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/inference_mvtec_ATTA.py",
+      "matches": [
+        {
+          "line": 55,
+          "text": "lamda = 0.5"
+        },
+        {
+          "line": 59,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 60,
+          "text": "img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)"
+        },
+        {
+          "line": 65,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 66,
+          "text": "img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)"
+        },
+        {
+          "line": 71,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 72,
+          "text": "img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)"
+        },
+        {
+          "line": 77,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 78,
+          "text": "img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)"
+        },
+        {
+          "line": 83,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 84,
+          "text": "img_size=256, lamda=lamda, dataset_name='mvtec', _class_=_class_)"
+        }
+      ]
+    },
+    {
+      "path": "/kaggle/working/ADShift-GNL-working/inference_PACS_ATTA.py",
+      "matches": [
+        {
+          "line": 70,
+          "text": "lamda = 0.5"
+        },
+        {
+          "line": 74,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 75,
+          "text": "img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)"
+        },
+        {
+          "line": 80,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 81,
+          "text": "img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)"
+        },
+        {
+          "line": 86,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 87,
+          "text": "img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)"
+        },
+        {
+          "line": 92,
+          "text": "type_of_test='EFDM_test',"
+        },
+        {
+          "line": 93,
+          "text": "img_size=256, lamda=lamda, dataset_name='PACS', _class_=_class_)"
+        }
+      ]
+    }
+  ]
+}

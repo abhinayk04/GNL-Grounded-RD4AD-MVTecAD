@@ -1,0 +1,130 @@
+{
+  "batch": "11P",
+  "purpose": "Identify the exact existing AUPRO implementation and calling convention",
+  "files": {
+    "experiments/gnl/infer_gnl_category_id.py": {
+      "functions": [
+        {
+          "name": "calculate_anomaly_map",
+          "line": 18,
+          "args": [
+            "teacher_features",
+            "student_features",
+            "out_size"
+          ],
+          "source": "def calculate_anomaly_map(teacher_features, student_features, out_size=256):\n    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)\n\n    for teacher, student in zip(teacher_features, student_features):\n        distance = 1 - F.cosine_similarity(teacher, student)\n        distance = distance.unsqueeze(1)\n\n        distance = F.interpolate(\n            distance,\n            size=(out_size, out_size),\n            mode=\"bilinear\",\n            align_corners=True\n        )\n\n        anomaly_map += distance[0, 0].cpu().numpy()\n\n    return gaussian_filter(anomaly_map, sigma=4)"
+        }
+      ],
+      "relevant_lines": [
+        {
+          "line": 18,
+          "context": "\n\ndef calculate_anomaly_map(teacher_features, student_features, out_size=256):\n    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)\n\n    for teacher, student in zip(teacher_features, student_features):"
+        },
+        {
+          "line": 19,
+          "context": "\ndef calculate_anomaly_map(teacher_features, student_features, out_size=256):\n    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)\n\n    for teacher, student in zip(teacher_features, student_features):\n        distance = 1 - F.cosine_similarity(teacher, student)"
+        },
+        {
+          "line": 32,
+          "context": "        )\n\n        anomaly_map += distance[0, 0].cpu().numpy()\n\n    return gaussian_filter(anomaly_map, sigma=4)\n"
+        },
+        {
+          "line": 34,
+          "context": "        anomaly_map += distance[0, 0].cpu().numpy()\n\n    return gaussian_filter(anomaly_map, sigma=4)\n\n\n"
+        },
+        {
+          "line": 49,
+          "context": "\n    os.makedirs(args.output_dir, exist_ok=True)\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)"
+        },
+        {
+          "line": 112,
+          "context": "            student_features = decoder(bn(teacher_features))\n\n            anomaly_map = calculate_anomaly_map(\n                teacher_features, student_features, out_size=256\n            )\n"
+        },
+        {
+          "line": 119,
+          "context": "            defect_type = defect_types[0]\n            filename = os.path.basename(test_dataset.img_paths[index])\n            image_score = float(np.max(anomaly_map))\n\n            image_labels.append(label)\n            image_scores.append(image_score)"
+        },
+        {
+          "line": 128,
+          "context": "\n            pixel_labels.extend(mask_binary.reshape(-1).tolist())\n            pixel_scores.extend(anomaly_map.reshape(-1).tolist())\n\n            map_name = \"{:03d}_{}_{}\".format(\n                index, defect_type, filename"
+        },
+        {
+          "line": 136,
+          "context": "            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n\n            map_min, map_max = anomaly_map.min(), anomaly_map.max()"
+        },
+        {
+          "line": 139,
+          "context": "            )\n\n            map_min, map_max = anomaly_map.min(), anomaly_map.max()\n            normalized_map = (\n                (anomaly_map - map_min) / (map_max - map_min + 1e-8)\n            )"
+        },
+        {
+          "line": 141,
+          "context": "            map_min, map_max = anomaly_map.min(), anomaly_map.max()\n            normalized_map = (\n                (anomaly_map - map_min) / (map_max - map_min + 1e-8)\n            )\n\n            heatmap = Image.fromarray("
+        }
+      ]
+    },
+    "experiments/gnl/infer_gnl_bottle_id.py": {
+      "functions": [
+        {
+          "name": "calculate_anomaly_map",
+          "line": 18,
+          "args": [
+            "teacher_features",
+            "student_features",
+            "out_size"
+          ],
+          "source": "def calculate_anomaly_map(teacher_features, student_features, out_size=256):\n    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)\n\n    for teacher, student in zip(teacher_features, student_features):\n        distance = 1 - F.cosine_similarity(teacher, student)\n        distance = distance.unsqueeze(1)\n\n        distance = F.interpolate(\n            distance,\n            size=(out_size, out_size),\n            mode=\"bilinear\",\n            align_corners=True\n        )\n\n        anomaly_map += distance[0, 0].cpu().numpy()\n\n    return gaussian_filter(anomaly_map, sigma=4)"
+        }
+      ],
+      "relevant_lines": [
+        {
+          "line": 18,
+          "context": "\n\ndef calculate_anomaly_map(teacher_features, student_features, out_size=256):\n    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)\n\n    for teacher, student in zip(teacher_features, student_features):"
+        },
+        {
+          "line": 19,
+          "context": "\ndef calculate_anomaly_map(teacher_features, student_features, out_size=256):\n    anomaly_map = np.zeros((out_size, out_size), dtype=np.float32)\n\n    for teacher, student in zip(teacher_features, student_features):\n        distance = 1 - F.cosine_similarity(teacher, student)"
+        },
+        {
+          "line": 32,
+          "context": "        )\n\n        anomaly_map += distance[0, 0].cpu().numpy()\n\n    return gaussian_filter(anomaly_map, sigma=4)\n"
+        },
+        {
+          "line": 34,
+          "context": "        anomaly_map += distance[0, 0].cpu().numpy()\n\n    return gaussian_filter(anomaly_map, sigma=4)\n\n\ndef main():"
+        },
+        {
+          "line": 63,
+          "context": "    os.makedirs(args.output_dir, exist_ok=True)\n\n    map_dir = os.path.join(args.output_dir, \"anomaly_maps\")\n    os.makedirs(map_dir, exist_ok=True)\n\n    print(\"Device:\", device)"
+        },
+        {
+          "line": 125,
+          "context": "            student_features = decoder(bn(teacher_features))\n\n            anomaly_map = calculate_anomaly_map(\n                teacher_features,\n                student_features,\n                out_size=256"
+        },
+        {
+          "line": 137,
+          "context": "            )\n\n            image_score = float(np.max(anomaly_map))\n\n            image_labels.append(label)\n            image_scores.append(image_score)"
+        },
+        {
+          "line": 146,
+          "context": "\n            pixel_labels.extend(mask_binary.reshape(-1).tolist())\n            pixel_scores.extend(anomaly_map.reshape(-1).tolist())\n\n            map_name = (\n                \"{:03d}_{}_{}\".format(index, defect_type, filename)"
+        },
+        {
+          "line": 154,
+          "context": "            np.save(\n                os.path.join(map_dir, map_name.replace(\".png\", \".npy\")),\n                anomaly_map\n            )\n\n            # Save normalized heatmap for visualization only"
+        },
+        {
+          "line": 158,
+          "context": "\n            # Save normalized heatmap for visualization only\n            map_min = anomaly_map.min()\n            map_max = anomaly_map.max()\n\n            normalized_map = ("
+        },
+        {
+          "line": 159,
+          "context": "            # Save normalized heatmap for visualization only\n            map_min = anomaly_map.min()\n            map_max = anomaly_map.max()\n\n            normalized_map = (\n                (anomaly_map - map_min) / (map_max - map_min + 1e-8)"
+        },
+        {
+          "line": 162,
+          "context": "\n            normalized_map = (\n                (anomaly_map - map_min) / (map_max - map_min + 1e-8)\n            )\n\n            heatmap = Image.fromarray("
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "batch": "11D",
+  "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+  "category": "bottle",
+  "epoch": 4,
+  "factory_return": [
+    "ResNet encoder",
+    "BN_layer"
+  ],
+  "bn_saved_key_count": 84,
+  "bn_current_key_count": 84,
+  "bn_matching_key_count": 84,
+  "bn_missing_keys": [],
+  "bn_shape_mismatches": [],
+  "decoder_key_count": 252,
+  "encoder_pretrained": false,
+  "warning": "Random encoder weights used only for structural EFDM testing; not valid trained GNL inference."
+}

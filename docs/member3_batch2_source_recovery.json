@@ -1,0 +1,408 @@
+{
+  "repository": "/kaggle/working/project_clean",
+  "git_status": {
+    "returncode": 0,
+    "stdout": "## member3/pca-method...origin/member3/pca-method [ahead 8]\n?? docs/member3_batch2_source_recovery.json\n?? docs/member3_batch3_validation.json\n?? docs/member3_remaining_work_audit.json",
+    "stderr": ""
+  },
+  "git_latest_commit": {
+    "returncode": 0,
+    "stdout": "7216c8c Search original EFDM grid provenance",
+    "stderr": ""
+  },
+  "pca_files": {
+    "pca_method/pca_config.py": {
+      "exists": true,
+      "characters": 422
+    },
+    "pca_method/compute_nuisance_pca.py": {
+      "exists": true,
+      "characters": 3400
+    },
+    "pca_method/inference_pca_gating.py": {
+      "exists": true,
+      "characters": 1102
+    },
+    "pca_method/integration_interface.py": {
+      "exists": true,
+      "characters": 1502
+    }
+  },
+  "gnl_files": {
+    "experiments/gnl/infer_gnl_category_id.py": {
+      "exists": true,
+      "characters": 6378
+    },
+    "experiments/gnl/infer_gnl_bottle_id.py": {
+      "exists": true,
+      "characters": 6654
+    },
+    "experiments/gnl/resnet.py": {
+      "exists": true,
+      "characters": 19790
+    },
+    "experiments/gnl/de_resnet.py": {
+      "exists": true,
+      "characters": 16410
+    }
+  },
+  "python_files_inspected": 20,
+  "efdm_source_candidates": [],
+  "notebooks_inspected": 2,
+  "notebook_efdm_hits": [
+    {
+      "notebook": "/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb",
+      "cell": 5,
+      "source": "%cd /content/ADShift-official\n\nprint(\"========== AUGMIX DATASET ==========\")\n!sed -n '440,540p' dataset.py\n\nprint(\"\\n========== MVTec DATASET LOADER ==========\")\n!sed -n '1,155p' dataset.py\n\nprint(\"\\n========== TTA FEATURE MATCHING ==========\")\n!grep -n -E \"EFDM|FDM|def forward|class\" resnet_TTA.py\n\nprint(\"\\n========== TRAINING MODEL ARCHITECTURE ==========\")\n!grep -n -E \"def wide_resnet50_2|class\" resnet.py de_resnet.py"
+    },
+    {
+      "notebook": "/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb",
+      "cell": 7,
+      "source": "%cd /content/ADShift-official\n\nimport torch\nimport torchvision\nimport numpy as np\n\nprint(\"========== BASIC LIBRARY TEST ==========\")\n\nmodules = [\n    \"cv2\",\n    \"scipy\",\n    \"sklearn\",\n    \"PIL\",\n    \"matplotlib\",\n    \"tqdm\"\n]\n\nimport importlib\n\nfor name in modules:\n    try:\n        mod = importlib.import_module(name)\n        print(name, \"OK\", getattr(mod, \"__version__\", \"\"))\n    except Exception as e:\n        print(name, \"FAILED:\", repr(e))\n\nprint(\"\\n========== ADShift IMPORT TEST ==========\")\n\nfor name in [\"resnet\", \"de_resnet\", \"dataset\", \"resnet_TTA\", \"test\"]:\n    try:\n        importlib.import_module(name)\n        print(name, \"IMPORT SUCCESS\")\n    except Exception as e:\n        print(name, \"IMPORT FAILED:\", repr(e))\n\nprint(\"\\n========== ARCHITECTURE FACTORIES ==========\")\n\n!sed -n '480,520p' resnet.py\n!sed -n '490,560p' de_resnet.py\n\nprint(\"\\n========== EFDM IMPLEMENTATION ==========\")\n!sed -n '165,195p' resnet_TTA.py"
+    },
+    {
+      "notebook": "/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb",
+      "cell": 59,
+      "source": "%cd /content/ADShift-GNL-working\n\nprint(\"===== TTA MODEL DEFINITION =====\")\n!grep -n -A 65 -B 10 \"def wide_resnet50_2\" resnet_TTA.py\n\nprint(\"\\n===== EFDM IMPLEMENTATION =====\")\n!grep -n -A 65 -B 10 \"def EFDM_test\" resnet_TTA.py\n\nprint(\"\\n===== ENCODER FORWARD METHODS =====\")\n!grep -n -A 65 -B 10 \"def forward\" resnet_TTA.py"
+    },
+    {
+      "notebook": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/implementation_candidates/GNL_Baseline_recovery.ipynb",
+      "cell": 5,
+      "source": "%cd /content/ADShift-official\n\nprint(\"========== AUGMIX DATASET ==========\")\n!sed -n '440,540p' dataset.py\n\nprint(\"\\n========== MVTec DATASET LOADER ==========\")\n!sed -n '1,155p' dataset.py\n\nprint(\"\\n========== TTA FEATURE MATCHING ==========\")\n!grep -n -E \"EFDM|FDM|def forward|class\" resnet_TTA.py\n\nprint(\"\\n========== TRAINING MODEL ARCHITECTURE ==========\")\n!grep -n -E \"def wide_resnet50_2|class\" resnet.py de_resnet.py"
+    },
+    {
+      "notebook": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/implementation_candidates/GNL_Baseline_recovery.ipynb",
+      "cell": 7,
+      "source": "%cd /content/ADShift-official\n\nimport torch\nimport torchvision\nimport numpy as np\n\nprint(\"========== BASIC LIBRARY TEST ==========\")\n\nmodules = [\n    \"cv2\",\n    \"scipy\",\n    \"sklearn\",\n    \"PIL\",\n    \"matplotlib\",\n    \"tqdm\"\n]\n\nimport importlib\n\nfor name in modules:\n    try:\n        mod = importlib.import_module(name)\n        print(name, \"OK\", getattr(mod, \"__version__\", \"\"))\n    except Exception as e:\n        print(name, \"FAILED:\", repr(e))\n\nprint(\"\\n========== ADShift IMPORT TEST ==========\")\n\nfor name in [\"resnet\", \"de_resnet\", \"dataset\", \"resnet_TTA\", \"test\"]:\n    try:\n        importlib.import_module(name)\n        print(name, \"IMPORT SUCCESS\")\n    except Exception as e:\n        print(name, \"IMPORT FAILED:\", repr(e))\n\nprint(\"\\n========== ARCHITECTURE FACTORIES ==========\")\n\n!sed -n '480,520p' resnet.py\n!sed -n '490,560p' de_resnet.py\n\nprint(\"\\n========== EFDM IMPLEMENTATION ==========\")\n!sed -n '165,195p' resnet_TTA.py"
+    },
+    {
+      "notebook": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/implementation_candidates/GNL_Baseline_recovery.ipynb",
+      "cell": 59,
+      "source": "%cd /content/ADShift-GNL-working\n\nprint(\"===== TTA MODEL DEFINITION =====\")\n!grep -n -A 65 -B 10 \"def wide_resnet50_2\" resnet_TTA.py\n\nprint(\"\\n===== EFDM IMPLEMENTATION =====\")\n!grep -n -A 65 -B 10 \"def EFDM_test\" resnet_TTA.py\n\nprint(\"\\n===== ENCODER FORWARD METHODS =====\")\n!grep -n -A 65 -B 10 \"def forward\" resnet_TTA.py"
+    }
+  ],
+  "manifest_candidates": [
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/final_protocol_aligned_comparison/standard_vs_efdm_aligned_summary.json",
+      "size_bytes": 6442
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/final_protocol_aligned_comparison/standard_vs_efdm_aligned.csv",
+      "size_bytes": 1692
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/efdm_automation_summary.json",
+      "size_bytes": 289
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_RESEARCH_PACKAGE/efdm_integrity_audit.csv",
+      "size_bytes": 733
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_RESEARCH_PACKAGE/efdm_gnl_all_categories.csv",
+      "size_bytes": 1189
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_RESEARCH_PACKAGE/standard_vs_efdm_final_comparison.csv",
+      "size_bytes": 1671
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/final_research_deliverables/standard_vs_efdm_research_report.md",
+      "size_bytes": 2021
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level1/grid.pth",
+      "size_bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level3/grid.pth",
+      "size_bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/pca_reproduction_v1/bases/grid/level2/grid.pth",
+      "size_bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level1/grid.pth",
+      "size_bytes": 18630
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level3/grid.pth",
+      "size_bytes": 67782
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/FINAL_MEMBER3_PCA_HANDOFF_v01/pca_bases/grid/level2/grid.pth",
+      "size_bytes": 35014
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_evaluation.json",
+      "size_bytes": 228
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_anomaly_maps.npy",
+      "size_bytes": 26214528
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json",
+      "size_bytes": 212
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_anomaly_maps.npy",
+      "size_bytes": 30146688
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_anomaly_maps.npy",
+      "size_bytes": 21758080
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json",
+      "size_bytes": 250
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json",
+      "size_bytes": 210
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_anomaly_maps.npy",
+      "size_bytes": 32505984
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_anomaly_maps.npy",
+      "size_bytes": 39321728
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json",
+      "size_bytes": 1115
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_evaluation.json",
+      "size_bytes": 224
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_anomaly_maps.npy",
+      "size_bytes": 30670976
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_anomaly_maps.npy",
+      "size_bytes": 20447360
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json",
+      "size_bytes": 221
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_anomaly_maps.npy",
+      "size_bytes": 43778176
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json",
+      "size_bytes": 222
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json",
+      "size_bytes": 220
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_anomaly_maps.npy",
+      "size_bytes": 20709504
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json",
+      "size_bytes": 223
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_anomaly_maps.npy",
+      "size_bytes": 41943168
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json",
+      "size_bytes": 225
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_anomaly_maps.npy",
+      "size_bytes": 34603136
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json",
+      "size_bytes": 227
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_anomaly_maps.npy",
+      "size_bytes": 11010176
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_anomaly_maps.npy",
+      "size_bytes": 28835968
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json",
+      "size_bytes": 211
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json",
+      "size_bytes": 224
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_anomaly_maps.npy",
+      "size_bytes": 39583872
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_anomaly_maps.npy",
+      "size_bytes": 30670976
+    },
+    {
+      "path": "/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json",
+      "size_bytes": 222
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_research_report.md",
+      "size_bytes": 2021
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_integrity_audit.csv",
+      "size_bytes": 733
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_gnl_all_categories.csv",
+      "size_bytes": 1189
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_final_comparison.csv",
+      "size_bytes": 1671
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_aligned_summary.json",
+      "size_bytes": 6442
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_aligned.csv",
+      "size_bytes": 1692
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_automation_summary.json",
+      "size_bytes": 289
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/capsule_efdm_evaluation.json",
+      "size_bytes": 225
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/transistor_efdm_evaluation.json",
+      "size_bytes": 228
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/wood_efdm_anomaly_maps.npy",
+      "size_bytes": 15597568
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/zipper_efdm_evaluation.json",
+      "size_bytes": 224
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/leather_efdm_evaluation.json",
+      "size_bytes": 210
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/cable_efdm_evaluation.json",
+      "size_bytes": 1115
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/hazelnut_efdm_evaluation.json",
+      "size_bytes": 211
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/bottle_efdm_evaluation.json",
+      "size_bytes": 250
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/screw_efdm_evaluation.json",
+      "size_bytes": 223
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/tile_efdm_evaluation.json",
+      "size_bytes": 222
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/metal_nut_efdm_evaluation.json",
+      "size_bytes": 212
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/grid_efdm_evaluation.json",
+      "size_bytes": 221
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_RECOVERY_MANIFEST.json",
+      "size_bytes": 49116
+    },
+    {
+      "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_METHODOLOGY_RECOVERY.txt",
+      "size_bytes": 34046
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_efdm_results_addendum.md",
+      "size_bytes": 1957
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1o_grid_rd4ad_audit.md",
+      "size_bytes": 53231
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1s_provenance_search.json",
+      "size_bytes": 359804
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_task1o_grid_rd4ad_audit.json",
+      "size_bytes": 56895
+    },
+    {
+      "path": "/kaggle/working/project_clean/docs/member3_efdm_rd4ad_investigation.md",
+      "size_bytes": 1703
+    }
+  ],
+  "efdm_result_candidates": [
+    "/kaggle/working/GNL_Project_Backup/final_protocol_aligned_comparison/standard_vs_efdm_aligned_summary.json",
+    "/kaggle/working/GNL_Project_Backup/final_protocol_aligned_comparison/standard_vs_efdm_aligned.csv",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/efdm_automation_summary.json",
+    "/kaggle/working/GNL_Project_Backup/FINAL_RESEARCH_PACKAGE/efdm_integrity_audit.csv",
+    "/kaggle/working/GNL_Project_Backup/FINAL_RESEARCH_PACKAGE/efdm_gnl_all_categories.csv",
+    "/kaggle/working/GNL_Project_Backup/FINAL_RESEARCH_PACKAGE/standard_vs_efdm_final_comparison.csv",
+    "/kaggle/working/GNL_Project_Backup/final_research_deliverables/standard_vs_efdm_research_report.md",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json",
+    "/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_research_report.md",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_integrity_audit.csv",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_gnl_all_categories.csv",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_final_comparison.csv",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_aligned_summary.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_aligned.csv",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_automation_summary.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/capsule_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/transistor_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/zipper_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/leather_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/cable_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/hazelnut_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/bottle_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/screw_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/tile_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/metal_nut_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/grid_efdm_evaluation.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_RECOVERY_MANIFEST.json",
+    "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_METHODOLOGY_RECOVERY.txt",
+    "/kaggle/working/project_clean/docs/member3_efdm_results_addendum.md",
+    "/kaggle/working/project_clean/docs/member3_efdm_rd4ad_investigation.md"
+  ]
+}

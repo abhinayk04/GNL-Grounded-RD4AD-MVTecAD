@@ -1,0 +1,100 @@
+{
+  "batch": "member3_batch7",
+  "tests": {
+    "original_numerical_agreement": {
+      "passed": true,
+      "max_absolute_difference": 0.0,
+      "new_shape": [
+        2,
+        8,
+        16,
+        16
+      ],
+      "original_shape": [
+        2,
+        8,
+        16,
+        16
+      ]
+    },
+    "lambda_endpoints": {
+      "passed": true,
+      "lambda_zero_matches_reference_distribution": true,
+      "lambda_one_preserves_input": true
+    },
+    "rank_preservation": {
+      "passed": true,
+      "max_sorted_value_error": 1.4901161193847656e-08
+    }
+  },
+  "feature_contract": {
+    "gnl_teacher": [
+      {
+        "level": 1,
+        "shape": [
+          1,
+          256,
+          64,
+          64
+        ],
+        "device": "cuda:0",
+        "channels": 256
+      },
+      {
+        "level": 2,
+        "shape": [
+          1,
+          512,
+          32,
+          32
+        ],
+        "device": "cuda:0",
+        "channels": 512
+      },
+      {
+        "level": 3,
+        "shape": [
+          1,
+          1024,
+          16,
+          16
+        ],
+        "device": "cuda:0",
+        "channels": 1024
+      }
+    ],
+    "efdm_on_gnl_levels": [
+      {
+        "level": 1,
+        "shape_preserved": true,
+        "device_preserved": true,
+        "finite": true
+      },
+      {
+        "level": 2,
+        "shape_preserved": true,
+        "device_preserved": true,
+        "finite": true
+      }
+    ]
+  },
+  "errors": [],
+  "summary": {
+    "error_count": 0,
+    "numerical_test_passed": true,
+    "feature_level_tests": [
+      {
+        "level": 1,
+        "shape_preserved": true,
+        "device_preserved": true,
+        "finite": true
+      },
+      {
+        "level": 2,
+        "shape_preserved": true,
+        "device_preserved": true,
+        "finite": true
+      }
+    ]
+  }
+}

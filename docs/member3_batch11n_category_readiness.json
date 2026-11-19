@@ -1,0 +1,152 @@
+[
+  {
+    "category": "bottle",
+    "dataset_exists": true,
+    "training_good_count": 209,
+    "test_image_count": 83,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/bottle/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "cable",
+    "dataset_exists": true,
+    "training_good_count": 224,
+    "test_image_count": 150,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/cable_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/cable/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "capsule",
+    "dataset_exists": true,
+    "training_good_count": 219,
+    "test_image_count": 132,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/capsule_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/capsule/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "carpet",
+    "dataset_exists": true,
+    "training_good_count": 280,
+    "test_image_count": 117,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/carpet_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/carpet/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "grid",
+    "dataset_exists": true,
+    "training_good_count": 264,
+    "test_image_count": 78,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/grid_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/grid/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "hazelnut",
+    "dataset_exists": true,
+    "training_good_count": 391,
+    "test_image_count": 110,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/hazelnut_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/hazelnut/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "leather",
+    "dataset_exists": true,
+    "training_good_count": 245,
+    "test_image_count": 124,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/leather_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/leather/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "metal_nut",
+    "dataset_exists": true,
+    "training_good_count": 220,
+    "test_image_count": 115,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/metal_nut_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/metal_nut/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "pill",
+    "dataset_exists": true,
+    "training_good_count": 267,
+    "test_image_count": 167,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/pill_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/pill/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "screw",
+    "dataset_exists": true,
+    "training_good_count": 320,
+    "test_image_count": 160,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/screw_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/screw/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "tile",
+    "dataset_exists": true,
+    "training_good_count": 230,
+    "test_image_count": 117,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/tile_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/tile/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "toothbrush",
+    "dataset_exists": true,
+    "training_good_count": 60,
+    "test_image_count": 42,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/toothbrush_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/toothbrush/train/good/000.png",
+    "reference_exists": true
+  },
+  {
+    "category": "transistor",
+    "dataset_exists": true,
+    "training_good_count": 213,
+    "test_image_count": 100,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/transistor_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/transistor/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "wood",
+    "dataset_exists": true,
+    "training_good_count": 247,
+    "test_image_count": 79,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/wood_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/wood/train/good/097.png",
+    "reference_exists": true
+  },
+  {
+    "category": "zipper",
+    "dataset_exists": true,
+    "training_good_count": 238,
+    "test_image_count": 151,
+    "checkpoint": "/kaggle/working/GNL_Project_Backup/checkpoints/zipper_full/latest.pth",
+    "checkpoint_exists": true,
+    "reference_image": "/kaggle/working/mvtec_dataset/zipper/train/good/097.png",
+    "reference_exists": true
+  }
+]
