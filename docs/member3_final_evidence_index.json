@@ -1,0 +1,672 @@
+{
+  "generated_utc": "2026-11-19T05:40:45.833195+00:00",
+  "repository": "/kaggle/working/project_clean",
+  "branch": "member3/pca-method",
+  "head_before_final_report": "c2f1ffd",
+  "git_status_before_final_report": "## member3/pca-method...origin/member3/pca-method [ahead 1]",
+  "storage": {
+    "total_bytes": 20957446144,
+    "used_bytes": 20898783232,
+    "free_bytes": 41885696
+  },
+  "inventory": [
+    {
+      "path": "experiments/gnl",
+      "file_count": 15,
+      "bytes": 199561
+    },
+    {
+      "path": "experiments/rd4ad",
+      "file_count": 1,
+      "bytes": 0
+    },
+    {
+      "path": "pca_method",
+      "file_count": 56,
+      "bytes": 1839007
+    },
+    {
+      "path": "results/gnl",
+      "file_count": 2,
+      "bytes": 1268
+    },
+    {
+      "path": "results/pca",
+      "file_count": 10,
+      "bytes": 282518
+    },
+    {
+      "path": "docs",
+      "file_count": 2,
+      "bytes": 2918
+    }
+  ],
+  "pca": {
+    "summary": {
+      "rows": 15,
+      "columns": [
+        "category",
+        "baseline_pixel_auroc",
+        "pca_pixel_auroc",
+        "pixel_delta",
+        "baseline_image_auroc",
+        "pca_image_auroc",
+        "image_delta",
+        "baseline_matches_original"
+      ],
+      "numeric_means": {
+        "baseline_pixel_auroc": 0.9664692984943628,
+        "pca_pixel_auroc": 0.9645765169605152,
+        "pixel_delta": -0.0018927815338475298,
+        "baseline_image_auroc": 0.9592161800974417,
+        "pca_image_auroc": 0.9615148054171272,
+        "image_delta": 0.0022986253196853866
+      },
+      "baseline_match_count": 15,
+      "baseline_match_column": "baseline_matches_original"
+    },
+    "plots": [
+      {
+        "path": "results/pca/image_auroc_improvement.png",
+        "exists_nonempty": true,
+        "bytes": 99995
+      },
+      {
+        "path": "results/pca/macro_auroc_comparison.png",
+        "exists_nonempty": true,
+        "bytes": 46642
+      },
+      {
+        "path": "results/pca/pixel_auroc_improvement.png",
+        "exists_nonempty": true,
+        "bytes": 102061
+      }
+    ],
+    "basis_pth_file_count": 45
+  },
+  "gnl": {
+    "results/gnl/GNL_all_15_categories.csv": {
+      "rows": 15,
+      "columns": [
+        "category",
+        "checkpoint_epoch",
+        "test_images",
+        "normal_images",
+        "anomalous_images",
+        "image_auroc",
+        "pixel_auroc"
+      ],
+      "numeric_means": {
+        "checkpoint_epoch": 18.933333333333334,
+        "test_images": 115.0,
+        "normal_images": 31.133333333333333,
+        "anomalous_images": 83.86666666666666,
+        "image_auroc": 0.9592162000000001,
+        "pixel_auroc": 0.9664693333333333
+      }
+    },
+    "results/gnl/GNL_AUPRO_recalculated_15.csv": {
+      "rows": 15,
+      "columns": [
+        "category",
+        "images",
+        "regions",
+        "max_fpr",
+        "aupro"
+      ],
+      "numeric_means": {
+        "images": 115.0,
+        "regions": 125.6,
+        "max_fpr": 0.29999999999999993,
+        "aupro": 0.9031784333760152
+      }
+    }
+  },
+  "efdm": {
+    "files_found": 53,
+    "files_by_extension": {
+      ".json": 30,
+      ".npy": 16,
+      ".md": 1,
+      ".csv": 4,
+      ".ipynb": 1,
+      ".txt": 1
+    },
+    "small_tabular_files": [
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/efdm_automation_summary.json",
+        "top_level_type": "dict",
+        "keys": [
+          "successful_categories",
+          "failed_categories"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/transistor/transistor_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/metal_nut/metal_nut_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/bottle/bottle_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "normal_images",
+          "anomalous_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/leather/leather_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/cable/cable_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "macro_pixel_auroc",
+          "category_results"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/carpet/carpet_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/pill/pill_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/wood/wood_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/screw/screw_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/capsule/capsule_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/toothbrush/toothbrush_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/hazelnut/hazelnut_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/zipper/zipper_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/efdm_results/tile/tile_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_integrity_audit.csv",
+        "rows": 15,
+        "columns": [
+          "category",
+          "map_count",
+          "map_shape",
+          "maps_valid",
+          "test_count_match",
+          "efdm_metrics_valid"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_gnl_all_categories.csv",
+        "rows": 15,
+        "columns": [
+          "category",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "map_shape",
+          "maps_valid",
+          "test_count_match"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_final_comparison.csv",
+        "rows": 15,
+        "columns": [
+          "category",
+          "standard_pixel_auroc",
+          "efdm_pixel_auroc",
+          "pixel_change",
+          "standard_image_auroc",
+          "efdm_image_auroc",
+          "image_change",
+          "test_images"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_aligned_summary.json",
+        "top_level_type": "dict",
+        "keys": [
+          "summary",
+          "categories",
+          "failures"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_aligned.csv",
+        "rows": 15,
+        "columns": [
+          "category",
+          "test_images",
+          "standard_pixel_auroc",
+          "aligned_efdm_pixel_auroc",
+          "pixel_change",
+          "standard_image_auroc",
+          "aligned_efdm_image_auroc",
+          "image_change"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_automation_summary.json",
+        "top_level_type": "dict",
+        "keys": [
+          "successful_categories",
+          "failed_categories"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/capsule_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/transistor_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/zipper_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/leather_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/cable_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "macro_pixel_auroc",
+          "category_results"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/hazelnut_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/bottle_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "normal_images",
+          "anomalous_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/screw_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/tile_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/metal_nut_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/grid_efdm_evaluation.json",
+        "top_level_type": "dict",
+        "keys": [
+          "category",
+          "method",
+          "test_images",
+          "pixel_auroc",
+          "image_auroc",
+          "lambda",
+          "image_size",
+          "smoothing_sigma"
+        ]
+      },
+      {
+        "path": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/recovery/EFDM_RECOVERY_MANIFEST.json",
+        "top_level_type": "dict",
+        "keys": [
+          "generated",
+          "backup",
+          "project",
+          "discovered_files",
+          "known_deliverables",
+          "implementation_candidates",
+          "category_files",
+          "parameter_evidence",
+          "recovered_content"
+        ]
+      }
+    ]
+  },
+  "rd4ad": {
+    "scripts": [
+      {
+        "path": "experiments/rd4ad/train_rd4ad.py",
+        "exists": false,
+        "bytes": 0
+      },
+      {
+        "path": "experiments/rd4ad/evaluate_rd4ad.py",
+        "exists": false,
+        "bytes": 0
+      }
+    ],
+    "backup_checkpoints": [
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/hazelnut_full/latest.pth",
+        "bytes": 1039728144
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/screw_full/latest.pth",
+        "bytes": 1039728144
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/cable_full/latest.pth",
+        "bytes": 1039728144
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/grid_full/latest.pth",
+        "bytes": 369163921
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/wood_full/latest.pth",
+        "bytes": 369163921
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/metal_nut_full/latest.pth",
+        "bytes": 1039728208
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/carpet_full/latest.pth",
+        "bytes": 369163921
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/toothbrush_full/latest.pth",
+        "bytes": 1039728208
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/zipper_full/latest.pth",
+        "bytes": 369163921
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+        "bytes": 1039728208
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/leather_full/latest.pth",
+        "bytes": 369163985
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/pill_full/latest.pth",
+        "bytes": 1039728144
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/tile_full/latest.pth",
+        "bytes": 369163921
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/capsule_full/latest.pth",
+        "bytes": 1039728144
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/transistor_full/latest.pth",
+        "bytes": 1039730000
+      }
+    ]
+  },
+  "important_scope_note": "This index inventories existing artifacts. It does not claim that missing metrics or experiments were completed."
+}
