@@ -977,5 +977,1299 @@
         "other_files": []
       }
     ]
+  },
+  "task_1n_investigation": {
+    "generated_utc": "2026-11-19T05:44:17.529140+00:00",
+    "grid_related_json": {
+      "/kaggle/working/GNL_Project_Backup/efdm_results/grid/grid_efdm_evaluation.json": {
+        "category": "grid",
+        "method": "EFDM-GNL",
+        "test_images": 78,
+        "pixel_auroc": 0.9722630292359766,
+        "image_auroc": 0.9715956558061821,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4
+      },
+      "/kaggle/working/EFDM_COMPLETE_EVIDENCE/category_results/grid_efdm_evaluation.json": {
+        "category": "grid",
+        "method": "EFDM-GNL",
+        "test_images": 78,
+        "pixel_auroc": 0.9722630292359766,
+        "image_auroc": 0.9715956558061821,
+        "lambda": 0.5,
+        "image_size": 256,
+        "smoothing_sigma": 4
+      },
+      "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/standard_vs_efdm_aligned_summary.json": {
+        "summary": {
+          "categories_evaluated": 15,
+          "categories_failed": 0,
+          "standard_macro_pixel_auroc": 0.9664693333333332,
+          "aligned_efdm_macro_pixel_auroc": 0.9716188540851527,
+          "pixel_macro_change": 0.005149520751819551,
+          "standard_macro_image_auroc": 0.9592162,
+          "aligned_efdm_macro_image_auroc": 0.9733637573745265,
+          "image_macro_change": 0.014147557374526583,
+          "pixel_categories_improved": 2,
+          "image_categories_improved": 9
+        },
+        "categories": [
+          {
+            "category": "bottle",
+            "test_images": 83,
+            "standard_pixel_auroc": 0.983326,
+            "aligned_efdm_pixel_auroc": 0.9825285995253928,
+            "pixel_change": -0.0007974004746071905,
+            "standard_image_auroc": 0.995238,
+            "aligned_efdm_image_auroc": 0.9936507936507936,
+            "image_change": -0.0015872063492063937
+          },
+          {
+            "category": "cable",
+            "test_images": 150,
+            "standard_pixel_auroc": 0.979222,
+            "aligned_efdm_pixel_auroc": 0.9780041540362296,
+            "pixel_change": -0.001217845963770392,
+            "standard_image_auroc": 0.957834,
+            "aligned_efdm_image_auroc": 0.9580209895052473,
+            "image_change": 0.00018698950524731472
+          },
+          {
+            "category": "capsule",
+            "test_images": 132,
+            "standard_pixel_auroc": 0.985056,
+            "aligned_efdm_pixel_auroc": 0.9844665958879442,
+            "pixel_change": -0.0005894041120558802,
+            "standard_image_auroc": 0.937774,
+            "aligned_efdm_image_auroc": 0.9385719984044676,
+            "image_change": 0.0007979984044675925
+          },
+          {
+            "category": "carpet",
+            "test_images": 117,
+            "standard_pixel_auroc": 0.991042,
+            "aligned_efdm_pixel_auroc": 0.9916739039608572,
+            "pixel_change": 0.0006319039608572163,
+            "standard_image_auroc": 0.991974,
+            "aligned_efdm_image_auroc": 0.9959871589085072,
+            "image_change": 0.004013158908507175
+          },
+          {
+            "category": "grid",
+            "test_images": 78,
+            "standard_pixel_auroc": 0.852005,
+            "aligned_efdm_pixel_auroc": 0.9723721866617673,
+            "pixel_change": 0.12036718666176727,
+            "standard_image_auroc": 0.777778,
+            "aligned_efdm_image_auroc": 0.9715956558061821,
+            "image_change": 0.19381765580618215
+          },
+          {
+            "category": "hazelnut",
+            "test_images": 110,
+            "standard_pixel_auroc": 0.990227,
+            "aligned_efdm_pixel_auroc": 0.9877835956142638,
+            "pixel_change": -0.002443404385736203,
+            "standard_image_auroc": 1.0,
+            "aligned_efdm_image_auroc": 1.0,
+            "image_change": 0.0
+          },
+          {
+            "category": "leather",
+            "test_images": 124,
+            "standard_pixel_auroc": 0.994252,
+            "aligned_efdm_pixel_auroc": 0.993290572027675,
+            "pixel_change": -0.000961427972325013,
+            "standard_image_auroc": 1.0,
+            "aligned_efdm_image_auroc": 1.0,
+            "image_change": 0.0
+          },
+          {
+            "category": "metal_nut",
+            "test_images": 115,
+            "standard_pixel_auroc": 0.974899,
+            "aligned_efdm_pixel_auroc": 0.9727063359057256,
+            "pixel_change": -0.0021926640942743214,
+            "standard_image_auroc": 1.0,
+            "aligned_efdm_image_auroc": 1.0,
+            "image_change": 0.0
+          },
+          {
+            "category": "pill",
+            "test_images": 167,
+            "standard_pixel_auroc": 0.975906,
+            "aligned_efdm_pixel_auroc": 0.9598705113662439,
+            "pixel_change": -0.016035488633756145,
+            "standard_image_auroc": 0.971904,
+            "aligned_efdm_image_auroc": 0.9645390070921986,
+            "image_change": -0.007364992907801349
+          },
+          {
+            "category": "screw",
+            "test_images": 160,
+            "standard_pixel_auroc": 0.992548,
+            "aligned_efdm_pixel_auroc": 0.9920993864319867,
+            "pixel_change": -0.00044861356801328967,
+            "standard_image_auroc": 0.924985,
+            "aligned_efdm_image_auroc": 0.9307235089157615,
+            "image_change": 0.005738508915761553
+          },
+          {
+            "category": "tile",
+            "test_images": 117,
+            "standard_pixel_auroc": 0.956159,
+            "aligned_efdm_pixel_auroc": 0.9469958039233441,
+            "pixel_change": -0.009163196076655833,
+            "standard_image_auroc": 0.992785,
+            "aligned_efdm_image_auroc": 0.9974747474747475,
+            "image_change": 0.0046897474747474854
+          },
+          {
+            "category": "toothbrush",
+            "test_images": 42,
+            "standard_pixel_auroc": 0.989066,
+            "aligned_efdm_pixel_auroc": 0.988926581686588,
+            "pixel_change": -0.00013941831341202082,
+            "standard_image_auroc": 0.986111,
+            "aligned_efdm_image_auroc": 0.9972222222222222,
+            "image_change": 0.011111222222222272
+          },
+          {
+            "category": "transistor",
+            "test_images": 100,
+            "standard_pixel_auroc": 0.901828,
+            "aligned_efdm_pixel_auroc": 0.9015527764387741,
+            "pixel_change": -0.0002752235612258902,
+            "standard_image_auroc": 0.974167,
+            "aligned_efdm_image_auroc": 0.9770833333333333,
+            "image_change": 0.0029163333333332986
+          },
+          {
+            "category": "wood",
+            "test_images": 79,
+            "standard_pixel_auroc": 0.955364,
+            "aligned_efdm_pixel_auroc": 0.9464433951583895,
+            "pixel_change": -0.008920604841610502,
+            "standard_image_auroc": 0.990351,
+            "aligned_efdm_image_auroc": 0.987719298245614,
+            "image_change": -0.0026317017543859844
+          },
+          {
+            "category": "zipper",
+            "test_images": 151,
+            "standard_pixel_auroc": 0.97614,
+            "aligned_efdm_pixel_auroc": 0.9755684126521115,
+            "pixel_change": -0.0005715873478885358,
+            "standard_image_auroc": 0.887342,
+            "aligned_efdm_image_auroc": 0.8878676470588236,
+            "image_change": 0.0005256470588236306
+          }
+        ],
+        "failures": []
+      },
+      "/kaggle/working/EFDM_COMPLETE_EVIDENCE/research_deliverables/efdm_automation_summary.json": {
+        "successful_categories": [
+          "carpet",
+          "grid",
+          "hazelnut",
+          "leather",
+          "metal_nut",
+          "pill",
+          "screw",
+          "tile",
+          "toothbrush",
+          "transistor",
+          "wood",
+          "zipper"
+        ],
+        "failed_categories": []
+      }
+    },
+    "rd4ad_source_candidates": [
+      {
+        "path": "/kaggle/working/ADShift-GNL-working/__pycache__/de_resnet.cpython-313.pyc",
+        "bytes": 18136
+      },
+      {
+        "path": "/kaggle/working/ADShift-GNL-working/de_resnet.py",
+        "bytes": 16803
+      },
+      {
+        "path": "/kaggle/working/project_clean/experiments/gnl/__pycache__/de_resnet.cpython-313.pyc",
+        "bytes": 18146
+      },
+      {
+        "path": "/kaggle/working/project_clean/experiments/gnl/de_resnet.py",
+        "bytes": 16410
+      }
+    ],
+    "archive_matches": [],
+    "notebook_matches": [
+      {
+        "notebook": "/kaggle/working/GNL_Project_Backup/GNL_Baseline_recovery.ipynb",
+        "matches": [
+          {
+            "cell": 2,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content\n\n!if [ -d GNL-Grounded-RD4AD-MVTecAD/.git ]; then echo \"Repository already exists\"; else git clone https://github.com/abhinayk04/GNL-Grounded-RD4AD-MVTecAD.git; fi\n\n%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\n!find ADShift -maxdepth 3 -type f | sort\n!find . -maxdepth 3 -type f \\( -iname \"requirements*.txt\" -o -iname \"environment*.yml\" -o -iname \"setup.py\" -o -iname \"pyproject.toml\" \\) -print"
+          },
+          {
+            "cell": 5,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nprint(\"========== AUGMIX DATASET ==========\")\n!sed -n '440,540p' dataset.py\n\nprint(\"\\n========== MVTec DATASET LOADER ==========\")\n!sed -n '1,155p' dataset.py\n\nprint(\"\\n========== TTA FEATURE MATCHING ==========\")\n!grep -n -E \"EFDM|FDM|def forward|class\" resnet_TTA.py\n\nprint(\"\\n========== TRAINING MODEL ARCHITECTURE ==========\")\n!grep -n -E \"def wide_resnet50_2|class\" resnet.py de_resnet.py"
+          },
+          {
+            "cell": 7,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport torch\nimport torchvision\nimport numpy as np\n\nprint(\"========== BASIC LIBRARY TEST ==========\")\n\nmodules = [\n    \"cv2\",\n    \"scipy\",\n    \"sklearn\",\n    \"PIL\",\n    \"matplotlib\",\n    \"tqdm\"\n]\n\nimport importlib\n\nfor name in modules:\n    try:\n        mod = importlib.import_module(name)\n        print(name, \"OK\", getattr(mod, \"__version__\", \"\"))\n    except Exception as e:\n        print(name, \"FAILED:\", repr(e))\n\nprint(\"\\n========== ADShift IMPORT TEST ==========\")\n"
+          },
+          {
+            "cell": 8,
+            "matches": [
+              "de_resnet",
+              "teacher",
+              "student"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport torch\nfrom resnet import wide_resnet50_2\nfrom de_resnet import de_wide_resnet50_2\n\ndevice = \"cuda\"\n\nprint(\"Creating teacher encoder and bottleneck...\")\nencoder, bn = wide_resnet50_2(pretrained=False)\n\nprint(\"Creating student decoder...\")\ndecoder = de_wide_resnet50_2(pretrained=False)\n\nencoder = encoder.to(device).eval()\nbn = bn.to(device).eval()\ndecoder = decoder.to(device).eval()\n\nprint(\"All three models constructed successfully.\")\n\nx = torch.randn(1, 3, 25"
+          },
+          {
+            "cell": 9,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\nimport os\n\nfor path in [\n    \"datasets\",\n    \"datasets/bottle\",\n    \"datasets/bottle/train/good\",\n    \"datasets/bottle/test\",\n    \"datasets/bottle/ground_truth\"\n]:\n    print(path, \"EXISTS\" if os.path.exists(path) else \"MISSING\")"
+          },
+          {
+            "cell": 32,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport inspect\nimport torch\nfrom resnet import wide_resnet50_2\n\nprint(\"Function signature:\")\nprint(inspect.signature(wide_resnet50_2))\n\nprint(\"\\nFunction source:\")\nprint(inspect.getsource(wide_resnet50_2))"
+          },
+          {
+            "cell": 33,
+            "matches": [
+              "de_resnet",
+              "teacher"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport torch\nfrom resnet import wide_resnet50_2\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\nprint(\"Device:\", device)\n\nencoder, bn = wide_resnet50_2(pretrained=True)\n\nencoder = encoder.to(device)\nbn = bn.to(device)\n\nencoder.eval()\n\nprint(\"\\nTeacher loaded:\", type(encoder).__name__)\nprint(\"Bottleneck loaded:\", type(bn).__name__)\nprint(\"Teacher parameters:\", sum(p.numel() for p in encoder.parameters()))\nprint(\"Bottleneck parameters:\", sum(p"
+          },
+          {
+            "cell": 34,
+            "matches": [
+              "teacher"
+            ],
+            "preview": "x = torch.randn(1, 3, 256, 256).to(device)\n\nwith torch.no_grad():\n    features = encoder(x)\n\nprint(\"Teacher output type:\", type(features))\n\nif isinstance(features, (tuple, list)):\n    for i, feature in enumerate(features):\n        print(f\"Feature {i}:\", feature.shape)\nelse:\n    print(\"Feature shape:\", features.shape)"
+          },
+          {
+            "cell": 36,
+            "matches": [
+              "de_resnet",
+              "teacher"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport torch\nfrom de_resnet import de_wide_resnet50_2\n\ndecoder = de_wide_resnet50_2(pretrained=False).cuda()\nbn = bn.cuda()\n\ndecoder.eval()\nbn.eval()\n\ndummy = torch.randn(1, 3, 256, 256).cuda()\n\nwith torch.no_grad():\n    teacher_features = encoder(dummy)\n    bottleneck_features = bn(teacher_features)\n    decoder_features = decoder(bottleneck_features)\n\nprint(\"Teacher features:\")\nfor i, f in enumerate(teacher_features):\n    print(i, f.shape)\n\nprint(\"\\nDecoder featur"
+          },
+          {
+            "cell": 38,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "!sed -n '1,100p' de_resnet.py"
+          },
+          {
+            "cell": 39,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-official\n\n!grep -n -A 65 -B 15 \"def forward\" de_resnet.py"
+          },
+          {
+            "cell": 46,
+            "matches": [
+              "de_resnet",
+              "teacher"
+            ],
+            "preview": "\n%%writefile /content/ADShift-GNL-working/train_gnl_bottle.py\n\nimport os\nimport csv\nimport argparse\nimport random\nimport numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2\nfrom de_resnet import de_wide_resnet50_2\nfrom dataset import AugMixDatasetMVTec, mean_train, std_train\n\n\ndef loss_function(a, b):\n    cosine = torch.nn.CosineSimilarity(dim=1)\n    loss = 0.0\n\n    f"
+          },
+          {
+            "cell": 59,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nprint(\"===== TTA MODEL DEFINITION =====\")\n!grep -n -A 65 -B 10 \"def wide_resnet50_2\" resnet_TTA.py\n\nprint(\"\\n===== EFDM IMPLEMENTATION =====\")\n!grep -n -A 65 -B 10 \"def EFDM_test\" resnet_TTA.py\n\nprint(\"\\n===== ENCODER FORWARD METHODS =====\")\n!grep -n -A 65 -B 10 \"def forward\" resnet_TTA.py"
+          },
+          {
+            "cell": 61,
+            "matches": [
+              "de_resnet",
+              "teacher",
+              "student"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nimport torch\nfrom PIL import Image\nfrom glob import glob\n\nfrom resnet import wide_resnet50_2\nfrom de_resnet import de_wide_resnet50_2\nfrom dataset import get_data_transforms\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\ncheckpoint_path = \"checkpoints/bottle_full/latest.pth\"\n\n# Load the trained checkpoint\ncheckpoint = torch.load(\n    checkpoint_path,\n    map_location=\"cpu\",\n    weights_only=False\n)\n\n# Build the standard inference archite"
+          },
+          {
+            "cell": 63,
+            "matches": [
+              "de_resnet",
+              "teacher",
+              "student",
+              "anomaly_map"
+            ],
+            "preview": "%%writefile /content/ADShift-GNL-working/infer_gnl_bottle_id.py\n\nimport os\nimport csv\nimport argparse\n\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\n\nfrom scipy.ndimage import gaussian_filter\nfrom sklearn.metrics import roc_auc_score\nfrom PIL import Image\n\nfrom resnet import wide_resnet50_2\nfrom de_resnet import de_wide_resnet50_2\nfrom dataset import MVTecDataset, get_data_transforms\n\n\ndef calculate_anomaly_map(teacher_features, student_features, out_size=256):\n    anomaly_map "
+          },
+          {
+            "cell": 66,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nimport os\nimport pandas as pd\nimport numpy as np\n\noutput_dir = \"results/bottle_id\"\nmap_dir = os.path.join(output_dir, \"anomaly_maps\")\n\nscores = pd.read_csv(\n    os.path.join(output_dir, \"image_scores.csv\")\n)\n\nsummary = open(\n    os.path.join(output_dir, \"evaluation_summary.txt\")\n).read()\n\nnpy_files = [\n    f for f in os.listdir(map_dir)\n    if f.endswith(\".npy\")\n]\n\nheatmap_files = [\n    f for f in os.listdir(map_dir)\n    if f.endswith(\"_heatmap.png\")\n]\n\nprint(\"="
+          },
+          {
+            "cell": 67,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport os\n\nscores = pd.read_csv(\"results/bottle_id/image_scores.csv\")\n\nnormal = scores[scores.label == 0].iloc[0]\ndefect = scores[scores.label == 1].iloc[0]\n\nfor sample in [normal, defect]:\n    matching = [\n        f for f in os.listdir(\"results/bottle_id/anomaly_maps\")\n        if f.endswith(\"_heatmap.png\")\n        and f.split(\"_\", 2)[-1] == sample.filename\n    ]\n\n    print(\"Type:\", sample.de"
+          },
+          {
+            "cell": 68,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nimport os\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom PIL import Image\n\nfrom dataset import MVTecDataset, get_data_transforms\n\nroot = \"/content/mvtec_dataset/bottle\"\nmap_dir = \"results/bottle_id/anomaly_maps\"\n\nimage_transform, mask_transform = get_data_transforms(256, 256)\n\ndataset = MVTecDataset(\n    root=root,\n    transform=image_transform,\n    gt_transform=mask_transform,\n    phase=\"test\"\n)\n\nexamples = [\n    (\"012.png\", \"good\"),\n    (\"000.png\", \"b"
+          },
+          {
+            "cell": 77,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\n!grep -nE \"ArgumentParser|add_argument|bottle|dataset_root|checkpoint|results|MVTecDataset|roc_auc|anomaly_maps\" infer_gnl_bottle_id.py"
+          },
+          {
+            "cell": 81,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nfrom pathlib import Path\n\np = Path(\"infer_gnl_category_id.py\")\n\nprint(\"File exists:\", p.exists())\nprint(\"File size:\", p.stat().st_size if p.exists() else \"Missing\")\nprint(\"Contains calculate_anomaly_map:\",\n      \"def calculate_anomaly_map\" in p.read_text())\nprint(\"Contains main function:\",\n      \"def main():\" in p.read_text())"
+          },
+          {
+            "cell": 82,
+            "matches": [
+              "de_resnet",
+              "teacher",
+              "student",
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nfrom pathlib import Path\n\np = Path(\"infer_gnl_category_id.py\")\nsource = p.read_text()\n\nstart = source.index(\"def main():\")\nend = source.index('\\n\\nif __name__ == \"__main__\":')\n\nnew_main = r'''\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--category\", required=True)\n    parser.add_argument(\"--dataset-root\", required=True)\n    parser.add_argument(\"--checkpoint\", required=True)\n    parser.add_argument(\"--output-dir\", required=True)\n  "
+          },
+          {
+            "cell": 84,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\n!grep -RniE \"AUPRO|compute_aupro|PRO curve|per.region.overlap\" evaluation"
+          },
+          {
+            "cell": 91,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content\n\n!git clone https://github.com/abhinayk04/GNL-Grounded-RD4AD-MVTecAD.git\n\n!git clone https://github.com/mala-lab/ADShift.git ADShift-official\n\nprint(\"\\nProject repositories restored.\")"
+          },
+          {
+            "cell": 92,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\nprint(\"===== PROJECT FILES =====\")\n!find . -maxdepth 4 -type f | sort\n\nprint(\"\\n===== EVALUATION METRICS =====\")\n!grep -RniE \"AUPRO|compute_aupro|PRO curve|pixel.*AUROC\" . --include=\"*.py\""
+          },
+          {
+            "cell": 93,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\nprint(\"===== RUNNING SHARED METRIC TESTS =====\")\n!python -m evaluation.test_metrics\n\nprint(\"\\n===== METRIC FUNCTION SIGNATURES =====\")\n!sed -n '1,245p' evaluation/metrics.py\n\nprint(\"\\n===== MVTec LOADER INTERFACE =====\")\n!sed -n '1,240p' evaluation/mvtec_loader.py"
+          },
+          {
+            "cell": 97,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "from pathlib import Path\nimport shutil\n\nsource = Path(\"/content/ADShift-official\")\ntarget = Path(\"/content/ADShift-GNL-working\")\n\nif not source.exists():\n    raise FileNotFoundError(\"Official ADShift repository is missing.\")\n\nif target.exists():\n    print(\"Working copy already exists. Leaving it unchanged.\")\nelse:\n    shutil.copytree(source, target)\n    print(\"Created working copy:\", target)\n\nprint(\"\\nRequired source files:\")\nfor name in [\"resnet.py\", \"de_resnet.py\", \"dataset.py\", \"test.py\"]:\n  "
+          }
+        ]
+      },
+      {
+        "notebook": "/kaggle/working/EFDM_COMPLETE_EVIDENCE/implementation_candidates/GNL_Baseline_recovery.ipynb",
+        "matches": [
+          {
+            "cell": 2,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content\n\n!if [ -d GNL-Grounded-RD4AD-MVTecAD/.git ]; then echo \"Repository already exists\"; else git clone https://github.com/abhinayk04/GNL-Grounded-RD4AD-MVTecAD.git; fi\n\n%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\n!find ADShift -maxdepth 3 -type f | sort\n!find . -maxdepth 3 -type f \\( -iname \"requirements*.txt\" -o -iname \"environment*.yml\" -o -iname \"setup.py\" -o -iname \"pyproject.toml\" \\) -print"
+          },
+          {
+            "cell": 5,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nprint(\"========== AUGMIX DATASET ==========\")\n!sed -n '440,540p' dataset.py\n\nprint(\"\\n========== MVTec DATASET LOADER ==========\")\n!sed -n '1,155p' dataset.py\n\nprint(\"\\n========== TTA FEATURE MATCHING ==========\")\n!grep -n -E \"EFDM|FDM|def forward|class\" resnet_TTA.py\n\nprint(\"\\n========== TRAINING MODEL ARCHITECTURE ==========\")\n!grep -n -E \"def wide_resnet50_2|class\" resnet.py de_resnet.py"
+          },
+          {
+            "cell": 7,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport torch\nimport torchvision\nimport numpy as np\n\nprint(\"========== BASIC LIBRARY TEST ==========\")\n\nmodules = [\n    \"cv2\",\n    \"scipy\",\n    \"sklearn\",\n    \"PIL\",\n    \"matplotlib\",\n    \"tqdm\"\n]\n\nimport importlib\n\nfor name in modules:\n    try:\n        mod = importlib.import_module(name)\n        print(name, \"OK\", getattr(mod, \"__version__\", \"\"))\n    except Exception as e:\n        print(name, \"FAILED:\", repr(e))\n\nprint(\"\\n========== ADShift IMPORT TEST ==========\")\n"
+          },
+          {
+            "cell": 8,
+            "matches": [
+              "de_resnet",
+              "teacher",
+              "student"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport torch\nfrom resnet import wide_resnet50_2\nfrom de_resnet import de_wide_resnet50_2\n\ndevice = \"cuda\"\n\nprint(\"Creating teacher encoder and bottleneck...\")\nencoder, bn = wide_resnet50_2(pretrained=False)\n\nprint(\"Creating student decoder...\")\ndecoder = de_wide_resnet50_2(pretrained=False)\n\nencoder = encoder.to(device).eval()\nbn = bn.to(device).eval()\ndecoder = decoder.to(device).eval()\n\nprint(\"All three models constructed successfully.\")\n\nx = torch.randn(1, 3, 25"
+          },
+          {
+            "cell": 9,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\nimport os\n\nfor path in [\n    \"datasets\",\n    \"datasets/bottle\",\n    \"datasets/bottle/train/good\",\n    \"datasets/bottle/test\",\n    \"datasets/bottle/ground_truth\"\n]:\n    print(path, \"EXISTS\" if os.path.exists(path) else \"MISSING\")"
+          },
+          {
+            "cell": 32,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport inspect\nimport torch\nfrom resnet import wide_resnet50_2\n\nprint(\"Function signature:\")\nprint(inspect.signature(wide_resnet50_2))\n\nprint(\"\\nFunction source:\")\nprint(inspect.getsource(wide_resnet50_2))"
+          },
+          {
+            "cell": 33,
+            "matches": [
+              "de_resnet",
+              "teacher"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport torch\nfrom resnet import wide_resnet50_2\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\nprint(\"Device:\", device)\n\nencoder, bn = wide_resnet50_2(pretrained=True)\n\nencoder = encoder.to(device)\nbn = bn.to(device)\n\nencoder.eval()\n\nprint(\"\\nTeacher loaded:\", type(encoder).__name__)\nprint(\"Bottleneck loaded:\", type(bn).__name__)\nprint(\"Teacher parameters:\", sum(p.numel() for p in encoder.parameters()))\nprint(\"Bottleneck parameters:\", sum(p"
+          },
+          {
+            "cell": 34,
+            "matches": [
+              "teacher"
+            ],
+            "preview": "x = torch.randn(1, 3, 256, 256).to(device)\n\nwith torch.no_grad():\n    features = encoder(x)\n\nprint(\"Teacher output type:\", type(features))\n\nif isinstance(features, (tuple, list)):\n    for i, feature in enumerate(features):\n        print(f\"Feature {i}:\", feature.shape)\nelse:\n    print(\"Feature shape:\", features.shape)"
+          },
+          {
+            "cell": 36,
+            "matches": [
+              "de_resnet",
+              "teacher"
+            ],
+            "preview": "%cd /content/ADShift-official\n\nimport torch\nfrom de_resnet import de_wide_resnet50_2\n\ndecoder = de_wide_resnet50_2(pretrained=False).cuda()\nbn = bn.cuda()\n\ndecoder.eval()\nbn.eval()\n\ndummy = torch.randn(1, 3, 256, 256).cuda()\n\nwith torch.no_grad():\n    teacher_features = encoder(dummy)\n    bottleneck_features = bn(teacher_features)\n    decoder_features = decoder(bottleneck_features)\n\nprint(\"Teacher features:\")\nfor i, f in enumerate(teacher_features):\n    print(i, f.shape)\n\nprint(\"\\nDecoder featur"
+          },
+          {
+            "cell": 38,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "!sed -n '1,100p' de_resnet.py"
+          },
+          {
+            "cell": 39,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-official\n\n!grep -n -A 65 -B 15 \"def forward\" de_resnet.py"
+          },
+          {
+            "cell": 46,
+            "matches": [
+              "de_resnet",
+              "teacher"
+            ],
+            "preview": "\n%%writefile /content/ADShift-GNL-working/train_gnl_bottle.py\n\nimport os\nimport csv\nimport argparse\nimport random\nimport numpy as np\nimport torch\n\nfrom torch.utils.data import DataLoader\nfrom torchvision import transforms\nfrom torchvision.datasets import ImageFolder\n\nfrom resnet import wide_resnet50_2\nfrom de_resnet import de_wide_resnet50_2\nfrom dataset import AugMixDatasetMVTec, mean_train, std_train\n\n\ndef loss_function(a, b):\n    cosine = torch.nn.CosineSimilarity(dim=1)\n    loss = 0.0\n\n    f"
+          },
+          {
+            "cell": 59,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nprint(\"===== TTA MODEL DEFINITION =====\")\n!grep -n -A 65 -B 10 \"def wide_resnet50_2\" resnet_TTA.py\n\nprint(\"\\n===== EFDM IMPLEMENTATION =====\")\n!grep -n -A 65 -B 10 \"def EFDM_test\" resnet_TTA.py\n\nprint(\"\\n===== ENCODER FORWARD METHODS =====\")\n!grep -n -A 65 -B 10 \"def forward\" resnet_TTA.py"
+          },
+          {
+            "cell": 61,
+            "matches": [
+              "de_resnet",
+              "teacher",
+              "student"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nimport torch\nfrom PIL import Image\nfrom glob import glob\n\nfrom resnet import wide_resnet50_2\nfrom de_resnet import de_wide_resnet50_2\nfrom dataset import get_data_transforms\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\ncheckpoint_path = \"checkpoints/bottle_full/latest.pth\"\n\n# Load the trained checkpoint\ncheckpoint = torch.load(\n    checkpoint_path,\n    map_location=\"cpu\",\n    weights_only=False\n)\n\n# Build the standard inference archite"
+          },
+          {
+            "cell": 63,
+            "matches": [
+              "de_resnet",
+              "teacher",
+              "student",
+              "anomaly_map"
+            ],
+            "preview": "%%writefile /content/ADShift-GNL-working/infer_gnl_bottle_id.py\n\nimport os\nimport csv\nimport argparse\n\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\n\nfrom scipy.ndimage import gaussian_filter\nfrom sklearn.metrics import roc_auc_score\nfrom PIL import Image\n\nfrom resnet import wide_resnet50_2\nfrom de_resnet import de_wide_resnet50_2\nfrom dataset import MVTecDataset, get_data_transforms\n\n\ndef calculate_anomaly_map(teacher_features, student_features, out_size=256):\n    anomaly_map "
+          },
+          {
+            "cell": 66,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nimport os\nimport pandas as pd\nimport numpy as np\n\noutput_dir = \"results/bottle_id\"\nmap_dir = os.path.join(output_dir, \"anomaly_maps\")\n\nscores = pd.read_csv(\n    os.path.join(output_dir, \"image_scores.csv\")\n)\n\nsummary = open(\n    os.path.join(output_dir, \"evaluation_summary.txt\")\n).read()\n\nnpy_files = [\n    f for f in os.listdir(map_dir)\n    if f.endswith(\".npy\")\n]\n\nheatmap_files = [\n    f for f in os.listdir(map_dir)\n    if f.endswith(\"_heatmap.png\")\n]\n\nprint(\"="
+          },
+          {
+            "cell": 67,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport os\n\nscores = pd.read_csv(\"results/bottle_id/image_scores.csv\")\n\nnormal = scores[scores.label == 0].iloc[0]\ndefect = scores[scores.label == 1].iloc[0]\n\nfor sample in [normal, defect]:\n    matching = [\n        f for f in os.listdir(\"results/bottle_id/anomaly_maps\")\n        if f.endswith(\"_heatmap.png\")\n        and f.split(\"_\", 2)[-1] == sample.filename\n    ]\n\n    print(\"Type:\", sample.de"
+          },
+          {
+            "cell": 68,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nimport os\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom PIL import Image\n\nfrom dataset import MVTecDataset, get_data_transforms\n\nroot = \"/content/mvtec_dataset/bottle\"\nmap_dir = \"results/bottle_id/anomaly_maps\"\n\nimage_transform, mask_transform = get_data_transforms(256, 256)\n\ndataset = MVTecDataset(\n    root=root,\n    transform=image_transform,\n    gt_transform=mask_transform,\n    phase=\"test\"\n)\n\nexamples = [\n    (\"012.png\", \"good\"),\n    (\"000.png\", \"b"
+          },
+          {
+            "cell": 77,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\n!grep -nE \"ArgumentParser|add_argument|bottle|dataset_root|checkpoint|results|MVTecDataset|roc_auc|anomaly_maps\" infer_gnl_bottle_id.py"
+          },
+          {
+            "cell": 81,
+            "matches": [
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nfrom pathlib import Path\n\np = Path(\"infer_gnl_category_id.py\")\n\nprint(\"File exists:\", p.exists())\nprint(\"File size:\", p.stat().st_size if p.exists() else \"Missing\")\nprint(\"Contains calculate_anomaly_map:\",\n      \"def calculate_anomaly_map\" in p.read_text())\nprint(\"Contains main function:\",\n      \"def main():\" in p.read_text())"
+          },
+          {
+            "cell": 82,
+            "matches": [
+              "de_resnet",
+              "teacher",
+              "student",
+              "anomaly_map"
+            ],
+            "preview": "%cd /content/ADShift-GNL-working\n\nfrom pathlib import Path\n\np = Path(\"infer_gnl_category_id.py\")\nsource = p.read_text()\n\nstart = source.index(\"def main():\")\nend = source.index('\\n\\nif __name__ == \"__main__\":')\n\nnew_main = r'''\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--category\", required=True)\n    parser.add_argument(\"--dataset-root\", required=True)\n    parser.add_argument(\"--checkpoint\", required=True)\n    parser.add_argument(\"--output-dir\", required=True)\n  "
+          },
+          {
+            "cell": 84,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\n!grep -RniE \"AUPRO|compute_aupro|PRO curve|per.region.overlap\" evaluation"
+          },
+          {
+            "cell": 91,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content\n\n!git clone https://github.com/abhinayk04/GNL-Grounded-RD4AD-MVTecAD.git\n\n!git clone https://github.com/mala-lab/ADShift.git ADShift-official\n\nprint(\"\\nProject repositories restored.\")"
+          },
+          {
+            "cell": 92,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\nprint(\"===== PROJECT FILES =====\")\n!find . -maxdepth 4 -type f | sort\n\nprint(\"\\n===== EVALUATION METRICS =====\")\n!grep -RniE \"AUPRO|compute_aupro|PRO curve|pixel.*AUROC\" . --include=\"*.py\""
+          },
+          {
+            "cell": 93,
+            "matches": [
+              "rd4ad"
+            ],
+            "preview": "%cd /content/GNL-Grounded-RD4AD-MVTecAD\n\nprint(\"===== RUNNING SHARED METRIC TESTS =====\")\n!python -m evaluation.test_metrics\n\nprint(\"\\n===== METRIC FUNCTION SIGNATURES =====\")\n!sed -n '1,245p' evaluation/metrics.py\n\nprint(\"\\n===== MVTec LOADER INTERFACE =====\")\n!sed -n '1,240p' evaluation/mvtec_loader.py"
+          },
+          {
+            "cell": 97,
+            "matches": [
+              "de_resnet"
+            ],
+            "preview": "from pathlib import Path\nimport shutil\n\nsource = Path(\"/content/ADShift-official\")\ntarget = Path(\"/content/ADShift-GNL-working\")\n\nif not source.exists():\n    raise FileNotFoundError(\"Official ADShift repository is missing.\")\n\nif target.exists():\n    print(\"Working copy already exists. Leaving it unchanged.\")\nelse:\n    shutil.copytree(source, target)\n    print(\"Created working copy:\", target)\n\nprint(\"\\nRequired source files:\")\nfor name in [\"resnet.py\", \"de_resnet.py\", \"dataset.py\", \"test.py\"]:\n  "
+          }
+        ]
+      }
+    ],
+    "checkpoint_metadata": [
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/bottle_full/latest.pth",
+        "bytes": 1039728208,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/cable_full/latest.pth",
+        "bytes": 1039728144,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/capsule_full/latest.pth",
+        "bytes": 1039728144,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/carpet_full/latest.pth",
+        "bytes": 369163921,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth.compact/data.pkl",
+          "latest.pth.compact/.format_version",
+          "latest.pth.compact/.storage_alignment",
+          "latest.pth.compact/byteorder",
+          "latest.pth.compact/data/0",
+          "latest.pth.compact/data/1",
+          "latest.pth.compact/data/2",
+          "latest.pth.compact/data/3",
+          "latest.pth.compact/data/4",
+          "latest.pth.compact/data/5",
+          "latest.pth.compact/data/6",
+          "latest.pth.compact/data/7",
+          "latest.pth.compact/data/8",
+          "latest.pth.compact/data/9",
+          "latest.pth.compact/data/10",
+          "latest.pth.compact/data/11",
+          "latest.pth.compact/data/12",
+          "latest.pth.compact/data/13",
+          "latest.pth.compact/data/14",
+          "latest.pth.compact/data/15",
+          "latest.pth.compact/data/16",
+          "latest.pth.compact/data/17",
+          "latest.pth.compact/data/18",
+          "latest.pth.compact/data/19",
+          "latest.pth.compact/data/20",
+          "latest.pth.compact/data/21",
+          "latest.pth.compact/data/22",
+          "latest.pth.compact/data/23",
+          "latest.pth.compact/data/24",
+          "latest.pth.compact/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/grid_full/latest.pth",
+        "bytes": 369163921,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth.compact/data.pkl",
+          "latest.pth.compact/.format_version",
+          "latest.pth.compact/.storage_alignment",
+          "latest.pth.compact/byteorder",
+          "latest.pth.compact/data/0",
+          "latest.pth.compact/data/1",
+          "latest.pth.compact/data/2",
+          "latest.pth.compact/data/3",
+          "latest.pth.compact/data/4",
+          "latest.pth.compact/data/5",
+          "latest.pth.compact/data/6",
+          "latest.pth.compact/data/7",
+          "latest.pth.compact/data/8",
+          "latest.pth.compact/data/9",
+          "latest.pth.compact/data/10",
+          "latest.pth.compact/data/11",
+          "latest.pth.compact/data/12",
+          "latest.pth.compact/data/13",
+          "latest.pth.compact/data/14",
+          "latest.pth.compact/data/15",
+          "latest.pth.compact/data/16",
+          "latest.pth.compact/data/17",
+          "latest.pth.compact/data/18",
+          "latest.pth.compact/data/19",
+          "latest.pth.compact/data/20",
+          "latest.pth.compact/data/21",
+          "latest.pth.compact/data/22",
+          "latest.pth.compact/data/23",
+          "latest.pth.compact/data/24",
+          "latest.pth.compact/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/hazelnut_full/latest.pth",
+        "bytes": 1039728144,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/leather_full/latest.pth",
+        "bytes": 369163985,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth.compact/data.pkl",
+          "latest.pth.compact/.format_version",
+          "latest.pth.compact/.storage_alignment",
+          "latest.pth.compact/byteorder",
+          "latest.pth.compact/data/0",
+          "latest.pth.compact/data/1",
+          "latest.pth.compact/data/2",
+          "latest.pth.compact/data/3",
+          "latest.pth.compact/data/4",
+          "latest.pth.compact/data/5",
+          "latest.pth.compact/data/6",
+          "latest.pth.compact/data/7",
+          "latest.pth.compact/data/8",
+          "latest.pth.compact/data/9",
+          "latest.pth.compact/data/10",
+          "latest.pth.compact/data/11",
+          "latest.pth.compact/data/12",
+          "latest.pth.compact/data/13",
+          "latest.pth.compact/data/14",
+          "latest.pth.compact/data/15",
+          "latest.pth.compact/data/16",
+          "latest.pth.compact/data/17",
+          "latest.pth.compact/data/18",
+          "latest.pth.compact/data/19",
+          "latest.pth.compact/data/20",
+          "latest.pth.compact/data/21",
+          "latest.pth.compact/data/22",
+          "latest.pth.compact/data/23",
+          "latest.pth.compact/data/24",
+          "latest.pth.compact/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/metal_nut_full/latest.pth",
+        "bytes": 1039728208,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/pill_full/latest.pth",
+        "bytes": 1039728144,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/screw_full/latest.pth",
+        "bytes": 1039728144,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/tile_full/latest.pth",
+        "bytes": 369163921,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth.compact/data.pkl",
+          "latest.pth.compact/.format_version",
+          "latest.pth.compact/.storage_alignment",
+          "latest.pth.compact/byteorder",
+          "latest.pth.compact/data/0",
+          "latest.pth.compact/data/1",
+          "latest.pth.compact/data/2",
+          "latest.pth.compact/data/3",
+          "latest.pth.compact/data/4",
+          "latest.pth.compact/data/5",
+          "latest.pth.compact/data/6",
+          "latest.pth.compact/data/7",
+          "latest.pth.compact/data/8",
+          "latest.pth.compact/data/9",
+          "latest.pth.compact/data/10",
+          "latest.pth.compact/data/11",
+          "latest.pth.compact/data/12",
+          "latest.pth.compact/data/13",
+          "latest.pth.compact/data/14",
+          "latest.pth.compact/data/15",
+          "latest.pth.compact/data/16",
+          "latest.pth.compact/data/17",
+          "latest.pth.compact/data/18",
+          "latest.pth.compact/data/19",
+          "latest.pth.compact/data/20",
+          "latest.pth.compact/data/21",
+          "latest.pth.compact/data/22",
+          "latest.pth.compact/data/23",
+          "latest.pth.compact/data/24",
+          "latest.pth.compact/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/toothbrush_full/latest.pth",
+        "bytes": 1039728208,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/transistor_full/latest.pth",
+        "bytes": 1039730000,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth/data.pkl",
+          "latest.pth/.format_version",
+          "latest.pth/.storage_alignment",
+          "latest.pth/byteorder",
+          "latest.pth/data/0",
+          "latest.pth/data/1",
+          "latest.pth/data/2",
+          "latest.pth/data/3",
+          "latest.pth/data/4",
+          "latest.pth/data/5",
+          "latest.pth/data/6",
+          "latest.pth/data/7",
+          "latest.pth/data/8",
+          "latest.pth/data/9",
+          "latest.pth/data/10",
+          "latest.pth/data/11",
+          "latest.pth/data/12",
+          "latest.pth/data/13",
+          "latest.pth/data/14",
+          "latest.pth/data/15",
+          "latest.pth/data/16",
+          "latest.pth/data/17",
+          "latest.pth/data/18",
+          "latest.pth/data/19",
+          "latest.pth/data/20",
+          "latest.pth/data/21",
+          "latest.pth/data/22",
+          "latest.pth/data/23",
+          "latest.pth/data/24",
+          "latest.pth/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/wood_full/latest.pth",
+        "bytes": 369163921,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth.compact/data.pkl",
+          "latest.pth.compact/.format_version",
+          "latest.pth.compact/.storage_alignment",
+          "latest.pth.compact/byteorder",
+          "latest.pth.compact/data/0",
+          "latest.pth.compact/data/1",
+          "latest.pth.compact/data/2",
+          "latest.pth.compact/data/3",
+          "latest.pth.compact/data/4",
+          "latest.pth.compact/data/5",
+          "latest.pth.compact/data/6",
+          "latest.pth.compact/data/7",
+          "latest.pth.compact/data/8",
+          "latest.pth.compact/data/9",
+          "latest.pth.compact/data/10",
+          "latest.pth.compact/data/11",
+          "latest.pth.compact/data/12",
+          "latest.pth.compact/data/13",
+          "latest.pth.compact/data/14",
+          "latest.pth.compact/data/15",
+          "latest.pth.compact/data/16",
+          "latest.pth.compact/data/17",
+          "latest.pth.compact/data/18",
+          "latest.pth.compact/data/19",
+          "latest.pth.compact/data/20",
+          "latest.pth.compact/data/21",
+          "latest.pth.compact/data/22",
+          "latest.pth.compact/data/23",
+          "latest.pth.compact/data/24",
+          "latest.pth.compact/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      },
+      {
+        "path": "/kaggle/working/GNL_Project_Backup/checkpoints/zipper_full/latest.pth",
+        "bytes": 369163921,
+        "format": "zip-based PyTorch serialization",
+        "archive_members": [
+          "latest.pth.compact/data.pkl",
+          "latest.pth.compact/.format_version",
+          "latest.pth.compact/.storage_alignment",
+          "latest.pth.compact/byteorder",
+          "latest.pth.compact/data/0",
+          "latest.pth.compact/data/1",
+          "latest.pth.compact/data/2",
+          "latest.pth.compact/data/3",
+          "latest.pth.compact/data/4",
+          "latest.pth.compact/data/5",
+          "latest.pth.compact/data/6",
+          "latest.pth.compact/data/7",
+          "latest.pth.compact/data/8",
+          "latest.pth.compact/data/9",
+          "latest.pth.compact/data/10",
+          "latest.pth.compact/data/11",
+          "latest.pth.compact/data/12",
+          "latest.pth.compact/data/13",
+          "latest.pth.compact/data/14",
+          "latest.pth.compact/data/15",
+          "latest.pth.compact/data/16",
+          "latest.pth.compact/data/17",
+          "latest.pth.compact/data/18",
+          "latest.pth.compact/data/19",
+          "latest.pth.compact/data/20",
+          "latest.pth.compact/data/21",
+          "latest.pth.compact/data/22",
+          "latest.pth.compact/data/23",
+          "latest.pth.compact/data/24",
+          "latest.pth.compact/data/25"
+        ],
+        "pickle_globals": [
+          "collections OrderedDict",
+          "torch._utils _rebuild_tensor_v2",
+          "torch FloatStorage",
+          "torch LongStorage"
+        ],
+        "inspection_note": ""
+      }
+    ],
+    "checkpoint_tensor_payloads_loaded": false,
+    "checkpoint_files_modified": false
   }
 }
