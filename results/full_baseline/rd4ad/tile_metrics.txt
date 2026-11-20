@@ -1,0 +1,5 @@
+RD4AD Results - tile
+========================================
+image_auroc: 0.870851
+pixel_auroc: 0.950819
+aupro: 0.851389

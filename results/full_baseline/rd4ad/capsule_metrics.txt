@@ -1,0 +1,5 @@
+RD4AD Results - capsule
+========================================
+image_auroc: 0.979657
+pixel_auroc: 0.987029
+aupro: 0.926665

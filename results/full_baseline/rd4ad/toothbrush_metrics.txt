@@ -1,0 +1,5 @@
+RD4AD Results - toothbrush
+========================================
+image_auroc: 0.997222
+pixel_auroc: 0.991306
+aupro: 0.933159

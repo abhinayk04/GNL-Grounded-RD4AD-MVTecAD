@@ -1,0 +1,5 @@
+RD4AD Results - carpet
+========================================
+image_auroc: 0.923756
+pixel_auroc: 0.987902
+aupro: 0.944496

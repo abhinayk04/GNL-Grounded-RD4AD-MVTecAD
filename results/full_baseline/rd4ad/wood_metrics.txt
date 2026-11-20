@@ -1,0 +1,5 @@
+RD4AD Results - wood
+========================================
+image_auroc: 0.782456
+pixel_auroc: 0.947317
+aupro: 0.892220

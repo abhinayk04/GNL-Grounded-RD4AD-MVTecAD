@@ -1,0 +1,5 @@
+RD4AD Results - cable
+========================================
+image_auroc: 0.917354
+pixel_auroc: 0.969972
+aupro: 0.900398

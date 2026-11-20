@@ -1,0 +1,5 @@
+RD4AD Results - transistor
+========================================
+image_auroc: 0.957917
+pixel_auroc: 0.914353
+aupro: 0.817948

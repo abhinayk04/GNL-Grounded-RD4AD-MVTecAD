@@ -1,0 +1,5 @@
+RD4AD Results - bottle
+========================================
+image_auroc: 1.000000
+pixel_auroc: 0.988387
+aupro: 0.965162
